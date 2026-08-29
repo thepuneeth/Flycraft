@@ -1,0 +1,16 @@
+# venv (uv-managed, 872M)
+eon-fly-brain/.venv/
+
+# large connectome data (re-downloadable; see HANDOFF.md §3 / BUILD_PATH2.md §2)
+eon-fly-brain/data/weight_csr.pkl
+eon-fly-brain/data/*.parquet
+eon-fly-brain/data/*.tsv
+# VNC data (Path 2, once fetched)
+eon-fly-brain/data/vnc_weight_csr.pkl
+
+# python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
