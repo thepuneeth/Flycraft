@@ -30,6 +30,7 @@ from run_reservoir_walk import run_episode  # noqa: E402
 CONDITIONS = ("connectome", "random", "rewired")
 GENERALIZATION_DRIVE = 90.0
 EFFECTIVE_R2_TARGET = 0.8
+RANDOM_WEIGHT_SEED = 20260829
 REWIRE_SEED = 20260829
 
 
@@ -78,11 +79,29 @@ def degree_preserving_rewire(weight: torch.Tensor, seed: int = REWIRE_SEED) -> t
     return rewired
 
 
+def randomize_weights(weight: torch.Tensor, seed: int = RANDOM_WEIGHT_SEED) -> torch.Tensor:
+    """Permute signed edge weights on the fixed sparse degree structure."""
+    weight = weight.to_sparse_csr().cpu()
+    values = weight.values().numpy().copy()
+    np.random.default_rng(seed).shuffle(values)
+    randomized = torch.sparse_csr_tensor(
+        weight.crow_indices(),
+        weight.col_indices(),
+        torch.from_numpy(values),
+        size=weight.shape,
+    )
+    assert randomized._nnz() == weight._nnz()
+    assert torch.equal(randomized.crow_indices(), weight.crow_indices())
+    assert torch.equal(randomized.col_indices(), weight.col_indices())
+    assert np.array_equal(np.sort(values), np.sort(weight.values().numpy()))
+    return randomized
+
+
 def condition_stepper(data: Path, weights_name: str, index_name: str, condition: str):
-    if condition == "random":
-        return make_stepper(data, weights_name, index_name, shuffle=True)
     vnc = make_stepper(data, weights_name, index_name)
-    if condition == "rewired":
+    if condition == "random":
+        vnc.W = randomize_weights(vnc.W).to(vnc.device)
+    elif condition == "rewired":
         vnc.W = degree_preserving_rewire(vnc.W).to(vnc.device)
     return vnc
 
@@ -208,7 +227,7 @@ def main() -> None:
         "reason": "Neither linear nor single allowed nonlinear readout produced a visible or kinematically material walk; phase score occurred at collapsed amplitude.",
         "conditions": {
             "connectome": "real frozen signed MANC CSR",
-            "random": "existing seeded presynaptic-column permutation; exact size/row degree and global out-degree distribution matched; seed 1",
+            "random": "seeded permutation of signed edge weights on the fixed graph; exact size, degree structure, and empirical weight multiset matched; seed 20260829",
             "rewired": "one successful directed endpoint swap per edge; exact per-node in/out degree and weight multiset preserved; seed 20260829",
         },
         "identical_procedure": True,

@@ -2,8 +2,8 @@
 
 ## Path 2 current result
 
-Whole-brain FlyWire → official Male CNS VNC → fixed motor map → MuJoCo
-hexapod, with zero learning. All 212 current-v1.0 T1/T2/T3 cells matching
+Baseline: whole-brain FlyWire → official Male CNS VNC → fixed motor map →
+MuJoCo hexapod, with zero learning. All 212 current-v1.0 T1/T2/T3 cells matching
 the published leg-coordination candidate rule are included, including the two
 `IN12B013` T1 cells. E0–E4 are exhausted: the expanded graph, structured
 descending drive, and fixed anatomical proprioceptive feedback still lack

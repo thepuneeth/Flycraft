@@ -15,7 +15,9 @@ prey -> FlyWire brain -> DNg100/DNb08 -> real MANC VNC
      -> fixed motor map -> PD torque -> MuJoCo PhantomX hexapod
 ```
 
-No learning, reward, fitting, target trajectory, or performance-based tuning.
+The baseline chain above uses no learning, reward, fitting, target trajectory,
+or performance-based tuning. Outcome B is separate: it fits only one frozen-
+VNC readout matrix, with the result recorded below.
 
 ## Current numbers
 

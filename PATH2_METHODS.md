@@ -290,13 +290,14 @@ walk. The synchronized 8 s, 1280×960, four-view escalation video is
 ### R3 three-way prior gate
 
 All conditions used identical drive, burn-in, template, split, λ grid,
-heterogeneity, ridge procedure, body, and steering. `random` uses the existing
-seed-1 presynaptic-column permutation, matching graph size, every row degree,
-and the global out-degree distribution. `rewired` performs one successful
-directed endpoint swap per edge (seed `20260829`), preserving every node's
-in/out degree and the exact weight multiset. Generalization used a declared
-held-out tonic drive of 90. Effective rank was the number of descending kernel
-modes needed to reach fixed dynamic-channel held-out R² `0.8`.
+heterogeneity, ridge procedure, body, and steering. `random` keeps the exact
+sparse graph and permutes its signed edge weights with seed `20260829`, so its
+size, degree structure, and empirical weight multiset match the connectome.
+`rewired` performs one successful directed endpoint swap per edge (seed
+`20260829`), preserving every node's in/out degree and the exact weight
+multiset. Generalization used a declared held-out tonic drive of 90. Effective
+rank was the number of descending kernel modes needed to reach fixed
+dynamic-channel held-out R² `0.8`.
 
 | reservoir | readout | held-out R², all | held-out R², dynamic | effective rank to .8 | drive-90 dynamic R² | forward (m) | path (m) | target SD (rad) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|

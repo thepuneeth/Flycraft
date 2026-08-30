@@ -193,8 +193,8 @@ this fixed model/body resolution.
 Outcome B reservoir pivot is complete. R0 collected 3,000 post-burn full-VNC
 states; R1 fit only closed-form ridge `W_out` to the fixed Path-1 template;
 R2 deployed linear and one permitted 64-unit fixed-random-feature escalation;
-R3 compared connectome, seeded column-permuted random, and exact
-degree-preserving rewired reservoirs. No readout reached dynamic held-out
+R3 compared connectome, seeded random-weight, and exact degree-preserving
+rewired reservoirs. No readout reached dynamic held-out
 R² 0.8 or produced a stable tripod walk. The gate verdict is `READOUT TOO
 WEAK`; final claim remains withheld pending approval.
 
