@@ -1,0 +1,5 @@
+condition,train_mse_rad2,validation_mse_rad2,test_mse_rad2,best_epoch,artifact,setup_hash
+connectome,0.006313262041658163,0.2169293761253357,0.17729422450065613,78,eon-fly-brain/results/path2/rung1_readout_connectome.npz,fa7da77bac7333b4fbf4e4ae2516f013226b07b374d221d05c5ae6176bdb6f43
+random,0.01936519891023636,0.08601532131433487,0.08796357363462448,32,eon-fly-brain/results/path2/rung1_readout_random.npz,fa7da77bac7333b4fbf4e4ae2516f013226b07b374d221d05c5ae6176bdb6f43
+rewired,0.01900918036699295,0.13370870053768158,0.15021657943725586,28,eon-fly-brain/results/path2/rung1_readout_rewired.npz,fa7da77bac7333b4fbf4e4ae2516f013226b07b374d221d05c5ae6176bdb6f43
+static-input,0.03744290769100189,0.03702186793088913,0.03744468465447426,72,eon-fly-brain/results/path2/rung1_readout_static-input.npz,fa7da77bac7333b4fbf4e4ae2516f013226b07b374d221d05c5ae6176bdb6f43
