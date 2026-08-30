@@ -1,23 +1,31 @@
 # Path 2 — methods and current evidence
 
-Status: corrected body-setup rerun complete through E0–E4, Path 3, and the
-five-condition controls. Pre-fix body-level results are confounded/superseded;
-the final claim remains pending approval.
+Status: corrected body-setup rerun complete through E0–E4 and Path 3; current
+`H_MIN=.08 m` gate, Methods 1–2, and corrected Path 3 controls are complete.
+Pre-fix body-level results are confounded/superseded; the final claim remains
+pending approval.
 
-## Corrected rerun summary (provisional; final claim withheld)
+## Current result (claim review pending)
 
 The body correction makes the declared clean-clock engine stand and travel
 (`1.660 m` forward, `2.038 m` path in 8 s, minimum height `.121 m`, no fall),
-but it does not make the frozen VNC produce an alternating tripod. All 212
-published T1/T2/T3 coordination candidates are present, and corrected E0,
-E3, E4, and Path 3 remain phase-absent. Real VNC wiring beats column-shuffled
-VNC on open-loop path (`+0.2663 m`, 95% CI `[+.2611, +.2714]`, Holm
-`p=1.91×10⁻⁶`), while brain-coupled VNC is below matched random descending
-drive (`−.0621 m`, 95% CI `[−.1192, −.0092]`, Holm `p=.0422`).
+but it does not make the frozen VNC produce an alternating tripod. The fixed
+published-candidate inventory is complete at 212/212, including both former
+T1 `IN12B013` cells. Neither connectome-set coordination (Method 1) nor
+continuous connectome phase (Method 2) produces the declared coordinated
+walk: Method 1's real 4/2 grouping falls in 16/20 episodes, while Method 2
+keeps near-half swing duty but remains phase-absent in all 20 episodes.
+
+The real VNC still beats column-shuffled VNC in the separate five-condition
+open-loop control (`+0.2663 m` path, 95% CI `[+.2611, +.2714]`, exact
+`p=1.91×10⁻⁶`, Holm `p=5.72×10⁻⁶`), while brain-coupled VNC is below matched
+random descending drive (`−.0621 m`, 95% CI `[−.1192, −.0092]`, Holm
+`p=.0422`). This is a real VNC motor-output positive, not evidence that
+connectome coordination transfers to a tripod.
 
 This is a corrected evidence summary, not final claim wording. Outcome C/D
-were not rerun: B1–B3 still show no tripod and no real-over-random advantage,
-so B4 is skipped under the fixed protocol.
+were not rerun: the fixed zero-learning routes still show no coordinated walk,
+so those learning rungs remain outside this result.
 
 ## Pre-fix working headline (confounded/superseded)
 
@@ -60,9 +68,10 @@ a coordinate conversion, not a fitted parameter.
 | E3 structured drive | `E3-ABSENT` | `E3-ABSENT`; within `2/6`, cross `3/9`, scalar `+.103` |
 | E4 sensory feedback | `E4-ABSENT` | `E4-ABSENT`; within `0/6`, cross `4/9`, scalar `−.210` |
 
-Corrected artifacts use the `eon-fly-brain/results/path2/bodyfix_*` prefix.
-Original files remain in place for audit and are not evidence for a final
-body-level conclusion.
+Corrected body-setup artifacts use the
+`eon-fly-brain/results/path2/bodyfix_*` prefix. Current-floor Path 3 control
+artifacts use `hminfix_*`. Original files remain in place for audit and are not
+evidence for a final body-level conclusion.
 
 ## Question and pipeline
 
@@ -506,12 +515,13 @@ topology, body constant, PD constant, or objective constant is selected from
 post-hoc performance.
 
 The first D2 exploratory run exposed a reward-physics bug: height alone marked
-inverted bodies as upright. Those outputs are discarded. Before the corrected
-run, the fixed physical validity rule became `root up_z >= 0.5` and height
-`>= 0.02 m`; a failed episode receives the already-declared `−0.5` penalty and
-does not receive the `+0.05` upright bonus. All three conditions were then
-rerun fresh through D1/D2 with the same seeds and budgets. No gait term was
-added.
+inverted bodies as upright. Those outputs are discarded. The historical D2
+rerun used the then-declared physical validity rule `root up_z >= 0.5` and
+height `>= 0.02 m`; a failed episode receives the already-declared `−0.5`
+penalty and does not receive the `+0.05` upright bonus. The current frozen
+zero-learning runners enforce `H_MIN=.08 m` globally. All three conditions
+were then rerun fresh through D1/D2 with the same seeds and budgets. No gait
+term was added.
 
 ### Outcome D results
 
@@ -627,6 +637,112 @@ training, reward, or phase selection:
 extensor` activity; otherwise `stance`. The fixed engine supplies the
 lift-swing-place/push-back trajectory; the frozen brain supplies steering only.
 
+## Connectome coordination + continuous phase (Methods 1–2)
+
+These two fixed, zero-learning routes hand additional control variables to the
+connectome. Method 1 derives a discrete inter-leg grouping from the real VNC
+phase matrix with the declared ±`.25`-cycle rule. Method 2 derives one
+continuous phase per leg from the 1.5–4.0 Hz band-passed mean
+flexor-minus-extensor motor-pool signal, then applies the fixed `+π/2` map to
+the unchanged Path-1 primitive. Both use 20 paired 8-second episodes,
+shared starts, the same engine, and current `H_MIN=.08 m`.
+
+### Method 1 — connectome-set inter-leg coordination
+
+The fixed rule anchors on T1L; legs within `.25` cycles are same-group and
+legs within `.25` cycles of `.5` are anti-phase. The real source yields a 4/2
+group, not a tripod: A = T1L/T1R/T2L/T2R and B = T3L/T3R. The column-shuffled
+control yields 3/3; the independent random control uses a seeded 4/2 split
+with seed `20260830`.
+
+| source | group A / B | path m [95% CI] | realized engine command scalar [95% CI] | mean feet planted [95% CI] | falls |
+|---|---|---:|---:|---:|---:|
+| real VNC | 4 / 2 | `1.4982 [1.3503, 1.6385]` | `2.000 [2.000, 2.000]` | `.2387 [.2001, .2757]` | 16/20 |
+| shuffled VNC | 3 / 3 | `2.0729 [2.0658, 2.0802]` | `2.000 [2.000, 2.000]` | `.4101 [.4083, .4120]` | 0/20 |
+| random grouping | 4 / 2 | `1.9584 [1.9523, 1.9646]` | `2.000 [2.000, 2.000]` | `.4158 [.4139, .4175]` | 0/20 |
+
+Real minus shuffled path was `−.5747 m` (95% CI `[-.7172, -.4378]`, exact
+paired sign-flip `p=1.91×10⁻⁶`, Holm `p=3.81×10⁻⁶`); real minus random was
+`−.4603 m` (95% CI `[-.6068, -.3202]`, exact `p=3.81×10⁻⁶`, Holm
+`p=3.81×10⁻⁶`). The scalar equals 2.0 for every condition because it measures
+the phase pattern explicitly imposed on the engine, not phase recovered from
+the body or VNC. Method 1 therefore fails the movement and stability test;
+its real 4/2 grouping is not a successful tripod.
+
+The fixed-source phase audit itself is absent: real VNC has only `3/6`
+within-tripod and `3/9` cross-tripod canonical pairs at the declared tolerance.
+The full manifest, grouping derivation, statistics, and fixed-seed real video
+are `results/path2/connectome_coordination_method1.{json,csv}` and
+`results/path2/connectome_coordination_method1_real.mp4`.
+
+### Method 2 — continuous VNC phase drive
+
+The real source phase frequencies are
+`[2.153, 2.750, 2.266, 2.550, 2.490, 2.692] Hz`, with per-leg swing duties
+`.4975, .5250, .4800, .4425, .5150, .5125` and mean `.4954`. Continuous
+per-leg phase already carries inter-leg offsets, so Method 1's group offset is
+not added a second time. The random source matches real frequencies and uses
+seeded independent initial phases; the shuffled source keeps its own decoded
+frequencies.
+
+| source | path m [95% CI] | continuous phase scalar [95% CI] | mean swing duty [95% CI] | mean feet planted [95% CI] | falls | phase verdict |
+|---|---:|---:|---:|---:|---:|---|
+| real VNC | `1.3749 [1.3728, 1.3770]` | `.3174 [.3174, .3174]` | `.4954 [.4954, .4954]` | `.3984 [.3971, .3997]` | 0/20 | 20/20 `M2-PHASE-ABSENT` (`3/6`, `5/9`) |
+| shuffled VNC | `1.5602 [1.5572, 1.5632]` | `−.3035 [−.3035, −.3035]` | `.5008 [.5008, .5008]` | `.4497 [.4485, .4510]` | 0/20 | 20/20 `M2-PHASE-ABSENT` (`2/6`, `3/9`) |
+| random continuous phase | `1.2687 [1.2662, 1.2711]` | `.0724 [.0724, .0724]` | `.5000 [.5000, .5000]` | `.4224 [.4216, .4231]` | 0/20 | 20/20 `M2-PHASE-ABSENT` (`0/6`, `3/9`) |
+
+Real minus shuffled path was `−.1852 m` (95% CI `[-.1884, -.1819]`, exact
+paired sign-flip `p=1.91×10⁻⁶`, Holm `p=3.81×10⁻⁶`); real minus random was
+`+.1063 m` (95% CI `[+.1032, +.1097]`, exact `p=1.91×10⁻⁶`, Holm
+`p=3.81×10⁻⁶`). Method 2 fixes the binary duty imbalance and remains upright,
+but no condition produces the canonical tripod phase relation. The full
+source record, phase audit, statistics, and fixed-seed real video are
+`results/path2/continuous_phase_method2.{json,csv}` and
+`results/path2/continuous_phase_method2_real.mp4`.
+
+### Reconciliation with the Path-3 binary baseline
+
+The Path-3 timing controls were rerun under the current `.08 m` fall floor;
+movement means and CIs are unchanged, but real falls are now `3/20` and
+random falls `11/20` (the prior `.02 m` labels are superseded provenance).
+
+| route | real path m [95% CI] | falls | phase result | relation to Path-3 binary baseline |
+|---|---:|---:|---|---|
+| Path 3 binary real | `.3784 [.2834, .4726]` | 3/20 | 20/20 `P3-ABSENT` | baseline |
+| Method 1 real 4/2 grouping | `1.4982 [1.3503, 1.6385]` | 16/20 | source `M1-ABSENT`; imposed command scalar 2.0 | no: unstable and below both controls |
+| Method 2 real continuous phase | `1.3749 [1.3728, 1.3770]` | 0/20 | 20/20 `M2-PHASE-ABSENT` | higher path only; no coordinated-walk success |
+
+Method 2's path is numerically above Path 3's binary path, but the endpoints
+are not interchangeable: it drives continuously from per-leg VNC phase and
+has no canonical phase verdict, whereas Path 3 is the binary timing baseline.
+Method 1 and Method 2 therefore do not beat the Path-3 baseline on the
+declared coordinated-walk endpoint. The new corrected-floor controls are
+`results/path2/hminfix_stepwalk_controls.{json,csv,png}` with
+`hminfix_stepwalk_metrics_{real,shuffled,random}.json` and the three
+`hminfix_stepwalk_multiview*.mp4` videos.
+
+### Layer localization and connectome job ownership
+
+Layer i remains the primary failure. The raw real VNC phase is absent under
+both the original binary audit (`2/6` within, `4/9` cross) and Method 1's
+source grouping (`3/6`, `3/9`); Method 2's real continuous phase is also
+absent (`3/6`, `5/9`). Method 2's mean duty is healthy, so fixing swing/stance
+duration alone does not restore phase organization.
+
+Layer ii transmits usable oscillatory activity but does not repair its
+coordination: Method 1 can impose an exact command scalar of 2.0 yet falls in
+16/20 episodes, while Method 2 carries finite per-leg phase and target motion
+(`.1555 rad` mean target temporal SD) without a tripod. Layer iii is capable
+of the target behavior: Gate A's unchanged engine reaches `2.038 m` path with
+minimum height `.121 m`, no fall, and exact tripod scalar 2.0. Thus the body
+and fixed engine are not a total-signal-loss bottleneck; they expose the
+noncanonical grouping delivered by layers i–ii.
+
+The connectome owns descending drive, VNC dynamics, motor activity, and
+steering, but it still does not own a successful inter-leg coordination or
+usable whole-body rhythm. Effective walk ownership remains about 25%, not the
+50–60% target; no ownership upgrade is justified by the Method-2 path gain.
+
 ## Path 3 — zero-learning step-timing decode
 
 Implementation uses `code/step_decode.py`, `code/gait_engine.py`, and
@@ -688,8 +804,9 @@ and the same engine, decode rule, steering, body, PD constants, and seeds. The
 random condition used independent alternating-renewal swing/stance durations
 whose per-leg mean frequency and swing duty were fixed from the P1 real decode;
 only the timing source changed. Means have 95% percentile-bootstrap CIs
-(100,000 replicates, seed `20260829`). Falls use the unchanged height threshold
-`.02 m`.
+(100,000 replicates, seed `20260829`). The authoritative rerun uses the
+current `.08 m` height floor; the earlier `bodyfix_*` P4 files used `.02 m`
+and are retained only as superseded pre-T2 provenance.
 
 The predeclared four-seed evaluation set is `20260829`–`20260832`, present as
 episodes 0–3 in every condition. P4 CIs use all 20 paired episodes; videos are
@@ -697,9 +814,9 @@ fixed-seed exemplars, not post-hoc best selections.
 
 | timing source | forward m [95% CI] | path m [95% CI] | falls | upright | realized scalar [95% CI] | phase verdicts |
 |---|---:|---:|---:|---:|---:|---|
-| real VNC | .1014 [.0659, .1391] | .3784 [.2834, .4726] | 0/20 | 20/20 | −.1317 [−.2070, −.0515] | 20/20 P3-ABSENT |
+| real VNC | .1014 [.0659, .1391] | .3784 [.2834, .4726] | 3/20 | 17/20 | −.1317 [−.2070, −.0515] | 20/20 P3-ABSENT |
 | shuffled VNC | −.0007 [−.0037, .0024] | .0470 [.0268, .0686] | 0/20 | 20/20 | ~0 [0, 0] | 20/20 P3-ABSENT |
-| random matched-rate | .1329 [.0811, .1893] | .4750 [.3564, .5915] | 0/20 | 20/20 | −.0293 [−.1542, .1094] | 20/20 P3-ABSENT |
+| random matched-rate | .1329 [.0811, .1893] | .4750 [.3564, .5915] | 11/20 | 9/20 | −.0293 [−.1542, .1094] | 20/20 P3-ABSENT |
 
 For the predeclared primary path endpoint, real minus shuffled was `+0.3314
 m` [+.2529, +.4070], exact paired sign-flip `p=1.53×10⁻⁵`, Holm
@@ -727,13 +844,14 @@ driven by decoded timing it produces no tripod. This localizes the remaining
 transfer failure to layer-i timing organization, with layers ii/iii transmitting
 or expressing the incoherence rather than causing total signal loss.
 
-The corrected control manifest, raw episode table, per-condition metrics, and
-figure are `results/path2/bodyfix_stepwalk_controls.json`,
-`results/path2/bodyfix_stepwalk_controls.csv`,
-`results/path2/bodyfix_stepwalk_metrics_{real,shuffled,random}.json`, and
-`results/path2/bodyfix_stepwalk_controls.png`. Corrected condition videos are
-`results/path2/bodyfix_stepwalk_multiview{,_shuffled,_random}.mp4`. The old
-`stepwalk_*` body-level outputs remain as superseded provenance.
+The current-floor control manifest, raw episode table, per-condition metrics,
+and figure are `results/path2/hminfix_stepwalk_controls.json`,
+`results/path2/hminfix_stepwalk_controls.csv`,
+`results/path2/hminfix_stepwalk_metrics_{real,shuffled,random}.json`, and
+`results/path2/hminfix_stepwalk_controls.png`. Current-floor condition videos
+are `results/path2/hminfix_stepwalk_multiview{,_shuffled,_random}.mp4`.
+The `bodyfix_stepwalk_*` and old `stepwalk_*` body-level outputs remain as
+superseded provenance.
 
 ## Integrity and zero-learning checks
 
@@ -754,20 +872,30 @@ The current artifact set includes:
 - Path 3 method-source record, antagonist pool decode, fixed-engine ceiling,
   paired timing controls, CIs/sign-flip tests, and condition videos.
 - Body-fix Gate A, corrected E0/E3/E4/layer audits, corrected five-condition
-  control statistics, and corrected Path 3 real/shuffled/random videos under
-  the `bodyfix_*` prefix.
+  control statistics, and corrected-floor Path 3 real/shuffled/random videos
+  under the `hminfix_*` prefix.
+- Method-1 connectome grouping and Method-2 continuous-phase manifests,
+  paired CIs/sign-flip tests, and fixed-seed four-view real videos.
 
-The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0 and
-Path 3 probes are fixed replay/measurement code with no optimizer, backprop,
-reward, target fit, or performance-based choice. All 58 JSON and 41 CSV files
-parse; all 212 published candidates are selected with 0 omitted; the frozen
-all-leg VNC file hash is
+The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0,
+Path 3, Method-1, and Method-2 probes are fixed replay/measurement code with
+no optimizer, backprop, reward, target fit, or performance-based choice. All
+65 JSON and 44 CSV files parse; all 212 published candidates are selected with
+0 omitted; the frozen all-leg VNC file hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`, and the
 frozen FlyWire brain file hash is
 `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
-Python compilation, `git diff --check`, shared-condition checks, home-keyframe
-provenance, and readable eight-second H.264 video checks all pass. Outcome C/D
+The all-leg index hash is
+`3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449` and
+matches the frozen graph record. Python compilation, `git diff --check`,
+shared-condition checks, home-keyframe provenance, current `.08 m` floor
+checks, and readable H.264 video checks all pass. Method-1 and Method-2
+condition videos are 8.000 s; the preflight video is 4.000 s. Outcome C/D
 remain separately labeled learning rungs and were not rerun.
+The lexical zero-learning scan's only matches are the preflight inventory
+filename `outcomeD_train.py` and Method-2's deterministic `np.polyfit` slope
+used to estimate phase frequency; neither is training, optimization, or a
+performance-derived choice.
 
 ## Limits and claim boundary
 
