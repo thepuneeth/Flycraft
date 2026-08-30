@@ -1,8 +1,8 @@
 # Flycraft — Path 2 handoff
 
-Status: frozen rerun, E0–E4 localization, reservoir R0–R3, and Outcome C
-complete; Outcome D weight-learning rung in progress. Documentation and
-audits updated. Final claim still requires user approval.
+Status: frozen rerun, E0–E4 localization, reservoir R0–R3, and Outcome C/D
+complete; final claim remains gated on user approval. Documentation and audits
+updated.
 
 ## Working headline
 
@@ -12,7 +12,10 @@ cells. E0–E4 are exhausted: the expanded real VNC, structured brain drive,
 and fixed anatomical proprioceptive feedback still do not form a coherent
 alternating tripod. Real VNC wiring produces substantially more open-loop
 movement than column-shuffled VNC, but brain coupling does not outperform
-matched random descending drive in the short-horizon study.
+matched random descending drive in the short-horizon study. Outcome C shows no
+frozen-weight moat. Outcome D can express the target-like command phase, but
+matched controls do too and locomotion-only fine-tuning does not yield
+four-seed upright stability.
 
 Do not replace this with a catch headline. No condition caught prey.
 
@@ -207,7 +210,7 @@ readout metrics and integrity record.
 The learning ladder to walking: zero-learn open-loop (E0–E4, absent) →
 linear/nonlinear readout on frozen dynamics (reservoir R0–R3, `READOUT TOO
 WEAK`) → tune global gains on the frozen VNC pattern (Outcome C, complete) →
-learn VNC weights (Outcome D, in progress). Each rung relaxes exactly one
+learn VNC weights (Outcome D, complete). Each rung relaxes exactly one
 constraint and is only taken because the rung below ceilinged.
 
 Outcome C tunes ~18 global scalar gains only — descending drive, intersegmental
@@ -248,11 +251,11 @@ and real wiring does not beat matched controls. Evidence:
 `results/path2/cmaes_3way.png`, and the three `cmaes_walk_multiview_*.mp4`
 files.
 
-Do not write the final claim until Outcome D is audited and the user approves.
+Do not write the final claim until the user approves the assembled evidence.
 
-## Outcome D: learn VNC weights (in progress; the last rung)
+## Outcome D: learn VNC weights (complete; final claim gated)
 
-Outcome C ceilings, so the only remaining rung that can plausibly produce
+Outcome C ceilings, so the remaining rung that could plausibly produce
 walking is learning the VNC weights themselves — the FlyGM recipe (connectome
 graph as architecture, imitation-learning init + PPO fine-tune on a
 locomotion-only reward). This is where actual coordinated walking is expected to
@@ -270,10 +273,32 @@ hexapod and is not a liftable module. Therefore FlyGM is usable only as a
 **reference recipe** for wiring connectome-graph → decoder → PPO, not as a
 drop-in trained controller. Outcome D uses the available CPU-feasible fixed
 low-rank/closed-form-decoder/ES implementation: learned VNC edge values are
-the only relaxed object; objective is locomotion (distance + upright) only,
-never prey capture; tripod measured, never rewarded. Target replay is recorded
-at `results/path2/outcomeD_imitation_target.npz` and
+the only relaxed graph object; objective is locomotion (distance + upright)
+only, never prey capture; tripod measured, never rewarded. Target replay is
+recorded at `results/path2/outcomeD_imitation_target.npz` and
 `results/path2/outcomeD_target_replay.json`.
+
+The first D2 exploratory run exposed a height-only upright-reward bug and was
+discarded. The corrected run adds fixed root orientation `up_z >= 0.5` to the
+existing height check, then reruns all three conditions fresh with unchanged
+budgets, seeds, target, and graph controls. D1 imitation stays orientation-
+valid in all 12 evaluations and produces `E3-PRESENT` command phase. D2
+locomotion fine-tuning produces `E3-PRESENT` command phase in all 12, but
+orientation-gated falls occur in connectome 3/4, random 4/4, and rewired 3/4.
+The command phase is not treated as a body-level walking claim.
+
+| condition | D1 held-out dynamic R² | D1 falls | D2 forward m [95% CI] | D2 return [95% CI] | D2 falls | max tilt deg [95% CI] |
+|---|---:|---:|---:|---:|---:|---:|
+| connectome | −.4633 | 0/4 | .5804 [.2849, .8848] | .2179 [−.1891, .6250] | 3/4 | 113.0 [73.1, 152.9] |
+| random topology | −1.2354 | 0/4 | .8488 [.7307, .9188] | .3488 [.2307, .4188] | 4/4 | 160.3 [154.2, 163.6] |
+| rewired topology | +.2219 | 0/4 | .5417 [.2215, .7690] | .1792 [−.2515, .5917] | 3/4 | 78.9 [53.5, 116.0] |
+
+D2 verdict: **NO STABLE WALK; topology NULL**. The random forward mean is
+not a success because all four episodes fail the physical upright audit. Full
+records are in `results/path2/outcomeD_metrics_*.json`,
+`results/path2/outcomeD_stats.json`, `results/path2/outcomeD_3way.*`, and
+`results/path2/outcomeD_walk_multiview*.mp4`; stable D1 imitation videos are
+`results/path2/outcomeD_imitation_multiview_*.mp4`.
 
 ## Reproduction commands
 
@@ -338,6 +363,18 @@ Run from `/Users/puneeth/Documents/Flycraft` with
   --out eon-fly-brain/results/path2/reservoir_walk_metrics_linear.json \
   --video eon-fly-brain/results/path2/reservoir_walk_multiview_linear.mp4
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/reservoir_3way.py
+
+# Outcome C C2 fixed 22-generation three-way endpoint (no continuation).
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/cmaes_3way.py \
+  --workers 8 --max_generations 22 --max_hours 2
+
+# Outcome D: corrected fresh matched runs. Checkpoints make reruns resumable.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
+  --condition connectome --fresh
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
+  --condition random --fresh
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
+  --condition rewired --fresh
 ```
 
 The synchronized four-camera episode is
@@ -352,8 +389,11 @@ Before final claim approval, rerun and record:
 - IO index/body-ID equality, including 212 published candidates;
 - equality of canonical and results graph inputs where intended;
 - video duration and readable MP4 stream;
-- zero catches/falls in control outputs;
-- zero-learning scan for optimizer/backpropagation/reward/loss/target fitting;
+- zero catches/falls in frozen E0–E4/C2 outputs, plus explicit D2
+  orientation-gated fall accounting;
+- zero-learning scan scoped to frozen E0–E4 code/artifacts; D2 objective scan
+  confirms no catch/prey/target/gait/coherence term;
+- immutable target and exact row/column degree sequences for D controls;
 - `git diff --check`.
 
 Do not add constants, retune gains, delete superseded artifacts, or broaden
@@ -374,4 +414,6 @@ the claim before user approval.
 | `eon-fly-brain/code/probe_structured_descending.py` | E3 structured brain-drive phase probe |
 | `eon-fly-brain/code/run_sensory_feedback.py` | E4 anatomical proprioceptive feedback replay |
 | `eon-fly-brain/code/cmaes_walk.py` | Outcome C gain-tuning CMA-ES harness (frozen VNC pattern) |
+| `eon-fly-brain/code/cmaes_3way.py` | matched Outcome C connectome/random/rewired endpoint |
+| `eon-fly-brain/code/outcomeD_train.py` | Outcome D fixed-topology weight learning, controls, and audits |
 | `PATH2_METHODS.md` | methods-complete working report |

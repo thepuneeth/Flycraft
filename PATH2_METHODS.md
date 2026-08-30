@@ -1,7 +1,7 @@
 # Path 2 — methods and current evidence
 
-Status: methods-complete working report; E0–E4 localization complete. Final
-claim remains pending approval.
+Status: methods-complete working report; E0–E4 localization and Outcome C/D
+evaluation complete. Final claim remains pending approval.
 
 ## Working headline
 
@@ -12,7 +12,9 @@ not produce a coherent alternating tripod. Real VNC wiring produces more
 movement than its column-shuffled control, but the brain-coupled controller
 does not outperform matched random descending drive in the short-horizon
 hexapod study. Frozen-pattern CMA-ES gain tuning also does not reveal a
-connectome-specific tripod or a connectome performance moat.
+connectome-specific tripod or a connectome performance moat. Outcome D can
+command the declared tripod through a learned decoder, but matched controls do
+too; locomotion-only fine-tuning does not yield four-seed upright stability.
 
 ## Question and pipeline
 
@@ -424,16 +426,60 @@ forward distance, `1.1036 m` path, and tripod coherence scalar `2.000`; this
 is the reference kinematic ceiling, not a learned score or D reward. The
 replay record is `results/path2/outcomeD_target_replay.json`.
 
-Outcome D execution is in progress. The CPU-feasible implementation uses an
-8-dimensional fixed random low-rank edge-value basis over the 11,000-node,
-485,074-edge canonical all-leg graph, a closed-form ridge decoder during D1,
-and CMA-ES weight fine-tuning during D2 because no PPO stack is installed and
-full sparse-CSR autograd is impractical on this CPU.
+Outcome D uses an 8-dimensional fixed random low-rank edge-value basis over the
+11,000-node, 485,074-edge canonical all-leg graph, a closed-form ridge decoder
+during D1, and CMA-ES weight fine-tuning during D2 because no PPO stack is
+installed and full sparse-CSR autograd is impractical on this CPU.
 The measured connectome weights initialize the connectome condition; controls
 use seeded randomized values, an exact degree-sequence configuration-model
 support (random), or degree-preserving rewiring (rewired). No graph
 topology, body constant, PD constant, or objective constant is selected from
 post-hoc performance.
+
+The first D2 exploratory run exposed a reward-physics bug: height alone marked
+inverted bodies as upright. Those outputs are discarded. Before the corrected
+run, the fixed physical validity rule became `root up_z >= 0.5` and height
+`>= 0.02 m`; a failed episode receives the already-declared `−0.5` penalty and
+does not receive the `+0.05` upright bonus. All three conditions were then
+rerun fresh through D1/D2 with the same seeds and budgets. No gait term was
+added.
+
+### Outcome D results
+
+D1 imitation replay produces the target-like command phase in all 12
+condition/seed evaluations (`E3-PRESENT`) and remains orientation-valid in all
+12. This is decoder imitation, not evidence that the topology is special: the
+rewired condition has the highest dynamic held-out R², while every condition
+reproduces the same command-level phase pattern. D1 forward means are
+`0.3698 m` [0.3609, 0.3768] for connectome, `0.4091 m` [0.3774, 0.4397] for
+random, and `0.3629 m` [0.3445, 0.3807] for rewired.
+
+D2 optimizes only forward displacement plus the fixed upright/fall terms. The
+table reports four-seed means with 95% percentile-bootstrap CIs (100,000
+replicates, seed `20260829`). Forward distance is shown for comparability, but
+upright-gated locomotion return and failure count determine whether replay is
+valid.
+
+| condition | D1 held-out dynamic R² | D1 falls | D2 forward (m) | D2 return | D2 falls | D2 max tilt (deg) |
+|---|---:|---:|---:|---:|---:|---:|
+| connectome | −.4633 | 0/4 | .5804 [.2849, .8848] | .2179 [−.1891, .6250] | 3/4 | 113.0 [73.1, 152.9] |
+| random topology | −1.2354 | 0/4 | .8488 [.7307, .9188] | .3488 [.2307, .4188] | 4/4 | 160.3 [154.2, 163.6] |
+| rewired topology | +.2219 | 0/4 | .5417 [.2215, .7690] | .1792 [−.2515, .5917] | 3/4 | 78.9 [53.5, 116.0] |
+
+All 12 D2 command traces also score `E3-PRESENT`, with scalar `2.000`, but
+that metric is computed on the decoder's 18-joint command trace using the
+existing phase procedure. It does not override the physical orientation
+audit. Connectome and rewired retain only 1/4 orientation-valid D2 episodes;
+random retains 0/4. The high random forward mean is therefore a failed-body
+outcome, not a walking result. D2 verdict: **NO STABLE WALK; topology NULL**.
+The learned decoder can express the declared kinematic pattern, but the
+locomotion fine-tune does not produce a robust body-level transfer and no
+condition separates as a topology-specific result. Full per-seed records,
+checkpoints, videos, curves, and CIs are in
+`eon-fly-brain/results/path2/outcomeD_metrics_{connectome,random,rewired}.json`,
+`eon-fly-brain/results/path2/outcomeD_stats.json`,
+`eon-fly-brain/results/path2/outcomeD_3way.{json,csv,png}`, and
+`eon-fly-brain/results/path2/outcomeD_walk_multiview*.mp4`.
 
 ## Integrity and zero-learning checks
 
@@ -449,12 +495,17 @@ The current artifact set includes:
   replay artifacts.
 - C0/C1/C2 frozen-gain search logs, three-way curves, per-seed videos, and
   bootstrap CI summary.
+- Outcome D target, D1/D2 checkpoints, three-way metrics, CI summary, and
+  matched-condition multiview episodes.
 
-The final audit must continue to require: Python compilation, JSON/CSV
-manifest parsing, IO-index/body-ID equality, current artifact hashes,
-video duration, zero catches/falls, and a source scan showing no optimizer,
-backpropagation, reward, loss, or target-fitting path. No learning code is
-part of this pipeline.
+The frozen E0–E4 audit flags remain `zero_learning=true`; those checks are
+scoped to the frozen baseline and still pass. Outcome C/D are explicit,
+separately labeled learning rungs, so their optimizer and objective code is
+not included in that zero-learning scan. The final audit requires Python
+compilation, JSON/CSV parsing, IO-index/body-ID equality, current graph
+hashes, target immutability, readable eight-second videos, D2 orientation and
+fall accounting, and an objective scan confirming no catch/prey/target/gait/
+coherence term in D2. All required checks pass for the corrected run.
 
 ## Limits and claim boundary
 
@@ -465,7 +516,9 @@ zero catches are descriptive, not evidence of impossible pursuit. The
 published-candidate completeness result rules out omission of the 212
 current-v1.0 T1/T2/T3 candidate cells as the explanation for the missing
 tripod, while other non-published boundary cells remain outside the declared
-subnetwork.
+subnetwork. Outcome D relaxes weight values and learns a decoder; it is not a
+zero-learning connectome claim, and its matched controls are part of the
+result.
 
 The exact wording of the final claim is intentionally withheld until user
 approval.
