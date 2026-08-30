@@ -1,7 +1,7 @@
 # Flycraft — Path 2 handoff
 
-Status: frozen rerun plus E0–E4 localization complete; documentation and
-audits updated. Final claim still requires user approval.
+Status: frozen rerun, E0–E4 localization, and reservoir R0–R3 complete;
+documentation and audits updated. Final claim still requires user approval.
 
 ## Working headline
 
@@ -190,11 +190,16 @@ failed with computed descending drive, the anatomically mapped sensory path
 still produced no declared tripod phase. Anatomy did not close transfer within
 this fixed model/body resolution.
 
-Outcome B plan: freeze real MANC weights; learn only a minimal readout and
-sensory-feedback layer; compare connectome-initialized, matched random, and
-degree-preserving rewired initializations on the same hexapod; retain this
-zero-learning baseline; cache the frozen forward pass and use one RTX 4090.
-The final claim remains withheld pending approval.
+Outcome B reservoir pivot is complete. R0 collected 3,000 post-burn full-VNC
+states; R1 fit only closed-form ridge `W_out` to the fixed Path-1 template;
+R2 deployed linear and one permitted 64-unit fixed-random-feature escalation;
+R3 compared connectome, seeded column-permuted random, and exact
+degree-preserving rewired reservoirs. No readout reached dynamic held-out
+R² 0.8 or produced a stable tripod walk. The gate verdict is `READOUT TOO
+WEAK`; final claim remains withheld pending approval.
+
+See `PATH2_METHODS.md` and `results/path2/reservoir_3way.json` for the full
+readout metrics and integrity record.
 
 ## Reproduction commands
 
@@ -247,6 +252,18 @@ Run from `/Users/puneeth/Documents/Flycraft` with
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_sensory_feedback.py \
   --data eon-fly-brain/results/path2 --brain_data eon-fly-brain/data \
   --out eon-fly-brain/results/path2/e4_sensory_feedback
+
+# Reservoir pivot R0–R3 (CPU; R0 saves 56 MB states locally).
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/collect_reservoir_states.py
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/fit_readout.py
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/fit_readout.py \
+  --nonlinear --out eon-fly-brain/results/path2/reservoir_readout_W_nonlinear.npz
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_reservoir_walk.py
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_reservoir_walk.py \
+  --readout eon-fly-brain/results/path2/reservoir_readout_W.npz \
+  --out eon-fly-brain/results/path2/reservoir_walk_metrics_linear.json \
+  --video eon-fly-brain/results/path2/reservoir_walk_multiview_linear.mp4
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/reservoir_3way.py
 ```
 
 The synchronized four-camera episode is

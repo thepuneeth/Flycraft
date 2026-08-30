@@ -157,10 +157,10 @@ def run_episode(
         trunk = (float(data.qpos[0]), float(data.qpos[1]))
         yaw = 2 * np.arctan2(data.qpos[6], data.qpos[3])
         present, azimuth, distance, size = retina(trunk, yaw, prey)
-        _, turn = brain.step(present, azimuth, size)
-        # Reservoir tonic drive is frozen at 100; brain supplies only the same
-        # DNg100/DNb08 left-right steering asymmetry used by Path 2.
-        current = vnc.descending_current(PROTOCOL["drive"], turn, turn_scale=6.0)
+        forward, turn = brain.step(present, azimuth, size)
+        # Use the exact unlearned forward/turn brain outputs from run_vnc_chase;
+        # the tonic 100 protocol remains fixed for R0 and the reservoir burn-in.
+        current = vnc.descending_current(forward * PROTOCOL["drive"], turn, turn_scale=6.0)
         vnc.step(current)
         target = target_from_state(vnc, readout)
         targets.append(target)
@@ -198,6 +198,7 @@ def run_episode(
         "mean_target_temporal_sd_rad": float(targets.std(axis=0).mean()),
         "frozen_vnc": True,
         "steering_brain_driven_unlearned": True,
+        "brain_forward_used": True,
         "tonic_drive": PROTOCOL["drive"],
     }
     if renderer:

@@ -269,19 +269,23 @@ loss was introduced. The escalation did not improve reconstruction.
 
 The live reservoir was burned in under the same tonic drive, then the frozen
 readout generated 18 targets for the existing PD servo. The existing FlyWire
-forward pass supplied only unlearned left/right steering asymmetry; tonic
-drive remained 100. The exact E0 phase procedure scored the readout targets.
+forward pass supplied its exact unlearned forward and left/right steering
+outputs, as in `run_vnc_chase.py`; no steering signal was learned. The
+reservoir burn-in used tonic drive 100. The exact E0 phase procedure scored
+the readout targets.
 
 | readout | tripod scalar | target SD (rad) | forward (m) | path (m) | fall/catch | video verdict |
 |---|---:|---:|---:|---:|---|---|
-| linear | 2.000 | 0.03993 | +0.00784 | 0.03693 | no/no | near-static sprawl; no visible walk |
-| 64-unit random features | 2.000 | 0.00114 | -0.00204 | 0.00432 | no/no | near-static sprawl; no visible walk |
+| linear | 2.000 | 75.77780 | +0.12481 | 1.10284 | no/no | unstable out-of-distribution target explosion; no tripod walk |
+| 64-unit random features | 2.000 | 0.00120 | -0.00203 | 0.00432 | no/no | near-static sprawl; no visible walk |
 
 All 6/6 within-tripod and 9/9 cross-tripod phase pairs pass because the tiny
-readout signals retain the template's relative signs. The amplitude and body
-motion show why phase coherence alone is insufficient here: neither readout
-produced a material gait. The synchronized 8 s, 1280×960, four-view escalation
-video is `eon-fly-brain/results/path2/reservoir_walk_multiview.mp4`.
+readout signals retain the template's relative signs. The nonlinear readout's
+amplitude and body motion show why phase coherence alone is insufficient. The
+linear readout instead leaves the training distribution and explodes; its
+extra displacement is not a stable gait. Neither readout produced a tripod
+walk. The synchronized 8 s, 1280×960, four-view escalation video is
+`eon-fly-brain/results/path2/reservoir_walk_multiview.mp4`.
 
 ### R3 three-way prior gate
 
@@ -296,18 +300,19 @@ modes needed to reach fixed dynamic-channel held-out R² `0.8`.
 
 | reservoir | readout | held-out R², all | held-out R², dynamic | effective rank to .8 | drive-90 dynamic R² | forward (m) | path (m) | target SD (rad) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| connectome | linear | 0.1112 | -0.3332 | not reached | -75157.4582 | +0.00784 | 0.03693 | 0.03993 |
-| random | linear | 0.3187 | -0.0219 | not reached | -0.0136 | +0.00303 | 0.01083 | 0.01345 |
-| rewired | linear | 0.0876 | -0.3687 | not reached | -0.3312 | -0.00365 | 0.01243 | 0.01355 |
-| connectome | random features | 0.1065 | -0.3402 | not reached | -0.3405 | -0.00204 | 0.00432 | 0.00114 |
+| connectome | linear | 0.1112 | -0.3332 | not reached | -75157.4582 | +0.12481 | 1.10284 | 75.77780 |
+| random | linear | 0.3187 | -0.0219 | not reached | -0.0136 | +0.00260 | 0.01110 | 0.01350 |
+| rewired | linear | 0.0876 | -0.3687 | not reached | -0.3312 | -0.00304 | 0.00550 | 0.01497 |
+| connectome | random features | 0.1065 | -0.3402 | not reached | -0.3405 | -0.00203 | 0.00432 | 0.00120 |
 | random | random features | 0.1064 | -0.3405 | not reached | -0.3404 | -0.00204 | 0.00430 | 0.00010 |
-| rewired | random features | 0.1154 | -0.3269 | not reached | -0.3288 | -0.00184 | 0.00432 | 0.01352 |
+| rewired | random features | 0.1154 | -0.3269 | not reached | -0.3288 | -0.00147 | 0.00471 | 0.01534 |
 
 R3 gate verdict: **READOUT TOO WEAK**. Random linear reconstruction is less
 bad than connectome reconstruction, so these data do not support a special
 connectome prior. No condition reaches the fixed reconstruction target or
-produces a visible/material walk. This is a gate verdict, not final headline
-wording; final claim remains withheld pending user approval.
+produces a stable visible tripod walk; the connectome linear rollout's
+displacement comes with 75.8 rad target explosion. This is a gate verdict, not
+final headline wording; final claim remains withheld pending user approval.
 
 ## Integrity and zero-learning checks
 

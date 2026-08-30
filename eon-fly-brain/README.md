@@ -20,8 +20,10 @@ and joint-target layers. Final claim wording is pending review.
 
 E2 inventory found 212/212 published candidates selected. E4 adds 622 traced
 leg proprioceptors under a declared anatomical rule and yields 0.401 m path,
-0.095 m forward displacement, no fall, but no tripod. See root-level
-`PATH2_METHODS.md` for full matrices, CIs, controls, and Outcome B plan.
+0.095 m forward displacement, no fall, but no tripod. The completed reservoir
+pivot fit only closed-form `W_out`; no condition produced a stable tripod walk
+(`READOUT TOO WEAK`). See root-level `PATH2_METHODS.md` for full matrices,
+CIs, controls, and reservoir results.
 
 ## Frozen commands
 

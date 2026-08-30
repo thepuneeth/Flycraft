@@ -59,14 +59,15 @@ paired sign-flip `p=1.91e-6`, Holm-adjusted `p=5.72e-6`. Brain-coupled − rando
 is −0.0383 m [−0.0775, +0.0012], adjusted `p=0.158`. Full metric CIs and
 tests: `eon-fly-brain/results/path2/vnc_control_study_3s_stats.json`.
 
-## Outcome B handoff
+## Outcome B result
 
-The no-learn chain is exhausted at declared anatomy and feedback resolution.
-Next study: keep real MANC weights frozen and learn only a minimal
-readout/sensory-feedback layer; compare connectome-initialized, matched random,
-and degree-preserving rewired initializations on the same hexapod, retaining
-this open-loop result as the zero-learning baseline. Cache the frozen forward
-pass; one RTX 4090 is sufficient for the small learned layer.
+The reservoir pivot is complete. Only closed-form ridge `W_out` was fit to the
+fixed Path-1 tripod template; MANC weights stayed frozen. Linear and one
+permitted 64-unit fixed-random-feature escalation were compared across real,
+column-permuted random, and degree-preserving rewired reservoirs. No condition
+reached dynamic held-out R² `0.8` or produced a stable tripod walk. Gate verdict:
+`READOUT TOO WEAK`; final claim wording remains pending review. See
+`PATH2_METHODS.md` and `eon-fly-brain/results/path2/reservoir_3way.json`.
 
 ## Reproduce
 

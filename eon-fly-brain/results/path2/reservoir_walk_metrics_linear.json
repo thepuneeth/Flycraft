@@ -9,66 +9,67 @@
   "phase_difference_matrix_cycles": [
     [
       0.0,
-      0.5,
-      0.5,
+      -0.5,
+      -0.5,
       0.0,
       0.0,
-      0.5
+      -0.5
     ],
     [
-      -0.5,
+      0.5,
       0.0,
       0.0,
-      -0.5,
-      -0.5,
+      0.5,
+      0.5,
       0.0
     ],
     [
-      -0.5,
+      0.5,
       0.0,
       0.0,
-      -0.5,
-      -0.5,
+      0.5,
+      0.5,
       0.0
     ],
     [
       0.0,
-      0.5,
-      0.5,
+      -0.5,
+      -0.5,
       0.0,
       0.0,
-      0.5
+      -0.5
     ],
     [
       0.0,
-      0.5,
-      0.5,
+      -0.5,
+      -0.5,
       0.0,
       0.0,
-      0.5
+      -0.5
     ],
     [
-      -0.5,
+      0.5,
       0.0,
       0.0,
-      -0.5,
-      -0.5,
+      0.5,
+      0.5,
       0.0
     ]
   ],
   "e0_phase_verdict": "PRESENT",
   "readout_kind": "linear",
   "secs": 8.0,
-  "path_m": 0.0369306498602937,
-  "forward_displacement_m": 0.007839761811336277,
-  "displacement_m": 0.008074008016943472,
-  "min_prey_distance_m": 1.43136270124993,
+  "path_m": 1.1028406475575492,
+  "forward_displacement_m": 0.12480697777490238,
+  "displacement_m": 0.1594608134731266,
+  "min_prey_distance_m": 1.245851885296983,
   "caught": false,
   "fell": false,
-  "min_height_m": 0.07240109524892617,
-  "final_height_m": 0.07448224424754972,
-  "mean_target_temporal_sd_rad": 0.03993259742856026,
+  "min_height_m": 0.07240179406396705,
+  "final_height_m": 0.1324645854869539,
+  "mean_target_temporal_sd_rad": 75.77780151367188,
   "frozen_vnc": true,
   "steering_brain_driven_unlearned": true,
+  "brain_forward_used": true,
   "tonic_drive": 100.0
 }
