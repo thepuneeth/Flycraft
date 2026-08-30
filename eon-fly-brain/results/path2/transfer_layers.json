@@ -1,0 +1,81 @@
+{
+  "constants": {
+    "secs": 8.0,
+    "ctrl_hz": 50.0,
+    "settle_s": 0.7,
+    "kp": 3.0,
+    "kd": 0.05,
+    "stance": [
+      0.0,
+      0.6000000238418579,
+      -1.2000000476837158
+    ],
+    "motor_map_gains": [
+      -0.55,
+      0.65,
+      0.65
+    ],
+    "vnc_model": "paper",
+    "vnc_drive": 100.0,
+    "vnc_gW": 0.03,
+    "vnc_tau": 0.02,
+    "vnc_dt": 0.005,
+    "vnc_substeps": 4,
+    "vnc_threshold": 7.5,
+    "vnc_activation_gain": 1.0,
+    "vnc_fr_cap": 200.0,
+    "vnc_heterogeneity": true,
+    "vnc_seed": 1
+  },
+  "layer_i_vnc": {
+    "motor_output_count": 260,
+    "motor_temporal_std_mean": 0.15200728178024292,
+    "motor_temporal_std_max": 0.4803532660007477
+  },
+  "layer_ii_fixed_motor_map": {
+    "target_channel_count": 18,
+    "active_target_channels": 18,
+    "target_temporal_std_mean_rad": 0.13328741490840912,
+    "target_temporal_std_max_rad": 0.3621197044849396,
+    "target_range_mean_rad": 0.5879846215248108,
+    "motor_to_target_is_fixed": true
+  },
+  "layer_iii_hexapod_physics": {
+    "joint_position_std_mean_rad": 0.09926329477736098,
+    "joint_position_std_max_rad": 0.25185415590222365,
+    "target_joint_corr_mean": 0.42415619124920195,
+    "target_joint_corr_median": 0.4477925208390282,
+    "target_tracking_mae_mean_rad": 0.11193115494770754,
+    "control_temporal_std_mean": 0.34572577220801404,
+    "body_path_m": 0.4749198825974348,
+    "body_displacement_m": 0.11663326320353218,
+    "body_forward_displacement_m": 0.1070334841971353,
+    "min_body_height_m": 0.062463569093854615,
+    "final_body_height_m": 0.07391850317483689,
+    "fell": false,
+    "mean_foot_floor_contact_fraction": 0.25083333333333335,
+    "foot_z_temporal_std_mean_m": 0.005947835813785242
+  },
+  "target_joint_correlations": [
+    0.20879278518828776,
+    0.7243162838850115,
+    0.30767779743247714,
+    0.5440287148140274,
+    0.33349597511788737,
+    0.38583245665787497,
+    0.4237323981410486,
+    0.2142435097757318,
+    0.4718526435370078,
+    0.6747729910772576,
+    0.03773724427764362,
+    0.4749100404830636,
+    0.8041215032513749,
+    -0.05492256546764025,
+    0.5752957613188746,
+    0.5153093092423866,
+    0.3251485467163075,
+    0.6684660470370116
+  ],
+  "coordination_audit": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/all_legs_coordination.json",
+  "zero_learning": true
+}

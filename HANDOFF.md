@@ -1,225 +1,285 @@
-# Flycraft — Research Handoff
+# Flycraft — Path 2 handoff
 
-> **One line:** Can the *whole-brain fly connectome* (FlyWire, zero learning) steer a body it never evolved for — a walking hexapod — through real physics, and where does it break?
+Status: frozen rerun plus E0–E4 localization complete; documentation and
+audits updated. Final claim still requires user approval.
 
-This document is the single source of truth for anyone (human or agent) picking up this project. Read it top to bottom before touching code. Everything below reflects the current, honest state of the work as of 2026-08-29.
+## Working headline
 
----
+All 212 current Male CNS MANC T1/T2/T3 cells matching the published
+leg-coordination candidate rule are included, including both `IN12B013` T1
+cells. E0–E4 are exhausted: the expanded real VNC, structured brain drive,
+and fixed anatomical proprioceptive feedback still do not form a coherent
+alternating tripod. Real VNC wiring produces substantially more open-loop
+movement than column-shuffled VNC, but brain coupling does not outperform
+matched random descending drive in the short-horizon study.
 
-## 1. The research question (what we are actually testing)
+Do not replace this with a catch headline. No condition caught prey.
 
-**Claim under test:** The FlyWire connectome, run as a rate model with **no task training of any kind**, contains enough structure to produce *useful goal-directed steering* when wired into a non-fly body and closed through physics.
+## Research question
 
-**The honest scientific framing — read this carefully, it is the core of the project:**
+Can an untrained FlyWire brain plus the official Male CNS VNC drive a body it
+did not evolve for — a PhantomX-class hexapod in MuJoCo — and where does
+transfer fail?
 
-The fly's nervous system splits labour across two structures:
-- **Brain** (FlyWire connectome, ~139k neurons) — sensing and *decisions*: where is the target, how much to turn, whether to go.
-- **VNC** (ventral nerve cord, MANC connectome — a *separate* dataset we do NOT have) — the *walking rhythm*: the central pattern generators (CPGs) that actually oscillate the legs.
-
-**FlyWire is brain only. It has no CPG.** We proved this empirically (see §4, the null result): under steady visual input the rate model settles to a near-fixed-point (descending-population activity std over time ≈ 0.013). A fixed point carries no rhythm, so **the brain connectome cannot self-generate a gait**. It can only steer.
-
-So the defensible, novel claim is:
-
-> **The brain connectome STEERS; a CPG (standing in for the missing VNC) WALKS.**
-
-We give the connectome exactly the two signals a real fly brain hands down its descending neurons — *how much to go forward* and *which way to turn* — and let a hand-calibrated tripod CPG turn those into leg motion. The body then physically pursues a prey target in MuJoCo.
-
-**Why this is publishable / novel (the gap, verified via web search):**
-- **Eon** already did fly-connectome → fly-body → zero-learning. (Scooped for the fly-body case.)
-- **FlyGM** (arXiv 2602.17997) uses deep RL + a fly body. (Not zero-learning.)
-- **NeuroMechFly v2** uses a connectome-*constrained* visual net + hand-designed controllers, fly body. (Not whole-brain-drives-body.)
-- **Nobody** crosses **fly whole-brain connectome + zero learning + a non-fly body** with **quantified competence and failure**. That intersection is the unoccupied gap. That is us.
-
-**What counts as a result here** — both directions are publishable:
-1. **Positive:** the connectome reliably steers the hexapod to intercept, beating a fair control. → "wiring alone transfers across bodies."
-2. **Null:** it can't steer better than chance / a shuffled-weight control. → "the brain's steering is body-specific; structure doesn't transfer." Still a real finding.
-
-The trap to avoid: **dressing up CPG behaviour as brain behaviour.** The CPG walks no matter what. The *only* thing the connectome contributes is `{forward, turn}`. All scientific claims must isolate that contribution (see §6 experiments).
-
----
-
-## 2. Architecture (the closed loop)
-
-```
-prey position (world)
-      │
-      ▼
-  retina()            body-frame encode: present?, azimuth az (+=left), distance, angular size
-      │
-      ▼
-  CONNECTOME          FlyWire rate model, ZERO learning.
-  (brain)             visual current in → 12 substeps → read descending populations
-      │               dL, dR = mean firing of left/right descending neurons
-      │               turn    = turn_sign · turn_gain · (dR − dL)
-      │               forward = clip(fwd_gain · (dL+dR), 0, 1) · alignment_gate
-      ▼
-  CPG gait            tripod pattern generator (VNC stand-in). Turns {forward,turn}
-  (hexapod_gait)      into 18 joint-angle targets. NO connectome inside it.
-      │
-      ▼
-  PD torque           tau = kp·(target − q) − kd·qdot, clamped to actuator range.
-      │               (PhantomX uses TORQUE motors — zero ctrl = legs go limp,
-      ▼                a servo is mandatory.)
-  MuJoCo physics      6 legs × 3 joints, real ground contact, freejoint trunk.
-      │
-      ▼
-  new body pose  ──► loop back to retina()
+```text
+prey -> FlyWire brain -> DNg100/DNb08 -> real MANC VNC
+     -> fixed motor map -> PD torque -> MuJoCo hexapod
 ```
 
-**Key design decision — the alignment gate.** `forward` is multiplied by `gate = max(0.1, cos(az))` when prey is visible, else 0. Meaning: *only charge when roughly facing the prey; pivot in place when it's off to the side.* This is a sensory heading gate (biologically plausible: center the target, then charge), **not** learning. It is what converted endless orbiting into clean interception. Do not remove it without re-solving the orbit problem.
+The brain supplies visual steering. MANC VNC dynamics supply motor activity.
+The fixed map reduces five fly joint groups to coxa/femur/tibia targets. The
+body receives only fixed PD torque. No reward, optimizer, backpropagation,
+target fitting, learned readout, or performance-based tuning exists.
 
----
+## Task A: published coordination candidates
 
-## 3. Files (what each one is)
+The fixed anatomical rule is:
 
-All paths relative to project root `/Users/puneeth/Documents/Flycraft/`.
-
-### Code — `eon-fly-brain/code/`
-
-| File | Role |
-|---|---|
-| `flyserver.py` | **Reference connectome stepper.** Line-delimited JSON over stdio: in `{az,dist,loom,present}` → out `{turn,forward,dL,dR}`. This is the canonical rate-model dynamics and readout; everything else copies it. Was the bridge to the old Minecraft loop; kept as the clean reference implementation. |
-| `run_hexapod.py` | **The NULL experiment (rich readout).** Full descending population (1291 neurons) → 18 joints via a *fixed random* linear map (seeded, never trained). No CPG. Tests whether the wiring alone produces any gait. Result: it does not (fixed point, no rhythm). This file *is* the evidence the brain has no CPG. |
-| `hexapod_gait.py` | **The CPG + PD layer (VNC stand-in).** Pure gait engine, NO connectome. Tripod CPG → 18 joint targets from a `{forward,turn}` drive; `pd_torque()` servo. Run directly to test walk/turn/stand. This is the calibrated body controller. |
-| `run_hexapod_chase.py` | **THE main experiment.** Connectome steers the walking hexapod toward prey. Imports `HexapodGait`, `pd_torque`, `XML` from `hexapod_gait`. Contains `retina()`, `brain()` (readout + alignment gate), the physics loop, metrics, and optional video render. **Start here.** |
-
-### Assets — `assets/hexapod/`
-
-| File | Role |
-|---|---|
-| `hexapod.xml` | PhantomX-class hexapod MJCF (18 DoF, torque motors). **Downloaded, not hand-built**, from `nico-bohlinger/one_policy_to_run_them_all`. Edited to add a visible red prey sphere geom at `(1.2, 0.8, 0.07)` (contype/conaffinity=0 so it's a marker, no collision). |
-| `meshes/*.stl` | 7 STL meshes (base, motor, and mirrored L/R legs) referenced by the XML. |
-
-Only `assets/hexapod/` is retained; the earlier Unitree quadruped experiment was removed.
-
-### Data — `eon-fly-brain/data/`
-
-| File | What it is |
-|---|---|
-| `weight_csr.pkl` | Signed 138,639 × 138,639 torch **sparse CSR** weight matrix. ~15M synapses. Neurotransmitter sign already baked in (excitatory +, inhibitory −). This IS the connectome. |
-| `io_index.npz` | Neuron index arrays: `vis_left`, `vis_right` (visual/optic input neurons), `desc_left`, `desc_right` (descending output neurons), plus command-neuron indices. These are how you inject sensing and read out decisions. |
-
-### Deliverable
-
-`episode_hexapod_chase.mp4` — rendered preview episode (connectome steers hexapod, CAUGHT at 16.9 s). Regenerate with the video flag on `run_hexapod_chase.py`.
-
----
-
-## 4. Results so far (what is established)
-
-**Null result (run_hexapod.py) — the brain has no gait.**
-- Fixed random readout, full descending population → 18 joints, no CPG.
-- Descending activity std over time ≈ **0.013** (≈ frozen fixed point).
-- Trunk displacement ≈ 0.065 m over the whole run. VERDICT: **no locomotion.**
-- Interpretation: the rate model settles to a fixed point under steady input; it carries no rhythm; therefore the brain connectome cannot walk a body on its own. This is *expected and publishable* — it's the evidence that walking rhythm lives in the VNC, not the brain.
-
-**Gait layer (hexapod_gait.py) — the CPG works.**
-- Stands stably.
-- drive 0.8 → forward **+0.185 m / 5 s**; faster gait (swing_amp 0.9) → ~0.094 m/s, no falls.
-- turn +2 → yaw +45°; turn −2 → yaw −99° (correct signs, differential-drive steering).
-- Calibrated defaults: `stance=(0.0, 0.6, -1.2), swing_amp=0.8, lift_amp=0.65, base_freq=1.5, drive_freq=2.5, turn_scale=1.0`, `kp=3.0, kd=0.05`.
-
-**Main experiment (run_hexapod_chase.py) — connectome steers, single episode.**
-- CLI: `--secs 20 --prey 1.2 0.8 --fwd_gain 12 --turn_gain 6` (turn_sign=−1).
-- Azimuth nulled from +35° → centered; **CAUGHT at 16.9 s**; min dist 0.25 m; path 1.90 m; mean|az| 53°; no fall.
-- **This is n=1, one seed, static prey, hand-tuned gains.** It is a demo, not a study. See §6.
-
----
-
-## 5. Key facts, conventions & gotchas (do not relearn these the hard way)
-
-**Connectome rate model (identical across all three run files):**
+```text
+traced AND vnc_intrinsic AND type in the 66 labels from eLife 96084
+Supplementary file 8 AND soma neuromere in requested T1/T2/T3 scope
 ```
-v ← decay·v + dt_tau·( gW · (W @ r) + I_ext )
-r  = relu(tanh(v))          # bounded firing rate
-decay = 1 − dt/tau,  dt_tau = dt/tau
-```
-Defaults: `substeps=12, tau=0.02, dt=0.005, gW=6e-3, drive_in=1.2`. `v` clamped to [−5, 5]. 12 substeps per control tick.
 
-**Visual injection:** prey in LEFT field (az>0) excites `vis_left`; right field excites `vis_right`. `mag = drive_in·(0.5 + min(1,size))`, injected as `mag·(max(0,±az)+0.15)`.
+Source: [Cheong et al., eLife 96084](https://elifesciences.org/articles/96084),
+[Supplementary file 8](https://cdn.elifesciences.org/articles/96084/elife-96084-supp8-v1.csv).
 
-**Readout:** `dL,dR = mean firing of desc_left/desc_right`. `turn = turn_sign·turn_gain·(dR−dL)`, `turn_sign=−1`. `forward = clip(fwd_gain·(dL+dR),0,1)`, then × alignment gate.
+Current v1.0 annotations contain 212 scoped cells matching this rule. The
+previous graph omitted two `IN12B013` cells; the rebuilt graph includes:
 
-**Hexapod body:**
-- 18 DoF = 6 legs × 3 joints (coxa, femur, tibia).
-- Leg mounts: `LEFT={0,2,4}`, `RIGHT={1,3,5}`.
-- Tripod groups: `TRIPOD_A={0,3,4}` (half-cycle out of phase with `{1,2,5}`).
-- Leg `i` → ctrl indices `[3i, 3i+1, 3i+2]`.
-- **TORQUE motors:** ctrl = torque (not target angle), ctrlrange ±1.96, gaintype/biastype = 0. **Zero ctrl → legs go limp.** A PD servo is mandatory.
-- MuJoCo qpos/qvel layout: freejoint trunk occupies `qpos[0:7]` / `qvel[0:6]`; the 18 hinges are `qpos[7:25]` / `qvel[6:24]`.
-- Yaw from quat: `yaw = 2·atan2(qpos[6], qpos[3])`.
+| body ID | type | neuromere | side | added candidate edge |
+|---:|---|---|---|---:|
+| 802193 | IN12B013 | T1 | R | 6 synapses to INXXX008 |
+| 802470 | IN12B013 | T1 | L | 5 synapses to IN10B014 |
 
-**Gotchas that already bit us (don't repeat):**
-1. **dtype upcast:** dividing a float32 numpy array by a Python float upcasts to float64 → torch `addmv` Float/Double mismatch. Cast to float32 **last**: `(rng.standard_normal(...)/np.sqrt(n)).astype(np.float32)`. Also cast `actuator_ctrlrange` to float32.
-2. **Steering direction:** a per-side coxa *mirror* makes it SPIN on a straight walk. Correct approach is a **global sign negate** on the coxa swing (see `hexapod_gait.targets`), not per-side mirroring.
-3. **Forward fade:** brain `forward = fwd_gain·(dL+dR)` shrinks as az nulls, so it stalls once centered. Fix: raise `fwd_gain` (12) so forward saturates while prey is visible.
-4. **Orbiting:** with forward pinned high it spirals around the prey. Lowering turn_gain does NOT fix it. The **alignment gate** does.
-5. **Invisible prey in video:** prey was only a coordinate; the red sphere geom in the XML is purely for rendering.
-6. **argparse negative nargs:** `--stance 0.0 -0.6 1.2` parses `-0.6` as a flag. Drive stance sweeps via `python -c "from hexapod_gait import run; ..."`, not CLI.
+That is two cells and two candidate-to-candidate cross-neuromere edges, 11
+synapses total. The scoped graph has 212/212 candidate cells included. The
+66-label set contains 62 labels represented in T1/T2/T3; `IN01A001` is absent
+from the v1.0 annotation, while `INXXX025`, `INXXX058`, and `INXXX115` occur
+only on A-segment annotations and are outside scope. This distinction is
+recorded in `results/path2/all_legs_coordination.json`.
 
----
+The missing tripod is therefore not explained by omission of the published
+T1/T2/T3 candidate cells. Other non-published boundary cells remain outside
+the declared subnetwork; do not broaden the claim beyond this resolution.
 
-## 6. What to do next (open work, in priority order)
+## Frozen graph and dynamics
 
-**A. Turn n=1 into a real study (highest priority).**
-The single CAUGHT run proves nothing statistically. Run a **paired, quantified comparison**:
-- ≥20 episodes, random prey positions + random start headings (seed the RNG per episode, log it).
-- **Control condition(s)** — this is what isolates the connectome's contribution. Options:
-  - *Shuffled-weight control:* permute the connectome weights, keep sparsity/degree. If steering survives, the specific wiring didn't matter.
-  - *Random-descending control:* replace the descending readout with matched-statistics random signals.
-  - *Straight-to-prey oracle:* upper bound on the gait's ability.
-- **Metrics per episode:** caught (bool), time-to-catch, min distance, path length / straight-line ratio (path efficiency), mean|az|, fell (bool).
-- Report mean ± CI and a significance test connectome vs control. **That table is the paper.**
+All-leg artifact:
 
-**B. Nail the null rigorously.**
-`run_hexapod.py` shows one seed/scale gives no gait. Sweep seeds × readout scales (grid) and show *no* fixed random readout walks. Strengthens "the brain carries no rhythm" from anecdote to claim.
+- 11,000 nodes;
+- 1,704,763 induced raw edges;
+- 492,722 edges at absolute synapse floor 5;
+- 485,074 signed nonzero edges;
+- 260 motor outputs.
 
-**C. Robustness / honesty checks.**
-- Moving prey (currently static).
-- Sensitivity to gains (fwd_gain, turn_gain, kp/kd) — show the result isn't a knife-edge tuning artifact.
-- Rough terrain / perturbations — does connectome steering degrade gracefully?
+T1 artifact:
 
-**D. Polish (low priority, cosmetic).**
-Nicer camera/lighting, longer clip, smoother chase. Demo only — does not change any claim.
+- 4,418 nodes;
+- 144,214 signed nonzero edges;
+- 106 motor outputs.
 
----
+Frozen VNC protocol: paper-rate model, `tau=.02`, `dt=.005`, four substeps,
+`gW=.03`, bilateral DNg100/DNb08 drive 100, DNb08 gain 1, threshold 7.5,
+activation gain 1, firing-rate cap 200, seeded heterogeneity seed 1. The T1
+validation uses 1,500 steps sampled every .02 s, half-run burn-in, no smoothing.
 
-## 7. Environment & how to run
+T1 output under constant drive:
 
-**Venv is `uv`-managed** (not plain pip), at `eon-fly-brain/.venv`.
-- Install a package: `VIRTUAL_ENV=eon-fly-brain/.venv uv pip install <pkg>`
-- Present: torch 2.13.0, mujoco 3.12.0, imageio + imageio-ffmpeg, numpy.
-- **Run from project root** with `./eon-fly-brain/.venv/bin/python` (relative venv paths break if you `cd` — Bash cwd persists between calls).
-- Pyright import warnings on torch/mujoco are false positives.
+- dominant frequency: 2.467 Hz;
+- autocorrelation frequency: 2.500 Hz;
+- autocorrelation peak mean: .342;
+- opposing-pool correlation: −.321;
+- left/right correlation: +.031;
+- active motor fraction: .368.
 
-**Run the main experiment:**
+The old 3.07 Hz number is stale. The current frozen rerun produced 2.467 Hz;
+report the current value.
+
+All-leg coxa phase proxy:
+
+| group | mean correlation |
+|---|---:|
+| tripod A within | −.057 |
+| tripod B within | +.307 |
+| cross-tripod | −.185 |
+
+One within-tripod group is positive while the other is negative; the expected
+coherent alternating tripod does not emerge. Raw five-synapse-floor coupling
+has 166,088 cross-neuromere edges; 71,769 are retained, from 4,341 source and
+7,048 target neurons. There are 4,860 omitted boundary candidates after the
+two published candidates are included.
+
+## Control study and inference
+
+Study design: five conditions, 20 paired episode starts per condition, 3 s
+each, static prey, episode base seed `20260829`. Every condition shares each
+episode's initial yaw and prey placement.
+
+All 100 episodes returned normally: 0 catches and 0 falls in every condition;
+Wilson 95% CI for each binary rate is `[0.000, 0.161]`.
+
+| condition | path m [95% bootstrap CI] | forward m [95% bootstrap CI] | displacement m [95% bootstrap CI] | min distance m [95% bootstrap CI] |
+|---|---:|---:|---:|---:|
+| real VNC open-loop | .207 [.205, .209] | .019 [.017, .020] | .020 [.018, .021] | 1.390 [1.287, 1.491] |
+| brain-coupled VNC | .185 [.140, .228] | .030 [.013, .049] | .040 [.025, .057] | 1.385 [1.278, 1.488] |
+| shuffled VNC | .065 [.063, .066] | −.061 [−.063, −.059] | .061 [.059, .063] | 1.386 [1.286, 1.484] |
+| random descending | .223 [.193, .256] | .020 [.003, .037] | .036 [.025, .049] | 1.383 [1.277, 1.487] |
+| Path 1 hand CPG | .246 [.189, .300] | .094 [.039, .152] | .120 [.071, .171] | 1.322 [1.203, 1.436] |
+
+Mean motor temporal SD is .140 [.140, .140] real VNC, .116 [.092, .135]
+brain-coupled, .067 [.067, .067] shuffled, and .133 [.128, .138] random;
+Path 1 has no VNC motor-output metric.
+
+Primary exact two-sided paired sign-flip tests on path, with Holm adjustment
+across three predeclared comparisons:
+
+| comparison | difference m [95% CI] | exact p | Holm p |
+|---|---:|---:|---:|
+| real VNC − shuffled VNC | +.1425 [.1397, .1449] | 1.91e−6 | 5.72e−6 |
+| brain-coupled − random descending | −.0383 [−.0775, +.0012] | .0789 | .1578 |
+| open-loop VNC − Path 1 hand CPG | −.0387 [−.0924, +.0187] | .1984 | .1984 |
+
+The real-versus-shuffled motor temporal-SD difference is +.0730 with exact
+paired `p=1.91e−6`. This is the positive wiring result. It does not turn the
+brain-coupled controller into a successful pursuit controller.
+
+Full metrics and tests: `results/path2/vnc_control_study_3s_stats.json`.
+
+## Failure localization
+
+`results/path2/transfer_layers.png` is the mechanistic figure;
+`results/path2/transfer_layers.json` contains raw measurements.
+
+1. **VNC dynamics (layer i):** dynamic output exists — 260 motor channels,
+   mean temporal SD .152 — and T1 oscillates. But all-leg inter-leg phase is
+   inconsistent: A within −.057, B within +.307, cross −.185. Primary loss:
+   oscillation without coherent tripod organization.
+2. **Fixed motor map (layer ii):** all 18/18 target channels vary; mean target
+   SD .133 rad and mean target range .588 rad. The map transfers activity but
+   cannot repair phase.
+3. **Hexapod physics (layer iii):** mean joint-angle SD .099 rad, target-to-
+   joint correlation .424, target tracking MAE .112 rad. Body remains upright
+   (minimum height .062 m, no fall) and travels .475 m path / .107 m forward
+   in the 8 s open-loop replay. Physics attenuates and distorts the signal,
+ but does not erase it. Layer i is the primary bottleneck; ii/iii add
+ distortion rather than causing a total collapse.
+
+## E0–E4 branch completion
+
+E0 after the completeness rebuild is `E0-ABSENT`; its six-by-six matrix is in
+`results/path2/vnc_phase_probe_e0_after_e2.json` and is byte-identical to the
+pre-E2 probe. E2 found 212/212 published coordination candidates selected,
+with no anatomically justified widening. The raw inventory contains 12,745
+cross-neuromere endpoint cells and 166,088 floor-qualified edge rows.
+
+E3 drove the VNC with the full FlyWire forward pass at the exact DNg100/DNb08
+type-and-side outputs. VNC and joint-target phase both remained absent:
+within cosine −.181, cross cosine −.284, scalar +.103, with 2/6 within and
+3/9 cross pairs passing tolerance.
+
+E4 added all 622 traced leg proprioceptors defined by the fixed
+mechanosensory anatomy rule (campaniform, hair plate, chordotonal, or leg;
+ProLN/MesoLN/MetaLN; root side L/R). The 8 s closed-loop replay remained
+phase-absent: within cosine −.071, cross cosine +.102, scalar −.173, with 2/6
+within and 3/9 cross pairs passing. The body traveled .401 m path and .095 m
+forward, remained upright, and did not produce a tripod. This is one declared
+fixed contact/angle encoding, not an exhaustive sensory-model search.
+
+E4 forced the pivot: after E2 established published-set completeness and E3
+failed with computed descending drive, the anatomically mapped sensory path
+still produced no declared tripod phase. Anatomy did not close transfer within
+this fixed model/body resolution.
+
+Outcome B plan: freeze real MANC weights; learn only a minimal readout and
+sensory-feedback layer; compare connectome-initialized, matched random, and
+degree-preserving rewired initializations on the same hexapod; retain this
+zero-learning baseline; cache the frozen forward pass and use one RTX 4090.
+The final claim remains withheld pending approval.
+
+## Reproduction commands
+
+Run from `/Users/puneeth/Documents/Flycraft` with
+`eon-fly-brain/.venv/bin/python`.
+
 ```bash
-./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_hexapod_chase.py \
-  --secs 20 --prey 1.2 0.8 --fwd_gain 12 --turn_gain 6
+# Build final all-leg and T1 artifacts from official data.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/fetch_manc.py \
+  --data eon-fly-brain/data --neuromeres T1,T2,T3 --premotor_scope all \
+  --synapse_floor 5 \
+  --out eon-fly-brain/results/path2/all_legs_io_index.npz \
+  --weights_out eon-fly-brain/results/path2/all_legs_weight_csr.pkl
+
+# Run T1 rhythm, all-leg coordination, transfer-layer audit, and controls.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/analyze_vnc_rhythm.py \
+  --data eon-fly-brain/results/path2 \
+  --weights_name t1_paper_weight_csr.pkl --index_name t1_paper_io_index.npz \
+  --out eon-fly-brain/results/path2/t1_paper_rhythm_validation_heterogeneous \
+  --model paper --drive 100 --gW .03 --substeps 4 --steps 1500 \
+  --heterogeneity --seed 1
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/audit_vnc_legs.py \
+  --data eon-fly-brain/results/path2 \
+  --weights_name all_legs_weight_csr.pkl --index_name all_legs_io_index.npz \
+  --out eon-fly-brain/results/path2/all_legs_coordination \
+  --model paper --drive 100 --gW .03 --tau .02 --dt .005 --substeps 4 \
+  --steps 1500 --heterogeneity --seed 1
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/audit_transfer_layers.py \
+  --data eon-fly-brain/results/path2 --out eon-fly-brain/results/path2/transfer_layers
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/study_vnc.py \
+  --n 20 --secs 3 --seed 20260829 \
+  --out eon-fly-brain/results/path2/vnc_control_study_3s
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/analyze_control_study.py \
+  --input eon-fly-brain/results/path2/vnc_control_study_3s.csv \
+  --out eon-fly-brain/results/path2/vnc_control_study_3s_stats
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/audit_intersegmental.py \
+  --data eon-fly-brain/results/path2 --index_name all_legs_io_index.npz \
+  --out eon-fly-brain/results/path2/e2_intersegmental
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_vnc_phase.py \
+  --data eon-fly-brain/results/path2 \
+  --out eon-fly-brain/results/path2/vnc_phase_probe_e0_after_e2
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_structured_descending.py \
+  --data eon-fly-brain/results/path2 --brain_data eon-fly-brain/data \
+  --out eon-fly-brain/results/path2/e3_structured_descending
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/fetch_manc.py \
+  --data eon-fly-brain/data --neuromeres T1,T2,T3 --premotor_scope all \
+  --include_sensory_feedback --synapse_floor 5 \
+  --out eon-fly-brain/results/path2/e4_sensory_io_index.npz \
+  --weights_out eon-fly-brain/results/path2/e4_sensory_weight_csr.pkl
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_sensory_feedback.py \
+  --data eon-fly-brain/results/path2 --brain_data eon-fly-brain/data \
+  --out eon-fly-brain/results/path2/e4_sensory_feedback
 ```
-Add `--video out.mp4` to render.
 
-**Test the gait alone:**
-```bash
-./eon-fly-brain/.venv/bin/python eon-fly-brain/code/hexapod_gait.py --mode walk --drive 0.8 --turn 0 --secs 5
-```
+The synchronized four-camera episode is
+`results/path2/vnc_brain_closed_loop_8s_multiview.mp4`.
 
-**Reproduce the null:**
-```bash
-./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_hexapod.py --secs 8 --scale 10 --seed 0
-```
+## Integrity checklist
 
----
+Before final claim approval, rerun and record:
 
-## 8. History (so a new agent doesn't re-litigate settled decisions)
+- Python compile for every `code/*.py` file;
+- JSON/CSV parse and expected-row checks;
+- IO index/body-ID equality, including 212 published candidates;
+- equality of canonical and results graph inputs where intended;
+- video duration and readable MP4 stream;
+- zero catches/falls in control outputs;
+- zero-learning scan for optimizer/backpropagation/reward/loss/target fitting;
+- `git diff --check`.
 
-- **Minecraft is retired.** Early work drove a Minecraft mob; the "walking" there was our CPG code, not the fly brain. Pivoted to MuJoCo for real physics and an honest brain/body split.
-- **Body choice:** quadruped (Unitree Go1) → rejected; **hexapod** chosen because 6 legs match the fly. Reuse an existing MJCF, don't hand-build (user directive).
-- **Readout choice:** "rich" (full population → random map) was tried and produced the null; the project now uses the **steering readout** (dL/dR descending means) + CPG.
-- **Standing user preferences:** explain in simple plain language; prefer reuse over building; be honest about what's real science vs dressing; ask when not 100% sure.
+Do not add constants, retune gains, delete superseded artifacts, or broaden
+the claim before user approval.
 
----
+## File map
 
-## 9. The one-paragraph pitch (for a fresh collaborator)
-
-We take the entire fruit-fly brain connectome (FlyWire, ~139k neurons, real synaptic wiring), run it as an untrained rate model, feed it what it sees of a prey, and read out the fly's descending "go forward / turn" commands. We proved the brain alone can't walk — it settles to a fixed point, because the walking rhythm lives in the fly's ventral nerve cord, which we don't have — so we add a hand-built tripod CPG as a stand-in and put the whole thing on a 6-legged robot in a physics simulator. The question: does 139k neurons of real fly wiring, with zero learning, steer a body it never evolved for well enough to catch prey — and if not, where and why does it fail? Nobody has tested fly-whole-brain + zero-learning + non-fly-body with quantified results. That's the gap.
+| file | role |
+|---|---|
+| `eon-fly-brain/code/fetch_manc.py` | fixed official-MANC selection and signed CSR builder |
+| `eon-fly-brain/code/vnc_stepper.py` | paper-rate VNC dynamics and shuffle control |
+| `eon-fly-brain/code/mn_to_joint.py` | fixed motor-pool to 18-joint map |
+| `eon-fly-brain/code/run_vnc_chase.py` | brain/VNC/body episode runner and video renderer |
+| `eon-fly-brain/code/audit_vnc_legs.py` | coupling, candidate, and phase audit |
+| `eon-fly-brain/code/audit_transfer_layers.py` | VNC → target → physics audit and figure |
+| `eon-fly-brain/code/analyze_control_study.py` | bootstrap CIs and paired tests |
+| `eon-fly-brain/code/audit_intersegmental.py` | E2 intersegmental completeness inventory |
+| `eon-fly-brain/code/probe_structured_descending.py` | E3 structured brain-drive phase probe |
+| `eon-fly-brain/code/run_sensory_feedback.py` | E4 anatomical proprioceptive feedback replay |
+| `PATH2_METHODS.md` | methods-complete working report |

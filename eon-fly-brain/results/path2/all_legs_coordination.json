@@ -1,0 +1,932 @@
+{
+  "data": "results/path2",
+  "weights_name": "all_legs_weight_csr.pkl",
+  "index_name": "all_legs_io_index.npz",
+  "model": "paper",
+  "drive": 100.0,
+  "gW": 0.03,
+  "tau": 0.02,
+  "dt_s": 0.005,
+  "substeps": 4,
+  "sample_dt_s": 0.02,
+  "steps": 1500,
+  "burn_fraction": 0.5,
+  "constant_input_temporal_std": 0.0,
+  "heterogeneity": true,
+  "seed": 1,
+  "overall_rhythm": {
+    "tail_motor_std_mean": 0.11248022317886353,
+    "tail_motor_std_max": 0.4569920003414154,
+    "tail_motor_mean": 0.17308782041072845,
+    "dominant_frequency_hz": 0.06666666666666667,
+    "spectral_concentration": 0.18212956190109253,
+    "active_motor_fraction": 0.5923076923076923,
+    "autocorr_peak_mean": 0.4487192500155879,
+    "autocorr_peak_median": 0.4291803687810898,
+    "autocorr_frequency_hz": 10.0,
+    "autocorr_search_min_s": 0.1,
+    "autocorr_search_max_s": 2.0
+  },
+  "coxa_phase_matrix": [
+    [
+      1.0,
+      -0.11019588878540458,
+      0.008257042363262822,
+      0.15420223988323717,
+      -0.12411625300239891,
+      0.04368877141168659
+    ],
+    [
+      -0.11019588878540457,
+      1.0,
+      0.33883075861876455,
+      0.007338914872600455,
+      -0.6474749818691221,
+      0.4884886598414317
+    ],
+    [
+      0.008257042363262822,
+      0.33883075861876455,
+      1.0,
+      -0.09525325372689769,
+      -0.4294678079170688,
+      0.09452994773170321
+    ],
+    [
+      0.15420223988323717,
+      0.007338914872600456,
+      -0.09525325372689769,
+      1.0,
+      -0.20220772095778564,
+      0.0712608164686382
+    ],
+    [
+      -0.1241162530023989,
+      -0.6474749818691221,
+      -0.4294678079170688,
+      -0.20220772095778566,
+      1.0,
+      -0.5100065587191596
+    ],
+    [
+      0.04368877141168659,
+      0.48848865984143175,
+      0.09452994773170321,
+      0.0712608164686382,
+      -0.5100065587191595,
+      1.0
+    ]
+  ],
+  "leg_names": [
+    "T1L",
+    "T1R",
+    "T2L",
+    "T2R",
+    "T3L",
+    "T3R"
+  ],
+  "tripod_phase": {
+    "tripod_A_within_mean": -0.057373911358982455,
+    "tripod_B_within_mean": 0.30728312206396646,
+    "cross_tripod_mean": -0.18465032732238496
+  },
+  "neuromere_edge_mass_rows_post_cols_pre": [
+    [
+      1318433.0,
+      196230.0,
+      68566.0,
+      283219.0
+    ],
+    [
+      312592.0,
+      2062132.0,
+      255150.0,
+      379921.0
+    ],
+    [
+      163507.0,
+      358238.0,
+      1857573.0,
+      292492.0
+    ],
+    [
+      60936.0,
+      55050.0,
+      37282.0,
+      155899.0
+    ]
+  ],
+  "matrix_balance": {
+    "n": 11000,
+    "nnz": 485074,
+    "positive_edges": 281958,
+    "negative_edges": 203116,
+    "positive_mass": 5425805.0,
+    "negative_mass": 4244868.0,
+    "positive_to_negative_mass": 1.2782034682821704
+  },
+  "coupling": {
+    "floor_synapses": 5,
+    "raw_floored_cross_edge_count": 166088,
+    "raw_floored_cross_absolute_synapse_mass": 2779991.0,
+    "boundary_floored_cross_edge_count": 50149,
+    "boundary_floored_cross_absolute_synapse_mass": 758065.0,
+    "retained_cross_edge_count": 71769,
+    "retained_cross_absolute_synapse_mass": 1354283.0,
+    "retained_cross_source_count": 4341,
+    "retained_cross_target_count": 7048,
+    "retained_sources_reaching_multiple_neuromeres": 1815,
+    "top_retained_sources": [
+      {
+        "body_id": 17757,
+        "cross_edge_count": 438,
+        "absolute_synapse_mass": 9552.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "AN19B001",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 903561,
+        "cross_edge_count": 359,
+        "absolute_synapse_mass": 7967.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN12B002",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800012,
+        "cross_edge_count": 397,
+        "absolute_synapse_mass": 7759.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "AN19B001",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800030,
+        "cross_edge_count": 357,
+        "absolute_synapse_mass": 7311.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN12B002",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800062,
+        "cross_edge_count": 280,
+        "absolute_synapse_mass": 6460.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN06B001",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800041,
+        "cross_edge_count": 239,
+        "absolute_synapse_mass": 6249.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN27X001",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800042,
+        "cross_edge_count": 318,
+        "absolute_synapse_mass": 6116.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN27X005",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800085,
+        "cross_edge_count": 308,
+        "absolute_synapse_mass": 6061.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN07B002",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800053,
+        "cross_edge_count": 288,
+        "absolute_synapse_mass": 5943.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN07B001",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800247,
+        "cross_edge_count": 304,
+        "absolute_synapse_mass": 5921.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN07B002",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800051,
+        "cross_edge_count": 278,
+        "absolute_synapse_mass": 5678.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN07B001",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800174,
+        "cross_edge_count": 149,
+        "absolute_synapse_mass": 5676.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "II",
+        "type": "IN19A006",
+        "status": "Traced",
+        "target_neuromere_count": 1
+      },
+      {
+        "body_id": 16593,
+        "cross_edge_count": 284,
+        "absolute_synapse_mass": 5619.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "ANXXX002",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800181,
+        "cross_edge_count": 226,
+        "absolute_synapse_mass": 5580.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN10B004",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 914445,
+        "cross_edge_count": 292,
+        "absolute_synapse_mass": 5533.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN27X005",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800531,
+        "cross_edge_count": 125,
+        "absolute_synapse_mass": 5526.0,
+        "soma_neuromere": "T2",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "II",
+        "type": "IN19A006",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 15550,
+        "cross_edge_count": 277,
+        "absolute_synapse_mass": 5280.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "ANXXX002",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 800124,
+        "cross_edge_count": 119,
+        "absolute_synapse_mass": 5244.0,
+        "soma_neuromere": "T3",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN19A019",
+        "status": "Traced",
+        "target_neuromere_count": 1
+      },
+      {
+        "body_id": 902553,
+        "cross_edge_count": 205,
+        "absolute_synapse_mass": 5075.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN10B004",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      },
+      {
+        "body_id": 804444,
+        "cross_edge_count": 112,
+        "absolute_synapse_mass": 4909.0,
+        "soma_neuromere": "T2",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "II",
+        "type": "IN19A006",
+        "status": "Traced",
+        "target_neuromere_count": 2
+      }
+    ],
+    "not_retained_boundary_candidate_count": 4860,
+    "top_not_retained_boundary_candidates": [
+      {
+        "body_id": 800543,
+        "cross_edge_count": 103,
+        "absolute_synapse_mass": 4027.0,
+        "soma_neuromere": "T3",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "IR",
+        "type": "IN01B003",
+        "status": "Traced"
+      },
+      {
+        "body_id": 800178,
+        "cross_edge_count": 133,
+        "absolute_synapse_mass": 3971.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN11A001",
+        "status": "Traced"
+      },
+      {
+        "body_id": 800145,
+        "cross_edge_count": 122,
+        "absolute_synapse_mass": 3758.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN11A001",
+        "status": "Traced"
+      },
+      {
+        "body_id": 18940,
+        "cross_edge_count": 140,
+        "absolute_synapse_mass": 2946.0,
+        "soma_neuromere": "T2",
+        "soma_side": "L",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "AN05B006",
+        "status": "Traced"
+      },
+      {
+        "body_id": 800087,
+        "cross_edge_count": 163,
+        "absolute_synapse_mass": 2912.0,
+        "soma_neuromere": "T2",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN05B010",
+        "status": "Traced"
+      },
+      {
+        "body_id": 521675,
+        "cross_edge_count": 150,
+        "absolute_synapse_mass": 2896.0,
+        "soma_neuromere": "T2",
+        "soma_side": "R",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "AN05B006",
+        "status": "Traced"
+      },
+      {
+        "body_id": 801021,
+        "cross_edge_count": 49,
+        "absolute_synapse_mass": 2835.0,
+        "soma_neuromere": "T2",
+        "soma_side": "L",
+        "superclass": "vnc_motor",
+        "subclass": "wm",
+        "type": "hg3 MN",
+        "status": "Traced"
+      },
+      {
+        "body_id": 26284,
+        "cross_edge_count": 166,
+        "absolute_synapse_mass": 2792.0,
+        "soma_neuromere": "T3",
+        "soma_side": "R",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "AN05B005",
+        "status": "Traced"
+      },
+      {
+        "body_id": 16868,
+        "cross_edge_count": 131,
+        "absolute_synapse_mass": 2781.0,
+        "soma_neuromere": "T3",
+        "soma_side": "L",
+        "superclass": "ascending_neuron",
+        "subclass": "IA",
+        "type": "AN17A002",
+        "status": "Traced"
+      },
+      {
+        "body_id": 18338,
+        "cross_edge_count": 140,
+        "absolute_synapse_mass": 2693.0,
+        "soma_neuromere": "T3",
+        "soma_side": "R",
+        "superclass": "ascending_neuron",
+        "subclass": "CA",
+        "type": "AN09B003",
+        "status": "Traced"
+      },
+      {
+        "body_id": 801532,
+        "cross_edge_count": 162,
+        "absolute_synapse_mass": 2669.0,
+        "soma_neuromere": "T1",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN03B020",
+        "status": "Traced"
+      },
+      {
+        "body_id": 800847,
+        "cross_edge_count": 58,
+        "absolute_synapse_mass": 2620.0,
+        "soma_neuromere": "T2",
+        "soma_side": "L",
+        "superclass": "vnc_motor",
+        "subclass": "wm",
+        "type": "hg4 MN",
+        "status": "Traced"
+      },
+      {
+        "body_id": 800314,
+        "cross_edge_count": 155,
+        "absolute_synapse_mass": 2614.0,
+        "soma_neuromere": "T1",
+        "soma_side": "L",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN03B020",
+        "status": "Traced"
+      },
+      {
+        "body_id": 800208,
+        "cross_edge_count": 165,
+        "absolute_synapse_mass": 2462.0,
+        "soma_neuromere": "T2",
+        "soma_side": "R",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "type": "IN05B010",
+        "status": "Traced"
+      },
+      {
+        "body_id": 19457,
+        "cross_edge_count": 132,
+        "absolute_synapse_mass": 2344.0,
+        "soma_neuromere": "T2",
+        "soma_side": "R",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "AN06B002",
+        "status": "Traced"
+      },
+      {
+        "body_id": 29830,
+        "cross_edge_count": 120,
+        "absolute_synapse_mass": 2290.0,
+        "soma_neuromere": "T3",
+        "soma_side": "L",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "type": "AN01B005",
+        "status": "Traced"
+      },
+      {
+        "body_id": 514660,
+        "cross_edge_count": 122,
+        "absolute_synapse_mass": 2235.0,
+        "soma_neuromere": "T3",
+        "soma_side": "L",
+        "superclass": "ascending_neuron",
+        "subclass": "CA",
+        "type": "AN09B003",
+        "status": "Traced"
+      },
+      {
+        "body_id": 800606,
+        "cross_edge_count": 63,
+        "absolute_synapse_mass": 2160.0,
+        "soma_neuromere": "T2",
+        "soma_side": "L",
+        "superclass": "vnc_motor",
+        "subclass": "wm",
+        "type": "MNwm35",
+        "status": "Traced"
+      },
+      {
+        "body_id": 903852,
+        "cross_edge_count": 46,
+        "absolute_synapse_mass": 2120.0,
+        "soma_neuromere": "T2",
+        "soma_side": "R",
+        "superclass": "vnc_motor",
+        "subclass": "wm",
+        "type": "hg3 MN",
+        "status": "Traced"
+      },
+      {
+        "body_id": 519516,
+        "cross_edge_count": 101,
+        "absolute_synapse_mass": 2116.0,
+        "soma_neuromere": "T3",
+        "soma_side": "R",
+        "superclass": "ascending_neuron",
+        "subclass": "CA",
+        "type": "AN09B004",
+        "status": "Traced"
+      }
+    ],
+    "not_retained_boundary_classes": [
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "cross_edge_count": 7141,
+        "absolute_synapse_mass": 99150.0,
+        "unique_nodes": 717
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "cross_edge_count": 6457,
+        "absolute_synapse_mass": 95750.0,
+        "unique_nodes": 433
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "cross_edge_count": 4284,
+        "absolute_synapse_mass": 57827.0,
+        "unique_nodes": 320
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_intrinsic",
+        "subclass": "IR",
+        "cross_edge_count": 3168,
+        "absolute_synapse_mass": 49274.0,
+        "unique_nodes": 182
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "cross_edge_count": 3236,
+        "absolute_synapse_mass": 46559.0,
+        "unique_nodes": 178
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_motor",
+        "subclass": "wm",
+        "cross_edge_count": 1625,
+        "absolute_synapse_mass": 45310.0,
+        "unique_nodes": 55
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BI",
+        "cross_edge_count": 3043,
+        "absolute_synapse_mass": 43182.0,
+        "unique_nodes": 282
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "ascending_neuron",
+        "subclass": "BA",
+        "cross_edge_count": 2308,
+        "absolute_synapse_mass": 34163.0,
+        "unique_nodes": 169
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_intrinsic",
+        "subclass": "II",
+        "cross_edge_count": 1963,
+        "absolute_synapse_mass": 31556.0,
+        "unique_nodes": 267
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_intrinsic",
+        "subclass": "NA",
+        "cross_edge_count": 2372,
+        "absolute_synapse_mass": 28936.0,
+        "unique_nodes": 449
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_intrinsic",
+        "subclass": "IR",
+        "cross_edge_count": 1651,
+        "absolute_synapse_mass": 21304.0,
+        "unique_nodes": 158
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "vnc_intrinsic",
+        "subclass": "NA",
+        "cross_edge_count": 1645,
+        "absolute_synapse_mass": 19983.0,
+        "unique_nodes": 289
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "ascending_neuron",
+        "subclass": "CA",
+        "cross_edge_count": 915,
+        "absolute_synapse_mass": 17729.0,
+        "unique_nodes": 18
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_intrinsic",
+        "subclass": "NA",
+        "cross_edge_count": 1185,
+        "absolute_synapse_mass": 14619.0,
+        "unique_nodes": 244
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BR",
+        "cross_edge_count": 997,
+        "absolute_synapse_mass": 13032.0,
+        "unique_nodes": 149
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BR",
+        "cross_edge_count": 837,
+        "absolute_synapse_mass": 12544.0,
+        "unique_nodes": 118
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "vnc_motor",
+        "subclass": "wm",
+        "cross_edge_count": 538,
+        "absolute_synapse_mass": 11525.0,
+        "unique_nodes": 12
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_motor",
+        "subclass": "hm",
+        "cross_edge_count": 387,
+        "absolute_synapse_mass": 10471.0,
+        "unique_nodes": 16
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_intrinsic",
+        "subclass": "CI",
+        "cross_edge_count": 473,
+        "absolute_synapse_mass": 9222.0,
+        "unique_nodes": 18
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "ascending_neuron",
+        "subclass": "IA",
+        "cross_edge_count": 449,
+        "absolute_synapse_mass": 8533.0,
+        "unique_nodes": 11
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "vnc_motor",
+        "subclass": "nm",
+        "cross_edge_count": 315,
+        "absolute_synapse_mass": 7835.0,
+        "unique_nodes": 24
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "ascending_neuron",
+        "subclass": "IA",
+        "cross_edge_count": 329,
+        "absolute_synapse_mass": 7463.0,
+        "unique_nodes": 16
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_intrinsic",
+        "subclass": "II",
+        "cross_edge_count": 426,
+        "absolute_synapse_mass": 7041.0,
+        "unique_nodes": 54
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "ascending_neuron",
+        "subclass": "CA",
+        "cross_edge_count": 390,
+        "absolute_synapse_mass": 6689.0,
+        "unique_nodes": 15
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "vnc_intrinsic",
+        "subclass": "BR",
+        "cross_edge_count": 431,
+        "absolute_synapse_mass": 5758.0,
+        "unique_nodes": 82
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_intrinsic",
+        "subclass": "CR",
+        "cross_edge_count": 311,
+        "absolute_synapse_mass": 5749.0,
+        "unique_nodes": 78
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "vnc_intrinsic",
+        "subclass": "II",
+        "cross_edge_count": 370,
+        "absolute_synapse_mass": 5439.0,
+        "unique_nodes": 47
+      },
+      {
+        "soma_neuromere": "T1",
+        "superclass": "ascending_neuron",
+        "subclass": "IA",
+        "cross_edge_count": 344,
+        "absolute_synapse_mass": 5396.0,
+        "unique_nodes": 36
+      },
+      {
+        "soma_neuromere": "T3",
+        "superclass": "vnc_motor",
+        "subclass": "ad",
+        "cross_edge_count": 220,
+        "absolute_synapse_mass": 5087.0,
+        "unique_nodes": 6
+      },
+      {
+        "soma_neuromere": "T2",
+        "superclass": "vnc_intrinsic",
+        "subclass": "CI",
+        "cross_edge_count": 267,
+        "absolute_synapse_mass": 4034.0,
+        "unique_nodes": 33
+      }
+    ],
+    "csv_outputs": [
+      "results/path2/all_legs_coordination_coupling_sources.csv",
+      "results/path2/all_legs_coordination_coupling_targets.csv",
+      "results/path2/all_legs_coordination_coupling_omitted.csv",
+      "results/path2/all_legs_coordination_coupling_omitted_classes.csv"
+    ]
+  },
+  "published_coordination": {
+    "available": true,
+    "source": "https://cdn.elifesciences.org/articles/96084/elife-96084-supp8-v1.csv",
+    "rule": "traced vnc_intrinsic; type in eLife 96084 Supplementary file 8; soma neuromere in requested scope",
+    "candidate_count": 212,
+    "unique_type_count": 62,
+    "type_labels": [
+      "IN00A001",
+      "IN00A002",
+      "IN01A002",
+      "IN01A007",
+      "IN01A009",
+      "IN01A010",
+      "IN01A011",
+      "IN01A018",
+      "IN02A003",
+      "IN03A001",
+      "IN03A009",
+      "IN03B015",
+      "IN03B021",
+      "IN03B025",
+      "IN06A028",
+      "IN06B001",
+      "IN06B012",
+      "IN06B018",
+      "IN06B022",
+      "IN06B028",
+      "IN07B001",
+      "IN07B002",
+      "IN07B006",
+      "IN07B007",
+      "IN07B009",
+      "IN07B010",
+      "IN07B104",
+      "IN08B001",
+      "IN08B004",
+      "IN09A004",
+      "IN09A009",
+      "IN10B004",
+      "IN10B014",
+      "IN11A003",
+      "IN12A001",
+      "IN12B002",
+      "IN12B005",
+      "IN12B013",
+      "IN14B001",
+      "IN14B005",
+      "IN14B006",
+      "IN17A007",
+      "IN18B006",
+      "IN18B011",
+      "IN19A006",
+      "IN19A009",
+      "IN19A010",
+      "IN19A012",
+      "IN19A014",
+      "IN19A019",
+      "IN19B004",
+      "IN19B005",
+      "IN19B021",
+      "IN19B027",
+      "IN27X001",
+      "IN27X002",
+      "IN27X005",
+      "INXXX003",
+      "INXXX008",
+      "INXXX036",
+      "LBL40",
+      "vMS17"
+    ],
+    "missing_published_type_labels": [
+      "IN01A001",
+      "INXXX025",
+      "INXXX058",
+      "INXXX115"
+    ],
+    "csv_output": "results/path2/all_legs_coordination_published_coordination.csv"
+  },
+  "alt_text": "All-leg MANC constant-drive audit with unsmoothed coxa traces, coxa phase-correlation matrix, tripod correlation bars, and absolute signed edge mass across T1/T2/T3."
+}

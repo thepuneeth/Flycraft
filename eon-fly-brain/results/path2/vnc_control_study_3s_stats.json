@@ -1,0 +1,486 @@
+{
+  "input": "results/path2/vnc_control_study_3s.csv",
+  "conditions": [
+    "vnc_open_loop",
+    "vnc_brain",
+    "shuffled_vnc",
+    "random_descending",
+    "path1_hand_cpg"
+  ],
+  "n_per_condition": 20,
+  "metrics": [
+    "path_m",
+    "forward_displacement_m",
+    "displacement_m",
+    "min_distance_m",
+    "motor_temporal_std_mean",
+    "mean_abs_az_deg"
+  ],
+  "summary": {
+    "vnc_open_loop": {
+      "n": 20,
+      "caught_count": 0,
+      "caught_rate": 0.0,
+      "caught_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "fell_count": 0,
+      "fell_rate": 0.0,
+      "fell_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "metrics": {
+        "path_m": {
+          "mean": 0.20713580196046605,
+          "ci_low": 0.20488803865477484,
+          "ci_high": 0.20907881873086176,
+          "ci": "95% percentile bootstrap"
+        },
+        "forward_displacement_m": {
+          "mean": 0.0186409924718278,
+          "ci_low": 0.016743204718804736,
+          "ci_high": 0.02024057661056184,
+          "ci": "95% percentile bootstrap"
+        },
+        "displacement_m": {
+          "mean": 0.019738606654274796,
+          "ci_low": 0.017807961019697303,
+          "ci_high": 0.021361405866699965,
+          "ci": "95% percentile bootstrap"
+        },
+        "min_distance_m": {
+          "mean": 1.3903746147709608,
+          "ci_low": 1.2874438051435462,
+          "ci_high": 1.4914753701201637,
+          "ci": "95% percentile bootstrap"
+        },
+        "motor_temporal_std_mean": {
+          "mean": 0.140196219086647,
+          "ci_low": 0.140196219086647,
+          "ci_high": 0.140196219086647,
+          "ci": "95% percentile bootstrap"
+        },
+        "mean_abs_az_deg": {
+          "mean": 95.7064110780049,
+          "ci_low": 77.5323054703779,
+          "ci_high": 114.06783506695776,
+          "ci": "95% percentile bootstrap"
+        }
+      }
+    },
+    "vnc_brain": {
+      "n": 20,
+      "caught_count": 0,
+      "caught_rate": 0.0,
+      "caught_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "fell_count": 0,
+      "fell_rate": 0.0,
+      "fell_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "metrics": {
+        "path_m": {
+          "mean": 0.1849161776349067,
+          "ci_low": 0.13987527224578863,
+          "ci_high": 0.2280468786254177,
+          "ci": "95% percentile bootstrap"
+        },
+        "forward_displacement_m": {
+          "mean": 0.030431794769008907,
+          "ci_low": 0.01347723109337384,
+          "ci_high": 0.04931778698936175,
+          "ci": "95% percentile bootstrap"
+        },
+        "displacement_m": {
+          "mean": 0.039812364684631146,
+          "ci_low": 0.025102767884729774,
+          "ci_high": 0.05660347525234744,
+          "ci": "95% percentile bootstrap"
+        },
+        "min_distance_m": {
+          "mean": 1.3847196332647198,
+          "ci_low": 1.2784128493571323,
+          "ci_high": 1.4876737249236893,
+          "ci": "95% percentile bootstrap"
+        },
+        "motor_temporal_std_mean": {
+          "mean": 0.11564183793961999,
+          "ci_low": 0.09225741375237702,
+          "ci_high": 0.13534819548949595,
+          "ci": "95% percentile bootstrap"
+        },
+        "mean_abs_az_deg": {
+          "mean": 95.00888734206458,
+          "ci_low": 76.1179364164692,
+          "ci_high": 114.05912595167848,
+          "ci": "95% percentile bootstrap"
+        }
+      }
+    },
+    "shuffled_vnc": {
+      "n": 20,
+      "caught_count": 0,
+      "caught_rate": 0.0,
+      "caught_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "fell_count": 0,
+      "fell_rate": 0.0,
+      "fell_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "metrics": {
+        "path_m": {
+          "mean": 0.06464665948256079,
+          "ci_low": 0.06301360325182553,
+          "ci_high": 0.06630855446931971,
+          "ci": "95% percentile bootstrap"
+        },
+        "forward_displacement_m": {
+          "mean": -0.0609023754580272,
+          "ci_low": -0.06307880303696316,
+          "ci_high": -0.05873695175243015,
+          "ci": "95% percentile bootstrap"
+        },
+        "displacement_m": {
+          "mean": 0.061204973410255256,
+          "ci_low": 0.05903676873101157,
+          "ci_high": 0.06339125642796177,
+          "ci": "95% percentile bootstrap"
+        },
+        "min_distance_m": {
+          "mean": 1.38604625348986,
+          "ci_low": 1.2862771534154975,
+          "ci_high": 1.484354814167812,
+          "ci": "95% percentile bootstrap"
+        },
+        "motor_temporal_std_mean": {
+          "mean": 0.0671594217419624,
+          "ci_low": 0.0671594217419624,
+          "ci_high": 0.0671594217419624,
+          "ci": "95% percentile bootstrap"
+        },
+        "mean_abs_az_deg": {
+          "mean": 97.65474974170094,
+          "ci_low": 78.89620788718034,
+          "ci_high": 116.9131417241517,
+          "ci": "95% percentile bootstrap"
+        }
+      }
+    },
+    "random_descending": {
+      "n": 20,
+      "caught_count": 0,
+      "caught_rate": 0.0,
+      "caught_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "fell_count": 0,
+      "fell_rate": 0.0,
+      "fell_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "metrics": {
+        "path_m": {
+          "mean": 0.22322369599040565,
+          "ci_low": 0.19255383994116834,
+          "ci_high": 0.25642029092236795,
+          "ci": "95% percentile bootstrap"
+        },
+        "forward_displacement_m": {
+          "mean": 0.019603922418288452,
+          "ci_low": 0.0031735095681477187,
+          "ci_high": 0.03732210020151897,
+          "ci": "95% percentile bootstrap"
+        },
+        "displacement_m": {
+          "mean": 0.035670064404073235,
+          "ci_low": 0.024802869629309027,
+          "ci_high": 0.04850558201106071,
+          "ci": "95% percentile bootstrap"
+        },
+        "min_distance_m": {
+          "mean": 1.3829405557324121,
+          "ci_low": 1.2766884125721607,
+          "ci_high": 1.4866618595192425,
+          "ci": "95% percentile bootstrap"
+        },
+        "motor_temporal_std_mean": {
+          "mean": 0.13335601091384883,
+          "ci_low": 0.1280400000140071,
+          "ci_high": 0.1376358288899064,
+          "ci": "95% percentile bootstrap"
+        },
+        "mean_abs_az_deg": {
+          "mean": 95.0801185183237,
+          "ci_low": 76.57375480645455,
+          "ci_high": 113.90502301728584,
+          "ci": "95% percentile bootstrap"
+        }
+      }
+    },
+    "path1_hand_cpg": {
+      "n": 20,
+      "caught_count": 0,
+      "caught_rate": 0.0,
+      "caught_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "fell_count": 0,
+      "fell_rate": 0.0,
+      "fell_wilson_95ci": [
+        0.0,
+        0.16113012549493322
+      ],
+      "metrics": {
+        "path_m": {
+          "mean": 0.2458630926534804,
+          "ci_low": 0.18854997665636872,
+          "ci_high": 0.2996626262298491,
+          "ci": "95% percentile bootstrap"
+        },
+        "forward_displacement_m": {
+          "mean": 0.09386966999153648,
+          "ci_low": 0.03886787565171555,
+          "ci_high": 0.1517455491088339,
+          "ci": "95% percentile bootstrap"
+        },
+        "displacement_m": {
+          "mean": 0.11966746363871236,
+          "ci_low": 0.07085917733957414,
+          "ci_high": 0.17122262598185933,
+          "ci": "95% percentile bootstrap"
+        },
+        "min_distance_m": {
+          "mean": 1.3221815151808423,
+          "ci_low": 1.2028545367859749,
+          "ci_high": 1.4356662545594165,
+          "ci": "95% percentile bootstrap"
+        },
+        "mean_abs_az_deg": {
+          "mean": 87.99200312748334,
+          "ci_low": 67.497131312659,
+          "ci_high": 109.00159221177836,
+          "ci": "95% percentile bootstrap"
+        }
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "comparison": "real_vnc_minus_shuffled",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "shuffled_vnc",
+      "metric": "path_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.14248914247790523,
+      "ci_low": 0.13965396331532826,
+      "ci_high": 0.14493436036589546,
+      "p_exact_two_sided_paired_sign_flip": 1.9073486328125e-06,
+      "p_holm_across_three_primary_path_tests": 5.7220458984375e-06
+    },
+    {
+      "comparison": "real_vnc_minus_shuffled",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "shuffled_vnc",
+      "metric": "forward_displacement_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.07954336792985502,
+      "ci_low": 0.07769549506145654,
+      "ci_high": 0.0814420416331386,
+      "p_exact_two_sided_paired_sign_flip": 1.9073486328125e-06
+    },
+    {
+      "comparison": "real_vnc_minus_shuffled",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "shuffled_vnc",
+      "metric": "displacement_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -0.04146636675598046,
+      "ci_low": -0.04524745118757914,
+      "ci_high": -0.038073560762420446,
+      "p_exact_two_sided_paired_sign_flip": 1.9073486328125e-06
+    },
+    {
+      "comparison": "real_vnc_minus_shuffled",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "shuffled_vnc",
+      "metric": "min_distance_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.0043283612811006456,
+      "ci_low": -0.012860126385769315,
+      "ci_high": 0.021494216072143787,
+      "p_exact_two_sided_paired_sign_flip": 0.6295204162597656
+    },
+    {
+      "comparison": "real_vnc_minus_shuffled",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "shuffled_vnc",
+      "metric": "motor_temporal_std_mean",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.0730367973446846,
+      "ci_low": 0.0730367973446846,
+      "ci_high": 0.0730367973446846,
+      "p_exact_two_sided_paired_sign_flip": 1.9073486328125e-06
+    },
+    {
+      "comparison": "real_vnc_minus_shuffled",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "shuffled_vnc",
+      "metric": "mean_abs_az_deg",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -1.9483386636960283,
+      "ci_low": -5.388159657568843,
+      "ci_high": 1.9733814839327546,
+      "p_exact_two_sided_paired_sign_flip": 0.3206596374511719
+    },
+    {
+      "comparison": "brain_minus_random",
+      "left_condition": "vnc_brain",
+      "right_condition": "random_descending",
+      "metric": "path_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -0.03830751835549899,
+      "ci_low": -0.07749279880541134,
+      "ci_high": 0.001187633803601067,
+      "p_exact_two_sided_paired_sign_flip": 0.07892036437988281,
+      "p_holm_across_three_primary_path_tests": 0.15784072875976562
+    },
+    {
+      "comparison": "brain_minus_random",
+      "left_condition": "vnc_brain",
+      "right_condition": "random_descending",
+      "metric": "forward_displacement_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.010827872350720458,
+      "ci_low": -0.009998742644370378,
+      "ci_high": 0.03330866832899268,
+      "p_exact_two_sided_paired_sign_flip": 0.3603515625
+    },
+    {
+      "comparison": "brain_minus_random",
+      "left_condition": "vnc_brain",
+      "right_condition": "random_descending",
+      "metric": "displacement_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.004142300280557911,
+      "ci_low": -0.013887331374219429,
+      "ci_high": 0.02474715940843773,
+      "p_exact_two_sided_paired_sign_flip": 0.7065067291259766
+    },
+    {
+      "comparison": "brain_minus_random",
+      "left_condition": "vnc_brain",
+      "right_condition": "random_descending",
+      "metric": "min_distance_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.0017790775323081264,
+      "ci_low": -0.003846129201509328,
+      "ci_high": 0.007367555617027786,
+      "p_exact_two_sided_paired_sign_flip": 0.5469703674316406
+    },
+    {
+      "comparison": "brain_minus_random",
+      "left_condition": "vnc_brain",
+      "right_condition": "random_descending",
+      "metric": "motor_temporal_std_mean",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -0.01771417297422886,
+      "ci_low": -0.04026310029439627,
+      "ci_high": 0.0010184342227876186,
+      "p_exact_two_sided_paired_sign_flip": 0.16965293884277344
+    },
+    {
+      "comparison": "brain_minus_random",
+      "left_condition": "vnc_brain",
+      "right_condition": "random_descending",
+      "metric": "mean_abs_az_deg",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -0.07123117625910194,
+      "ci_low": -1.767950577938446,
+      "ci_high": 1.6415132968194073,
+      "p_exact_two_sided_paired_sign_flip": 0.9365825653076172
+    },
+    {
+      "comparison": "open_loop_minus_path1",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "path1_hand_cpg",
+      "metric": "path_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -0.03872729069301431,
+      "ci_low": -0.09239744224609814,
+      "ci_high": 0.01865225358008457,
+      "p_exact_two_sided_paired_sign_flip": 0.1983661651611328,
+      "p_holm_across_three_primary_path_tests": 0.1983661651611328
+    },
+    {
+      "comparison": "open_loop_minus_path1",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "path1_hand_cpg",
+      "metric": "forward_displacement_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -0.07522867751970869,
+      "ci_low": -0.13368548001486683,
+      "ci_high": -0.01963441127082573,
+      "p_exact_two_sided_paired_sign_flip": 0.02118682861328125
+    },
+    {
+      "comparison": "open_loop_minus_path1",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "path1_hand_cpg",
+      "metric": "displacement_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": -0.09992885698443758,
+      "ci_low": -0.15122764648020048,
+      "ci_high": -0.05097958083524625,
+      "p_exact_two_sided_paired_sign_flip": 0.000766754150390625
+    },
+    {
+      "comparison": "open_loop_minus_path1",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "path1_hand_cpg",
+      "metric": "min_distance_m",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 0.06819309959011839,
+      "ci_low": 0.040956759064302635,
+      "ci_high": 0.09720777154307089,
+      "p_exact_two_sided_paired_sign_flip": 1.9073486328125e-06
+    },
+    {
+      "comparison": "open_loop_minus_path1",
+      "left_condition": "vnc_open_loop",
+      "right_condition": "path1_hand_cpg",
+      "metric": "mean_abs_az_deg",
+      "n_pairs": 20,
+      "mean_difference_left_minus_right": 7.714407950521563,
+      "ci_low": 4.728375241431562,
+      "ci_high": 10.641520626081917,
+      "p_exact_two_sided_paired_sign_flip": 0.0001964569091796875
+    }
+  ],
+  "bootstrap": {
+    "reps": 100000,
+    "seed": 20260829,
+    "ci": "95% percentile bootstrap"
+  },
+  "paired_test": {
+    "method": "exact two-sided sign-flip randomization",
+    "pairing": "same episode starts across conditions",
+    "primary_endpoint": "path_m",
+    "multiplicity": "Holm adjustment across three predeclared path comparisons"
+  },
+  "binary_rate_ci": "95% Wilson interval",
+  "summary_csv": "results/path2/vnc_control_study_3s_stats_summary.csv",
+  "comparisons_csv": "results/path2/vnc_control_study_3s_stats_comparisons.csv"
+}

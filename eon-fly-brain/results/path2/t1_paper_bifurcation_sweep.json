@@ -1,0 +1,57 @@
+{
+  "data": "results/path2",
+  "weights_name": "t1_paper_weight_csr.pkl",
+  "index_name": "t1_paper_io_index.npz",
+  "model": "paper",
+  "threshold": 7.5,
+  "activation_gain": 1.0,
+  "fr_cap": 200.0,
+  "heterogeneity": true,
+  "seed": 1,
+  "matrix_balance": {
+    "n": 4418,
+    "nnz": 144214,
+    "positive_edges": 83222,
+    "negative_edges": 60992,
+    "positive_mass": 1596270.0,
+    "negative_mass": 1229306.0,
+    "positive_to_negative_mass": 1.298513144815042
+  },
+  "gW_values": [
+    0.005,
+    0.01,
+    0.015,
+    0.02,
+    0.03,
+    0.04,
+    0.06
+  ],
+  "drive_values": [
+    25.0,
+    50.0,
+    100.0,
+    150.0,
+    250.0,
+    350.0,
+    500.0
+  ],
+  "tau_values": [
+    0.005,
+    0.01,
+    0.02,
+    0.04,
+    0.08
+  ],
+  "fixed_tau_for_drive_sweep": 0.02,
+  "fixed_drive_for_tau_sweep": 250.0,
+  "steps": 300,
+  "substeps": 4,
+  "dt_s": 0.005,
+  "dnb08_gain": 1.0,
+  "burn_fraction": 0.5,
+  "metric": "tail motor-rate standard deviation and aggregate non-DC FFT power; no smoothing",
+  "alt_text": "Four heatmaps show full-T1 MANC motor-rate variance and dominant-frequency power across constant-drive by gW and tau by gW sweeps; dashed contours mark SD 0.01 and spectral power 0.20.",
+  "python": "3.12.10",
+  "numpy": "2.5.2",
+  "elapsed_s": 8.598294019699097
+}

@@ -14,7 +14,7 @@ turn = sign*gain*(dR-dL), forward = clip(fwd_gain*(dL+dR)). No task training any
 
 Usage: run_hexapod_chase.py [--secs 25] [--prey 1.2 0.8] [--turn_gain ..] [--video f.mp4]
 """
-import argparse, pickle, sys
+import argparse, json, pickle, sys
 from pathlib import Path
 import numpy as np
 import torch
@@ -39,6 +39,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--secs", type=float, default=25.0)
     ap.add_argument("--prey", type=float, nargs=2, default=[1.2, 0.8])
+    ap.add_argument("--initial_yaw", type=float, default=0.0, help="initial body yaw in radians")
     ap.add_argument("--catch", type=float, default=0.25)
     ap.add_argument("--ctrl_hz", type=float, default=50.0)
     ap.add_argument("--kp", type=float, default=3.0)
@@ -91,6 +92,7 @@ def main():
     d = mujoco.MjData(m)
     gait = HexapodGait(stance=(0.0, 0.6, -1.2))
     d.qpos[2] = 0.15
+    d.qpos[3:7] = (np.cos(a.initial_yaw / 2), 0.0, 0.0, np.sin(a.initial_yaw / 2))
     phys = max(1, int(round((1 / a.ctrl_hz) / m.opt.timestep)))
     dt = 1 / a.ctrl_hz
     renderer = mujoco.Renderer(m, 480, 640) if a.video else None
@@ -102,6 +104,7 @@ def main():
         mujoco.mj_step(m, d)
 
     x0, y0 = float(d.qpos[0]), float(d.qpos[1])
+    yaw0 = 2 * np.arctan2(d.qpos[6], d.qpos[3])
     prey = (x0 + a.prey[0], y0 + a.prey[1])
     d0 = np.hypot(a.prey[0], a.prey[1])
     n = int(a.secs * a.ctrl_hz)
@@ -110,6 +113,7 @@ def main():
     mind = d0
     caught = None
     az_hist = []
+    height_hist = []
 
     for k in range(n):
         trunk = (float(d.qpos[0]), float(d.qpos[1]))
@@ -124,6 +128,7 @@ def main():
         path += np.hypot(trunk2[0] - last[0], trunk2[1] - last[1]); last = trunk2
         mind = min(mind, dist)
         az_hist.append(abs(np.rad2deg(az)))
+        height_hist.append(float(d.qpos[2]))
         if renderer and k % 2 == 0:
             renderer.update_scene(d, camera="track"); frames.append(renderer.render())
         if k % 25 == 0 or dist < a.catch:
@@ -134,7 +139,26 @@ def main():
     print("=== hexapod chase result ===")
     print(f"start dist={d0:.2f}m  min dist={mind:.2f}m  path={path:.2f}m")
     print(f"mean|az|={np.mean(az_hist):.1f}deg  final height={d.qpos[2]:.3f}  fell={d.qpos[2]<0.02}")
-    print(f"VERDICT: {'CAUGHT at '+format(caught,'.1f')+'s' if caught else 'not caught in '+str(a.secs)+'s'}")
+    heights = np.asarray(height_hist)
+    yaw1 = 2 * np.arctan2(d.qpos[6], d.qpos[3])
+    print(f"VERDICT: {'CAUGHT at '+format(caught,'.1f')+'s' if caught is not None else 'not caught in '+str(a.secs)+'s'}")
+    print("RESULT_JSON " + json.dumps({
+        "mode": "path1_hand_cpg",
+        "start_distance_m": float(d0),
+        "min_distance_m": float(mind),
+        "path_m": float(path),
+        "displacement_m": float(np.hypot(float(d.qpos[0]) - x0, float(d.qpos[1]) - y0)),
+        "forward_displacement_m": float((float(d.qpos[0]) - x0) * np.cos(yaw0) + (float(d.qpos[1]) - y0) * np.sin(yaw0)),
+        "yaw_change_deg": float(np.rad2deg(yaw1 - yaw0)),
+        "mean_abs_az_deg": float(np.mean(az_hist)),
+        "final_height_m": float(heights[-1]),
+        "min_height_m": float(heights.min()),
+        "fell": bool(heights.min() < 0.02),
+        "caught": caught is not None,
+        "catch_time_s": caught,
+        "secs": a.secs,
+        "initial_yaw_rad": a.initial_yaw,
+    }, sort_keys=True))
     if a.video and frames:
         import imageio.v2 as imageio
         imageio.mimwrite(a.video, frames, fps=25)
