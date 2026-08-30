@@ -230,15 +230,84 @@ organize that activity into the phase pattern required by this hexapod. The
 negative is narrower than “the fly VNC cannot produce rhythm” and narrower
 than “all foreign bodies fail.”
 
-## Outcome B: connectome-as-prior learning pivot
+## Frozen-reservoir readout pivot (R0–R3)
 
-E0–E4 exhaust the no-learning chain at this model and body resolution. The
-next experiment should keep the real MANC graph fixed and learn only a minimal
-motor readout and sensory-feedback-gain layer. Use matched connectome-
-initialized, random-initialized, and degree-preserving rewired initializations
-on the same hexapod; compare walking performance and sample efficiency. Keep
-the present open-loop no-learning result as the baseline. Cache the frozen
-connectome forward pass so one RTX 4090 trains only the small learned layer.
+The completed pivot kept every MANC weight and all Path 2 rate-model constants
+frozen. R0 drove the 11,000-neuron all-leg graph with constant tonic drive 100,
+discarded 3,000 steps, then recorded 3,000 full-population activation vectors
+at 50 Hz. Of 11,000 columns, 5,243 varied. Column means and scales came only
+from the first 70% training window. The source CSR SHA-256 was
+`018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`.
+
+The target was declared before fitting: the existing Path-1 `HexapodGait`
+defaults at straight `forward=0.8`, `turn=0`, 50 Hz, starting from phase zero.
+The target was never changed. The known fixed stance was treated as a joint
+coordinate convention; the sole fit object was the state-to-18-joint-deviation
+matrix `W_out`. Ridge used the algebraically equivalent exact dual closed form.
+The first 70% of time fitted `W_out`; the final 30% selected λ from the fixed
+grid `10^-6 ... 10^6`. Walking, distance, prey, and reward never entered the
+fit or λ selection.
+
+### R1 reconstruction gate
+
+The selected linear λ was `10^6`. Mean train/held-out R² over all 18 channels
+was `0.1182/0.1112`. The six coxa channels each had held-out R² `0.0075`; the
+six femur channels ranged from `-0.6744` to `-0.6736`; the six constant tibia
+channels were reconstructed exactly and therefore report `1.0`. Across only
+the 12 dynamic channels, held-out R² was `-0.3332`. Thus the all-channel mean
+is inflated by constant tibia channels and is not evidence of useful template
+reconstruction.
+
+This triggered the one permitted capacity escalation: 64 fixed Gaussian
+random features (`tanh`, seed `20260829`) followed by the same closed-form
+ridge fit. The random projection was not learned. Its selected λ was `10^5`;
+mean train/held-out all-channel R² was `0.1076/0.1065`, and dynamic-channel
+held-out R² was `-0.3402`. No optimizer, backpropagation, RL, reward, or task
+loss was introduced. The escalation did not improve reconstruction.
+
+### R2 deployment gate
+
+The live reservoir was burned in under the same tonic drive, then the frozen
+readout generated 18 targets for the existing PD servo. The existing FlyWire
+forward pass supplied only unlearned left/right steering asymmetry; tonic
+drive remained 100. The exact E0 phase procedure scored the readout targets.
+
+| readout | tripod scalar | target SD (rad) | forward (m) | path (m) | fall/catch | video verdict |
+|---|---:|---:|---:|---:|---|---|
+| linear | 2.000 | 0.03993 | +0.00784 | 0.03693 | no/no | near-static sprawl; no visible walk |
+| 64-unit random features | 2.000 | 0.00114 | -0.00204 | 0.00432 | no/no | near-static sprawl; no visible walk |
+
+All 6/6 within-tripod and 9/9 cross-tripod phase pairs pass because the tiny
+readout signals retain the template's relative signs. The amplitude and body
+motion show why phase coherence alone is insufficient here: neither readout
+produced a material gait. The synchronized 8 s, 1280×960, four-view escalation
+video is `eon-fly-brain/results/path2/reservoir_walk_multiview.mp4`.
+
+### R3 three-way prior gate
+
+All conditions used identical drive, burn-in, template, split, λ grid,
+heterogeneity, ridge procedure, body, and steering. `random` uses the existing
+seed-1 presynaptic-column permutation, matching graph size, every row degree,
+and the global out-degree distribution. `rewired` performs one successful
+directed endpoint swap per edge (seed `20260829`), preserving every node's
+in/out degree and the exact weight multiset. Generalization used a declared
+held-out tonic drive of 90. Effective rank was the number of descending kernel
+modes needed to reach fixed dynamic-channel held-out R² `0.8`.
+
+| reservoir | readout | held-out R², all | held-out R², dynamic | effective rank to .8 | drive-90 dynamic R² | forward (m) | path (m) | target SD (rad) |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| connectome | linear | 0.1112 | -0.3332 | not reached | -75157.4582 | +0.00784 | 0.03693 | 0.03993 |
+| random | linear | 0.3187 | -0.0219 | not reached | -0.0136 | +0.00303 | 0.01083 | 0.01345 |
+| rewired | linear | 0.0876 | -0.3687 | not reached | -0.3312 | -0.00365 | 0.01243 | 0.01355 |
+| connectome | random features | 0.1065 | -0.3402 | not reached | -0.3405 | -0.00204 | 0.00432 | 0.00114 |
+| random | random features | 0.1064 | -0.3405 | not reached | -0.3404 | -0.00204 | 0.00430 | 0.00010 |
+| rewired | random features | 0.1154 | -0.3269 | not reached | -0.3288 | -0.00184 | 0.00432 | 0.01352 |
+
+R3 gate verdict: **READOUT TOO WEAK**. Random linear reconstruction is less
+bad than connectome reconstruction, so these data do not support a special
+connectome prior. No condition reaches the fixed reconstruction target or
+produces a visible/material walk. This is a gate verdict, not final headline
+wording; final claim remains withheld pending user approval.
 
 ## Integrity and zero-learning checks
 
