@@ -37,6 +37,8 @@ PLANNED_SECS = 8.0
 EPISODE_SEED = 20260829
 COORD_SHUFFLE_SEED = 20260833
 COORD_RANDOM_SEED = 20260834
+INHIB_SHUFFLE_SEED = 20260835
+INHIB_RANDOM_SEED = 20260836
 SMOKE_SECS = 1.0
 
 
@@ -58,7 +60,15 @@ def normalized_rows(matrix: np.ndarray) -> np.ndarray:
     return matrix / scale[:, None]
 
 
-def build_coordination_matrices(data: Path) -> tuple[dict[str, np.ndarray], dict]:
+def build_edge_matrices(
+    data: Path,
+    *,
+    published_only: bool,
+    inhibitory_only: bool,
+    shuffle_seed: int,
+    random_seed: int,
+    edge_scope: str,
+) -> tuple[dict[str, np.ndarray], dict]:
     annotations = load_annotations(data)
     pre, post, weights, _, _ = cross_edges(data, annotations)
     io = np.load(data / "all_legs_io_index.npz")
@@ -72,39 +82,36 @@ def build_coordination_matrices(data: Path) -> tuple[dict[str, np.ndarray], dict
     pre_sign = np.asarray([signs.get(int(body), 0.0) for body in pre], dtype=np.float64)
     pre_leg = endpoint_legs(annotations, pre)
     post_leg = endpoint_legs(annotations, post)
-    valid = (
-        (pre_leg >= 0)
-        & (post_leg >= 0)
-        & (pre_leg != post_leg)
-        & (pre_sign != 0.0)
-        & np.isin(pre, published)
-        & np.isin(post, published)
-    )
+    valid = (pre_leg >= 0) & (post_leg >= 0) & (pre_leg != post_leg) & (pre_sign != 0.0)
+    if published_only:
+        valid &= np.isin(pre, published) & np.isin(post, published)
+    if inhibitory_only:
+        valid &= pre_sign < 0.0
     signed_weights = weights * pre_sign
     real = np.zeros((6, 6), dtype=np.float64)
     np.add.at(real, (post_leg[valid], pre_leg[valid]), signed_weights[valid])
     mask = real != 0.0
     if int(mask.sum()) == 0:
-        raise AssertionError("published coordination subset has no cross-leg K cells")
+        raise AssertionError(f"{edge_scope} has no cross-leg K cells")
 
     values = real[mask].copy()
     shuffled = np.zeros_like(real)
-    shuffled[mask] = np.random.default_rng(COORD_SHUFFLE_SEED).permutation(values)
+    shuffled[mask] = np.random.default_rng(shuffle_seed).permutation(values)
     random = np.zeros_like(real)
     random[mask] = (
-        np.random.default_rng(COORD_RANDOM_SEED).permutation(np.abs(values))
-        * np.random.default_rng(COORD_RANDOM_SEED + 1).permutation(np.sign(values))
+        np.random.default_rng(random_seed).permutation(np.abs(values))
+        * np.random.default_rng(random_seed + 1).permutation(np.sign(values))
     )
     raw_matrices = {"real": real, "shuffled": shuffled, "random": random}
     matrices = {condition: normalized_rows(matrix) for condition, matrix in raw_matrices.items()}
     record = {
-        "edge_scope": "both endpoints in io[published_coordination_body_ids], cross-neuromere only",
+        "edge_scope": edge_scope,
         "leg_order": list(LEG_NAMES),
         "matrix_orientation": "K[post_leg, pre_leg]",
         "edge_source": "audit_intersegmental.cross_edges at absolute synapse floor 5",
         "sign_source": "fetch_manc.nt_signs predicted_nt: acetylcholine +1; GABA/glutamate -1; unknown omitted",
         "raw_cross_edge_rows": int(len(pre)),
-        "eligible_published_signed_edge_rows": int(valid.sum()),
+        "eligible_signed_edge_rows": int(valid.sum()),
         "eligible_edge_sign_rows": {
             "positive": int((signed_weights[valid] > 0.0).sum()),
             "negative": int((signed_weights[valid] < 0.0).sum()),
@@ -119,14 +126,38 @@ def build_coordination_matrices(data: Path) -> tuple[dict[str, np.ndarray], dict
             "shuffled": "permute real signed nonzero K cell values across the fixed real K mask",
             "random": "independently permute real K magnitudes and signs across the fixed real K mask",
         },
-        "shuffle_seed": COORD_SHUFFLE_SEED,
-        "random_seed": COORD_RANDOM_SEED,
+        "shuffle_seed": shuffle_seed,
+        "random_seed": random_seed,
         "control_cell_sign_tables": {condition: sign_table(matrix) for condition, matrix in raw_matrices.items()},
     }
     return matrices, record
 
 
-def smoke_test(matrices: dict[str, np.ndarray], gain: dict, phase: np.ndarray, seed: int) -> dict:
+def build_coordination_matrices(data: Path) -> tuple[dict[str, np.ndarray], dict]:
+    matrices, record = build_edge_matrices(
+        data,
+        published_only=True,
+        inhibitory_only=False,
+        shuffle_seed=COORD_SHUFFLE_SEED,
+        random_seed=COORD_RANDOM_SEED,
+        edge_scope="both endpoints in io[published_coordination_body_ids], cross-neuromere only",
+    )
+    record["eligible_published_signed_edge_rows"] = record.pop("eligible_signed_edge_rows")
+    return matrices, record
+
+
+def build_inhibitory_matrices(data: Path) -> tuple[dict[str, np.ndarray], dict]:
+    return build_edge_matrices(
+        data,
+        published_only=False,
+        inhibitory_only=True,
+        shuffle_seed=INHIB_SHUFFLE_SEED,
+        random_seed=INHIB_RANDOM_SEED,
+        edge_scope="all T1/T2/T3 cross-neuromere edges with inhibitory presynaptic sign",
+    )
+
+
+def smoke_test(matrices: dict[str, np.ndarray], gain: dict, phase: np.ndarray, seed: int, label: str) -> dict:
     specs = episode_specs(PLANNED_N, seed)
     steps = int(round(SMOKE_SECS * 50.0))
     rows = {}
@@ -147,19 +178,23 @@ def smoke_test(matrices: dict[str, np.ndarray], gain: dict, phase: np.ndarray, s
             flush=True,
         )
     if not all(np.isfinite(value[name]) for value in rows.values() for name in ("path_m", "coherence_scalar", "mean_feet_planted")):
-        raise AssertionError("COORD-212 smoke produced non-finite metrics")
+        raise AssertionError(f"{label} smoke produced non-finite metrics")
     return rows
 
 
-def run_coord212(args: argparse.Namespace) -> int:
+def run_coordination_phase(
+    args: argparse.Namespace,
+    phase_name: str,
+    matrices: dict[str, np.ndarray],
+    coupling: dict,
+    null_text: str,
+) -> int:
     print(
-        "PRE-REGISTERED NULL COORD-212: published-cell K remains net-synchronizing "
-        "and does not produce a stable tripod that beats shuffled/random on coherence and feet-planted.",
+        f"PRE-REGISTERED NULL {phase_name}: {null_text}",
         flush=True,
     )
-    matrices, coupling = build_coordination_matrices(args.data)
     print(
-        "K_212 sign table: positive_cells={} negative_cells={} zero_cells={} row_sums={}".format(
+        f"{phase_name} sign table: positive_cells={{}} negative_cells={{}} zero_cells={{}} row_sums={{}}".format(
             coupling["real_cell_sign_table"]["positive_cells"],
             coupling["real_cell_sign_table"]["negative_cells"],
             coupling["real_cell_sign_table"]["zero_cells"],
@@ -168,7 +203,7 @@ def run_coord212(args: argparse.Namespace) -> int:
         flush=True,
     )
     print(
-        "K_212 signed edge rows: positive={} negative={}".format(
+        f"{phase_name} signed edge rows: positive={{}} negative={{}}".format(
             coupling["eligible_edge_sign_rows"]["positive"],
             coupling["eligible_edge_sign_rows"]["negative"],
         ),
@@ -176,7 +211,7 @@ def run_coord212(args: argparse.Namespace) -> int:
     )
     gain = calibrate_gain(matrices)
     source = vnc_phase_source(args.data, args.weights_name, args.index_name, False)
-    smoke = smoke_test(matrices, gain, source["phase"], args.seed)
+    smoke = smoke_test(matrices, gain, source["phase"], args.seed, phase_name)
     phases = {
         condition: coupled_phases(source["phase"], matrices[condition], gain["selected_gain"])
         for condition in CONDITIONS
@@ -213,7 +248,7 @@ def run_coord212(args: argparse.Namespace) -> int:
     finite_metrics = all(np.isfinite(row[name]) for row in rows for name in SUMMARY_METRICS)
     graph = graph_record(args.data)
     if not shared_starts or not same_pipeline or not finite_metrics or not graph["hash_equal"] or any(len(group) != args.n for group in groups.values()):
-        raise AssertionError("COORD-212 control integrity failed")
+        raise AssertionError(f"{phase_name} control integrity failed")
 
     rng = np.random.default_rng(20260829)
     summaries = {condition: summarize(groups[condition], rng, SUMMARY_METRICS) for condition in CONDITIONS}
@@ -226,9 +261,13 @@ def run_coord212(args: argparse.Namespace) -> int:
         )
         for metric in ("coherence_scalar", "mean_feet_planted")
     )
-    verdict = "COORD-212-PRESENT" if real_phase_present and real_beats_controls and summaries["real"]["falls"] == 0 else "COORD-212-NULL"
+    verdict = f"{phase_name}-PRESENT" if real_phase_present and real_beats_controls and summaries["real"]["falls"] == 0 else f"{phase_name}-NULL"
+    gate_key = {
+        "COORD-212": "gate_coord_212",
+        "COORD-INHIB": "gate_coord_inhib",
+    }[phase_name]
     result = {
-        "method": "COORD-212 published coordination-cell inter-leg coupling",
+        "method": f"{phase_name} inhibitory/anatomical inter-leg coupling",
         "protocol": {
             "planned_n_per_condition": PLANNED_N,
             "planned_secs": PLANNED_SECS,
@@ -237,7 +276,7 @@ def run_coord212(args: argparse.Namespace) -> int:
             "episode_seed": args.seed,
             "shared_episode_starts": shared_starts,
             "same_fixed_pipeline": same_pipeline,
-            "only_condition_difference": "K_212 source; real VNC phase source and all body/engine parameters fixed",
+            "only_condition_difference": f"{phase_name} K source; real VNC phase source and all body/engine parameters fixed",
             "coupling_equation": "theta_i[t] = theta_i[t-1] + source_delta_i[t] + g * sum_j K[i,j] * sin(theta_j[t-1] - theta_i[t-1])",
             "coupling_gain": gain["selected_gain"],
             "gain_calibration_basis": gain["criterion"]["basis"],
@@ -252,9 +291,9 @@ def run_coord212(args: argparse.Namespace) -> int:
         "smoke": smoke,
         "summary": summaries,
         "comparisons": paired,
-        "pre_registered_null": "published-cell K_212 is net-synchronizing and does not produce a stable tripod that beats shuffled/random on coherence and feet-planted",
+        "pre_registered_null": null_text,
         "verdict": verdict,
-        "gate_coord_212": {
+        gate_key: {
             "shared_episode_starts": shared_starts,
             "same_fixed_pipeline": same_pipeline,
             "finite_metrics": finite_metrics,
@@ -262,7 +301,7 @@ def run_coord212(args: argparse.Namespace) -> int:
             "published_coordination_cells": 212,
             "rows": len(rows),
             "smoke_complete": True,
-            "verdict": "GATE COORD-212: PASS",
+            "verdict": f"GATE {phase_name}: PASS",
         },
         "zero_learning": True,
         "rows": rows,
@@ -278,7 +317,7 @@ def run_coord212(args: argparse.Namespace) -> int:
         writer = csv.DictWriter(stream, fieldnames=columns)
         writer.writeheader()
         writer.writerows({key: row[key] for key in columns} for row in rows)
-    print(f"GATE COORD-212: PASS (shared starts; fixed pipeline; finite; graph hash; 212/212 cells)")
+    print(f"GATE {phase_name}: PASS (shared starts; fixed pipeline; finite; graph hash; 212/212 cells)")
     print(f"RESULT: {verdict}")
     print(f"json -> {args.out.with_suffix('.json')}")
     print(f"csv -> {args.out.with_suffix('.csv')}")
@@ -286,21 +325,46 @@ def run_coord212(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_coord212(args: argparse.Namespace) -> int:
+    matrices, coupling = build_coordination_matrices(args.data)
+    return run_coordination_phase(
+        args,
+        "COORD-212",
+        matrices,
+        coupling,
+        "published-cell K_212 is net-synchronizing and does not produce a stable tripod that beats shuffled/random on coherence and feet-planted",
+    )
+
+
+def run_coord_inhib(args: argparse.Namespace) -> int:
+    matrices, coupling = build_inhibitory_matrices(args.data)
+    return run_coordination_phase(
+        args,
+        "COORD-INHIB",
+        matrices,
+        coupling,
+        "inhibitory-only K does not produce a stable anti-phase tripod limit cycle that beats shuffled/random controls",
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--phase", choices=("COORD-212",), default="COORD-212")
+    parser.add_argument("--phase", choices=("COORD-212", "COORD-INHIB"), default="COORD-212")
     parser.add_argument("--data", type=Path, default=Path("eon-fly-brain/results/path2"))
     parser.add_argument("--weights_name", default="all_legs_weight_csr.pkl")
     parser.add_argument("--index_name", default="all_legs_io_index.npz")
     parser.add_argument("--n", type=int, default=PLANNED_N)
     parser.add_argument("--secs", type=float, default=PLANNED_SECS)
     parser.add_argument("--seed", type=int, default=EPISODE_SEED)
-    parser.add_argument("--out", type=Path, default=Path("eon-fly-brain/results/path2/untried_coord212"))
-    parser.add_argument("--video", type=Path, default=Path("eon-fly-brain/results/path2/untried_coord212_real_multiview.mp4"))
+    parser.add_argument("--out", type=Path, default=None)
+    parser.add_argument("--video", type=Path, default=None)
     args = parser.parse_args()
     if args.n < PLANNED_N or args.secs != PLANNED_SECS:
-        raise ValueError("COORD-212 is frozen at n=20 and secs=8")
-    return run_coord212(args)
+        raise ValueError("coordination phases are frozen at n=20 and secs=8")
+    stem = {"COORD-212": "untried_coord212", "COORD-INHIB": "untried_coord_inhib"}[args.phase]
+    args.out = args.out or Path(f"eon-fly-brain/results/path2/{stem}")
+    args.video = args.video or Path(f"eon-fly-brain/results/path2/{stem}_real_multiview.mp4")
+    return run_coord212(args) if args.phase == "COORD-212" else run_coord_inhib(args)
 
 
 if __name__ == "__main__":
