@@ -4,10 +4,13 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import pickle
 from pathlib import Path
 import sys
 
+import mujoco
 import numpy as np
+import torch
 
 HERE = Path(__file__).resolve()
 RESULTS = HERE.parent.parent / "results" / "path2"
@@ -19,22 +22,28 @@ from fetch_manc import NEUROTRANSMITTERS, nt_signs  # noqa: E402
 from last_three_jobs import (  # noqa: E402
     CONDITIONS,
     DIRECT_SUMMARY_METRICS,
+    MAP_GAINS,
     SUMMARY_METRICS,
     calibrate_gain,
     comparisons,
     coupled_phases,
     direct_sources,
     endpoint_legs,
+    feet_planted_fraction,
     graph_record,
+    make_cameras,
     run_engine,
     run_direct_episode,
     summarize,
     vnc_phase_source,
 )
-from mn_to_joint import translate_antagonist  # noqa: E402
-from preflight import EXPECTED_SHA256  # noqa: E402
+from mn_to_joint import translate, translate_antagonist  # noqa: E402
+from preflight import EXPECTED_SHA256, sha256  # noqa: E402
+from probe_structured_descending import brain_type_indices  # noqa: E402
+from run_hexapod_chase import retina  # noqa: E402
 from stepwalk_controls import episode_specs  # noqa: E402
-from hexapod_gait import home_stance  # noqa: E402
+from hexapod_gait import H_MIN, XML, home_stance, pd_torque  # noqa: E402
+from vnc_stepper import VNCStepper  # noqa: E402
 
 
 LEG_NAMES = ("T1L", "T1R", "T2L", "T2R", "T3L", "T3R")
@@ -48,6 +57,28 @@ INHIB_RANDOM_SEED = 20260836
 SMOKE_SECS = 1.0
 WAVE_BASELINE = RESULTS / "lastthree_C_direct_mn_waveform.json"
 WAVE_MAP_NAME = "mn_to_joint.translate_antagonist(motor_activity, io, gains=(-0.55, 0.65, 0.65))"
+VISION_SHUFFLE_SEED = 20260837
+VISION_RANDOM_SEED = 20260838
+VISION_ANGLES_DEG = (-90.0, -60.0, -30.0, 0.0, 30.0, 60.0, 90.0)
+VISION_PREY_DISTANCE_M = 3.0
+VISION_TRIAL_SECS = 2.0
+VISION_VIDEO_ANGLES_DEG = (-60.0, 60.0)
+VISION_BRAIN_WEIGHT_SHA256 = "f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88"
+VISION_BRAIN_INDEX_SHA256 = "338cb0160ddeced104f597884ed99be84966a732f89199e876977a18bf84d7b5"
+VISION_BRAIN_SUBSTEPS = 12
+VISION_BRAIN_TAU = 0.02
+VISION_BRAIN_DT = 0.005
+VISION_BRAIN_GW = 0.006
+VISION_BRAIN_DRIVE_IN = 1.2
+VISION_TURN_GAIN = 6.0
+VISION_FWD_GAIN = 12.0
+VISION_VNC_DRIVE = 100.0
+VISION_VNC_TURN_SCALE = 6.0
+VISION_VNC_SUBSTEPS = 4
+VISION_VNC_TAU = 0.02
+VISION_VNC_DT = 0.005
+VISION_VNC_GW = 0.03
+VISION_SMOKE_SECS = 0.5
 
 
 def sign_table(matrix: np.ndarray) -> dict:
@@ -540,28 +571,505 @@ def run_wave_antag(args: argparse.Namespace) -> int:
     return 0
 
 
+def _correlation(x: np.ndarray, y: np.ndarray) -> float:
+    x = np.asarray(x, dtype=np.float64)
+    y = np.asarray(y, dtype=np.float64)
+    if len(x) < 3 or np.std(x) == 0.0 or np.std(y) == 0.0:
+        raise AssertionError("vision correlation requires variable azimuth and turn output")
+    return float(np.corrcoef(x, y)[0, 1])
+
+
+def correlation_ci(x: np.ndarray, y: np.ndarray, rng: np.random.Generator, reps: int = 100_000) -> tuple[float, float]:
+    x = np.asarray(x, dtype=np.float64)
+    y = np.asarray(y, dtype=np.float64)
+    indices = rng.integers(0, len(x), size=(reps, len(x)))
+    xs = x[indices]
+    ys = y[indices]
+    xs -= xs.mean(axis=1, keepdims=True)
+    ys -= ys.mean(axis=1, keepdims=True)
+    denominator = np.sqrt((xs * xs).sum(axis=1) * (ys * ys).sum(axis=1))
+    correlations = (xs * ys).sum(axis=1) / denominator
+    correlations = correlations[np.isfinite(correlations)]
+    if len(correlations) < reps // 2:
+        raise AssertionError("too many degenerate vision bootstrap samples")
+    low, high = np.percentile(correlations, (2.5, 97.5))
+    return float(low), float(high)
+
+
+def build_visual_conditions(data: Path) -> tuple[dict[str, dict], dict]:
+    weight_path = ANATOMY_DATA / "weight_csr.pkl"
+    index_path = ANATOMY_DATA / "io_index.npz"
+    with weight_path.open("rb") as handle:
+        weight = pickle.load(handle)
+    if weight.layout != torch.sparse_csr:
+        weight = weight.to_sparse_csr()
+    weight = weight.float().cpu()
+    io = np.load(index_path)
+    type_indices = brain_type_indices(ANATOMY_DATA)
+    target_keys = ("dng100_left", "dng100_right", "dnb08_left", "dnb08_right")
+    target_indices = np.unique(np.concatenate([type_indices[key] for key in target_keys])).astype(np.int64)
+    visual_left = np.asarray(io["vis_left"], dtype=np.int64)
+    visual_right = np.asarray(io["vis_right"], dtype=np.int64)
+    visual_indices = np.unique(np.concatenate((visual_left, visual_right)))
+    columns = weight.col_indices().numpy()
+    rows = weight.crow_indices().numpy()
+    direct_slots = []
+    edge_counts = {}
+    edge_sides = {}
+    left_set = set(visual_left.tolist())
+    right_set = set(visual_right.tolist())
+    for target in target_indices:
+        start, end = int(rows[target]), int(rows[target + 1])
+        local_columns = columns[start:end]
+        hits = np.flatnonzero(np.isin(local_columns, visual_indices)) + start
+        direct_slots.extend(hits.tolist())
+        edge_counts[int(target)] = int(len(hits))
+        edge_sides[int(target)] = {
+            "left": int(sum(int(columns[slot]) in left_set for slot in hits)),
+            "right": int(sum(int(columns[slot]) in right_set for slot in hits)),
+        }
+    direct_slots = np.asarray(sorted(direct_slots), dtype=np.int64)
+    if len(direct_slots) != 27 or len(np.unique(direct_slots)) != 27:
+        raise AssertionError(f"expected 27 unique direct visual-to-DN edges, found {len(direct_slots)}")
+    base_values = weight.values().clone()
+    real_values = base_values.numpy()[direct_slots].copy()
+    shuffled_values = np.random.default_rng(VISION_SHUFFLE_SEED).permutation(real_values)
+    random_values = (
+        np.random.default_rng(VISION_RANDOM_SEED).permutation(np.abs(real_values))
+        * np.random.default_rng(VISION_RANDOM_SEED + 1).permutation(np.sign(real_values))
+    )
+    replacements = {"real": real_values, "shuffled": shuffled_values, "random": random_values}
+    conditions = {}
+    slot_tensor = torch.from_numpy(direct_slots)
+    for condition, replacement in replacements.items():
+        values = base_values.clone()
+        if condition != "real":
+            values[slot_tensor] = torch.from_numpy(replacement.astype(np.float32))
+        conditions[condition] = {
+            "weight": torch.sparse_csr_tensor(weight.crow_indices(), weight.col_indices(), values, size=weight.shape),
+            "replacement_values": replacement.tolist(),
+        }
+    record = {
+        "brain_weight": "eon-fly-brain/data/weight_csr.pkl",
+        "brain_index": "eon-fly-brain/data/io_index.npz",
+        "brain_n": int(weight.shape[0]),
+        "brain_hashes": {
+            "weight_csr.pkl": sha256(weight_path),
+            "io_index.npz": sha256(index_path),
+        },
+        "expected_brain_hashes": {
+            "weight_csr.pkl": VISION_BRAIN_WEIGHT_SHA256,
+            "io_index.npz": VISION_BRAIN_INDEX_SHA256,
+        },
+        "hash_equal": sha256(weight_path) == VISION_BRAIN_WEIGHT_SHA256 and sha256(index_path) == VISION_BRAIN_INDEX_SHA256,
+        "visual_input_counts": {"left": int(len(visual_left)), "right": int(len(visual_right)), "union": int(len(visual_indices))},
+        "descending_output_counts": {key: int(len(type_indices[key])) for key in target_keys},
+        "direct_visual_to_descending_edge_count": int(len(direct_slots)),
+        "direct_edge_counts_by_target_index": edge_counts,
+        "direct_edge_sides_by_target_index": edge_sides,
+        "fixed_target_rule": "exact DNg100/DNb08 cells from probe_structured_descending.brain_type_indices",
+        "shuffle_seed": VISION_SHUFFLE_SEED,
+        "random_seed": VISION_RANDOM_SEED,
+        "control_rules": {
+            "shuffled": "permute real signed values over the fixed 27 visual-to-DNg100/DNb08 edge slots",
+            "random": "independently permute real magnitudes and signs over the fixed 27 slots",
+        },
+        "fixed_csr_structure": True,
+        "csr_row_indices_equal": all(torch.equal(weight.crow_indices(), conditions[condition]["weight"].crow_indices()) for condition in CONDITIONS),
+        "csr_column_indices_equal": all(torch.equal(weight.col_indices(), conditions[condition]["weight"].col_indices()) for condition in CONDITIONS),
+    }
+    if not record["hash_equal"] or not record["csr_row_indices_equal"] or not record["csr_column_indices_equal"]:
+        raise AssertionError("frozen brain or CSR integrity failed")
+    return {condition: {**conditions[condition], "io": io, "type_indices": type_indices} for condition in CONDITIONS}, record
+
+
+class VisualBrain:
+    def __init__(self, condition: dict):
+        self.weight = condition["weight"]
+        self.io = condition["io"]
+        self.type_indices = condition["type_indices"]
+        self.n = int(self.weight.shape[0])
+        self.visual_left = torch.from_numpy(self.io["vis_left"]).long()
+        self.visual_right = torch.from_numpy(self.io["vis_right"]).long()
+        self.state = torch.zeros(self.n, dtype=torch.float32)
+        self.decay = 1.0 - VISION_BRAIN_DT / VISION_BRAIN_TAU
+        self.dt_tau = VISION_BRAIN_DT / VISION_BRAIN_TAU
+
+    def reset(self):
+        self.state.zero_()
+
+    def step(self, present: bool, azimuth: float, size: float) -> dict[str, float]:
+        magnitude = VISION_BRAIN_DRIVE_IN * (0.5 + min(1.0, size))
+        current = torch.zeros(self.n, dtype=torch.float32)
+        if present:
+            current[self.visual_left] = magnitude * (max(0.0, azimuth) + 0.15)
+            current[self.visual_right] = magnitude * (max(0.0, -azimuth) + 0.15)
+        with torch.no_grad():
+            for _ in range(VISION_BRAIN_SUBSTEPS):
+                rates = torch.relu(torch.tanh(self.state))
+                self.state.mul_(self.decay).add_(self.dt_tau * (VISION_BRAIN_GW * (self.weight @ rates) + current))
+                self.state.clamp_(-5.0, 5.0)
+            rates = torch.relu(torch.tanh(self.state))
+        dng_left = float(rates[self.type_indices["dng100_left"]].mean())
+        dng_right = float(rates[self.type_indices["dng100_right"]].mean())
+        dnb_left = float(rates[self.type_indices["dnb08_left"]].mean())
+        dnb_right = float(rates[self.type_indices["dnb08_right"]].mean())
+        left = float(np.mean((dng_left, dnb_left)))
+        right = float(np.mean((dng_right, dnb_right)))
+        turn = -VISION_TURN_GAIN * (right - left)
+        heading_gate = max(0.1, float(np.cos(azimuth))) if present else 0.0
+        forward = float(np.clip(VISION_FWD_GAIN * (left + right), 0.0, 1.0)) * heading_gate
+        return {
+            "dng100_left": dng_left,
+            "dng100_right": dng_right,
+            "dnb08_left": dnb_left,
+            "dnb08_right": dnb_right,
+            "dL": left,
+            "dR": right,
+            "turn": turn,
+            "forward": forward,
+        }
+
+
+def run_vision_trial(
+    brain: VisualBrain,
+    vnc: VNCStepper,
+    azimuth: float,
+    secs: float,
+    video_frames: list[np.ndarray] | None = None,
+) -> dict:
+    brain.reset()
+    vnc.reset()
+    model = mujoco.MjModel.from_xml_path(str(XML))
+    body = mujoco.MjData(model)
+    body.qpos[2] = 0.15
+    body.qpos[3:7] = (1.0, 0.0, 0.0, 0.0)
+    physics_steps = max(1, int(round((1.0 / 50.0) / model.opt.timestep)))
+    stance = translate(np.zeros(len(vnc.io["motor_out"]), dtype=np.float32), vnc.io, gains=MAP_GAINS)
+    assert np.allclose(stance.reshape(6, 3), home_stance(model))
+    for _ in range(int(0.7 / model.opt.timestep)):
+        body.ctrl[:] = pd_torque(model, body, stance, 3.0, 0.05)
+        mujoco.mj_step(model, body)
+    x0, y0 = float(body.qpos[0]), float(body.qpos[1])
+    yaw0 = 2.0 * np.arctan2(body.qpos[6], body.qpos[3])
+    prey = (x0 + VISION_PREY_DISTANCE_M * np.cos(azimuth), y0 + VISION_PREY_DISTANCE_M * np.sin(azimuth))
+    floor_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, "floor")
+    foot_ids = tuple(mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, f"foot_{leg}") for leg in range(6))
+    renderer = mujoco.Renderer(model, 480, 640) if video_frames is not None else None
+    cameras = make_cameras(model) if renderer else []
+    n = int(round(secs * 50.0))
+    turns, forwards, observed_azimuths, heights, planted = [], [], [], [], []
+    dng_left, dng_right, dnb_left, dnb_right = [], [], [], []
+    last = (x0, y0)
+    path = 0.0
+    for step in range(n):
+        trunk = (float(body.qpos[0]), float(body.qpos[1]))
+        yaw = 2.0 * np.arctan2(body.qpos[6], body.qpos[3])
+        present, observed_azimuth, distance, size = retina(trunk, yaw, prey)
+        output = brain.step(present, observed_azimuth, size)
+        current = vnc.descending_current(output["forward"] * VISION_VNC_DRIVE, output["turn"], 1.0, VISION_VNC_TURN_SCALE)
+        motor = vnc.step(current).cpu().numpy()
+        target = translate(motor, vnc.io, gains=MAP_GAINS)
+        for _ in range(physics_steps):
+            body.ctrl[:] = pd_torque(model, body, target, 3.0, 0.05)
+            mujoco.mj_step(model, body)
+        now = (float(body.qpos[0]), float(body.qpos[1]))
+        path += float(np.hypot(now[0] - last[0], now[1] - last[1]))
+        last = now
+        turns.append(output["turn"])
+        forwards.append(output["forward"])
+        observed_azimuths.append(observed_azimuth)
+        heights.append(float(body.qpos[2]))
+        planted.append(float(feet_planted_fraction(body, floor_id, foot_ids)))
+        dng_left.append(output["dng100_left"])
+        dng_right.append(output["dng100_right"])
+        dnb_left.append(output["dnb08_left"])
+        dnb_right.append(output["dnb08_right"])
+        if renderer and step % 2 == 0:
+            views = []
+            for camera in cameras:
+                camera.lookat[:] = (float(body.qpos[0]), float(body.qpos[1]), 0.08)
+                renderer.update_scene(body, camera=camera)
+                views.append(renderer.render())
+            video_frames.append(np.concatenate((np.concatenate(views[:2], axis=1), np.concatenate(views[2:], axis=1)), axis=0))
+    yaw1 = 2.0 * np.arctan2(body.qpos[6], body.qpos[3])
+    dx, dy = float(body.qpos[0]) - x0, float(body.qpos[1]) - y0
+    turn_mean = float(np.mean(turns))
+    toward_sign = float(np.sign(azimuth))
+    return {
+        "azimuth_deg": float(np.rad2deg(azimuth)),
+        "azimuth_rad": float(azimuth),
+        "azimuth_label": "left" if azimuth > 0.0 else "right" if azimuth < 0.0 else "center",
+        "prey_distance_m": VISION_PREY_DISTANCE_M,
+        "initial_x_m": x0,
+        "initial_y_m": y0,
+        "initial_yaw_rad": yaw0,
+        "mean_observed_azimuth_rad": float(np.mean(observed_azimuths)),
+        "mean_turn_command": turn_mean,
+        "initial_turn_command": float(turns[0]),
+        "turn_command_std": float(np.std(turns)),
+        "mean_forward_command": float(np.mean(forwards)),
+        "toward_turn_score": float(toward_sign * turn_mean),
+        "yaw_change_rad": float(yaw1 - yaw0),
+        "toward_yaw_score": float(toward_sign * (yaw1 - yaw0)),
+        "mean_dng100_left": float(np.mean(dng_left)),
+        "mean_dng100_right": float(np.mean(dng_right)),
+        "mean_dnb08_left": float(np.mean(dnb_left)),
+        "mean_dnb08_right": float(np.mean(dnb_right)),
+        "path_m": float(path),
+        "forward_distance_m": float(dx * np.cos(yaw0) + dy * np.sin(yaw0)),
+        "displacement_m": float(np.hypot(dx, dy)),
+        "mean_feet_planted": float(np.mean(planted)),
+        "min_height_m": float(np.min(heights)),
+        "final_height_m": float(heights[-1]),
+        "fell": bool(np.min(heights) < H_MIN),
+        "protocol": {
+            "secs": secs,
+            "ctrl_hz": 50.0,
+            "prey_distance_m": VISION_PREY_DISTANCE_M,
+            "retina": "run_hexapod_chase.retina; present=dist<12 and abs(az)<150deg; size=0.2/max(dist,0.2)",
+            "brain_model": "bounded rate model",
+            "brain_tau": VISION_BRAIN_TAU,
+            "brain_dt": VISION_BRAIN_DT,
+            "brain_substeps": VISION_BRAIN_SUBSTEPS,
+            "brain_gW": VISION_BRAIN_GW,
+            "brain_drive_in": VISION_BRAIN_DRIVE_IN,
+            "brain_readout": "dL/R=mean(exact DNg100,DNb08 left/right); turn=-6*(dR-dL); forward=clip(12*(dL+dR))*max(0.1,cos(az))",
+            "vnc_drive": VISION_VNC_DRIVE,
+            "vnc_turn_scale": VISION_VNC_TURN_SCALE,
+            "vnc_model": "paper",
+            "vnc_tau": VISION_VNC_TAU,
+            "vnc_dt": VISION_VNC_DT,
+            "vnc_substeps": VISION_VNC_SUBSTEPS,
+            "vnc_gW": VISION_VNC_GW,
+            "vnc_heterogeneity": True,
+            "vnc_seed": 1,
+            "motor_to_joint": "mn_to_joint.translate(motor_activity, io, gains=(-0.55, 0.65, 0.65))",
+            "kp": 3.0,
+            "kd": 0.05,
+            "h_min_m": H_MIN,
+            "learning": False,
+        },
+    }
+
+
+def vision_comparisons(groups: dict[str, list[dict]], rng: np.random.Generator) -> list[dict]:
+    nonzero = {condition: [row for row in groups[condition] if row["azimuth_rad"] != 0.0] for condition in CONDITIONS}
+    rows = []
+    for metric in ("toward_turn_score", "toward_yaw_score"):
+        metric_rows = []
+        for right in ("shuffled", "random"):
+            differences = np.asarray(
+                [left[metric] - other[metric] for left, other in zip(nonzero["real"], nonzero[right])],
+                dtype=np.float64,
+            )
+            low, high = paired_bootstrap_ci(differences, rng, 100_000)
+            metric_rows.append({
+                "comparison": f"real_minus_{right}",
+                "metric": metric,
+                "n_pairs": len(differences),
+                "mean_difference": float(differences.mean()),
+                "ci_low": low,
+                "ci_high": high,
+                "p_exact_two_sided_paired_sign_flip": exact_sign_flip(differences),
+            })
+        adjusted = holm_adjust([row["p_exact_two_sided_paired_sign_flip"] for row in metric_rows])
+        for row, pvalue in zip(metric_rows, adjusted):
+            row["p_holm_across_two_controls_for_metric"] = pvalue
+        rows.extend(metric_rows)
+    return rows
+
+
+def run_vision_eval(args: argparse.Namespace) -> int:
+    null_text = "the frozen optic-lobe steering output does not correlate with true prey azimuth better than shuffled/random wiring"
+    print(f"PRE-REGISTERED NULL VISION-EVAL: {null_text}", flush=True)
+    conditions, brain_record = build_visual_conditions(args.data)
+    print(
+        "VISION-EVAL direct visual-to-DN slots: {} edges; DNg100 L/R={}/{}; DNb08 L/R={}/{}".format(
+            brain_record["direct_visual_to_descending_edge_count"],
+            brain_record["descending_output_counts"]["dng100_left"],
+            brain_record["descending_output_counts"]["dng100_right"],
+            brain_record["descending_output_counts"]["dnb08_left"],
+            brain_record["descending_output_counts"]["dnb08_right"],
+        ),
+        flush=True,
+    )
+    smoke_angles = (-60.0, 0.0, 60.0)
+    smoke = {}
+    for condition in CONDITIONS:
+        brain = VisualBrain(conditions[condition])
+        vnc = VNCStepper(
+            args.data,
+            substeps=VISION_VNC_SUBSTEPS,
+            tau=VISION_VNC_TAU,
+            dt=VISION_VNC_DT,
+            gW=VISION_VNC_GW,
+            weights_name=args.weights_name,
+            index_name=args.index_name,
+            model="paper",
+            threshold=7.5,
+            activation_gain=1.0,
+            fr_cap=200.0,
+            heterogeneity=True,
+            seed=1,
+        )
+        smoke_rows = [run_vision_trial(brain, vnc, np.deg2rad(angle), VISION_SMOKE_SECS) for angle in smoke_angles]
+        smoke_turns = [row["mean_turn_command"] for row in smoke_rows]
+        smoke[condition] = {"angles_deg": list(smoke_angles), "mean_turn_commands": smoke_turns}
+        if not np.isfinite(smoke_turns).all():
+            raise AssertionError("VISION-EVAL smoke produced non-finite turn commands")
+        print(f"smoke {condition}: turns={['%.4f' % value for value in smoke_turns]}", flush=True)
+
+    angles = tuple(np.deg2rad(value) for value in VISION_ANGLES_DEG)
+    rows = []
+    video_frames = []
+    for condition in CONDITIONS:
+        brain = VisualBrain(conditions[condition])
+        vnc = VNCStepper(
+            args.data,
+            substeps=VISION_VNC_SUBSTEPS,
+            tau=VISION_VNC_TAU,
+            dt=VISION_VNC_DT,
+            gW=VISION_VNC_GW,
+            weights_name=args.weights_name,
+            index_name=args.index_name,
+            model="paper",
+            threshold=7.5,
+            activation_gain=1.0,
+            fr_cap=200.0,
+            heterogeneity=True,
+            seed=1,
+        )
+        for azimuth in angles:
+            capture = video_frames if condition == "real" and any(np.isclose(float(np.rad2deg(azimuth)), video_angle) for video_angle in VISION_VIDEO_ANGLES_DEG) else None
+            result = run_vision_trial(brain, vnc, float(azimuth), VISION_TRIAL_SECS, capture)
+            rows.append({**result, "condition": condition})
+            print(
+                f"{condition} az={result['azimuth_deg']:+.0f} turn={result['mean_turn_command']:+.4f} "
+                f"yaw={np.rad2deg(result['yaw_change_rad']):+.3f}deg forward={result['forward_distance_m']:+.4f} fell={result['fell']}",
+                flush=True,
+            )
+    groups = {condition: [row for row in rows if row["condition"] == condition] for condition in CONDITIONS}
+    angle_reference = [row["azimuth_rad"] for row in groups["real"]]
+    same_angles = all([row["azimuth_rad"] for row in groups[condition]] == angle_reference for condition in CONDITIONS)
+    protocols = [row["protocol"] for row in rows]
+    same_pipeline = all(protocol == protocols[0] for protocol in protocols)
+    finite_metrics = all(np.isfinite(row[key]) for row in rows for key in (
+        "mean_turn_command", "mean_forward_command", "yaw_change_rad", "toward_turn_score", "toward_yaw_score", "path_m", "min_height_m",
+    ))
+    graph = graph_record(args.data)
+    if not same_angles or not same_pipeline or not finite_metrics or not graph["hash_equal"] or not brain_record["hash_equal"] or len(video_frames) == 0 or any(len(group) != len(angles) for group in groups.values()):
+        raise AssertionError("VISION-EVAL integrity failed")
+    rng = np.random.default_rng(20260829)
+    correlations = {}
+    for condition in CONDITIONS:
+        azimuths = np.asarray([row["azimuth_rad"] for row in groups[condition]], dtype=np.float64)
+        turns = np.asarray([row["mean_turn_command"] for row in groups[condition]], dtype=np.float64)
+        low, high = correlation_ci(azimuths, turns, rng)
+        correlations[condition] = {
+            "n_angles": len(azimuths),
+            "mean_turn_command": float(turns.mean()),
+            "azimuth_vs_turn_pearson_r": _correlation(azimuths, turns),
+            "ci_low": low,
+            "ci_high": high,
+            "ci": "95% percentile bootstrap over fixed azimuth trials",
+        }
+    comparison_rows = vision_comparisons(groups, rng)
+    real_corr = correlations["real"]
+    beats_controls = real_corr["azimuth_vs_turn_pearson_r"] > max(
+        correlations["shuffled"]["azimuth_vs_turn_pearson_r"], correlations["random"]["azimuth_vs_turn_pearson_r"]
+    ) and real_corr["ci_low"] > max(correlations["shuffled"]["ci_high"], correlations["random"]["ci_high"])
+    verdict = "VISION-EVAL-PRESENT" if beats_controls else "VISION-EVAL-NULL"
+    result = {
+        "method": "VISION-EVAL frozen optic-lobe visual-to-DNg100/DNb08 steering sweep",
+        "protocol": {
+            "angles_deg": list(VISION_ANGLES_DEG),
+            "trial_secs": VISION_TRIAL_SECS,
+            "prey_distance_m": VISION_PREY_DISTANCE_M,
+            "same_retina": True,
+            "same_vnc": True,
+            "same_body": True,
+            "only_condition_difference": "direct visual-to-DNg100/DNb08 edge values; CSR structure, all other brain edges, VNC, and body fixed",
+            "brain_readout": "exact DNg100/DNb08 left/right means; turn=-6*(dR-dL)",
+            "vnc_to_joint": "mn_to_joint.translate, fixed gains (-0.55, 0.65, 0.65)",
+            "h_min_m": H_MIN,
+            "learning": False,
+        },
+        "graph": graph,
+        "brain": brain_record,
+        "smoke": smoke,
+        "correlations": correlations,
+        "comparisons": comparison_rows,
+        "real_video": {
+            "path": str(args.video),
+            "angles_deg": list(VISION_VIDEO_ANGLES_DEG),
+            "frames": len(video_frames),
+        },
+        "pre_registered_null": null_text,
+        "verdict": verdict,
+        "gate_vision_eval": {
+            "same_angles": same_angles,
+            "same_fixed_pipeline": same_pipeline,
+            "finite_metrics": finite_metrics,
+            "vnc_graph_hash_equal": graph["hash_equal"],
+            "brain_graph_hash_equal": brain_record["hash_equal"],
+            "direct_visual_to_dn_edges": brain_record["direct_visual_to_descending_edge_count"],
+            "rows": len(rows),
+            "real_left_right_video": len(video_frames) > 0,
+            "verdict": "GATE VISION-EVAL: PASS",
+        },
+        "zero_learning": True,
+        "rows": rows,
+    }
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.with_suffix(".json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    with args.out.with_suffix(".csv").open("w", newline="", encoding="utf-8") as stream:
+        columns = (
+            "condition", "azimuth_deg", "azimuth_rad", "mean_turn_command", "initial_turn_command", "turn_command_std",
+            "mean_forward_command", "toward_turn_score", "yaw_change_rad", "toward_yaw_score", "mean_dng100_left",
+            "mean_dng100_right", "mean_dnb08_left", "mean_dnb08_right", "path_m", "forward_distance_m", "displacement_m",
+            "mean_feet_planted", "min_height_m", "final_height_m", "fell",
+        )
+        writer = csv.DictWriter(stream, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows({key: row[key] for key in columns} for row in rows)
+    import imageio.v2 as imageio
+    imageio.mimwrite(args.video, video_frames, fps=25)
+    print(json.dumps({"correlations": correlations, "comparisons": comparison_rows}, sort_keys=True))
+    print("GATE VISION-EVAL: PASS (fixed azimuth sweep; frozen visual wiring controls; left/right video)")
+    print(f"RESULT: {verdict}")
+    print(f"json -> {args.out.with_suffix('.json')}")
+    print(f"csv -> {args.out.with_suffix('.csv')}")
+    print(f"video -> {args.video}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--phase", choices=("COORD-212", "COORD-INHIB", "WAVE-ANTAG"), default="COORD-212")
+    parser.add_argument("--phase", choices=("COORD-212", "COORD-INHIB", "WAVE-ANTAG", "VISION-EVAL"), default="COORD-212")
     parser.add_argument("--data", type=Path, default=Path("eon-fly-brain/results/path2"))
     parser.add_argument("--weights_name", default="all_legs_weight_csr.pkl")
     parser.add_argument("--index_name", default="all_legs_io_index.npz")
     parser.add_argument("--n", type=int, default=PLANNED_N)
-    parser.add_argument("--secs", type=float, default=PLANNED_SECS)
+    parser.add_argument("--secs", type=float, default=None)
     parser.add_argument("--seed", type=int, default=EPISODE_SEED)
     parser.add_argument("--out", type=Path, default=None)
     parser.add_argument("--video", type=Path, default=None)
     args = parser.parse_args()
-    if args.n < PLANNED_N or args.secs != PLANNED_SECS:
-        raise ValueError("untried phases are frozen at n=20 and secs=8")
-    stem = {"COORD-212": "untried_coord212", "COORD-INHIB": "untried_coord_inhib", "WAVE-ANTAG": "untried_wave_antag"}[args.phase]
+    frozen_secs = VISION_TRIAL_SECS if args.phase == "VISION-EVAL" else PLANNED_SECS
+    args.secs = frozen_secs if args.secs is None else args.secs
+    if args.n < PLANNED_N or args.secs != frozen_secs:
+        raise ValueError(f"{args.phase} is frozen at n=20 and secs={frozen_secs}")
+    stem = {"COORD-212": "untried_coord212", "COORD-INHIB": "untried_coord_inhib", "WAVE-ANTAG": "untried_wave_antag", "VISION-EVAL": "untried_vision_eval"}[args.phase]
     args.out = args.out or Path(f"eon-fly-brain/results/path2/{stem}")
     args.video = args.video or Path(f"eon-fly-brain/results/path2/{stem}_real_multiview.mp4")
     if args.phase == "COORD-212":
         return run_coord212(args)
     if args.phase == "COORD-INHIB":
         return run_coord_inhib(args)
-    return run_wave_antag(args)
+    if args.phase == "WAVE-ANTAG":
+        return run_wave_antag(args)
+    return run_vision_eval(args)
 
 
 if __name__ == "__main__":
