@@ -1,0 +1,373 @@
+"""Frozen B: connectome-edge inter-leg phase coupling over the Path-1 shape."""
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+
+HERE = Path(__file__).resolve()
+RESULTS = HERE.parent.parent / "results" / "path2"
+ANATOMY_DATA = HERE.parent.parent / "data"
+sys.path.insert(0, str(HERE))
+from analyze_control_study import (  # noqa: E402
+    bootstrap_ci,
+    exact_sign_flip,
+    holm_adjust,
+    paired_bootstrap_ci,
+    wilson_interval,
+)
+from audit_intersegmental import cross_edges, load_annotations  # noqa: E402
+from continuous_phase import (  # noqa: E402
+    BODY_STEPS,
+    CTRL_HZ,
+    continuous_phase_metrics,
+    file_sha256,
+    random_phase_source,
+    run_engine,
+    vnc_phase_source,
+)
+from fetch_manc import NEUROTRANSMITTERS, nt_signs  # noqa: E402
+from hexapod_gait import H_MIN, home_stance  # noqa: E402
+from preflight import EXPECTED_SHA256, sha256  # noqa: E402
+from stepwalk_controls import episode_specs  # noqa: E402
+
+
+CONDITIONS = ("real", "shuffled", "random")
+LEG_NAMES = ("T1L", "T1R", "T2L", "T2R", "T3L", "T3R")
+LEG_INDEX = {name: index for index, name in enumerate(LEG_NAMES)}
+TRIPOD_A = (0, 3, 4)
+TRIPOD_B = (1, 2, 5)
+PLANNED_N = 20
+PLANNED_SECS = 8.0
+COUPLING_SEED = 20260830
+RANDOM_PHASE_SEED_OFFSET = 1
+BOOTSTRAP_REPS = 100_000
+BOOTSTRAP_SEED = 20260829
+GAIN_CANDIDATES = tuple(index / 100.0 for index in range(21))
+CLEAN_MIN_CONCENTRATION = 0.99
+CLEAN_MAX_PHASE_STEP_RAD = 1.0
+CLEAN_MAX_STEP_CHANGE_RAD = 0.5
+SUMMARY_METRICS = (
+    "forward_distance_m",
+    "path_m",
+    "displacement_m",
+    "coherence_scalar",
+    "mean_feet_planted",
+    "mean_swing_duty",
+    "min_height_m",
+)
+
+
+def endpoint_legs(annotations, body_ids: np.ndarray) -> np.ndarray:
+    rows = annotations.reindex(body_ids)
+    names = rows["somaNeuromere"].astype("string") + rows["somaSide"].astype("string")
+    return names.map(LEG_INDEX).fillna(-1).to_numpy(dtype=np.int8)
+
+
+def normalize_rows(matrix: np.ndarray) -> np.ndarray:
+    scale = np.abs(matrix).sum(axis=1)
+    if np.any(scale <= 0.0):
+        raise AssertionError("every post-leg row needs nonzero signed edge mass")
+    return matrix / scale[:, None]
+
+
+def build_coupling_matrices(data: Path, seed: int = COUPLING_SEED) -> dict:
+    annotations = load_annotations(data)
+    pre, post, weight, _, _ = cross_edges(data, annotations)
+    signs = nt_signs(ANATOMY_DATA / "manc" / NEUROTRANSMITTERS, np.unique(pre))
+    pre_leg = endpoint_legs(annotations, pre)
+    post_leg = endpoint_legs(annotations, post)
+    pre_sign = np.asarray([signs.get(int(body), 0.0) for body in pre], dtype=np.float64)
+    valid = (pre_leg >= 0) & (post_leg >= 0) & (pre_leg != post_leg) & (pre_sign != 0.0)
+    raw = np.zeros((6, 6), dtype=np.float64)
+    np.add.at(raw, (post_leg[valid], pre_leg[valid]), weight[valid] * pre_sign[valid])
+    mask = raw != 0.0
+    if not (0 < int(mask.sum()) < 30):
+        raise AssertionError(f"unexpected K sparsity: {int(mask.sum())}")
+
+    values = raw[mask].copy()
+    shuffled = np.zeros_like(raw)
+    shuffled[mask] = np.random.default_rng(seed).permutation(values)
+    random = np.zeros_like(raw)
+    random_rng = np.random.default_rng(seed + 1)
+    random[mask] = random_rng.permutation(np.abs(values)) * random_rng.permutation(np.sign(values))
+    matrices = {"real": raw, "shuffled": shuffled, "random": random}
+    normalized = {condition: normalize_rows(matrix) for condition, matrix in matrices.items()}
+
+    io = np.load(data / "all_legs_io_index.npz")
+    published_count = int(len(io["published_coordination_body_ids"]))
+    if published_count != 212:
+        raise AssertionError(f"published coordination count changed: {published_count}")
+    if int(len(set(io["published_coordination_body_ids"].tolist()))) != 212:
+        raise AssertionError("published coordination body IDs are not unique")
+    return {
+        "matrices": normalized,
+        "record": {
+            "leg_order": list(LEG_NAMES),
+            "matrix_orientation": "K[post_leg, pre_leg]",
+            "edge_source": "audit_intersegmental.cross_edges official T1/T2/T3 edges at absolute synapse floor 5",
+            "sign_source": "fetch_manc.nt_signs predicted_nt: acetylcholine +1; GABA/glutamate -1; unknown omitted",
+            "raw_cross_edge_rows": int(len(pre)),
+            "signed_leg_edge_rows": int(valid.sum()),
+            "dropped_cross_edge_rows": int((~valid).sum()),
+            "known_presynaptic_sign_rows": int((pre_sign != 0.0).sum()),
+            "raw_nonzero_cells": int(mask.sum()),
+            "raw_zero_cells": int((~mask).sum()),
+            "raw_signed_matrices": {condition: matrix.tolist() for condition, matrix in matrices.items()},
+            "row_normalization": "each post-leg row divided by its own absolute signed raw K row sum; fixed anatomy-only input scaling",
+            "normalized_matrices": {condition: matrix.tolist() for condition, matrix in normalized.items()},
+            "shuffle_seed": int(seed),
+            "random_seed": int(seed + 1),
+            "shuffled_rule": "permute signed nonzero raw K entries across the fixed real nonzero mask",
+            "random_rule": "independently permute raw magnitudes and signs across the fixed real nonzero mask",
+            "published_coordination_cells": published_count,
+            "published_coordination_cells_in_graph": int(len(io["published_coordination"])),
+        },
+    }
+
+
+def coupled_phases(source: np.ndarray, coupling: np.ndarray, gain: float) -> np.ndarray:
+    source = np.asarray(source, dtype=np.float64)
+    if source.ndim != 2 or source.shape[1] != 6 or len(source) < 2:
+        raise ValueError(f"expected phase history with shape (time, 6), got {source.shape}")
+    result = np.empty_like(source)
+    result[0] = source[0]
+    for step in range(1, len(source)):
+        previous = result[step - 1]
+        phase_difference = previous[None, :] - previous[:, None]
+        coupling_term = np.sum(coupling * np.sin(phase_difference), axis=1)
+        result[step] = previous + source[step] - source[step - 1] + gain * coupling_term
+    if not np.isfinite(result).all():
+        raise AssertionError("coupled phase contains non-finite values")
+    return result
+
+
+def clean_clock() -> np.ndarray:
+    frequency = 0.8 + 0.5 * 0.8
+    phase = np.arange(BODY_STEPS, dtype=np.float64)[:, None] * (2.0 * np.pi * frequency / CTRL_HZ)
+    offsets = np.asarray([np.pi if index in TRIPOD_A else 0.0 for index in range(6)])
+    return phase + offsets[None, :]
+
+
+def clean_stability(phase: np.ndarray, coupling: np.ndarray, gain: float) -> dict:
+    result = coupled_phases(phase, coupling, gain)
+    metric = continuous_phase_metrics(result)
+    concentration = np.asarray(metric["phase_concentration_matrix"], dtype=np.float64)
+    upper = concentration[np.triu_indices(6, 1)]
+    steps = np.diff(result, axis=0)
+    step_changes = np.diff(steps, axis=0)
+    return {
+        "gain": float(gain),
+        "min_pair_concentration": float(upper.min()),
+        "max_phase_step_rad": float(np.abs(steps).max()),
+        "max_step_change_rad": float(np.abs(step_changes).max()),
+        "coherence_scalar": float(metric["coherence_scalar"]),
+        "stable": bool(
+            np.isfinite(result).all()
+            and upper.min() >= CLEAN_MIN_CONCENTRATION
+            and np.abs(steps).max() <= CLEAN_MAX_PHASE_STEP_RAD
+            and np.abs(step_changes).max() <= CLEAN_MAX_STEP_CHANGE_RAD
+        ),
+    }
+
+
+def calibrate_gain(matrices: dict[str, np.ndarray]) -> dict:
+    clock = clean_clock()
+    rows = []
+    selected = None
+    for gain in GAIN_CANDIDATES:
+        per_condition = {condition: clean_stability(clock, matrices[condition], gain) for condition in CONDITIONS}
+        stable_all = all(row["stable"] for row in per_condition.values())
+        rows.append({"gain": gain, "stable_all_conditions": stable_all, "conditions": per_condition})
+        if stable_all:
+            selected = gain
+    if selected is None:
+        raise AssertionError("no clean-clock-stable coupling gain")
+    return {
+        "candidate_gains": list(GAIN_CANDIDATES),
+        "selected_gain": float(selected),
+        "criterion": {
+            "minimum_pair_concentration": CLEAN_MIN_CONCENTRATION,
+            "maximum_phase_step_rad": CLEAN_MAX_PHASE_STEP_RAD,
+            "maximum_step_change_rad": CLEAN_MAX_STEP_CHANGE_RAD,
+            "basis": "clean ideal alternating-tripod clock only; no body outcome or condition performance used",
+        },
+        "conditions": list(CONDITIONS),
+        "table": rows,
+    }
+
+
+def summarize(group: list[dict], rng: np.random.Generator) -> dict:
+    fell = int(sum(bool(row["fell"]) for row in group))
+    result = {
+        "n": len(group),
+        "falls": fell,
+        "fall_rate": float(fell / len(group)),
+        "fall_wilson_95ci": wilson_interval(fell, len(group)),
+        "metrics": {},
+    }
+    for name in SUMMARY_METRICS:
+        values = np.asarray([row[name] for row in group], dtype=np.float64)
+        if not np.isfinite(values).all():
+            raise AssertionError(f"non-finite B metric: {name}")
+        low, high = bootstrap_ci(values, rng, BOOTSTRAP_REPS)
+        result["metrics"][name] = {
+            "mean": float(values.mean()),
+            "ci_low": low,
+            "ci_high": high,
+            "ci": "95% percentile bootstrap",
+        }
+    return result
+
+
+def comparisons(groups: dict[str, list[dict]], rng: np.random.Generator) -> list[dict]:
+    rows = []
+    for metric in SUMMARY_METRICS:
+        metric_rows = []
+        for right in ("shuffled", "random"):
+            diff = np.asarray([left[metric] - other[metric] for left, other in zip(groups["real"], groups[right])], dtype=np.float64)
+            low, high = paired_bootstrap_ci(diff, rng, BOOTSTRAP_REPS)
+            row = {
+                "comparison": f"real_minus_{right}",
+                "metric": metric,
+                "n_pairs": len(diff),
+                "mean_difference": float(diff.mean()),
+                "ci_low": low,
+                "ci_high": high,
+                "p_exact_two_sided_paired_sign_flip": exact_sign_flip(diff),
+            }
+            metric_rows.append(row)
+        adjusted = holm_adjust([row["p_exact_two_sided_paired_sign_flip"] for row in metric_rows])
+        for row, pvalue in zip(metric_rows, adjusted):
+            row["p_holm_across_two_controls_for_metric"] = pvalue
+            rows.append(row)
+    return rows
+
+
+def graph_record(data: Path) -> dict:
+    hashes = {name: sha256(data / name) for name in EXPECTED_SHA256}
+    return {"sha256": hashes, "hash_equal": hashes == EXPECTED_SHA256}
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", type=Path, default=RESULTS)
+    parser.add_argument("--weights_name", default="all_legs_weight_csr.pkl")
+    parser.add_argument("--index_name", default="all_legs_io_index.npz")
+    parser.add_argument("--n", type=int, default=PLANNED_N)
+    parser.add_argument("--secs", type=float, default=PLANNED_SECS)
+    parser.add_argument("--seed", type=int, default=20260829)
+    parser.add_argument("--out", type=Path, default=RESULTS / "lastthree_B_dynamic_coupling")
+    parser.add_argument("--video", type=Path, default=RESULTS / "lastthree_B_real_multiview.mp4")
+    args = parser.parse_args()
+    if args.n < 1 or args.secs <= 0.0 or int(round(args.secs * CTRL_HZ)) > BODY_STEPS:
+        raise ValueError(f"run must use 1<=n and 0<secs<={PLANNED_SECS:g}")
+
+    matrices = build_coupling_matrices(args.data)
+    gain = calibrate_gain(matrices["matrices"])
+    real_source = vnc_phase_source(args.data, args.weights_name, args.index_name, False)
+    shuffled_source = vnc_phase_source(args.data, args.weights_name, args.index_name, True)
+    random_source = random_phase_source(real_source, args.seed + RANDOM_PHASE_SEED_OFFSET)
+    sources = {"real": real_source, "shuffled": shuffled_source, "random": random_source}
+    phases = {
+        condition: coupled_phases(source["phase"], matrices["matrices"][condition], gain["selected_gain"])
+        for condition, source in sources.items()
+    }
+    steps = int(round(args.secs * CTRL_HZ))
+    specs = episode_specs(args.n, args.seed)
+    rows = []
+    for condition in CONDITIONS:
+        for index, spec in enumerate(specs):
+            video = args.video if condition == "real" and index == 0 else None
+            result = run_engine(phases[condition][:steps], spec, video=video, secs=args.secs)
+            rows.append({**spec, **result, "condition": condition})
+            print(
+                f"{condition} {index + 1}/{args.n} path={result['path_m']:.4f} "
+                f"coherence={result['coherence_scalar']:+.4f} "
+                f"feet={result['mean_feet_planted']:.3f} fell={result['fell']}",
+                flush=True,
+            )
+
+    groups = {condition: [row for row in rows if row["condition"] == condition] for condition in CONDITIONS}
+    reference = [(row["episode"], row["episode_seed"], row["initial_yaw_rad"], row["prey_x_m"], row["prey_y_m"]) for row in groups["real"]]
+    shared_starts = all(
+        [(row["episode"], row["episode_seed"], row["initial_yaw_rad"], row["prey_x_m"], row["prey_y_m"]) for row in groups[condition]] == reference
+        for condition in CONDITIONS
+    )
+    protocols = [row["protocol"] for row in rows]
+    same_engine_parameters = all(protocol == protocols[0] for protocol in protocols)
+    finite_metrics = all(np.isfinite(row[name]) for row in rows for name in SUMMARY_METRICS)
+    graph = graph_record(args.data)
+    if not shared_starts or not same_engine_parameters or not finite_metrics or not graph["hash_equal"] or any(len(group) != args.n for group in groups.values()):
+        raise AssertionError("Phase B integrity failed")
+
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    summary = {condition: summarize(groups[condition], rng) for condition in CONDITIONS}
+    comparison_rows = comparisons(groups, rng)
+    result = {
+        "method": "B dynamic inter-leg coupling",
+        "protocol": {
+            "planned_n_per_condition": PLANNED_N,
+            "planned_secs": PLANNED_SECS,
+            "n_per_condition": args.n,
+            "secs": args.secs,
+            "episode_seed": args.seed,
+            "shared_episode_starts": shared_starts,
+            "same_engine_parameters": same_engine_parameters,
+            "only_condition_differences": "edge-derived K source plus matched phase source control",
+            "coupling_equation": "theta_i[t] = theta_i[t-1] + source_delta_i[t] + g * sum_j K[i,j] * sin(theta_j[t-1] - theta_i[t-1])",
+            "coupling_gain": gain["selected_gain"],
+            "normalization": matrices["record"]["row_normalization"],
+            "engine": "continuous_phase.run_engine / StepGaitEngine.continuous_targets; fixed Path-1 waveform",
+            "forward": 0.8,
+            "turn": 0.0,
+            "settle_s": 0.7,
+            "kp": 3.0,
+            "kd": 0.05,
+            "h_min_m": H_MIN,
+            "learning": False,
+        },
+        "graph": graph,
+        "coupling": matrices["record"],
+        "gain_calibration": gain,
+        "sources": {condition: source["record"] for condition, source in sources.items()},
+        "summary": summary,
+        "comparisons": comparison_rows,
+        "pre_registered_null": "real-edge coupling will not outperform shuffled or random K on tripod coherence, feet planted, or path; coordination will not transfer",
+        "gate_b": {
+            "shared_episode_starts": shared_starts,
+            "same_engine_parameters": same_engine_parameters,
+            "finite_metrics": finite_metrics,
+            "graph_hash_equal": graph["hash_equal"],
+            "rows": len(rows),
+            "verdict": "GATE B: PASS",
+        },
+        "zero_learning": True,
+        "rows": rows,
+    }
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.with_suffix(".json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    columns = (
+        "condition", "episode", "episode_seed", "initial_yaw_rad", "prey_x_m", "prey_y_m",
+        "forward_distance_m", "path_m", "displacement_m", "coherence_scalar", "mean_swing_duty",
+        "mean_feet_planted", "min_height_m", "fell",
+    )
+    with args.out.with_suffix(".csv").open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows({key: row[key] for key in columns} for row in rows)
+    print(json.dumps({"summary": summary, "comparisons": comparison_rows, "selected_gain": gain["selected_gain"]}, sort_keys=True))
+    print("GATE B: PASS (shared starts; same engine; finite metrics; graph hashes)")
+    print(f"json -> {args.out.with_suffix('.json')}")
+    print(f"csv -> {args.out.with_suffix('.csv')}")
+    print(f"video -> {args.video}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
