@@ -1,0 +1,29 @@
+{
+  "condition": "rewired",
+  "best_fitness": 0.16325412531415984,
+  "best_gene": [
+    75.39468530508523,
+    255.62832359724788,
+    -0.7270903424889399,
+    -48.94132583093826,
+    2.9696187788179587,
+    2.656181432433748,
+    2.7165364537784598,
+    1.11301907213862,
+    0.008171363252679116,
+    1.9655898296767802,
+    270.1853548893982,
+    -0.011003136033682637,
+    79.37508957215645,
+    0.47407718168997537,
+    62.69929147525646,
+    -0.9411969425947597,
+    188.63948091212112,
+    -0.5927494364483441
+  ],
+  "generation": 22,
+  "stopped_by": "wall_clock_cap",
+  "fitness_csv": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/cmaes_fitness_rewired.csv",
+  "checkpoint": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/cmaes_checkpoint_rewired.pkl",
+  "base_pattern_hash": "891756c98c0b1244fa81d2a8daa5b0fd6273259fcbd2a78e9d2c6c706830a80f"
+}

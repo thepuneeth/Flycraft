@@ -1,7 +1,8 @@
 # Flycraft — Path 2 handoff
 
-Status: frozen rerun, E0–E4 localization, and reservoir R0–R3 complete;
-documentation and audits updated. Final claim still requires user approval.
+Status: frozen rerun, E0–E4 localization, reservoir R0–R3, and Outcome C
+complete; Outcome D weight-learning rung in progress. Documentation and
+audits updated. Final claim still requires user approval.
 
 ## Working headline
 
@@ -201,6 +202,79 @@ WEAK`; final claim remains withheld pending approval.
 See `PATH2_METHODS.md` and `results/path2/reservoir_3way.json` for the full
 readout metrics and integrity record.
 
+## Outcome C: CMA-ES gain-tuning (complete)
+
+The learning ladder to walking: zero-learn open-loop (E0–E4, absent) →
+linear/nonlinear readout on frozen dynamics (reservoir R0–R3, `READOUT TOO
+WEAK`) → tune global gains on the frozen VNC pattern (Outcome C, complete) →
+learn VNC weights (Outcome D, in progress). Each rung relaxes exactly one
+constraint and is only taken because the rung below ceilinged.
+
+Outcome C tunes ~18 global scalar gains only — descending drive, intersegmental
+T1↔T2↔T3 coupling multipliers, and per-class proprioceptor feedback gain/sign.
+The **VNC synaptic weight pattern stays frozen**; only these global multipliers
+are searched. Fitness is `forward_distance_m − fall_penalty`, averaged over four
+fixed seeds. There is **no tripod, catch, or target term** in the objective —
+tripod is measured, never rewarded. Search is CMA-ES (pycma), popsize 14, 4 s
+rollouts, wall-cap bounded. Harness `code/cmaes_walk.py`; C0 regression
+reproduces E4 exactly (CSR pattern hash unchanged, dtype/scene/forward-axis
+matched to E4). Fitness log: `results/path2/cmaes_fitness_connectome.csv`.
+
+C1 result (complete): 22 generations, clean wall-cap stop at 7529 s. Best
+forward distance 0.134644 m, produced by a step at generation 17 (0.097214 →
+0.134644); flat generations 17–22, population mean noisy and low throughout
+(0.000–0.031 m, no upward drift). That is ~13.5 cm in a 4 s rollout ≈ 3.4 cm/s —
+better than E4 (0.095 m) and the reservoir, but still crawl-scale, not a
+demonstrated coherent tripod. Best gene: `results/path2/cmaes_best_gene_connectome.json`.
+
+Outcome C result (complete): C2 gave connectome, random-weight, and
+degree-preserving-rewired conditions identical 18-gene, population-14,
+four-second, 22-generation searches and four fixed eight-second evaluations.
+Means with 95% percentile-bootstrap CIs (100,000 replicates, seed
+`20260829`):
+
+| condition | search best fitness | forward m | path m | tripod scalar | first positive generation | falls |
+|---|---:|---:|---:|---:|---:|---:|
+| connectome | .1346 | .0668 [.0435, .0962] | .5226 [.2744, .7708] | −.2526 [−.3772, −.0739] | 1 | 0/4 |
+| random weights | .1760 | .1580 [.1176, .1784] | .1657 [.1257, .1878] | −.3533 [−.4658, −.2357] | 1 | 0/4 |
+| rewired topology | .1633 | .1674 [.1642, .1713] | .2399 [.2260, .2539] | +.1777 [−.1443, .3909] | 2 | 0/4 |
+
+All 12 evaluations report `E3-ABSENT`. Random minus connectome forward
+difference is `+.0912 m` [+.0476, +.1349]; rewired minus connectome is
+`+.1006 m` [+.0744, +.1217]. C2 verdict: **TUNED NEGATIVE; moat NULL**.
+Movement appears after tuning, but no condition produces the declared tripod
+and real wiring does not beat matched controls. Evidence:
+`results/path2/cmaes_3way.json`, `results/path2/cmaes_3way_stats.json`,
+`results/path2/cmaes_3way.png`, and the three `cmaes_walk_multiview_*.mp4`
+files.
+
+Do not write the final claim until Outcome D is audited and the user approves.
+
+## Outcome D: learn VNC weights (in progress; the last rung)
+
+Outcome C ceilings, so the only remaining rung that can plausibly produce
+walking is learning the VNC weights themselves — the FlyGM recipe (connectome
+graph as architecture, imitation-learning init + PPO fine-tune on a
+locomotion-only reward). This is where actual coordinated walking is expected to
+live, at the explicit cost of the frozen-weight moat: the connectome would then
+constrain *topology*, not values.
+
+Reuse assessment (checked 2026-08-29): FlyGM
+([arXiv 2602.17997](https://arxiv.org/abs/2602.17997),
+[project](https://lnsgroup.cc/research/FlyGM)) publishes **source code, no
+pretrained weights** — obtaining a model means running their two-stage pipeline
+ourselves. Its decoder outputs **59 fly-body actuators** (leg joints + adhesion)
+plus a separate 12-dim wing controller, jointly trained end-to-end with the
+connectome for the `flybody` MuJoCo model. It does **not** map to the 18-DoF
+hexapod and is not a liftable module. Therefore FlyGM is usable only as a
+**reference recipe** for wiring connectome-graph → decoder → PPO, not as a
+drop-in trained controller. Outcome D uses the available CPU-feasible fixed
+low-rank/closed-form-decoder/ES implementation: learned VNC edge values are
+the only relaxed object; objective is locomotion (distance + upright) only,
+never prey capture; tripod measured, never rewarded. Target replay is recorded
+at `results/path2/outcomeD_imitation_target.npz` and
+`results/path2/outcomeD_target_replay.json`.
+
 ## Reproduction commands
 
 Run from `/Users/puneeth/Documents/Flycraft` with
@@ -299,4 +373,5 @@ the claim before user approval.
 | `eon-fly-brain/code/audit_intersegmental.py` | E2 intersegmental completeness inventory |
 | `eon-fly-brain/code/probe_structured_descending.py` | E3 structured brain-drive phase probe |
 | `eon-fly-brain/code/run_sensory_feedback.py` | E4 anatomical proprioceptive feedback replay |
+| `eon-fly-brain/code/cmaes_walk.py` | Outcome C gain-tuning CMA-ES harness (frozen VNC pattern) |
 | `PATH2_METHODS.md` | methods-complete working report |

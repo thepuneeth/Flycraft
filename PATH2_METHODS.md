@@ -11,7 +11,8 @@ structured descending drive, and fixed anatomical proprioceptive feedback do
 not produce a coherent alternating tripod. Real VNC wiring produces more
 movement than its column-shuffled control, but the brain-coupled controller
 does not outperform matched random descending drive in the short-horizon
-hexapod study.
+hexapod study. Frozen-pattern CMA-ES gain tuning also does not reveal a
+connectome-specific tripod or a connectome performance moat.
 
 ## Question and pipeline
 
@@ -230,6 +231,44 @@ organize that activity into the phase pattern required by this hexapod. The
 negative is narrower than “the fly VNC cannot produce rhythm” and narrower
 than “all foreign bodies fail.”
 
+## Outcome C — frozen-pattern CMA-ES gain search
+
+C0 reproduced the E4 connectome endpoint exactly before search. C1 then
+searched the same 18 global gains on the connectome for 22 generations under a
+two-hour wall cap. C2 ran the identical population, seed set, four-second
+fitness rollout, fixed fall penalty, and 22-generation endpoint for connectome,
+random-weight, and degree-preserving-rewired VNC conditions. The VNC weight
+pattern was not changed; fitness was only forward displacement minus the fixed
+fall penalty. Tripod coherence was measured after search and never entered
+fitness.
+
+The C2 evaluation used four fixed eight-second seeds. Values below are means
+with 95% percentile-bootstrap CIs (100,000 replicates, seed `20260829`); a
+positive fitness threshold only means positive forward-minus-fall score, not a
+declared gait.
+
+| condition | search best fitness (m) | forward (m) | path (m) | tripod scalar | first positive generation | falls |
+|---|---:|---:|---:|---:|---:|---:|
+| connectome | .1346 | .0668 [.0435, .0962] | .5226 [.2744, .7708] | −.2526 [−.3772, −.0739] | 1 | 0/4 |
+| random weights | .1760 | .1580 [.1176, .1784] | .1657 [.1257, .1878] | −.3533 [−.4658, −.2357] | 1 | 0/4 |
+| rewired topology | .1633 | .1674 [.1642, .1713] | .2399 [.2260, .2539] | +.1777 [−.1443, .3909] | 2 | 0/4 |
+
+Per-seed evaluation phase verdict is `E3-ABSENT` for all 12 episodes. The
+rewired condition has a positive mean scalar only because its scalar is a
+post-hoc summary; its CI crosses zero, and it does not satisfy the declared
+within-tripod/cross-tripod phase pattern. Random and rewired controls are not
+inferior to the connectome on forward distance: paired mean differences are
+`+0.0912 m` [+.0476, +.1349] and `+0.1006 m` [+.0744, +.1217], respectively.
+
+C2 verdict: **TUNED NEGATIVE; moat NULL**. Gain search finds movement in every
+condition, but no condition produces the declared tripod and the connectome
+does not beat matched controls. This closes the frozen-weight tuning rung
+without turning a positive displacement score into a walking claim. Full
+search curves, per-seed metrics, and CI calculations are in
+`eon-fly-brain/results/path2/cmaes_3way.json`,
+`eon-fly-brain/results/path2/cmaes_3way_stats.json`, and
+`eon-fly-brain/results/path2/cmaes_3way.png`.
+
 ## Frozen-reservoir readout pivot (R0–R3)
 
 The completed pivot kept every MANC weight and all Path 2 rate-model constants
@@ -315,6 +354,87 @@ produces a stable visible tripod walk; the connectome linear rollout's
 displacement comes with 75.8 rad target explosion. This is a gate verdict, not
 final headline wording; final claim remains withheld pending user approval.
 
+## Outcome D method sources
+
+Method study performed 2026-08-29. These sources inform implementation choices
+only; they do not change the frozen VNC constants, body, candidate rule, or
+Outcome C objective.
+
+Local training-stack check: PyTorch `2.13.0`, MuJoCo `3.12.0`, and `cma`
+`4.4.4` import successfully; JAX, Optax, Stable-Baselines3, Ray, and
+Gymnasium are unavailable in the frozen venv.
+
+### FlyGM
+
+[FlyGM](https://arxiv.org/html/2602.17997) uses directed connectome message
+passing, separates afferent/intrinsic/efferent roles, decodes efferent states
+to actions, and stages imitation learning before PPO. Its reported controls
+include connectome, degree-preserving rewiring, Erdős–Rényi random graphs, and
+an MLP under matched training. Reuse: fixed sparse topology, explicit
+connectome/random/rewired controls, and a declared imitation-to-task-learning
+sequence. Avoid: its flybody action space, task reward, and expert data; D is
+an 18-joint hexapod transfer test. D1 target is only the declared Path-1 hand
+CPG trajectory `q*(t)`. D2 objective is locomotion-only forward displacement
+with upright/fall handling; catch, prey distance, target tracking, gait, and
+phase/coherence terms are excluded.
+
+### C. elegans topology-constrained learning
+
+[Topology-constrained C. elegans study](https://www.biorxiv.org/content/10.1101/2025.07.21.665845v1.full)
+learns synaptic weights while preserving anatomical topology and synapse-type
+proportions, using an explicit behavior error. Reuse: learn edge values on a
+fixed anatomical support and keep topology/initialization/control provenance
+auditable. Avoid: organism-specific targets and backward/forward locomotion
+tasks. D keeps the real signed MANC weights as the connectome initialization;
+controls use declared matched-size random or degree-preserving supports and
+the same optimizer budget, target, and seeds.
+
+### NeuroMechFly v2 and flybody
+
+[NeuroMechFly v2](https://www.nature.com/articles/s41592-024-02497-y) and
+[flybody](https://github.com/TuragaLab/flybody) show useful imitation/RL
+patterns for embodied fly models, but also use fly-specific bodies, action
+spaces, and task definitions. Reuse: checkpointed staged training and an
+explicit separation between imitation target and downstream task objective.
+Avoid: importing their designed CPG, fly-specific action dimension, or
+navigation/catch reward. The local stack has PyTorch, MuJoCo, and `cma`, but
+not JAX, Optax, Stable-Baselines3, Ray, or Gymnasium; D therefore uses the
+smallest locally reproducible PyTorch/ES path and records that method honestly.
+
+### Connectome-CPG context
+
+[Connectome-CPG](https://www.biorxiv.org/content/10.1101/2025.09.12.675944v1.full)
+is used as context for testing whether connectome-derived dynamics can support
+motor rhythm. It is not used as a controller or as a gait-label source. D
+measures tripod structure only after training; no phase, coherence, or gait
+quantity enters either D objective.
+
+### Declared target and objectives
+
+Phase 2 writes `results/path2/outcomeD_imitation_target.npz`: 18 joint targets
+from the Path-1 hand CPG at the fixed 50 Hz control rate. D1 minimizes only
+trajectory error to that frozen `q*(t)`. D2 starts from the D1 checkpoint and
+optimizes only locomotion forward displacement while retaining upright/fall
+handling. The same target, budget, seeds, checkpoint cadence, and audit rules
+apply to connectome, random, and rewired conditions. Tripod metrics are
+post-hoc diagnostics.
+
+The declared 400-step (8 s) target replay is upright and yields `0.5356 m`
+forward distance, `1.1036 m` path, and tripod coherence scalar `2.000`; this
+is the reference kinematic ceiling, not a learned score or D reward. The
+replay record is `results/path2/outcomeD_target_replay.json`.
+
+Outcome D execution is in progress. The CPU-feasible implementation uses an
+8-dimensional fixed random low-rank edge-value basis over the 11,000-node,
+485,074-edge canonical all-leg graph, a closed-form ridge decoder during D1,
+and CMA-ES weight fine-tuning during D2 because no PPO stack is installed and
+full sparse-CSR autograd is impractical on this CPU.
+The measured connectome weights initialize the connectome condition; controls
+use seeded randomized values, an exact degree-sequence configuration-model
+support (random), or degree-preserving rewiring (rewired). No graph
+topology, body constant, PD constant, or objective constant is selected from
+post-hoc performance.
+
 ## Integrity and zero-learning checks
 
 The current artifact set includes:
@@ -327,6 +447,8 @@ The current artifact set includes:
 - 20×5 control CSV/manifest plus CI/significance outputs.
 - E0–E4 phase matrices, intersegmental inventories, and sensory-feedback
   replay artifacts.
+- C0/C1/C2 frozen-gain search logs, three-way curves, per-seed videos, and
+  bootstrap CI summary.
 
 The final audit must continue to require: Python compilation, JSON/CSV
 manifest parsing, IO-index/body-ID equality, current artifact hashes,
