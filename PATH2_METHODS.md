@@ -1,28 +1,29 @@
 # Path 2 — methods and current evidence
 
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
-last-three B/C/D jobs, and the four untried zero-training phases; current
-`H_MIN=.08 m` gate and all zero-learning controls are complete. Pre-fix
-body-level results are confounded/superseded; the final claim remains pending
-approval.
+last-three B/C/D jobs, the four untried zero-training phases, and delayed
+coupling DC-1–DC-3; current `H_MIN=.08 m` gate and all zero-learning controls
+are complete. Pre-fix body-level results are confounded/superseded; the final
+claim remains pending approval.
 
 ## Current result (claim review pending)
 
 Working headline: all 212 published T1/T2/T3 coordination candidates are in
-the frozen graph, and all four new zero-training tests remain negative for a
-canonical tripod transfer. Method 1's real 4/2 grouping falls in 16/20
+the frozen graph, and the four untried plus delayed-coupling zero-training
+tests remain negative for a canonical tripod transfer. Method 1's real 4/2 grouping falls in 16/20
 episodes; Method 2 remains phase-absent in all 20; B dynamic edge coupling
 falls in 20/20; C direct MN waveform remains `C1-ABSENT`; D earns only a tonic
 pose, also reproduced by shuffled and random controls. COORD-212,
-COORD-INHIB, WAVE-ANTAG, and VISION-EVAL all pass integrity gates but return
-NULL outcomes.
+COORD-INHIB, WAVE-ANTAG, VISION-EVAL, and DC-1–DC-3 all pass integrity gates
+but return NULL outcomes.
 
 The body correction makes the declared clean-clock engine stand and travel
 (`1.660 m` forward, `2.038 m` path in 8 s, minimum height `.121 m`, no fall),
 but it does not make the frozen VNC produce an alternating tripod. The fixed
 published-candidate inventory is complete at 212/212, including both former
-T1 `IN12B013` cells. The new B/C/D jobs and four untried phases add stronger
-tests without changing the negative coordination result.
+T1 `IN12B013` cells. The new B/C/D jobs, four untried phases, and final
+delay-coupling run add stronger tests without changing the negative
+coordination result.
 
 The real VNC still beats column-shuffled VNC in the separate five-condition
 open-loop control (`+0.2663 m` path, 95% CI `[+.2611, +.2714]`, exact
@@ -43,14 +44,17 @@ remain separate methods and are not part of this headline.
 | fixed-map embodiment | C direct real forward `+.2241 m` `[+.2187,+.2292]`; `C1-ABSENT` | partial motion, no tripod |
 | tonic body pose | D real/shuffled/random all `D-POSE-PRESENT` | matched-control pose, not coordination |
 | published-cell coordination | COORD-212: 212/212 candidates, `COORD-212-NULL`; COORD-INHIB: `COORD-INHIB-NULL` | no transferred tripod |
+| delayed inter-leg coupling | DC-1/DC-2 pass; blind selection `(g=.20, per_hop_steps=0)`; `DELAY-COUPLING-NULL` | no transferred tripod; no positive delay selected |
 | richer MN waveform | WAVE-ANTAG `WAVE-ANTAG-NULL`; forward `+.1668 m` `[+.1630,+.1710]`, below Phase C | no added transfer |
 | visual steering | VISION-EVAL `VISION-EVAL-NULL`; real `r=-.7382` vs shuffled `-.7025` and random `-.7792` | no wiring-specific steering |
 
 Re-scored honest connectome ownership is approximately **35–40%**, not
 50–60%: the connectome owns measurable descending/motor dynamics and some
-embodied motion/pose, while zero of the four new routes transfers the
-canonical tripod endpoint. This is an ownership estimate over the declared
-job table, not a success probability.
+embodied motion/pose, while zero of the four untried routes transfers the
+canonical tripod endpoint. The delayed run adds no coordination: its
+connectome-blind rule selected zero delay, and its real condition fell in
+20/20 episodes. This is an ownership estimate over the declared job table,
+not a success probability.
 
 ## Pre-fix working headline (confounded/superseded)
 
@@ -927,9 +931,115 @@ Artifact:
 left/right four-view video
 `eon-fly-brain/results/path2/untried_vision_eval_real_left_right.mp4`.
 
-All four phase gates pass their shared-pipeline, finite-value, frozen-graph,
-zero-learning, and video checks. Their outcomes are all NULL for canonical
-tripod transfer or wiring-specific steering.
+All four untried phase gates and DC-1–DC-3 pass their shared-pipeline,
+finite-value, frozen-graph, zero-learning, and video checks. Their outcomes
+are all NULL for canonical tripod transfer or wiring-specific steering.
+
+## Delayed inter-leg coupling (DC-1..DC-3)
+
+This was the final preregistered zero-training coordination test. DC-1 added
+`delayed_coupled_phases()` beside the unchanged instantaneous
+`coupled_phases()` reference. Its delay matrix is anatomical:
+`D[i,j] = round(per_hop_steps * abs(i//2 - j//2))`, so same-segment pairs have
+zero delay, adjacent segments one hop, and T1↔T3 two hops. The delay is a
+declared modeling assumption; neither graph contains measured conduction
+delays. DC-1 regression at zero delay was exact, the warm-up bound passed, and
+the segment-distance matrix passed its indexing check.
+
+### DC-2 blind `(g, τ)` calibration
+
+Calibration used a common 1.2 Hz neutral drive with seeded independent initial
+phases (`20260830`), not the clean tripod clock. The fixed grid was 21 gains
+(`0.00`–`0.20`) × 22 delay values (`0`–`21` control steps). The ceiling is the
+nearest integer to one half-period (`20.833` steps at 1.2 Hz); no larger delay
+was searched. A cell was admissible only when all three K conditions had
+maximum ordinary pairwise phase-difference variance below `.25 rad²`, maximum
+phase step ≤ `1.0 rad`, and maximum step change ≤ `.5 rad` over the final third
+of the run. No tripod, body, feet, path, or distance quantity entered this
+selection.
+
+The exact 462-cell table is in
+`eon-fly-brain/results/path2/delay_coupling_dc2.{json,csv}`. The compact table
+below reports its admissible cells by delay:
+
+| per-hop steps | admissible cells / 21 gains | admissible gain range |
+|---:|---:|---:|
+| 0 | 21 | `.00–.20` |
+| 1 | 21 | `.00–.20` |
+| 2 | 21 | `.00–.20` |
+| 3 | 20 | `.00–.20` |
+| 4 | 19 | `.00–.20` |
+| 5 | 19 | `.00–.20` |
+| 6 | 14 | `.00–.19` |
+| 7 | 17 | `.00–.20` |
+| 8 | 15 | `.00–.18` |
+| 9 | 11 | `.00–.14` |
+| 10 | 5 | `.00–.10` |
+| 11 | 10 | `.00–.09` |
+| 12 | 8 | `.00–.09` |
+| 13 | 7 | `.00–.09` |
+| 14 | 8 | `.00–.08` |
+| 15 | 10 | `.00–.11` |
+| 16 | 10 | `.00–.11` |
+| 17 | 10 | `.00–.12` |
+| 18 | 15 | `.00–.18` |
+| 19 | 14 | `.00–.19` |
+| 20 | 17 | `.00–.20` |
+| 21 | 17 | `.00–.20` |
+
+There were 309 admissible cells. The preregistered selection rule was:
+“Among admissible cells, select the one with the smallest `per_hop_steps`,
+breaking ties by the largest `gain`.” It selected `gain=.20` and
+`per_hop_steps=0`. This is a consequence of the fixed blind rule, not a
+post-hoc choice; no positive-delay cell was substituted.
+
+### DC-3 generation run
+
+The real VNC continuous phase source was shared unchanged across all three
+conditions. Only the signed K source matrix differed; the selected `g` and
+anatomical D were identical. The run used 20 paired 8-second episodes,
+`H_MIN=.08 m`, the unchanged engine, fixed map, PD, and bootstrap settings.
+
+**Pre-registered null:** real delayed coupling does not produce a walking
+anti-phase tripod beating shuffled/random on coherence and feet-planted →
+`DELAY-COUPLING-NULL`; the zero-training coordination ceiling holds.
+
+**Pre-registered positive:** real edges plus the declared delay produce a
+stable anti-phase tripod that walks, with low falls and positive forward path,
+beat both controls on coherence and feet-planted with Holm-corrected
+`p<.05` and non-overlapping bootstrap CIs, and show a genuine tripod walk in
+the watched real video → `DELAY-COUPLING-EARNED`.
+
+| K source | path m [95% CI] | forward m [95% CI] | coherence [95% CI] | feet planted [95% CI] | falls (Wilson 95% CI) | phase result |
+|---|---:|---:|---:|---:|---:|---|
+| real K | `1.3412 [1.3385,1.3438]` | `.6494 [.6439,.6548]` | `−.0738 [−.0738,−.0738]` | `.4562 [.4543,.4579]` | `20/20 [.839,1.000]` | `20/20 M2-PHASE-ABSENT` |
+| shuffled K | `1.3179 [1.3142,1.3219]` | `.5558 [.5515,.5603]` | `−.0192 [−.0192,−.0192]` | `.4585 [.4566,.4604]` | `20/20 [.839,1.000]` | `20/20 M2-PHASE-ABSENT` |
+| random K | `1.3412 [1.3396,1.3428]` | `.5449 [.5411,.5486]` | `.4456 [.4456,.4456]` | `.4736 [.4716,.4755]` | `20/20 [.839,1.000]` | `20/20 M2-PHASE-ABSENT` |
+
+| metric | comparison | difference [95% CI] | exact p | Holm p |
+|---|---|---:|---:|---:|
+| path | real − shuffled | `+.0233 [.0206,.0258]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| path | real − random | `−.0000 [−.0030,+.0030]` | `.9852` | `.9852` |
+| forward | real − shuffled | `+.0936 [.0881,.0992]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| forward | real − random | `+.1045 [.0996,.1091]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| coherence | real − shuffled | `−.0545 [−.0545,−.0545]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| coherence | real − random | `−.5194 [−.5194,−.5194]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| feet planted | real − shuffled | `−.0023 [−.0052,+.0004]` | `.1342` | `.1342` |
+| feet planted | real − random | `−.0174 [−.0204,−.0145]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+
+The watched real four-view video
+`eon-fly-brain/results/path2/delay_coupling_real_multiview.mp4` showed no
+clear alternating anti-phase tripod; the motion was unstable/non-tripod, and
+the measured real condition fell in all 20 episodes. The full positive
+conjunction therefore failed and the registered outcome is
+**`DELAY-COUPLING-NULL`**.
+
+This completes six tested zero-training coordination routes: M1 static
+grouping, Phase B instantaneous bulk coupling, E4 proprioceptive feedback,
+COORD-212, COORD-INHIB, and DC. Coordination remains NULL across all six and
+the honest share remains approximately **35–40%**. Because DC-2 selected
+`per_hop_steps=0`, this run earns no claim about a positive conduction delay;
+the delay remains an unmeasured declared assumption, not a connectome result.
 
 ### Reconciliation with the Path-3 binary baseline
 
@@ -957,11 +1067,12 @@ declared coordinated-walk endpoint. The new corrected-floor controls are
 Layer i remains primary failure. Real VNC output is dynamic (260 motor
 channels; mean temporal SD `.152`), and D's low-drive tail has a nonzero motor
 mean, but the raw E0, Method 1, Method 2, B coupled, C direct, COORD-212,
-COORD-INHIB, and WAVE-ANTAG phase tests remain absent. B's real K raises
+COORD-INHIB, WAVE-ANTAG, and DC phase tests remain absent. B's real K raises
 reported continuous coherence over shuffled K by `.6737`, while COORD-212
 raises it by `.4459` over shuffled; these scalar positives do not produce the
-declared tripod. VISION-EVAL also gives no real-wiring advantage in
-azimuth-to-turn correlation.
+declared tripod. DC's real coherence is below both controls (`−.0738` versus
+`−.0192` and `.4456`), with 20/20 falls. VISION-EVAL also gives no real-wiring
+advantage in azimuth-to-turn correlation.
 
 Layer ii transmits activity but cannot repair its organization. The fixed map
 activates all 18/18 target channels with mean target temporal SD `.133` rad;
@@ -989,7 +1100,8 @@ tonic pose under the declared threshold; VISION-EVAL does not establish
 wiring-specific steering. It still does not own successful inter-leg
 coordination or usable whole-body rhythm. Effective walk ownership is now
 scored at about **35–40%** under the expanded job table; no 50–60% ownership
-upgrade is justified by motion, coherence, pose, or the four new NULL phases.
+upgrade is justified by motion, coherence, pose, or the five new zero-training
+NULL phases.
 
 ## Path 3 — zero-learning step-timing decode
 
@@ -1132,11 +1244,13 @@ The current artifact set includes:
   paired CIs/sign-flip/Holm tests, and real four-view video.
 - VISION-EVAL frozen optic-lobe 27-edge control manifest, seven-angle
   correlation CIs/paired tests, and left/right real four-view video.
+- DC-1 delayed-coupling regression, DC-2 full 462-cell blind calibration, and
+  DC-3 paired generation table, tests, and watched real four-view video.
 
 The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0,
 Path 3, Method-1, and Method-2 probes are fixed replay/measurement code with
 no optimizer, backprop, reward, target fit, or performance-based choice. All
-72 JSON and 51 CSV files parse; all 212 published candidates are selected with
+40 JSON and 43 CSV files parse; all 212 published candidates are selected with
 0 omitted; the frozen all-leg VNC file hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`, and the
 frozen FlyWire brain file hash is
@@ -1146,17 +1260,18 @@ The all-leg index hash is
 matches the frozen graph record. Python compilation, `git diff --check`,
 shared-condition checks, home-keyframe provenance, current `.08 m` floor
 checks, and readable H.264 video checks all pass. Method-1, Method-2,
-last-three B/C, COORD-212, COORD-INHIB, and WAVE-ANTAG real videos are 8.000 s;
-D is a 1.5 s tonic hold; preflight is 4.000 s; VISION-EVAL left/right video is
-4.000 s. All four new gates pass and all four verdicts are NULL. Learned Outcome C/D remain separately labeled methods and
+last-three B/C, COORD-212, COORD-INHIB, WAVE-ANTAG, and DC-3 real videos are
+8.000 s; D is a 1.5 s tonic hold; preflight and DC-1 preflight are 4.000 s;
+VISION-EVAL left/right video is 4.000 s. The four untried gates and DC-1–DC-3
+gates pass; all five new zero-training verdicts are NULL. Learned Outcome C/D remain separately labeled methods and
 are not part of the zero-learning headline; last-three C/D are fixed-map
 transfer controls, not learned outcomes.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
 Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
 the substring `train` inside plotting layout `constrained`, the preflight
 inventory filename `outcomeD_train.py`, and an existing explanatory
-`task training` phrase; none is executable learning, optimization, or a
-performance-derived choice.
+`task training` phrase, plus the registered DC-3 `zero-training` null prose;
+none is executable learning, optimization, or a performance-derived choice.
 
 ## Limits and claim boundary
 

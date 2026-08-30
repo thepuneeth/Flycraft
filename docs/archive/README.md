@@ -33,13 +33,16 @@ repo root. Kept for provenance; do not follow them for current work.
   COORD-212 (coupling from 212 identified coordination cells), COORD-INHIB (inhibitory
   edges only), WAVE-ANTAG (flexor/extensor antagonist map), VISION-EVAL (frozen
   retina→optic-lobe→DN steering). Executed; all four NULL.
+- `../../RUN_DELAY_COUPLING.md` — delayed inter-leg oscillator coupling with a
+  connectome-blind `(g, τ)` calibration and matched real/shuffled/random controls.
+  Executed; DC-1/DC-2/DC-3 pass; registered verdict `DELAY-COUPLING-NULL`.
 
 **Established boundary (no active brief).** The frozen, untrained connectome
 (FlyWire brain + MANC VNC) driving the non-fly hexapod earns **steering + step
 timing + rhythm/duty (~35–40%)** and does **not** supply coordination, waveform,
-or pose un-trained. Coordination is NULL across five independent zero-training
+or pose un-trained. Coordination is NULL across six independent zero-training
 methods (M1 static grouping, Phase B bulk coupling, E4 proprioceptive feedback,
-COORD-212, COORD-INHIB). The only remaining zero-training walker is a hand-designed
+COORD-212, COORD-INHIB, DC). The only remaining zero-training walker is a hand-designed
 CPG (WALKNET-class) — human-supplied coordination, outside the frozen-connectome
 moat; it lives in the repo only as the clean-clock positive control (Phase A gate
 T4), never credited to the wiring. This is the boundary result.

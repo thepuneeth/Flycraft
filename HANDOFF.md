@@ -1,10 +1,10 @@
 # Flycraft — Path 2 handoff
 
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
-last-three B/C/D jobs, and the four untried zero-training phases; current
-`H_MIN=.08 m` gate and zero-learning controls are complete. Pre-fix body-level
-results are confounded/superseded; the final claim remains gated on user
-approval.
+last-three B/C/D jobs, the four untried zero-training phases, and delayed
+coupling DC-1–DC-3; current `H_MIN=.08 m` gate and zero-learning controls are
+complete. Pre-fix body-level results are confounded/superseded; the final
+claim remains gated on user approval.
 
 ## Current result (claim review pending)
 
@@ -19,10 +19,10 @@ controls.
 
 All 212 published T1/T2/T3 coordination candidates are included, including
 both formerly omitted T1 `IN12B013` cells. E0, E3, E4, Path 3, Method 1,
-Method 2, B, C, COORD-212, COORD-INHIB, and WAVE-ANTAG remain phase-absent for
-the declared tripod endpoint; VISION-EVAL is NULL against shuffled/random
-visual wiring. D's positive is pose only. Full four-phase tables and CIs are
-in `PATH2_METHODS.md` under “Untried zero-training methods”.
+Method 2, B, C, COORD-212, COORD-INHIB, WAVE-ANTAG, and DC remain phase-absent
+for the declared tripod endpoint; VISION-EVAL is NULL against
+shuffled/random visual wiring. D's positive is pose only. Full tables and CIs
+are in `PATH2_METHODS.md`.
 
 The five-condition study shows real VNC wiring beats column-shuffled VNC on
 path (`+0.2663 m`, 95% CI `[+.2611,+.2714]`, exact `p=1.91×10⁻⁶`, Holm
@@ -32,8 +32,8 @@ below matched random descending drive (`−.0621 m`, 95% CI
 not evidence that connectome coordination transfers to a tripod.
 
 This is corrected evidence assembly, not final claim wording. Learned Outcome
-C/D remain separate methods; last-three B/C/D and the four untried phases are
-fixed zero-learning transfer tests.
+C/D remain separate methods; last-three B/C/D, the four untried phases, and DC
+are fixed zero-learning transfer tests.
 
 ## Pre-fix working headline (confounded/superseded)
 
@@ -464,6 +464,29 @@ but it does not create missing coordination. Effective connectome ownership
 is about 25–35%: descending drive, VNC dynamics, motor activity, steering, and
 tonic pose are present; successful whole-body coordination is not.
 
+### Final delay-coupling run — DC-1–DC-3
+
+DC-1 added delayed Kuramoto coupling with segment-distance delays and passed
+the zero-delay regression, warm-up bound, and indexing checks. DC-2 used a
+common 1.2 Hz random-start neutral clock, gains `.00–.20`, and per-hop delays
+`0–21` (nearest integer half-period ceiling). The connectome-blind rule
+selected the smallest admissible delay, breaking ties by largest gain; it
+selected `(gain=.20, per_hop_steps=0)` from 309/462 admissible cells. The
+full table is `results/path2/delay_coupling_dc2.{json,csv}`.
+
+DC-3 kept the real VNC continuous phase source shared across real, shuffled,
+and random K matrices and ran 20 paired 8-second episodes. Real path was
+`1.3412 [1.3385,1.3438] m`, forward `.6494 [.6439,.6548] m`, coherence
+`−.0738`, feet planted `.4562`, and falls `20/20`; shuffled path was
+`1.3179 [1.3142,1.3219] m`, coherence `−.0192`, feet `.4585`; random path
+was `1.3412 [1.3396,1.3428] m`, coherence `.4456`, feet `.4736`; all three
+had `20/20` falls. The watched real video showed no alternating tripod.
+Registered outcome: **`DELAY-COUPLING-NULL`**. This completes six tested
+zero-learning coordination routes; because the blind rule selected zero delay,
+it makes no positive-delay claim. Full metrics/tests/video are in
+`results/path2/delay_coupling.{json,csv}` and
+`results/path2/delay_coupling_real_multiview.mp4`.
+
 ## Path 3: zero-learning step-timing decode (corrected; final claim gated)
 
 Phase 0 verified the cross-body method sources in `PATH2_METHODS.md`. The
@@ -668,6 +691,22 @@ Run from `/Users/puneeth/Documents/Flycraft` with
 # Connectome-set coordination and continuous phase methods.
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/connectome_coordination.py
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/continuous_phase.py
+
+# Final delayed-coupling test.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/delay_coupling.py \
+  --phase dc1 --data eon-fly-brain/results/path2
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/delay_coupling.py \
+  --phase dc2 --data eon-fly-brain/results/path2 \
+  --out eon-fly-brain/results/path2/delay_coupling_dc2
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/delay_coupling.py \
+  --phase dc3 --data eon-fly-brain/results/path2 \
+  --dc2 eon-fly-brain/results/path2/delay_coupling_dc2.json \
+  --out eon-fly-brain/results/path2/delay_coupling \
+  --video eon-fly-brain/results/path2/delay_coupling_real_multiview.mp4
+# After watching real video, finalize without rerunning episodes.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/delay_coupling.py \
+  --phase finalize --out eon-fly-brain/results/path2/delay_coupling \
+  --watched-verdict "not a genuine tripod walk: no alternating anti-phase tripod visible"
 ```
 
 The current corrected synchronized four-camera Path-3 episode is
@@ -690,7 +729,7 @@ Corrected rerun checks already recorded:
 - immutable target and exact row/column degree sequences for D controls;
 - `git diff --check`.
 
-All 72 JSON and 51 CSV files parse; all 212 published candidates are selected
+All 40 JSON and 43 CSV files parse; all 212 published candidates are selected
 with 0 omitted; VNC hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`; brain
 hash is `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
@@ -700,17 +739,18 @@ matches the frozen graph record. The corrected engine, E3/E4, layer, Path 3,
 Method-1, Method-2, and last-three B/C/D artifacts retain zero-learning or
 learning=false protocol flags; source scan found no optimizer, backprop,
 reward, target-fit, or performance-based choice in frozen rerun paths. New
-method/control videos are readable H.264: B/C, COORD-212, COORD-INHIB, and
-WAVE-ANTAG are 8.000 s; D is a 1.500 s tonic hold; preflight is 4.000 s; and
-VISION-EVAL left/right is 4.000 s. All four new gates pass and all four
-verdicts are NULL. Learned Outcome C/D remain separately labeled methods;
+method/control videos are readable H.264: B/C, COORD-212, COORD-INHIB,
+WAVE-ANTAG, and DC-3 are 8.000 s; D is a 1.500 s tonic hold; preflight and
+DC-1 preflight are 4.000 s; and VISION-EVAL left/right is 4.000 s. The four
+untried gates and DC-1–DC-3 gates pass; all five new zero-training verdicts are
+NULL. Learned Outcome C/D remain separately labeled methods;
 last-three B/C/D are fixed transfer controls and are complete.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
 Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
 the substring `train` inside plotting layout `constrained`, the preflight
 inventory filename `outcomeD_train.py`, and an existing explanatory
-`task training` phrase; none is executable learning, optimization, or a
-performance-derived choice.
+`task training` phrase, plus the registered DC-3 `zero-training` null prose;
+none is executable learning, optimization, or a performance-derived choice.
 
 Do not add constants, retune gains, delete superseded artifacts, or broaden
 the claim before user approval.
@@ -742,4 +782,5 @@ the claim before user approval.
 | `eon-fly-brain/code/continuous_phase.py` | Method-2 continuous VNC phase source and controls |
 | `eon-fly-brain/code/last_three_jobs.py` | B dynamic coupling, C direct MN waveform, and D tonic pose controls |
 | `eon-fly-brain/code/untried_zero_methods.py` | COORD-212, COORD-INHIB, WAVE-ANTAG, and VISION-EVAL frozen phases |
+| `eon-fly-brain/code/delay_coupling.py` | DC-1 delayed generator, DC-2 blind calibration, and DC-3 generation run |
 | `PATH2_METHODS.md` | methods-complete working report |
