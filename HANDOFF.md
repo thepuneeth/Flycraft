@@ -1,9 +1,10 @@
 # Flycraft — Path 2 handoff
 
-Status: corrected body-setup rerun complete through E0–E4, Path 3, and the
-last-three B/C/D jobs; current `H_MIN=.08 m` gate and zero-learning controls
-are complete. Pre-fix body-level results are confounded/superseded; the final
-claim remains gated on user approval.
+Status: corrected body-setup rerun complete through E0–E4, Path 3, the
+last-three B/C/D jobs, and the four untried zero-training phases; current
+`H_MIN=.08 m` gate and zero-learning controls are complete. Pre-fix body-level
+results are confounded/superseded; the final claim remains gated on user
+approval.
 
 ## Current result (claim review pending)
 
@@ -18,8 +19,10 @@ controls.
 
 All 212 published T1/T2/T3 coordination candidates are included, including
 both formerly omitted T1 `IN12B013` cells. E0, E3, E4, Path 3, Method 1,
-Method 2, B, and C remain phase-absent for the declared tripod endpoint. D's
-positive is pose only.
+Method 2, B, C, COORD-212, COORD-INHIB, and WAVE-ANTAG remain phase-absent for
+the declared tripod endpoint; VISION-EVAL is NULL against shuffled/random
+visual wiring. D's positive is pose only. Full four-phase tables and CIs are
+in `PATH2_METHODS.md` under “Untried zero-training methods”.
 
 The five-condition study shows real VNC wiring beats column-shuffled VNC on
 path (`+0.2663 m`, 95% CI `[+.2611,+.2714]`, exact `p=1.91×10⁻⁶`, Holm
@@ -29,8 +32,8 @@ below matched random descending drive (`−.0621 m`, 95% CI
 not evidence that connectome coordination transfers to a tripod.
 
 This is corrected evidence assembly, not final claim wording. Learned Outcome
-C/D remain separate methods; last-three B/C/D are fixed zero-learning transfer
-tests.
+C/D remain separate methods; last-three B/C/D and the four untried phases are
+fixed zero-learning transfer tests.
 
 ## Pre-fix working headline (confounded/superseded)
 
@@ -687,7 +690,7 @@ Corrected rerun checks already recorded:
 - immutable target and exact row/column degree sequences for D controls;
 - `git diff --check`.
 
-All 68 JSON and 47 CSV files parse; all 212 published candidates are selected
+All 72 JSON and 51 CSV files parse; all 212 published candidates are selected
 with 0 omitted; VNC hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`; brain
 hash is `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
@@ -697,10 +700,11 @@ matches the frozen graph record. The corrected engine, E3/E4, layer, Path 3,
 Method-1, Method-2, and last-three B/C/D artifacts retain zero-learning or
 learning=false protocol flags; source scan found no optimizer, backprop,
 reward, target-fit, or performance-based choice in frozen rerun paths. New
-method/control videos are readable H.264: B/C are 8.000 s, D is a 1.500 s
-tonic hold, and preflight is 4.000 s. Learned Outcome C/D remain separately
-labeled methods; last-three B/C/D are fixed transfer controls and are
-complete.
+method/control videos are readable H.264: B/C, COORD-212, COORD-INHIB, and
+WAVE-ANTAG are 8.000 s; D is a 1.500 s tonic hold; preflight is 4.000 s; and
+VISION-EVAL left/right is 4.000 s. All four new gates pass and all four
+verdicts are NULL. Learned Outcome C/D remain separately labeled methods;
+last-three B/C/D are fixed transfer controls and are complete.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
 Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
 the substring `train` inside plotting layout `constrained`, the preflight
@@ -737,4 +741,5 @@ the claim before user approval.
 | `eon-fly-brain/code/connectome_coordination.py` | Method-1 phase-derived grouping and controls |
 | `eon-fly-brain/code/continuous_phase.py` | Method-2 continuous VNC phase source and controls |
 | `eon-fly-brain/code/last_three_jobs.py` | B dynamic coupling, C direct MN waveform, and D tonic pose controls |
+| `eon-fly-brain/code/untried_zero_methods.py` | COORD-212, COORD-INHIB, WAVE-ANTAG, and VISION-EVAL frozen phases |
 | `PATH2_METHODS.md` | methods-complete working report |

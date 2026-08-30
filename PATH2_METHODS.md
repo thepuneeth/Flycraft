@@ -1,25 +1,28 @@
 # Path 2 — methods and current evidence
 
-Status: corrected body-setup rerun complete through E0–E4, Path 3, and the
-last-three B/C/D jobs; current `H_MIN=.08 m` gate and all zero-learning
-controls are complete. Pre-fix body-level results are confounded/superseded;
-the final claim remains pending approval.
+Status: corrected body-setup rerun complete through E0–E4, Path 3, the
+last-three B/C/D jobs, and the four untried zero-training phases; current
+`H_MIN=.08 m` gate and all zero-learning controls are complete. Pre-fix
+body-level results are confounded/superseded; the final claim remains pending
+approval.
 
 ## Current result (claim review pending)
 
 Working headline: all 212 published T1/T2/T3 coordination candidates are in
-the frozen graph, yet no tested zero-learning route transfers a canonical
-tripod to the hexapod. Method 1's real 4/2 grouping falls in 16/20 episodes;
-Method 2 remains phase-absent in all 20; B dynamic edge coupling falls in
-20/20; C direct MN waveform remains `C1-ABSENT`; D earns only a tonic pose,
-also reproduced by shuffled and random controls.
+the frozen graph, and all four new zero-training tests remain negative for a
+canonical tripod transfer. Method 1's real 4/2 grouping falls in 16/20
+episodes; Method 2 remains phase-absent in all 20; B dynamic edge coupling
+falls in 20/20; C direct MN waveform remains `C1-ABSENT`; D earns only a tonic
+pose, also reproduced by shuffled and random controls. COORD-212,
+COORD-INHIB, WAVE-ANTAG, and VISION-EVAL all pass integrity gates but return
+NULL outcomes.
 
 The body correction makes the declared clean-clock engine stand and travel
 (`1.660 m` forward, `2.038 m` path in 8 s, minimum height `.121 m`, no fall),
 but it does not make the frozen VNC produce an alternating tripod. The fixed
 published-candidate inventory is complete at 212/212, including both former
-T1 `IN12B013` cells. The new B/C/D jobs add stronger tests without changing
-the negative coordination result.
+T1 `IN12B013` cells. The new B/C/D jobs and four untried phases add stronger
+tests without changing the negative coordination result.
 
 The real VNC still beats column-shuffled VNC in the separate five-condition
 open-loop control (`+0.2663 m` path, 95% CI `[+.2611, +.2714]`, exact
@@ -28,9 +31,26 @@ random descending drive (`−.0621 m`, 95% CI `[−.1192, −.0092]`, Holm
 `p=.0422`). This is a real VNC motor-output positive, not evidence that
 connectome coordination transfers to a tripod.
 
-This is a corrected evidence summary, not final claim wording. B/C/D are
-zero-learning transfer controls; learned Outcome C/D remain separate methods
-and are not part of this headline.
+This is a corrected evidence summary, not final claim wording. B/C/D and the
+four untried phases are zero-learning transfer controls; learned Outcome C/D
+remain separate methods and are not part of this headline.
+
+### §0.1 Job table and ownership score
+
+| job/result | evidence | current reading |
+|---|---|---|
+| descending drive and VNC dynamics | real VNC has 260 dynamic motor outputs; C real path beats shuffled by `+1.0161 m` `[+1.0113,+1.0208]` | connectome-supported motor signal |
+| fixed-map embodiment | C direct real forward `+.2241 m` `[+.2187,+.2292]`; `C1-ABSENT` | partial motion, no tripod |
+| tonic body pose | D real/shuffled/random all `D-POSE-PRESENT` | matched-control pose, not coordination |
+| published-cell coordination | COORD-212: 212/212 candidates, `COORD-212-NULL`; COORD-INHIB: `COORD-INHIB-NULL` | no transferred tripod |
+| richer MN waveform | WAVE-ANTAG `WAVE-ANTAG-NULL`; forward `+.1668 m` `[+.1630,+.1710]`, below Phase C | no added transfer |
+| visual steering | VISION-EVAL `VISION-EVAL-NULL`; real `r=-.7382` vs shuffled `-.7025` and random `-.7792` | no wiring-specific steering |
+
+Re-scored honest connectome ownership is approximately **35–40%**, not
+50–60%: the connectome owns measurable descending/motor dynamics and some
+embodied motion/pose, while zero of the four new routes transfers the
+canonical tripod endpoint. This is an ownership estimate over the declared
+job table, not a success probability.
 
 ## Pre-fix working headline (confounded/superseded)
 
@@ -166,7 +186,7 @@ conventions.
 | motor map | stance from MJCF `home` keyframe; gains `(-0.55, 0.65, 0.65)` for coxa/femur/tibia |
 | body servo | `ctrl_hz=50`, `kp=3.0`, `kd=0.05`; torque range comes from the supplied MJCF |
 | graph | `premotor_scope=all`; absolute synapse floor `5`; rows postsynaptic, columns presynaptic |
-| controls | 20 paired episodes/condition, 3 s, episode-seed base `20260829`; static prey placements and initial headings are shared across conditions |
+| control designs | five-condition study: 20 paired episodes/condition, 3 s; B/C/COORD/WAVE: 20 paired 8 s episodes; D: 20 paired 1.5 s holds; VISION-EVAL: seven paired 2 s azimuth trials; static starts/scenes are shared within each design |
 
 The fixed map uses coxa, mean(trochanter/femur), and mean(tibia/tarsus);
 positive-minus-negative motor pools use the annotation-derived signs. The
@@ -785,6 +805,132 @@ Full D manifest, CIs, paired tests, and four-view real video:
 `results/path2/lastthree_D_tonic_pose.{json,csv}` and
 `results/path2/lastthree_D_real_multiview.mp4`.
 
+## Untried zero-training methods (COORD-212 / COORD-INHIB / WAVE-ANTAG / VISION-EVAL)
+
+These four phases were run in the preregistered order after the completeness
+rerun. Every phase used frozen weights, no learning, shared controls, a smoke
+test before the full run, bootstrap CIs, exact paired sign-flip tests, and a
+real rendered video. A `NULL` below is the registered result, not a failed
+experiment.
+
+### COORD-212 — published coordination cells only
+
+This is distinct from bulk B/M1 coupling: `audit_intersegmental.cross_edges`
+was restricted to edges whose two endpoints are in the complete published
+coordination inventory. The inventory is 212/212, including both T1
+`IN12B013` cells. `K_212` has 10 positive, 14 negative, and 12 zero cells;
+the eligible signed edge rows are 617 positive and 622 negative (1,239 total),
+with row sums `[-468,-242,+534,+967,-278,+310]` in
+`[T1L,T1R,T2L,T2R,T3L,T3R]` order. The largest clean-clock-stable global
+coupling gain is `.07`; it was selected without body outcomes.
+
+**Pre-registered null:** published-cell `K_212` does not produce a stable
+tripod that beats shuffled/random on coherence and feet-planted.
+
+| condition | path m [95% CI] | forward m [95% CI] | coherence [95% CI] | feet planted [95% CI] | falls (Wilson 95% CI) | result |
+|---|---:|---:|---:|---:|---:|---|
+| real `K_212` | `1.4381 [1.4366,1.4396]` | `1.0430 [1.0404,1.0454]` | `.1873 [.1873,.1873]` | `.4043 [.4026,.4061]` | `5/20 [.112,.469]` | `COORD-212-NULL`; 20/20 phase-absent |
+| shuffled `K_212` | `1.4682 [1.4652,1.4714]` | `.7840 [.7781,.7902]` | `−.2587 [−.2587,−.2587]` | `.4265 [.4250,.4280]` | `17/20 [.640,.948]` | phase-absent |
+| random `K_212` | `1.3800 [1.3777,1.3824]` | `.7077 [.7025,.7129]` | `.4530 [.4530,.4530]` | `.4181 [.4170,.4194]` | `20/20 [.839,1.000]` | phase-absent |
+
+Real minus shuffled path is `−.0301 m` (95% CI
+`[−.0336,−.0268]`, exact `p=1.91×10⁻⁶`, Holm
+`p=3.81×10⁻⁶`); real minus random is `+.0581 m`
+`[+.0551,+.0610]`, same p values. Real coherence beats shuffled by
+`+.4459` but is below random by `−.2657`; real feet-planted is below both
+controls. No canonical tripod emerges. Artifacts:
+`eon-fly-brain/results/path2/untried_coord212.{json,csv}` and
+`eon-fly-brain/results/path2/untried_coord212_real_multiview.mp4`.
+
+### COORD-INHIB — inhibitory edges only
+
+The same full cross-neuromere edge inventory was restricted to presynaptic
+GABA/glutamate sign. All 68,293 eligible signed rows are negative; the real
+matrix has 0 positive, 24 negative, and 12 zero cells, with row sums
+`[-160068,-135282,-272783,-255543,-153740,-149194]`. The same clean-clock
+calibration selected global gain `.13` for all three conditions.
+
+**Pre-registered null:** inhibitory-only `K` does not produce a stable
+anti-phase tripod limit cycle that beats shuffled/random controls.
+
+| condition | path m [95% CI] | forward m [95% CI] | coherence [95% CI] | feet planted [95% CI] | falls (Wilson 95% CI) | result |
+|---|---:|---:|---:|---:|---:|---|
+| real inhibitory `K` | `1.4103 [1.4064,1.4141]` | `1.0095 [1.0044,1.0145]` | `.1863 [.1863,.1863]` | `.4123 [.4111,.4135]` | `0/20 [.000,.161]` | `COORD-INHIB-NULL`; 20/20 phase-absent |
+| shuffled inhibitory `K` | `1.4208 [1.4167,1.4250]` | `1.0569 [1.0514,1.0626]` | `−.0713 [−.0713,−.0713]` | `.4040 [.4025,.4055]` | `0/20 [.000,.161]` | phase-absent |
+| random inhibitory `K` | `1.4037 [1.4006,1.4070]` | `.8647 [.8606,.8690]` | `−.1326 [−.1326,−.1326]` | `.4034 [.4025,.4042]` | `0/20 [.000,.161]` | phase-absent |
+
+Real minus shuffled path is `−.0105 m` (95% CI
+`[−.0139,−.0072]`, exact `p=2.10×10⁻⁵`, Holm
+`p=4.20×10⁻⁵`); real minus random is `+.0066 m`
+`[+.0010,+.0124]`, exact/Holm `p=.0410`. Real coherence exceeds both
+controls (`+.2576` and `+.3189`), but this scalar does not supply the required
+anti-phase limit cycle. Artifacts:
+`eon-fly-brain/results/path2/untried_coord_inhib.{json,csv}` and
+`eon-fly-brain/results/path2/untried_coord_inhib_real_multiview.mp4`.
+
+### WAVE-ANTAG — fuller antagonist MN→joint waveform
+
+Phase C's direct waveform used the coarse three-target reduction. WAVE-ANTAG
+uses a declared signed balance for each robot target: coxa from fly coxa
+pools, femur from all trochanter/femur pools, and tibia from all tibia/tarsus
+pools. Each target is mean positive-sign activity minus mean negative-sign
+activity. The only scale remains the frozen map gains `(-.55,.65,.65)`; no
+gain was fitted. The engine and phase machine remain absent, exactly as in C.
+
+**Pre-registered null:** the fuller map does not beat Phase C forward distance
+beyond CI overlap, or does not beat shuffled/random.
+
+| motor source | path m [95% CI] | forward m [95% CI] | target/body phase scalar [95% CI] | feet planted [95% CI] | falls (Wilson 95% CI) | result |
+|---|---:|---:|---:|---:|---:|---|
+| real VNC | `1.1219 [1.1147,1.1294]` | `.1668 [.1630,.1710]` | `.2345 [.2345,.2345]` | `.5190 [.5162,.5219]` | `0/20 [.000,.161]` | `WAVE-ANTAG-NULL`; 20/20 `C1-ABSENT` |
+| shuffled VNC | `.1284 [.1249,.1320]` | `.0384 [.0362,.0407]` | `−.1719 [−.1719,−.1719]` | `.6592 [.6570,.6614]` | `0/20 [.000,.161]` | `C1-ABSENT` |
+| random motor history | `.2779 [.2771,.2787]` | `−.0134 [−.0160,−.0107]` | `.3228 [.3228,.3228]` | `.8118 [.8086,.8149]` | `0/20 [.000,.161]` | `C1-ABSENT` |
+
+Against the frozen Phase C real baseline (`.2241 m` forward
+`[.2187,.2292]`), WAVE-ANTAG is lower by `−.0572 m`
+`[−.0635,−.0510]`, exact `p=1.91×10⁻⁶`, Holm `p=5.72×10⁻⁶` across the
+baseline and two controls. It does beat shuffled and random on forward
+distance (`+.1284 m` and `+.1802 m`, both exact `p=1.91×10⁻⁶`, Holm
+`p=3.81×10⁻⁶`), but not Phase C and not the tripod endpoint. Artifact:
+`eon-fly-brain/results/path2/untried_wave_antag.{json,csv}` and
+`eon-fly-brain/results/path2/untried_wave_antag_real_multiview.mp4`.
+
+### VISION-EVAL — frozen optic-lobe steering sweep
+
+The existing retina encoding was evaluated at fixed prey azimuths
+`−90,−60,−30,0,+30,+60,+90°`, distance `3 m`, and 2 s per trial. The brain
+was the frozen `138,639`-node FlyWire graph, with exact DNg100/DNb08 outputs
+(1/1 and 2/2 left/right cells). Controls changed only the 27 direct
+visual-to-DNg100/DNb08 edge values over an identical CSR structure; brain
+weight and index hashes remained
+`f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88` and
+`338cb0160ddeced104f597884ed99be84966a732f89199e876977a18bf84d7b5`.
+
+**Pre-registered null:** frozen optic-lobe steering does not correlate with
+true prey azimuth better than shuffled/random wiring.
+
+| visual wiring | azimuth vs mean turn Pearson r | 95% CI over fixed angles | nonzero-angle toward-turn score | nonzero-angle toward-yaw score (rad) | result |
+|---|---:|---:|---:|---:|---|
+| real | `−.7382` | `[−.9507,−.3840]` | `−.9772` | `−.0057` | `VISION-EVAL-NULL` |
+| shuffled visual→DN | `−.7025` | `[−.9382,−.2525]` | `−.9586` | `−.0380` | null control |
+| random visual→DN | `−.7792` | `[−.9696,−.4864]` | `−1.1703` | `−.0587` | null control |
+
+Paired nonzero-angle tests (`n=6`) found real minus shuffled toward-turn
+`−.0186` (95% CI `[−.0868,+.0541]`, exact/Holm `p=.5313`) and real minus
+random `+.1931` (`[+.0582,+.3364]`, exact `p=.0938`, Holm `p=.1875`). For
+toward-yaw, the corresponding differences are `+.0323`
+`[−.0524,+.1145]`, exact/Holm `p=.5625`, and `+.0530`
+`[−.0072,+.1151]`, exact `p=.25`, Holm `p=.5`. The real output is not
+wiring-specific and body yaw does not show a consistent toward-prey benefit.
+Artifact:
+`eon-fly-brain/results/path2/untried_vision_eval.{json,csv}` and the 4 s
+left/right four-view video
+`eon-fly-brain/results/path2/untried_vision_eval_real_left_right.mp4`.
+
+All four phase gates pass their shared-pipeline, finite-value, frozen-graph,
+zero-learning, and video checks. Their outcomes are all NULL for canonical
+tripod transfer or wiring-specific steering.
+
 ### Reconciliation with the Path-3 binary baseline
 
 The Path-3 timing controls were rerun under the current `.08 m` fall floor;
@@ -810,17 +956,21 @@ declared coordinated-walk endpoint. The new corrected-floor controls are
 
 Layer i remains primary failure. Real VNC output is dynamic (260 motor
 channels; mean temporal SD `.152`), and D's low-drive tail has a nonzero motor
-mean, but the raw E0, Method 1, Method 2, B coupled, and C direct phase tests
-remain absent. B's real K raises reported continuous coherence over shuffled
-K by `.6737`, yet real and shuffled both fall 20/20; a scalar positive is not
-the declared tripod transfer.
+mean, but the raw E0, Method 1, Method 2, B coupled, C direct, COORD-212,
+COORD-INHIB, and WAVE-ANTAG phase tests remain absent. B's real K raises
+reported continuous coherence over shuffled K by `.6737`, while COORD-212
+raises it by `.4459` over shuffled; these scalar positives do not produce the
+declared tripod. VISION-EVAL also gives no real-wiring advantage in
+azimuth-to-turn correlation.
 
 Layer ii transmits activity but cannot repair its organization. The fixed map
 activates all 18/18 target channels with mean target temporal SD `.133` rad;
 C direct MN output reproduces that target variation without a gait engine, yet
-its canonical phase is still `C1-ABSENT` (4/6 within, 2/9 cross). Method 1 can
-impose command scalar 2.0 and still falls 16/20; B can use actual signed
-inter-leg edge mass and still falls 20/20.
+its canonical phase is still `C1-ABSENT` (4/6 within, 2/9 cross). WAVE-ANTAG
+adds the declared per-target antagonist balance but remains `C1-ABSENT` and
+falls below C on forward distance. Method 1 can impose command scalar 2.0 and
+still falls 16/20; B can use actual signed inter-leg edge mass and still falls
+20/20.
 
 Layer iii is not a total-signal-loss bottleneck: Gate A's unchanged engine
 reaches `2.038 m` path with minimum height `.121 m`, no fall, and exact tripod
@@ -830,12 +980,16 @@ The body can move or hold pose (`D-POSE-PRESENT` for real, shuffled, and
 random), but it does not create missing coordination. C's real direct waveform
 beats shuffled on path by `+1.0161 m` while remaining `C1-ABSENT`, which
 localizes the honest result to signal organization rather than signal absence.
+In VISION-EVAL, real nonzero-angle toward-yaw was only `−.0057 rad` on average
+and real toward-turn score was `−.9772`, with no significant advantage over
+either wiring control; the body therefore does not rescue the visual path.
 
-The connectome owns descending drive, VNC dynamics, motor activity, steering,
-and a tonic pose under the declared threshold. It still does not own successful
-inter-leg coordination or usable whole-body rhythm. Effective walk ownership
-remains about 25–35% under the expanded job table; no 50–60% ownership upgrade
-is justified by motion, coherence, or pose positives.
+The connectome owns descending drive, VNC dynamics, motor activity, and a
+tonic pose under the declared threshold; VISION-EVAL does not establish
+wiring-specific steering. It still does not own successful inter-leg
+coordination or usable whole-body rhythm. Effective walk ownership is now
+scored at about **35–40%** under the expanded job table; no 50–60% ownership
+upgrade is justified by motion, coherence, pose, or the four new NULL phases.
 
 ## Path 3 — zero-learning step-timing decode
 
@@ -972,11 +1126,17 @@ The current artifact set includes:
   paired CIs/sign-flip tests, and fixed-seed four-view real videos.
 - Last-three B dynamic-K, C direct-MN, and D tonic-pose manifests, paired CIs,
   sign-flip/Holm tests, and four-view real videos.
+- COORD-212 and COORD-INHIB fixed anatomy matrices, sign/row-sum audits,
+  paired CIs/sign-flip/Holm tests, and real four-view videos.
+- WAVE-ANTAG fixed fuller antagonist-map manifest, Phase-C paired baseline,
+  paired CIs/sign-flip/Holm tests, and real four-view video.
+- VISION-EVAL frozen optic-lobe 27-edge control manifest, seven-angle
+  correlation CIs/paired tests, and left/right real four-view video.
 
 The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0,
 Path 3, Method-1, and Method-2 probes are fixed replay/measurement code with
 no optimizer, backprop, reward, target fit, or performance-based choice. All
-68 JSON and 47 CSV files parse; all 212 published candidates are selected with
+72 JSON and 51 CSV files parse; all 212 published candidates are selected with
 0 omitted; the frozen all-leg VNC file hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`, and the
 frozen FlyWire brain file hash is
@@ -985,9 +1145,10 @@ The all-leg index hash is
 `3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449` and
 matches the frozen graph record. Python compilation, `git diff --check`,
 shared-condition checks, home-keyframe provenance, current `.08 m` floor
-checks, and readable H.264 video checks all pass. Method-1, Method-2, and
-last-three B/C real videos are 8.000 s; D is a 1.5 s tonic hold; preflight
-video is 4.000 s. Learned Outcome C/D remain separately labeled methods and
+checks, and readable H.264 video checks all pass. Method-1, Method-2,
+last-three B/C, COORD-212, COORD-INHIB, and WAVE-ANTAG real videos are 8.000 s;
+D is a 1.5 s tonic hold; preflight is 4.000 s; VISION-EVAL left/right video is
+4.000 s. All four new gates pass and all four verdicts are NULL. Learned Outcome C/D remain separately labeled methods and
 are not part of the zero-learning headline; last-three C/D are fixed-map
 transfer controls, not learned outcomes.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
