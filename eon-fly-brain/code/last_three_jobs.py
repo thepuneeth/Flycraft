@@ -80,6 +80,10 @@ MAP_GAINS = (-0.55, 0.65, 0.65)
 DIRECT_VNC_DRIVE = 100.0
 DIRECT_RANDOM_SEED = 20260831
 DIRECT_SETTLE_S = 0.7
+TONIC_VNC_DRIVE = 10.0
+TONIC_VNC_STEPS = 1500
+TONIC_RANDOM_SEED = 20260832
+TONIC_HOLD_S = 1.5
 KP = 3.0
 KD = 0.05
 
@@ -290,7 +294,14 @@ def make_cameras(model: mujoco.MjModel) -> list[mujoco.MjvCamera]:
     return cameras
 
 
-def motor_history(data: Path, weights_name: str, index_name: str, steps: int, shuffle: bool) -> tuple[np.ndarray, np.lib.npyio.NpzFile, dict]:
+def motor_history(
+    data: Path,
+    weights_name: str,
+    index_name: str,
+    steps: int,
+    shuffle: bool,
+    drive: float = DIRECT_VNC_DRIVE,
+) -> tuple[np.ndarray, np.lib.npyio.NpzFile, dict]:
     vnc = VNCStepper(
         data,
         substeps=4,
@@ -307,7 +318,7 @@ def motor_history(data: Path, weights_name: str, index_name: str, steps: int, sh
         seed=1,
         shuffle=shuffle,
     )
-    current = vnc.descending_current(DIRECT_VNC_DRIVE)
+    current = vnc.descending_current(drive)
     history = np.stack([vnc.step(current).cpu().numpy() for _ in range(steps)])
     return history, vnc.io, {
         "source": "shuffled_vnc_motor" if shuffle else "real_vnc_motor",
@@ -316,7 +327,7 @@ def motor_history(data: Path, weights_name: str, index_name: str, steps: int, sh
         "weights_sha256": file_sha256(data / weights_name),
         "protocol": {
             "model": "paper",
-            "drive": DIRECT_VNC_DRIVE,
+            "drive": float(drive),
             "gW": 0.03,
             "tau": 0.02,
             "dt": 0.005,
@@ -541,9 +552,211 @@ def run_c(args) -> int:
     return 0
 
 
+TONIC_SUMMARY_METRICS = (
+    "mean_ride_height_m",
+    "final_height_m",
+    "min_height_m",
+    "mean_feet_planted",
+    "path_m",
+    "displacement_m",
+    "target_offset_norm_rad",
+)
+
+
+def tonic_sources(data: Path, weights_name: str, index_name: str) -> tuple[dict[str, np.ndarray], np.lib.npyio.NpzFile, dict]:
+    real, io, real_record = motor_history(data, weights_name, index_name, TONIC_VNC_STEPS, False, TONIC_VNC_DRIVE)
+    shuffled, shuffled_io, shuffled_record = motor_history(data, weights_name, index_name, TONIC_VNC_STEPS, True, TONIC_VNC_DRIVE)
+    if not np.array_equal(io["motor_body_ids"], shuffled_io["motor_body_ids"]):
+        raise AssertionError("shuffled tonic motor output order changed")
+    random = real.copy()
+    random_rng = np.random.default_rng(TONIC_RANDOM_SEED)
+    for channel in range(random.shape[1]):
+        random_rng.shuffle(random[:, channel])
+    return {"real": real, "shuffled": shuffled, "random": random}, io, {
+        "real": real_record,
+        "shuffled": shuffled_record,
+        "random": {
+            "source": "per-channel seeded time permutation of real low-drive VNC motor history",
+            "seed": TONIC_RANDOM_SEED,
+            "matched_to": "real low-drive motor output marginal at every channel",
+            "protocol": {"steps": TONIC_VNC_STEPS, "sample_dt_s": 0.02, "drive": TONIC_VNC_DRIVE},
+            "motor_output_count": int(random.shape[1]),
+        },
+    }
+
+
+def run_tonic_episode(motors: np.ndarray, io, episode: dict, video: Path | None = None) -> dict:
+    model = mujoco.MjModel.from_xml_path(str(XML))
+    data = mujoco.MjData(model)
+    data.qpos[2] = 0.15
+    yaw = float(episode["initial_yaw_rad"])
+    data.qpos[3:7] = (np.cos(yaw / 2.0), 0.0, 0.0, np.sin(yaw / 2.0))
+    physics_steps = max(1, int(round((1.0 / CTRL_HZ) / model.opt.timestep)))
+    home = translate(np.zeros(len(io["motor_out"]), dtype=np.float32), io, gains=MAP_GAINS)
+    for _ in range(int(DIRECT_SETTLE_S / model.opt.timestep)):
+        data.ctrl[:] = pd_torque(model, data, home, KP, KD)
+        mujoco.mj_step(model, data)
+    mean_motor = np.asarray(motors[len(motors) // 2:].mean(axis=0), dtype=np.float64)
+    target = translate(mean_motor, io, gains=MAP_GAINS)
+    hold_steps = int(round(TONIC_HOLD_S * CTRL_HZ))
+    x0, y0 = float(data.qpos[0]), float(data.qpos[1])
+    last = (x0, y0)
+    path = 0.0
+    heights = []
+    planted = []
+    floor_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, "floor")
+    foot_ids = tuple(mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, f"foot_{leg}") for leg in range(6))
+    renderer = mujoco.Renderer(model, 480, 640) if video else None
+    cameras = make_cameras(model) if renderer else []
+    frames = []
+    for step in range(hold_steps):
+        for _ in range(physics_steps):
+            data.ctrl[:] = pd_torque(model, data, target, KP, KD)
+            mujoco.mj_step(model, data)
+        now = (float(data.qpos[0]), float(data.qpos[1]))
+        path += float(np.hypot(now[0] - last[0], now[1] - last[1]))
+        last = now
+        heights.append(float(data.qpos[2]))
+        planted.append(feet_planted_fraction(data, floor_id, foot_ids))
+        if renderer and step % 2 == 0:
+            views = []
+            for camera in cameras:
+                camera.lookat[:] = (float(data.qpos[0]), float(data.qpos[1]), 0.08)
+                renderer.update_scene(data, camera=camera)
+                views.append(renderer.render())
+            frames.append(np.concatenate((np.concatenate(views[:2], axis=1), np.concatenate(views[2:], axis=1)), axis=0))
+    heights = np.asarray(heights, dtype=np.float64)
+    dx, dy = float(data.qpos[0]) - x0, float(data.qpos[1]) - y0
+    result = {
+        "episode": int(episode["episode"]),
+        "episode_seed": int(episode["episode_seed"]),
+        "initial_yaw_rad": yaw,
+        "mean_ride_height_m": float(heights.mean()),
+        "final_height_m": float(heights[-1]),
+        "min_height_m": float(heights.min()),
+        "mean_feet_planted": float(np.mean(planted)),
+        "path_m": float(path),
+        "displacement_m": float(np.hypot(dx, dy)),
+        "target_offset_norm_rad": float(np.linalg.norm(target - home)),
+        "target_mean_joint_rad": target.tolist(),
+        "motor_mean": mean_motor.tolist(),
+        "fell": bool(heights.min() < H_MIN),
+        "pose_verdict": "D-POSE-PRESENT" if heights.mean() >= 0.12 and heights.min() >= H_MIN else "D-POSE-ABSENT",
+        "protocol": {
+            "hold_s": TONIC_HOLD_S,
+            "ctrl_hz": CTRL_HZ,
+            "pre_hold_settle_s": DIRECT_SETTLE_S,
+            "kp": KP,
+            "kd": KD,
+            "motor_to_joint": "mn_to_joint.translate(mean_motor_tail, io, gains=(-0.55, 0.65, 0.65))",
+            "engine": None,
+            "decode": None,
+            "phase_machine": None,
+            "h_min_m": H_MIN,
+            "pose_height_threshold_m": 0.12,
+            "learning": False,
+        },
+    }
+    if renderer:
+        import imageio.v2 as imageio
+        Path(video).parent.mkdir(parents=True, exist_ok=True)
+        imageio.mimwrite(video, frames, fps=25)
+        result["video"] = str(video)
+    return result
+
+
+def run_d(args) -> int:
+    sources, io, source_records = tonic_sources(args.data, args.weights_name, args.index_name)
+    specs = episode_specs(args.n, args.seed)
+    rows = []
+    for condition in CONDITIONS:
+        mean_motor = sources[condition][len(sources[condition]) // 2:].mean(axis=0)
+        print(f"{condition} tonic mean_motor_norm={np.linalg.norm(mean_motor):.6f}", flush=True)
+        for index, spec in enumerate(specs):
+            video = args.video if condition == "real" and index == 0 else None
+            result = run_tonic_episode(sources[condition], io, spec, video=video)
+            rows.append({**spec, **result, "condition": condition})
+            print(
+                f"{condition} {index + 1}/{args.n} height={result['mean_ride_height_m']:.4f} "
+                f"path={result['path_m']:.4f} feet={result['mean_feet_planted']:.3f} "
+                f"fell={result['fell']} {result['pose_verdict']}",
+                flush=True,
+            )
+    groups = {condition: [row for row in rows if row["condition"] == condition] for condition in CONDITIONS}
+    reference = [(row["episode"], row["episode_seed"], row["initial_yaw_rad"], row["prey_x_m"], row["prey_y_m"]) for row in groups["real"]]
+    shared_starts = all(
+        [(row["episode"], row["episode_seed"], row["initial_yaw_rad"], row["prey_x_m"], row["prey_y_m"]) for row in groups[condition]] == reference
+        for condition in CONDITIONS
+    )
+    protocols = [row["protocol"] for row in rows]
+    same_pipeline = all(protocol == protocols[0] for protocol in protocols)
+    finite_metrics = all(np.isfinite(row[name]) for row in rows for name in TONIC_SUMMARY_METRICS)
+    graph = graph_record(args.data)
+    if not shared_starts or not same_pipeline or not finite_metrics or not graph["hash_equal"] or any(len(group) != args.n for group in groups.values()):
+        raise AssertionError("Phase D integrity failed")
+    rng = np.random.default_rng(BOOTSTRAP_SEED)
+    summary = {condition: summarize(groups[condition], rng, TONIC_SUMMARY_METRICS) for condition in CONDITIONS}
+    for condition in CONDITIONS:
+        summary[condition]["pose_verdict"] = "D-POSE-PRESENT" if summary[condition]["metrics"]["mean_ride_height_m"]["mean"] >= 0.12 and summary[condition]["falls"] == 0 else "D-POSE-ABSENT"
+    comparison_rows = comparisons(groups, rng, TONIC_SUMMARY_METRICS)
+    result = {
+        "method": "D connectome tonic pose",
+        "protocol": {
+            "planned_n_per_condition": PLANNED_N,
+            "n_per_condition": args.n,
+            "episode_seed": args.seed,
+            "shared_episode_starts": shared_starts,
+            "same_fixed_pipeline": same_pipeline,
+            "tonic_drive": TONIC_VNC_DRIVE,
+            "tonic_vnc_steps": TONIC_VNC_STEPS,
+            "steady_state_window": "final 50% of constant-drive VNC history",
+            "hold_s": TONIC_HOLD_S,
+            "pose_height_threshold_m": 0.12,
+            "motor_map_gains": list(MAP_GAINS),
+            "h_min_m": H_MIN,
+            "engine": None,
+            "decode": None,
+            "phase_machine": None,
+            "learning": False,
+        },
+        "graph": graph,
+        "sources": source_records,
+        "summary": summary,
+        "comparisons": comparison_rows,
+        "pre_registered_rule": "constant low-drive VNC tail mean is translated once and held; mean ride height >= 0.12 m earns pose, otherwise no pose; no search or fallback",
+        "gate_d": {
+            "shared_episode_starts": shared_starts,
+            "same_fixed_pipeline": same_pipeline,
+            "finite_metrics": finite_metrics,
+            "graph_hash_equal": graph["hash_equal"],
+            "rows": len(rows),
+            "verdict": "GATE D: PASS",
+        },
+        "zero_learning": True,
+        "rows": rows,
+    }
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.with_suffix(".json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    columns = (
+        "condition", "episode", "episode_seed", "initial_yaw_rad", "prey_x_m", "prey_y_m",
+        "mean_ride_height_m", "final_height_m", "min_height_m", "mean_feet_planted", "path_m",
+        "displacement_m", "target_offset_norm_rad", "pose_verdict", "fell",
+    )
+    with args.out.with_suffix(".csv").open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows({key: row[key] for key in columns} for row in rows)
+    print(json.dumps({"summary": summary, "comparisons": comparison_rows}, sort_keys=True))
+    print("GATE D: PASS (shared starts; same fixed map; finite metrics; height rule recorded)")
+    print(f"json -> {args.out.with_suffix('.json')}")
+    print(f"csv -> {args.out.with_suffix('.csv')}")
+    print(f"video -> {args.video}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--phase", choices=("B", "C"), default="B")
+    parser.add_argument("--phase", choices=("B", "C", "D"), default="B")
     parser.add_argument("--data", type=Path, default=RESULTS)
     parser.add_argument("--weights_name", default="all_legs_weight_csr.pkl")
     parser.add_argument("--index_name", default="all_legs_io_index.npz")
@@ -554,13 +767,25 @@ def main() -> int:
     parser.add_argument("--video", type=Path, default=None)
     args = parser.parse_args()
     if args.out is None:
-        args.out = RESULTS / ("lastthree_B_dynamic_coupling" if args.phase == "B" else "lastthree_C_direct_mn_waveform")
+        args.out = RESULTS / {
+            "B": "lastthree_B_dynamic_coupling",
+            "C": "lastthree_C_direct_mn_waveform",
+            "D": "lastthree_D_tonic_pose",
+        }[args.phase]
     if args.video is None:
-        args.video = RESULTS / ("lastthree_B_real_multiview.mp4" if args.phase == "B" else "lastthree_C_real_multiview.mp4")
+        args.video = RESULTS / {
+            "B": "lastthree_B_real_multiview.mp4",
+            "C": "lastthree_C_real_multiview.mp4",
+            "D": "lastthree_D_real_multiview.mp4",
+        }[args.phase]
     if args.phase == "C":
         if args.n < 1 or args.secs <= 0.0 or int(round(args.secs * CTRL_HZ)) > BODY_STEPS:
             raise ValueError(f"run must use 1<=n and 0<secs<={PLANNED_SECS:g}")
         return run_c(args)
+    if args.phase == "D":
+        if args.n < 1:
+            raise ValueError("run must use n>=1")
+        return run_d(args)
     if args.n < 1 or args.secs <= 0.0 or int(round(args.secs * CTRL_HZ)) > BODY_STEPS:
         raise ValueError(f"run must use 1<=n and 0<secs<={PLANNED_SECS:g}")
 
