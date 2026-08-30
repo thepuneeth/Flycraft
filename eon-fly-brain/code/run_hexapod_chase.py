@@ -90,7 +90,7 @@ def main():
 
     m = mujoco.MjModel.from_xml_path(str(XML))
     d = mujoco.MjData(m)
-    gait = HexapodGait(stance=(0.0, 0.6, -1.2))
+    gait = HexapodGait()
     d.qpos[2] = 0.15
     d.qpos[3:7] = (np.cos(a.initial_yaw / 2), 0.0, 0.0, np.sin(a.initial_yaw / 2))
     phys = max(1, int(round((1 / a.ctrl_hz) / m.opt.timestep)))

@@ -28,7 +28,7 @@ PROJECT = HERE.parents[2]
 DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE.parent))
-from hexapod_gait import HexapodGait, XML, pd_torque  # noqa: E402
+from hexapod_gait import HexapodGait, XML, home_stance, pd_torque  # noqa: E402
 from probe_vnc_phase import phase_metrics  # noqa: E402
 from reservoir_3way import degree_preserving_rewire  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
@@ -48,7 +48,7 @@ VNC_DRIVE = 100.0
 CTRL_HZ = 50.0
 KP = 3.0
 KD = 0.05
-STANCE = np.asarray((0.0, 0.6, -1.2) * 6, dtype=np.float64)
+STANCE = home_stance().reshape(18)
 H_MIN = 0.02
 FALL_PENALTY = 0.5
 UPRIGHT_COS_MIN = 0.5
@@ -105,7 +105,7 @@ def bootstrap_ci(values: np.ndarray, seed: int = OPTIMIZER_SEED) -> list[float]:
 
 
 def make_target() -> np.ndarray:
-    gait = HexapodGait(stance=(0.0, 0.6, -1.2))
+    gait = HexapodGait()
     return np.stack([gait.targets(TARGET_FORWARD, TARGET_TURN, TARGET_DT) for _ in range(TARGET_STEPS)]).astype(np.float32)
 
 
@@ -135,7 +135,7 @@ def replay_target(q: np.ndarray) -> dict:
     model = mujoco.MjModel.from_xml_path(str(XML))
     data = mujoco.MjData(model)
     data.qpos[2] = 0.15
-    settle = np.tile((0.0, 0.6, -1.2), 6)
+    settle = STANCE
     for _ in range(int(0.7 / model.opt.timestep)):
         data.ctrl[:] = pd_torque(model, data, settle, KP, KD)
         mujoco.mj_step(model, data)

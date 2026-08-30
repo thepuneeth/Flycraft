@@ -13,12 +13,12 @@ HERE = Path(__file__).resolve()
 DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE))
-from hexapod_gait import XML, pd_torque  # noqa: E402
+from hexapod_gait import XML, home_stance, pd_torque  # noqa: E402
 from mn_to_joint import translate  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
 
 
-STANCE = np.asarray((0.0, 0.6, -1.2), dtype=np.float32)
+STANCE = home_stance().reshape(18).astype(np.float32)
 MAP_GAINS = (-0.55, 0.65, 0.65)
 TRIPOD_A = (0, 3, 4)
 TRIPOD_B = (1, 2, 5)

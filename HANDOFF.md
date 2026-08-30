@@ -1,21 +1,59 @@
 # Flycraft — Path 2 handoff
 
-Status: frozen rerun, E0–E4 localization, reservoir R0–R3, Outcome C/D, and
-Path 3 zero-learning step decode complete; final claim remains gated on user
-approval. Documentation and audits updated.
+Status: corrected body-setup rerun complete through E0–E4, Path 3, and the
+five-condition controls. Pre-fix body-level results are confounded/superseded;
+the final claim remains gated on user approval.
 
-## Working headline
+## Corrected rerun summary (provisional; final claim withheld)
 
-All 212 current Male CNS MANC T1/T2/T3 cells matching the published
-leg-coordination candidate rule are included, including both `IN12B013` T1
-cells. E0–E4 are exhausted: the expanded real VNC, structured brain drive,
-and fixed anatomical proprioceptive feedback still do not form a coherent
-alternating tripod. Real VNC wiring produces substantially more open-loop
-movement than column-shuffled VNC, but brain coupling does not outperform
-matched random descending drive in the short-horizon study. Outcome C shows no
-frozen-weight moat. Outcome D can express the target-like command phase, but
-matched controls do too and locomotion-only fine-tuning does not yield
-four-seed upright stability.
+Corrected home-pose body setup makes the clean external tripod clock stand and
+travel (`1.660 m` forward, `2.038 m` path in 8 s; minimum height `.121 m`; no
+fall), but the expanded frozen VNC still does not produce the declared
+alternating tripod. All 212 published T1/T2/T3 coordination candidates are
+included. E0, E3, E4, and Path 3 remain phase-absent. The five-condition study
+shows real VNC wiring beats column-shuffled VNC on path (`+0.2663 m`, 95% CI
+`[+.2611,+.2714]`, Holm `p=5.72×10⁻⁶` for the predeclared B2 path test), while
+brain-coupled VNC is below matched random descending drive (`−.0621 m`, 95%
+CI `[−.1192,−.0092]`, Holm `p=.0422`).
+
+This is corrected evidence assembly, not final claim wording. B4 Outcome C/D
+was skipped because corrected B1–B3 still show no tripod and no real-over-
+random advantage.
+
+## Pre-fix working headline (confounded/superseded)
+
+The earlier body-level headline and body-dependent result numbers used uniform
+stance `(0.0, 0.6, -1.2)` for all legs. They remain below for provenance only;
+the `bodyfix_*` artifacts supersede them for body-level inference. Graph
+selection and direct VNC-only measurements are retained, not silently deleted.
+
+## Body-setup correction
+
+The shared bug applied `(0.0, 0.6, -1.2)` to every leg. That settles at about
+`.073 m`, while the MJCF `home` keyframe encodes `z=.161 m` and mirrored right
+leg angles. The corrected code reads `m.key("home").qpos[7:25]`, preserves the
+fixed PD (`kp=3`, `kd=.05`), torque limits, engine state assignment, and
+steering, and uses the declared mirrored coxa/femur signs. Clean-clock
+constants are coxa `.35`, lift `.7`, base rate `.8`, drive rate `.5` (`1.2 Hz`
+at forward `.8`); no post-rerun tuning was performed. Commanded coxa phase
+uses fixed world-forward signs `[+1,-1,+1,-1,+1,-1]` to remove coordinate
+mirroring, not to fit performance.
+
+| result | pre-fix retained | corrected bodyfix |
+|---|---:|---:|
+| static settle | `.073 m` | `.145 m` |
+| Gate A clean engine | `.530 m` forward; `1.080 m` path; `.074 m` min height | `1.660 m` forward; `2.038 m` path; `.121 m` min height |
+| B1/P3 real episode | `.194 m` forward; `.461 m` path; scalar `+.112` | `.202 m` forward; `.542 m` path; scalar `−.306` |
+| B1/P4 real − shuffled | `+.2127 m` `[+.1636,+.2563]` | `+.3314 m` `[+.2529,+.4070]` |
+| B1/P4 real − random | `−.0946 m` `[−.1265,−.0625]` | `−.0966 m` `[−.1395,−.0562]` |
+| B2 real − shuffled | `+.1425 m` `[+.1397,+.1449]` | `+.2663 m` `[+.2611,+.2714]` |
+| B2 brain − random | `−.0383 m` `[−.0775,+.0012]` | `−.0621 m` `[−.1192,−.0092]` |
+| E0 | `E0-ABSENT` | `E0-ABSENT`; `3/6` within, `3/9` cross, scalar `+.098` |
+| E3 | `E3-ABSENT` | `E3-ABSENT`; `2/6` within, `3/9` cross, scalar `+.103` |
+| E4 | `E4-ABSENT` | `E4-ABSENT`; `0/6` within, `4/9` cross, scalar `−.210` |
+
+Corrected files use `eon-fly-brain/results/path2/bodyfix_*`; original files
+remain untouched as superseded provenance.
 
 Do not replace this with a catch headline. No condition caught prey.
 
@@ -115,20 +153,20 @@ two published candidates are included.
 
 ## Control study and inference
 
-Study design: five conditions, 20 paired episode starts per condition, 3 s
-each, static prey, episode base seed `20260829`. Every condition shares each
-episode's initial yaw and prey placement.
+Corrected-body study design: five conditions, 20 paired episode starts per
+condition, 3 s each, static prey, episode base seed `20260829`. Every
+condition shares each episode's initial yaw and prey placement.
 
 All 100 episodes returned normally: 0 catches and 0 falls in every condition;
 Wilson 95% CI for each binary rate is `[0.000, 0.161]`.
 
 | condition | path m [95% bootstrap CI] | forward m [95% bootstrap CI] | displacement m [95% bootstrap CI] | min distance m [95% bootstrap CI] |
 |---|---:|---:|---:|---:|
-| real VNC open-loop | .207 [.205, .209] | .019 [.017, .020] | .020 [.018, .021] | 1.390 [1.287, 1.491] |
-| brain-coupled VNC | .185 [.140, .228] | .030 [.013, .049] | .040 [.025, .057] | 1.385 [1.278, 1.488] |
-| shuffled VNC | .065 [.063, .066] | −.061 [−.063, −.059] | .061 [.059, .063] | 1.386 [1.286, 1.484] |
-| random descending | .223 [.193, .256] | .020 [.003, .037] | .036 [.025, .049] | 1.383 [1.277, 1.487] |
-| Path 1 hand CPG | .246 [.189, .300] | .094 [.039, .152] | .120 [.071, .171] | 1.322 [1.203, 1.436] |
+| real VNC open-loop | .351 [.348, .353] | .042 [.039, .045] | .093 [.090, .096] | 1.352 [1.250, 1.453] |
+| brain-coupled VNC | .286 [.224, .340] | .022 [.007, .038] | .046 [.034, .059] | 1.366 [1.264, 1.467] |
+| shuffled VNC | .084 [.080, .090] | .016 [.012, .020] | .041 [.038, .045] | 1.395 [1.295, 1.493] |
+| random descending | .348 [.317, .378] | .027 [.010, .045] | .056 [.045, .069] | 1.363 [1.264, 1.460] |
+| Path 1 hand CPG | .179 [.129, .230] | .067 [.030, .107] | .077 [.041, .115] | 1.349 [1.232, 1.459] |
 
 Mean motor temporal SD is .140 [.140, .140] real VNC, .116 [.092, .135]
 brain-coupled, .067 [.067, .067] shuffled, and .133 [.128, .138] random;
@@ -139,20 +177,21 @@ across three predeclared comparisons:
 
 | comparison | difference m [95% CI] | exact p | Holm p |
 |---|---:|---:|---:|
-| real VNC − shuffled VNC | +.1425 [.1397, .1449] | 1.91e−6 | 5.72e−6 |
-| brain-coupled − random descending | −.0383 [−.0775, +.0012] | .0789 | .1578 |
-| open-loop VNC − Path 1 hand CPG | −.0387 [−.0924, +.0187] | .1984 | .1984 |
+| real VNC − shuffled VNC | +.2663 [.2611, .2714] | 1.91e−6 | 5.72e−6 |
+| brain-coupled − random descending | −.0621 [−.1192, −.0092] | .0422 | .0422 |
+| open-loop VNC − Path 1 hand CPG | +.1713 [.1193, +.2225] | 5.72e−6 | 1.14e−5 |
 
-The real-versus-shuffled motor temporal-SD difference is +.0730 with exact
-paired `p=1.91e−6`. This is the positive wiring result. It does not turn the
-brain-coupled controller into a successful pursuit controller.
+The real-versus-shuffled motor temporal-SD difference remains +.0730 with
+exact paired `p=1.91e−6`. This is the positive wiring result. It does not turn
+the brain-coupled controller into a successful pursuit controller.
 
-Full metrics and tests: `results/path2/vnc_control_study_3s_stats.json`.
+Full metrics and tests: `results/path2/bodyfix_vnc_control_study_3s_stats.json`.
 
 ## Failure localization
 
-`results/path2/transfer_layers.png` is the mechanistic figure;
-`results/path2/transfer_layers.json` contains raw measurements.
+`results/path2/bodyfix_transfer_layers.png` is corrected mechanistic figure;
+`results/path2/bodyfix_transfer_layers.json` contains corrected measurements.
+The old `transfer_layers.*` files remain as superseded provenance.
 
 1. **VNC dynamics (layer i):** dynamic output exists — 260 motor channels,
    mean temporal SD .152 — and T1 oscillates. But all-leg inter-leg phase is
@@ -161,40 +200,50 @@ Full metrics and tests: `results/path2/vnc_control_study_3s_stats.json`.
 2. **Fixed motor map (layer ii):** all 18/18 target channels vary; mean target
    SD .133 rad and mean target range .588 rad. The map transfers activity but
    cannot repair phase.
-3. **Hexapod physics (layer iii):** mean joint-angle SD .099 rad, target-to-
-   joint correlation .424, target tracking MAE .112 rad. Body remains upright
-   (minimum height .062 m, no fall) and travels .475 m path / .107 m forward
-   in the 8 s open-loop replay. Physics attenuates and distorts the signal,
- but does not erase it. Layer i is the primary bottleneck; ii/iii add
- distortion rather than causing a total collapse.
+3. **Hexapod physics (layer iii):** corrected mean joint-angle SD `.144` rad,
+   target-to-joint correlation `.438`, and target tracking MAE `.110` rad.
+   Body remains upright (minimum height `.129 m`, no fall) and travels `1.079 m`
+   path / `.234 m` forward in the 8 s open-loop replay. Physics attenuates and
+   distorts the signal, but does not erase it or create the missing tripod.
+   Layer i is the primary bottleneck; ii/iii transmit the incoherence.
 
 ## E0–E4 branch completion
 
-E0 after the completeness rebuild is `E0-ABSENT`; its six-by-six matrix is in
-`results/path2/vnc_phase_probe_e0_after_e2.json` and is byte-identical to the
-pre-E2 probe. E2 found 212/212 published coordination candidates selected,
-with no anatomically justified widening. The raw inventory contains 12,745
-cross-neuromere endpoint cells and 166,088 floor-qualified edge rows.
+E0 after the completeness rebuild is `E0-ABSENT`; the corrected rerun is in
+`results/path2/bodyfix_vnc_phase_probe_e0.json` and gives within cosine `+.047`,
+cross cosine `−.052`, scalar `+.098`, with 3/6 within and 3/9 cross pairs
+passing. Its phase matrix and verdict match the direct pre-E2 neural probe
+(JSON field ordering differs). E2 found 212/212 published coordination
+candidates selected, with no anatomically justified widening. The raw
+inventory contains 12,745 cross-neuromere endpoint cells and 166,088
+floor-qualified edge rows.
 
 E3 drove the VNC with the full FlyWire forward pass at the exact DNg100/DNb08
 type-and-side outputs. VNC and joint-target phase both remained absent:
 within cosine −.181, cross cosine −.284, scalar +.103, with 2/6 within and
-3/9 cross pairs passing tolerance.
+3/9 cross pairs passing tolerance. Corrected artifact:
+`results/path2/bodyfix_e3_structured_descending.json`.
 
 E4 added all 622 traced leg proprioceptors defined by the fixed
 mechanosensory anatomy rule (campaniform, hair plate, chordotonal, or leg;
-ProLN/MesoLN/MetaLN; root side L/R). The 8 s closed-loop replay remained
-phase-absent: within cosine −.071, cross cosine +.102, scalar −.173, with 2/6
-within and 3/9 cross pairs passing. The body traveled .401 m path and .095 m
-forward, remained upright, and did not produce a tripod. This is one declared
-fixed contact/angle encoding, not an exhaustive sensory-model search.
+ProLN/MesoLN/MetaLN; root side L/R). On the corrected body, the 8 s closed-loop
+replay remained phase-absent: within cosine `−.455`, cross cosine `−.245`,
+scalar `−.210`, with 0/6 within and 4/9 cross pairs passing. The body traveled
+`1.004 m` path and `.162 m` forward, remained upright at minimum height
+`.137 m`, and did not produce a tripod. This is one declared fixed
+contact/angle encoding, not an exhaustive sensory-model search. Corrected
+artifact: `results/path2/bodyfix_e4_sensory_feedback.json`.
 
-E4 forced the pivot: after E2 established published-set completeness and E3
-failed with computed descending drive, the anatomically mapped sensory path
-still produced no declared tripod phase. Anatomy did not close transfer within
-this fixed model/body resolution.
+E4 still forces the pivot after body correction: E2 establishes published-set
+completeness, E3 fails with computed descending drive, and the anatomically
+mapped sensory path also fails to produce declared tripod phase. The body bug
+was real, but correcting it does not close transfer within this fixed model/body
+resolution.
 
-Outcome B reservoir pivot is complete. R0 collected 3,000 post-burn full-VNC
+Outcome B reservoir pivot is complete as graph/readout provenance. Its
+body-deployment and locomotion numbers used the pre-fix stance and are
+confounded/superseded; corrected B1–B3 did not trigger a rerun. R0 collected
+3,000 post-burn full-VNC
 states; R1 fit only closed-form ridge `W_out` to the fixed Path-1 template;
 R2 deployed linear and one permitted 64-unit fixed-random-feature escalation;
 R3 compared connectome, seeded random-weight, and exact degree-preserving
@@ -205,7 +254,11 @@ WEAK`; final claim remains withheld pending approval.
 See `PATH2_METHODS.md` and `results/path2/reservoir_3way.json` for the full
 readout metrics and integrity record.
 
-## Outcome C: CMA-ES gain-tuning (complete)
+## Outcome C: CMA-ES gain-tuning (pre-fix; superseded)
+
+> C0–C2 body-level values below used uniform squat stance and are retained as
+> confounded provenance. Corrected B1–B3 did not trigger the expensive B4
+> rerun, so no corrected C table exists.
 
 The learning ladder to walking: zero-learn open-loop (E0–E4, absent) →
 linear/nonlinear readout on frozen dynamics (reservoir R0–R3, `READOUT TOO
@@ -253,7 +306,11 @@ files.
 
 Do not write the final claim until the user approves the assembled evidence.
 
-## Outcome D: learn VNC weights (complete; final claim gated)
+## Outcome D: learn VNC weights (pre-fix; superseded; final claim gated)
+
+> Outcome D was not rerun after body correction because corrected B1–B3 still
+> showed no tripod and no real-over-random advantage. Old learning outputs are
+> retained for method provenance; body-level metrics are confounded/superseded.
 
 Outcome C ceilings, so the remaining rung that could plausibly produce
 walking is learning the VNC weights themselves — the FlyGM recipe (connectome
@@ -312,15 +369,17 @@ distance threshold or wall-time logger was declared before training. Equal
 budget remains auditable from checkpoints: D1 12 × 8 candidates and D2 12 × 6
 candidates evaluated on four fixed seeds per condition.
 
-## Path 3: zero-learning step-timing decode (complete; final claim gated)
+## Path 3: zero-learning step-timing decode (corrected; final claim gated)
 
 Phase 0 verified the cross-body method sources in `PATH2_METHODS.md`. The
-fixed decode uses the existing `mn_to_joint.py` map: per-leg mean trochanter
+fixed decode uses the existing `mn_to_joint.py` map and corrected home-pose
+body: per-leg mean trochanter
 `Tr flexor`/`Acc. tr flexor` activity greater than mean `Tr extensor` activity
-means swing; ties mean stance. `gait_engine.py` wraps the unchanged Path-1
-`HexapodGait` lift-swing-place/push-back primitive. No learning, reward,
-optimizer, phase selection, catch term, or distance term is present. The brain
-continues to provide only the existing frozen steering signals.
+means swing; ties mean stance. `gait_engine.py` wraps the fixed Path-1
+`HexapodGait` lift-swing-place/push-back primitive with mirrored joint signs. No
+learning, reward, optimizer, phase selection, catch term, or distance term is
+present. The brain continues to provide only the existing frozen steering
+signals.
 This is the single common direct antagonist pair across T1, T2, and T3; no
 alternative pool assignment was tried or selected by outcome.
 
@@ -330,12 +389,15 @@ P1 decode gate: real VNC frequencies were `0.867, 0.867, 1.733, 0.933,
 tripod and `4/9` cross-tripod pairs passing, `P1-ABSENT`. Shuffled VNC had no
 step onsets and `P1-ABSENT`.
 
-P2 clean-clock ceiling: `0.5303 m` forward, `1.0797 m` path, no fall, canonical
-tripod scalar `2.000`, `P2-ENGINE-PRESENT`.
+P2 clean-clock ceiling on corrected home pose: `1.6599 m` forward, `2.0380 m`
+path, mean ride height `.1345 m`, minimum height `.1213 m`, no fall, canonical
+tripod scalar `2.000`, `P2-ENGINE-PRESENT`. Commanded stance is exactly `3/6`;
+physical mean foot contact is `.419`.
 
-P3 representative real closed loop: `0.1937 m` forward, `0.4609 m` path, no
-fall, realized scalar `+.1119`, `P3-ABSENT`. The four-view video is
-`eon-fly-brain/results/path2/stepwalk_multiview.mp4`; visual verdict is
+P3 representative corrected real closed loop: `.2022 m` forward, `.5420 m`
+path, mean ride height `.1391 m`, minimum height `.0930 m`, no fall, realized
+scalar `−.3058`, `P3-ABSENT`. The four-view video is
+`eon-fly-brain/results/path2/bodyfix_stepwalk_multiview.mp4`; visual verdict is
 irregular asymmetric stepping/lurching, not a coordinated tripod.
 
 P4 used 20 shared static-prey starts, 8 s each, same engine/decode/steering/body
@@ -347,30 +409,33 @@ exemplars rather than post-hoc best selections.
 
 | timing source | forward m [95% CI] | path m [95% CI] | falls | upright | realized scalar [95% CI] |
 |---|---:|---:|---:|---:|---:|
-| real VNC | .0448 [.0114, .0804] | .2569 [.1965, .3135] | 0/20 | 20/20 | −.0413 [−.1625, .0880] |
-| shuffled VNC | −.0059 [−.0089, −.0032] | .0442 [.0254, .0638] | 0/20 | 20/20 | +.2599 [.1284, .4040] |
-| random matched-rate | .0782 [.0353, .1235] | .3515 [.2732, .4221] | 0/20 | 20/20 | +.0348 [−.0891, .1569] |
+| real VNC | .1014 [.0659, .1391] | .3784 [.2834, .4726] | 0/20 | 20/20 | −.1317 [−.2070, −.0515] |
+| shuffled VNC | −.0007 [−.0037, .0024] | .0470 [.0268, .0686] | 0/20 | 20/20 | ~0 [0, 0] |
+| random matched-rate | .1329 [.0811, .1893] | .4750 [.3564, .5915] | 0/20 | 20/20 | −.0293 [−.1542, .1094] |
 
-Primary path tests: real minus shuffled `+.2127 m` [+.1636, +.2563], exact
-paired sign-flip `p=1.53e-5`, Holm `p=3.05e-5`; real minus random `−.0946 m`
-[−.1265, −.0625], exact `p=6.10e-5`, Holm `p=6.10e-5`. All 60 realized
+Primary path tests: real minus shuffled `+.3314 m` [+.2529, +.4070], exact
+paired sign-flip `p=1.53e-5`, Holm `p=3.05e-5`; real minus random `−.0966 m`
+[−.1395, −.0562], exact `p=4.58e-5`, Holm `p=4.58e-5`. All 60 realized
 phase verdicts are `P3-ABSENT`. Real timing produces more movement than
 shuffled but less than random matched-rate timing; it does not produce a
-connectome-specific coordinated walk. Proposed protocol verdict:
-**NO WALK; no connectome-specific timing advantage**. Do not promote this to a
-final claim without user approval.
+connectome-specific coordinated walk. Corrected condition videos and stats
+are under `results/path2/bodyfix_stepwalk_*`. This remains evidence assembly;
+do not promote it to a final claim without user approval.
 
 Path 3 localizes primary failure to layer i: real decoded states pass only
-`2/6` within-tripod and `4/9` cross-tripod pairs. Layer ii carries variation
-(real episode motor temporal SD `.148`, target temporal SD `.092` rad) but does
-not repair phase. Layer iii passes the clean-clock ceiling (`.5303 m` forward,
-scalar `2.000`) and remains upright in P3; decoded timing still produces no
-tripod.
+`2/6` within-tripod and `4/9` cross-tripod pairs; mean decoded swing fraction
+is `.686` and imbalanced across legs. Layer ii carries variation (corrected
+real episode motor temporal SD `.129`, target temporal SD `.086` rad) but does
+not repair phase. Layer iii passes the corrected clean-clock ceiling (`1.660 m`
+forward, scalar `2.000`) and remains upright in P3; decoded timing still
+produces no tripod.
 
-Artifacts: `eon-fly-brain/results/path2/step_decode_p1.json`,
-`gait_engine_sanity.json`, `stepwalk_metrics_{real,shuffled,random}.json`,
-`stepwalk_controls.{json,csv,png}`, and the three
-`stepwalk_multiview*.mp4` videos.
+Corrected artifacts: `eon-fly-brain/results/path2/step_decode_p1.json`,
+`bodyfix_gate_a.json`, `bodyfix_stepwalk_metrics_{real,shuffled,random}.json`,
+`bodyfix_stepwalk_controls.{json,csv,png}`, and the three
+`bodyfix_stepwalk_multiview*.mp4` videos. Old `gait_engine_sanity.json`,
+`stepwalk_metrics_*`, and `stepwalk_multiview*.mp4` body outputs are retained as
+superseded provenance.
 
 ## Reproduction commands
 
@@ -436,11 +501,11 @@ Run from `/Users/puneeth/Documents/Flycraft` with
   --video eon-fly-brain/results/path2/reservoir_walk_multiview_linear.mp4
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/reservoir_3way.py
 
-# Outcome C C2 fixed 22-generation three-way endpoint (no continuation).
+# Pre-fix Outcome C C2 endpoint (retained; no corrected B4 rerun).
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/cmaes_3way.py \
   --workers 8 --max_generations 22 --max_hours 2
 
-# Outcome D: corrected fresh matched runs. Checkpoints make reruns resumable.
+# Pre-fix Outcome D runs (retained; corrected B4 rerun skipped).
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
   --condition connectome --fresh
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
@@ -452,30 +517,57 @@ Run from `/Users/puneeth/Documents/Flycraft` with
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
   --heldout-drive 90
 
-# Path 3: fixed decode, engine ceiling, representative episode, and controls.
+# Corrected bodyfix rerun: fixed decode, engine ceiling, representative episode,
+# and timing controls. These outputs do not overwrite pre-fix artifacts.
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/step_decode.py \
   --data eon-fly-brain/results/path2 \
   --out eon-fly-brain/results/path2/step_decode_p1
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_stepwalk.py \
   --engine_only --secs 8 \
-  --out eon-fly-brain/results/path2/gait_engine_sanity.json
+  --video eon-fly-brain/results/path2/bodyfix_engine_walk.mp4 \
+  --out eon-fly-brain/results/path2/bodyfix_gate_a.json
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_stepwalk.py \
   --condition real --secs 8 \
-  --video eon-fly-brain/results/path2/stepwalk_multiview.mp4 \
-  --out eon-fly-brain/results/path2/stepwalk_metrics_real_episode.json
+  --video eon-fly-brain/results/path2/bodyfix_stepwalk_multiview.mp4 \
+  --out eon-fly-brain/results/path2/bodyfix_stepwalk_metrics_real_episode.json
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/stepwalk_controls.py \
   --data eon-fly-brain/data --vnc_data eon-fly-brain/results/path2 \
   --n 20 --secs 8 \
   --timing_reference eon-fly-brain/results/path2/step_decode_p1.json \
-  --out eon-fly-brain/results/path2/stepwalk_controls
+  --out eon-fly-brain/results/path2/bodyfix_stepwalk_controls
+
+# Corrected B2 five-condition control and statistics.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/study_vnc.py \
+  --n 20 --secs 3 --seed 20260829 \
+  --out eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/analyze_control_study.py \
+  --input eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s.csv \
+  --out eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s_stats
+
+# Corrected B3 E0/E3/E4 and transfer-layer audits.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_vnc_phase.py \
+  --data eon-fly-brain/results/path2 \
+  --out eon-fly-brain/results/path2/bodyfix_vnc_phase_probe_e0
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_structured_descending.py \
+  --data eon-fly-brain/results/path2 --brain_data eon-fly-brain/data \
+  --out eon-fly-brain/results/path2/bodyfix_e3_structured_descending
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_sensory_feedback.py \
+  --data eon-fly-brain/results/path2 --brain_data eon-fly-brain/data \
+  --weights_name e4_sensory_weight_csr.pkl \
+  --index_name e4_sensory_io_index.npz \
+  --out eon-fly-brain/results/path2/bodyfix_e4_sensory_feedback
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/audit_transfer_layers.py \
+  --data eon-fly-brain/results/path2 \
+  --out eon-fly-brain/results/path2/bodyfix_transfer_layers
 ```
 
-The synchronized four-camera episode is
-`results/path2/vnc_brain_closed_loop_8s_multiview.mp4`.
+The corrected synchronized four-camera episode is
+`results/path2/bodyfix_stepwalk_multiview.mp4`; the old
+`results/path2/stepwalk_multiview.mp4` remains pre-fix provenance.
 
 ## Integrity checklist
 
-Before final claim approval, rerun and record:
+Corrected rerun checks already recorded:
 
 - Python compile for every `code/*.py` file;
 - JSON/CSV parse and expected-row checks;
@@ -489,6 +581,16 @@ Before final claim approval, rerun and record:
 - immutable target and exact row/column degree sequences for D controls;
 - `git diff --check`.
 
+All 58 JSON and 41 CSV files parse; all 212 published candidates are selected
+with 0 omitted; VNC hash is
+`018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`; brain
+hash is `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
+The corrected engine, E3/E4, layer, and control artifacts retain zero-learning
+or learning=false protocol flags; source scan found no optimizer, backprop,
+reward, target-fit, or performance-based choice in frozen rerun paths. All
+corrected videos are readable H.264, 8.000 s. Outcome C/D remain pre-fix and
+were not rerun.
+
 Do not add constants, retune gains, delete superseded artifacts, or broaden
 the claim before user approval.
 
@@ -499,6 +601,7 @@ the claim before user approval.
 | `eon-fly-brain/code/fetch_manc.py` | fixed official-MANC selection and signed CSR builder |
 | `eon-fly-brain/code/vnc_stepper.py` | paper-rate VNC dynamics and shuffle control |
 | `eon-fly-brain/code/mn_to_joint.py` | fixed motor-pool to 18-joint map |
+| `eon-fly-brain/code/hexapod_gait.py` | MJCF-home stance and mirrored fixed gait primitive |
 | `eon-fly-brain/code/run_vnc_chase.py` | brain/VNC/body episode runner and video renderer |
 | `eon-fly-brain/code/audit_vnc_legs.py` | coupling, candidate, and phase audit |
 | `eon-fly-brain/code/audit_transfer_layers.py` | VNC → target → physics audit and figure |

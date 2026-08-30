@@ -13,21 +13,21 @@ import numpy as np
 HERE = Path(__file__).resolve()
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE.parent))
-from hexapod_gait import HexapodGait  # noqa: E402
+from hexapod_gait import HexapodGait, home_stance  # noqa: E402
 
 
 TRAIN_FRACTION = 0.7
 SAMPLE_DT = 0.02
 TEMPLATE_FORWARD = 0.8
 TEMPLATE_TURN = 0.0
-TEMPLATE_STANCE = np.asarray((0.0, 0.6, -1.2) * 6, dtype=np.float64)
+TEMPLATE_STANCE = home_stance().reshape(18)
 LAMBDAS = np.logspace(-6, 6, 13)
 RANDOM_FEATURE_UNITS = 64
 RANDOM_FEATURE_SEED = 20260829
 
 
 def template(steps: int) -> np.ndarray:
-    gait = HexapodGait(stance=(0.0, 0.6, -1.2))
+    gait = HexapodGait()
     return np.stack([gait.targets(TEMPLATE_FORWARD, TEMPLATE_TURN, SAMPLE_DT) for _ in range(steps)])
 
 

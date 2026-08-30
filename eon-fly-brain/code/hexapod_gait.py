@@ -24,12 +24,31 @@ TRIPOD_A = {0, 3, 4}                      # half-cycle out of phase with the res
 # per-leg joint indices in ctrl: leg i -> [3i (coxa), 3i+1 (femur), 3i+2 (tibia)]
 
 
+def home_stance(model: mujoco.MjModel | None = None) -> np.ndarray:
+    """Return the six-leg stance encoded by the model's author-declared home keyframe."""
+    model = model or mujoco.MjModel.from_xml_path(str(XML))
+    qpos = np.asarray(model.key("home").qpos, dtype=np.float64)
+    if qpos.shape != (model.nq,) or model.nq < 25:
+        raise ValueError(f"home keyframe qpos shape {qpos.shape}; expected at least 25 values")
+    return qpos[7:25].reshape(6, 3).copy()
+
+
+def resolve_stance(stance: np.ndarray | tuple[float, ...] | None = None) -> np.ndarray:
+    """Normalize a uniform, per-leg, or omitted stance to a six-by-three array."""
+    values = home_stance() if stance is None else np.asarray(stance, dtype=np.float64)
+    if values.size == 3:
+        return np.tile(values.reshape(1, 3), (6, 1))
+    if values.size == 18:
+        return values.reshape(6, 3).copy()
+    raise ValueError(f"stance has {values.size} values; expected 3 or 18")
+
+
 class HexapodGait:
     """Tripod CPG producing 18 joint targets from a {forward,turn} drive."""
-    def __init__(self, stance=(0.0, 0.6, -1.2), swing_amp=0.8, lift_amp=0.65,
-                 base_freq=1.5, drive_freq=2.5, turn_scale=1.0):
-        self.coxa0, self.femur0, self.tibia0 = stance
-        self.swing_amp, self.lift_amp = swing_amp, lift_amp
+    def __init__(self, stance=None, swing_amp=0.35, lift_amp=0.7,
+                 base_freq=0.8, drive_freq=0.5, turn_scale=1.0):
+        self.stance = resolve_stance(stance)
+        self.swing_amp, self.lift_amp = float(swing_amp), float(lift_amp)
         self.base_freq, self.drive_freq = base_freq, drive_freq
         self.turn_scale = turn_scale
         self.phi = 0.0
@@ -42,14 +61,16 @@ class HexapodGait:
         q = np.zeros(18)
         for leg in range(6):
             p = self.phi + (np.pi if leg in TRIPOD_A else 0.0)
+            side = 1.0 if leg in LEFT else -1.0
             # turn: inside legs take a shorter stride (differential drive)
             side_gain = (1 - bias) if leg in LEFT else (1 + bias)
-            coxa = self.coxa0 - self.swing_amp * side_gain * forward * np.sin(p)
-            lift = self.lift_amp * max(0.0, np.sin(p))     # raise leg on swing half only
-            femur = self.femur0 + lift
+            coxa0, femur0, tibia0 = self.stance[leg]
+            coxa = coxa0 - side * self.swing_amp * side_gain * forward * np.sin(p)
+            lift = side * self.lift_amp * max(0.0, np.sin(p))     # mirrored lift; stance half stays planted
+            femur = femur0 + lift
             q[3 * leg] = coxa
             q[3 * leg + 1] = femur
-            q[3 * leg + 2] = self.tibia0
+            q[3 * leg + 2] = tibia0
         return q
 
 
@@ -61,7 +82,7 @@ def pd_torque(m, d, target, kp, kd):
     return np.clip(tau, m.actuator_ctrlrange[:, 0], m.actuator_ctrlrange[:, 1])
 
 
-def run(mode="walk", drive=0.8, turn=0.0, secs=5.0, stance=(0.0, 0.6, -1.2),
+def run(mode="walk", drive=0.8, turn=0.0, secs=5.0, stance=None,
         kp=3.0, kd=0.05, video=None, ctrl_hz=100.0, verbose=True):
     m = mujoco.MjModel.from_xml_path(str(XML))
     d = mujoco.MjData(m)
@@ -114,7 +135,7 @@ if __name__ == "__main__":
     ap.add_argument("--secs", type=float, default=5.0)
     ap.add_argument("--kp", type=float, default=3.0)
     ap.add_argument("--kd", type=float, default=0.05)
-    ap.add_argument("--stance", type=float, nargs=3, default=[0.0, 0.6, -1.2])
+    ap.add_argument("--stance", type=float, nargs=3, default=None)
     ap.add_argument("--video", default=None)
     a = ap.parse_args()
-    run(a.mode, a.drive, a.turn, a.secs, tuple(a.stance), a.kp, a.kd, a.video)
+    run(a.mode, a.drive, a.turn, a.secs, None if a.stance is None else tuple(a.stance), a.kp, a.kd, a.video)

@@ -13,7 +13,7 @@ HERE = Path(__file__).resolve()
 DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE))
-from gait_engine import STANCE, StepGaitEngine, clean_tripod_states  # noqa: E402
+from gait_engine import STANCE, StepGaitEngine, clean_tripod_states, coxa_phase_signal  # noqa: E402
 from probe_vnc_phase import phase_metrics  # noqa: E402
 from run_hexapod_chase import retina  # noqa: E402
 from run_reservoir_walk import FrozenBrain  # noqa: E402
@@ -35,31 +35,50 @@ VNC_WEIGHTS = "all_legs_weight_csr.pkl"
 VNC_INDEX = "all_legs_io_index.npz"
 
 
-def run_clean_engine(secs: float = 8.0) -> dict:
+def feet_planted_fraction(data, floor_id: int, foot_ids: tuple[int, ...]) -> float:
+    planted = [False] * len(foot_ids)
+    for index in range(data.ncon):
+        geom1, geom2 = int(data.contact[index].geom1), int(data.contact[index].geom2)
+        foot = geom2 if geom1 == floor_id else geom1 if geom2 == floor_id else -1
+        if foot in foot_ids:
+            planted[foot_ids.index(foot)] = True
+    return float(np.mean(planted))
+
+
+def run_clean_engine(secs: float = 8.0, video: Path | None = None) -> dict:
     """P2 ceiling: a clean external tripod clock drives the same fixed engine."""
     model = mujoco.MjModel.from_xml_path(str(XML))
     data = mujoco.MjData(model)
     data.qpos[2] = 0.15
-    engine = StepGaitEngine(stance=tuple(STANCE))
-    clean = HexapodGait(stance=tuple(STANCE))
+    engine = StepGaitEngine(stance=STANCE)
+    clean = HexapodGait(stance=STANCE)
     forward, turn = 0.8, 0.0
     physics_steps = max(1, int(round(DT_S / model.opt.timestep)))
-    stance = np.tile(STANCE, 6).astype(np.float32)
+    stance = STANCE.reshape(18).astype(np.float32)
     for _ in range(int(SETTLE_S / model.opt.timestep)):
         data.ctrl[:] = pd_torque(model, data, stance, KP, KD)
         mujoco.mj_step(model, data)
+    static_settle_height = float(data.qpos[2])
     x0, y0 = float(data.qpos[0]), float(data.qpos[1])
     yaw0 = 2.0 * np.arctan2(data.qpos[6], data.qpos[3])
     phase = 0.0
     targets = []
     heights = []
+    feet_planted = []
+    commanded_stance_legs = []
     path = 0.0
     last = (x0, y0)
     frequency = clean.base_freq + clean.drive_freq * forward
+    floor_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, "floor")
+    foot_ids = tuple(mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, f"foot_{leg}") for leg in range(6))
+    renderer = mujoco.Renderer(model, 480, 640) if video else None
+    frames = []
     for _ in range(int(round(secs * CTRL_HZ))):
         phase = (phase + 2.0 * np.pi * frequency * DT_S) % (2.0 * np.pi)
-        target = engine.targets(clean_tripod_states(phase), forward, turn, DT_S)
+        state = clean_tripod_states(phase)
+        target = engine.targets(state, forward, turn, DT_S)
         targets.append(target)
+        commanded_stance_legs.append(int((~state).sum()))
         for _ in range(physics_steps):
             data.ctrl[:] = pd_torque(model, data, target, KP, KD)
             mujoco.mj_step(model, data)
@@ -67,11 +86,15 @@ def run_clean_engine(secs: float = 8.0) -> dict:
         path += float(np.hypot(now[0] - last[0], now[1] - last[1]))
         last = now
         heights.append(float(data.qpos[2]))
+        feet_planted.append(feet_planted_fraction(data, floor_id, foot_ids))
+        if renderer and len(targets) % 2 == 0:
+            renderer.update_scene(data, camera="track")
+            frames.append(renderer.render())
     targets = np.asarray(targets, dtype=np.float64)
     heights = np.asarray(heights, dtype=np.float64)
     dx, dy = float(data.qpos[0]) - x0, float(data.qpos[1]) - y0
-    phase_result = phase_metrics(targets.reshape(-1, 6, 3)[..., 0], DT_S, "P2-ENGINE-PRESENT", "P2-ENGINE-ABSENT")
-    return {
+    phase_result = phase_metrics(coxa_phase_signal(targets), DT_S, "P2-ENGINE-PRESENT", "P2-ENGINE-ABSENT")
+    result = {
         "protocol": {
             "secs": secs,
             "ctrl_hz": CTRL_HZ,
@@ -80,15 +103,26 @@ def run_clean_engine(secs: float = 8.0) -> dict:
             "external_clock": "clean alternating tripod at Path-1 HexapodGait rate",
             "gait_engine": "StepGaitEngine over unchanged HexapodGait primitive",
         },
+        "static_settle_height_m": static_settle_height,
         "forward_distance_m": float(dx * np.cos(yaw0) + dy * np.sin(yaw0)),
         "displacement_m": float(np.hypot(dx, dy)),
         "path_m": float(path),
+        "mean_ride_height_m": float(heights.mean()),
         "min_height_m": float(heights.min()),
         "final_height_m": float(heights[-1]),
         "fell": bool(heights.min() < H_MIN),
+        "mean_feet_planted": float(np.mean(feet_planted)),
+        "min_feet_planted": float(np.min(feet_planted)),
+        "mean_commanded_stance_legs": float(np.mean(commanded_stance_legs)),
         "tripod_coherence_scalar": float(phase_result["tripod_coherence_scalar"]),
         "phase": phase_result,
     }
+    if renderer:
+        import imageio.v2 as imageio
+        Path(video).parent.mkdir(parents=True, exist_ok=True)
+        imageio.mimwrite(video, frames, fps=25)
+        result["video"] = str(video)
+    return result
 
 
 def reference_timing(reference: dict) -> tuple[np.ndarray, np.ndarray]:
@@ -143,7 +177,7 @@ def run_episode(
         raise ValueError("context condition does not match episode condition")
     context.vnc.reset()
     brain = FrozenBrain(context.brain_data)
-    engine = StepGaitEngine(stance=tuple(STANCE))
+    engine = StepGaitEngine(stance=STANCE)
     random_timing = None
     if condition == "random":
         if timing_reference is None:
@@ -154,7 +188,7 @@ def run_episode(
     data = mujoco.MjData(context.model)
     data.qpos[2] = 0.15
     data.qpos[3:7] = (np.cos(initial_yaw / 2.0), 0.0, 0.0, np.sin(initial_yaw / 2.0))
-    stance = np.tile(STANCE, 6).astype(np.float32)
+    stance = STANCE.reshape(18).astype(np.float32)
     for _ in range(int(SETTLE_S / context.model.opt.timestep)):
         data.ctrl[:] = pd_torque(context.model, data, stance, KP, KD)
         mujoco.mj_step(context.model, data)
@@ -170,6 +204,10 @@ def run_episode(
     phases = []
     motors = []
     heights = []
+    feet_planted = []
+    commanded_stance_legs = []
+    floor_id = mujoco.mj_name2id(context.model, mujoco.mjtObj.mjOBJ_GEOM, "floor")
+    foot_ids = tuple(mujoco.mj_name2id(context.model, mujoco.mjtObj.mjOBJ_GEOM, f"foot_{leg}") for leg in range(6))
     renderer = mujoco.Renderer(context.model, 480, 640) if video else None
     cameras = []
     if renderer:
@@ -196,6 +234,7 @@ def run_episode(
         target = engine.targets(state, forward, turn, DT_S)
         targets.append(target)
         states.append(state)
+        commanded_stance_legs.append(int((~state).sum()))
         phases.append(engine.phases.copy())
         for _ in range(context.physics_steps):
             data.ctrl[:] = pd_torque(context.model, data, target, KP, KD)
@@ -206,6 +245,7 @@ def run_episode(
         min_distance = min(min_distance, distance)
         caught |= distance < CATCH_DISTANCE
         heights.append(float(data.qpos[2]))
+        feet_planted.append(feet_planted_fraction(data, floor_id, foot_ids))
         if renderer and step % 2 == 0:
             views = []
             for camera in cameras:
@@ -219,7 +259,7 @@ def run_episode(
     phases = np.asarray(phases, dtype=np.float64)
     heights = np.asarray(heights, dtype=np.float64)
     dx, dy = float(data.qpos[0]) - x0, float(data.qpos[1]) - y0
-    realized_phase = phase_metrics(targets.reshape(-1, 6, 3)[..., 0], DT_S, "P3-PRESENT", "P3-ABSENT")
+    realized_phase = phase_metrics(coxa_phase_signal(targets), DT_S, "P3-PRESENT", "P3-ABSENT")
     decoded_phase = phase_metrics(states.astype(np.float64), DT_S, "P1-PRESENT", "P1-ABSENT")
     fell = bool(heights.min() < H_MIN)
     result = {
@@ -234,9 +274,13 @@ def run_episode(
         "min_distance_m": float(min_distance),
         "min_height_m": float(heights.min()),
         "final_height_m": float(heights[-1]),
+        "mean_ride_height_m": float(heights.mean()),
         "fell": fell,
         "upright": bool(not fell),
         "caught": bool(caught),
+        "mean_feet_planted": float(np.mean(feet_planted)),
+        "min_feet_planted": float(np.min(feet_planted)),
+        "mean_commanded_stance_legs": float(np.mean(commanded_stance_legs)),
         "tripod_coherence_scalar": float(realized_phase["tripod_coherence_scalar"]),
         "realized_phase": realized_phase,
         "decoded_state_phase": decoded_phase,
@@ -294,7 +338,7 @@ def main() -> None:
     parser.add_argument("--engine_only", action="store_true")
     args = parser.parse_args()
     if args.engine_only:
-        result = run_clean_engine(args.secs)
+        result = run_clean_engine(args.secs, args.video)
         output = args.out or RESULTS / "gait_engine_sanity.json"
         output = output if output.suffix == ".json" else output.with_suffix(".json")
         output.parent.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,76 @@
+{
+  "n_per_condition": 20,
+  "conditions": [
+    "vnc_open_loop",
+    "vnc_brain",
+    "shuffled_vnc",
+    "random_descending",
+    "path1_hand_cpg"
+  ],
+  "secs": 3.0,
+  "seed": 20260829,
+  "weights_name": "all_legs_weight_csr.pkl",
+  "index_name": "all_legs_io_index.npz",
+  "fixed_vnc_model": "paper",
+  "fixed_vnc_drive": 100.0,
+  "fixed_vnc_gW": 0.03,
+  "fixed_vnc_substeps": 4,
+  "fixed_motor_map_gains": [
+    -0.55,
+    0.65,
+    0.65
+  ],
+  "zero_learning": true,
+  "summary": {
+    "vnc_open_loop": {
+      "n": 20,
+      "caught_rate": 0.0,
+      "fell_rate": 0.0,
+      "mean_path_m": 0.35075635497295216,
+      "mean_forward_displacement_m": 0.04203226458270521,
+      "mean_displacement_m": 0.09264951136857426,
+      "mean_min_distance_m": 1.3515169861022625,
+      "mean_motor_temporal_std": 0.14019621908664703
+    },
+    "vnc_brain": {
+      "n": 20,
+      "caught_rate": 0.0,
+      "fell_rate": 0.0,
+      "mean_path_m": 0.2856743349328098,
+      "mean_forward_displacement_m": 0.0221420177600013,
+      "mean_displacement_m": 0.046339683474141476,
+      "mean_min_distance_m": 1.3660130916033704,
+      "mean_motor_temporal_std": 0.115551520511508
+    },
+    "shuffled_vnc": {
+      "n": 20,
+      "caught_rate": 0.0,
+      "fell_rate": 0.0,
+      "mean_path_m": 0.084494382034136,
+      "mean_forward_displacement_m": 0.016119794348527512,
+      "mean_displacement_m": 0.04116911169102365,
+      "mean_min_distance_m": 1.394654790198542,
+      "mean_motor_temporal_std": 0.06715942174196243
+    },
+    "random_descending": {
+      "n": 20,
+      "caught_rate": 0.0,
+      "fell_rate": 0.0,
+      "mean_path_m": 0.3477833995678355,
+      "mean_forward_displacement_m": 0.026957602054046532,
+      "mean_displacement_m": 0.0562768181856861,
+      "mean_min_distance_m": 1.362521114682411,
+      "mean_motor_temporal_std": 0.13335601091384888
+    },
+    "path1_hand_cpg": {
+      "n": 20,
+      "caught_rate": 0.0,
+      "fell_rate": 0.0,
+      "mean_path_m": 0.17948716136887605,
+      "mean_forward_displacement_m": 0.06714092038787453,
+      "mean_displacement_m": 0.07731788608258458,
+      "mean_min_distance_m": 1.3490332636006088,
+      "mean_motor_temporal_std": 0.0
+    }
+  }
+}

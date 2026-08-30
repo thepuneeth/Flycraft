@@ -13,6 +13,8 @@ from pathlib import Path
 
 import numpy as np
 
+from hexapod_gait import home_stance, resolve_stance
+
 
 HERE = Path(__file__).resolve()
 DATA = HERE.parent.parent / "data"
@@ -34,7 +36,7 @@ def _pool_score(activity, legs, joints, signs):
     return pos - neg, positive_n + negative_n
 
 
-def translate(motor_activity, io, stance=(0.0, 0.6, -1.2), gains=(-0.55, 0.65, 0.65)):
+def translate(motor_activity, io, stance=None, gains=(-0.55, 0.65, 0.65)):
     """Return 18 fixed joint targets from one VNC motor-rate vector."""
     activity = np.asarray(motor_activity, dtype=np.float64).reshape(-1)
     expected = len(io["motor_out"])
@@ -45,7 +47,7 @@ def translate(motor_activity, io, stance=(0.0, 0.6, -1.2), gains=(-0.55, 0.65, 0
     signs = io["motor_sign"].astype(np.float64)
     score, pool_n = _pool_score(activity, legs, joints, signs)
 
-    target = np.tile(np.asarray(stance, dtype=np.float64), (6, 1))
+    target = resolve_stance(stance)
     for leg in range(6):
         coxa = score[leg, 0] if pool_n[leg, 0] else 0.0
         femur_values = [score[leg, j] for j in (1, 2) if pool_n[leg, j]]
@@ -65,7 +67,7 @@ def main():
     io = np.load(a.data / "vnc_io_index.npz")
     zero = translate(np.zeros(len(io["motor_out"])), io)
     assert zero.shape == (18,)
-    assert np.allclose(zero.reshape(6, 3)[2:], (0.0, 0.6, -1.2))
+    assert np.allclose(zero.reshape(6, 3), home_stance())
     print(f"motor outputs={len(io['motor_out'])} active pools={int((io['motor_pool_sizes'] > 0).sum())}")
     print("zero-drive targets:", zero.reshape(6, 3).tolist())
 

@@ -23,7 +23,7 @@ DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE.parent))
 from fetch_manc import load_annotations  # noqa: E402
-from hexapod_gait import XML, pd_torque  # noqa: E402
+from hexapod_gait import XML, home_stance, pd_torque  # noqa: E402
 from probe_structured_descending import DESC_KEYS, brain_type_indices, phase_metrics  # noqa: E402
 from run_hexapod_chase import retina  # noqa: E402
 from run_sensory_feedback import ANGLE_LIMIT_RAD, LEG_NAMES, PROPRIO_SUBCLASSES, foot_loads  # noqa: E402
@@ -45,7 +45,7 @@ SETTLE_S = 0.7
 KP = 3.0
 KD = 0.05
 MAP_GAINS = (-0.55, 0.65, 0.65)
-STANCE = np.asarray((0.0, 0.6, -1.2), dtype=np.float64)
+STANCE = home_stance()
 ANGLE_NORMALIZATION_RAD = ANGLE_LIMIT_RAD
 ROLLOUT_SECS = 4.0
 EVALUATION_SECS = 8.0
@@ -302,7 +302,7 @@ def rollout(
     sim.qpos[2] = 0.15
     sim.qpos[3:7] = (np.cos(yaw0 / 2), 0.0, 0.0, np.sin(yaw0 / 2))
     brain_state = torch.zeros(context.brain_weight.shape[0], dtype=torch.float32)
-    stance = np.tile(STANCE, 6).astype(np.float32)
+    stance = STANCE.reshape(18).astype(np.float32)
     for _ in range(int(SETTLE_S / context.model.opt.timestep)):
         sim.ctrl[:] = pd_torque(context.model, sim, stance, KP, KD)
         mujoco.mj_step(context.model, sim)
@@ -439,7 +439,7 @@ def write_gene_spec(output: Path = RESULTS / "cmaes_gene_spec.json") -> None:
             "vnc_fr_cap": VNC_FR_CAP,
             "pd_kp": KP,
             "pd_kd": KD,
-            "stance": STANCE.reshape(3).tolist(),
+            "stance": STANCE.tolist(),
         },
         "optional_feedback_delay": False,
         "weights_are_modified": False,

@@ -3,10 +3,17 @@ from __future__ import annotations
 
 import numpy as np
 
-from hexapod_gait import HexapodGait, TRIPOD_A
+from hexapod_gait import HexapodGait, LEFT, TRIPOD_A, home_stance
 
 
-STANCE = np.asarray((0.0, 0.6, -1.2), dtype=np.float64)
+STANCE = home_stance()
+COXA_WORLD_SIGN = np.asarray([1.0 if leg in LEFT else -1.0 for leg in range(6)], dtype=np.float64)
+
+
+def coxa_phase_signal(targets: np.ndarray) -> np.ndarray:
+    """Undo mirrored joint-coordinate signs before applying the canonical phase metric."""
+    values = np.asarray(targets, dtype=np.float64).reshape(-1, 6, 3)[..., 0]
+    return values * COXA_WORLD_SIGN
 
 
 def advance_leg(phase: float, swing: bool, forward: float, dt: float, primitive: HexapodGait) -> float:
@@ -33,7 +40,7 @@ def path1_leg_target(primitive: HexapodGait, phase: float, leg: int, forward: fl
 class StepGaitEngine:
     """Per-leg state machine; neural input chooses half-cycle, Path 1 chooses shape."""
 
-    def __init__(self, stance: tuple[float, float, float] = tuple(STANCE)):
+    def __init__(self, stance: np.ndarray | None = None):
         self.primitive = HexapodGait(stance=stance)
         self.phases = np.zeros(6, dtype=np.float64)
         self.states = np.zeros(6, dtype=bool)
@@ -67,7 +74,7 @@ def clean_tripod_states(phase: float) -> np.ndarray:
 
 
 def protocol() -> dict:
-    primitive = HexapodGait(stance=tuple(STANCE))
+    primitive = HexapodGait(stance=STANCE)
     return {
         "source": "eon-fly-brain/code/hexapod_gait.py:HexapodGait",
         "stance": list(STANCE),
@@ -85,8 +92,9 @@ def self_check() -> None:
     target = engine.targets(np.asarray([True, False, True, False, True, False]), 0.8, 0.0, 0.02)
     assert target.shape == (18,)
     assert np.isfinite(target).all()
-    assert np.isclose(engine.primitive.swing_amp, 0.8)
-    assert np.isclose(engine.primitive.lift_amp, 0.65)
+    assert np.array_equal(engine.primitive.stance, STANCE)
+    assert np.isclose(engine.primitive.swing_amp, 0.35)
+    assert np.isclose(engine.primitive.lift_amp, 0.7)
 
 
 if __name__ == "__main__":

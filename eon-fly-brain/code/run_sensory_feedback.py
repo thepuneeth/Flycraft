@@ -17,7 +17,7 @@ RESULTS = HERE.parent.parent / "results" / "path2"
 XML = HERE.parent.parent.parent / "assets" / "hexapod" / "hexapod.xml"
 sys.path.insert(0, str(HERE))
 from audit_vnc_legs import leg_scores  # noqa: E402
-from hexapod_gait import pd_torque  # noqa: E402
+from hexapod_gait import home_stance, pd_torque  # noqa: E402
 from mn_to_joint import translate  # noqa: E402
 from probe_structured_descending import DESC_KEYS, brain_type_indices, phase_metrics  # noqa: E402
 from run_hexapod_chase import retina  # noqa: E402
@@ -25,7 +25,7 @@ from vnc_stepper import VNCStepper  # noqa: E402
 
 
 LEG_NAMES = ("T1L", "T1R", "T2L", "T2R", "T3L", "T3R")
-STANCE = np.asarray((0.0, 0.6, -1.2), dtype=np.float64)
+STANCE = home_stance()
 MAP_GAINS = (-0.55, 0.65, 0.65)
 CTRL_HZ = 50.0
 SECS = 8.0

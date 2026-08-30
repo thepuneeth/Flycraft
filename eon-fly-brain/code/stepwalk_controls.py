@@ -24,6 +24,19 @@ BOOTSTRAP_REPS = 100_000
 BOOTSTRAP_SEED = 20260829
 
 
+def output_prefix(output: Path) -> str:
+    return output.stem[:-len("_controls")] if output.stem.endswith("_controls") else output.stem
+
+
+def condition_metrics_path(output: Path, condition: str) -> Path:
+    return output.with_name(f"{output_prefix(output)}_metrics_{condition}.json")
+
+
+def condition_video_path(output: Path, condition: str) -> Path:
+    suffix = "multiview.mp4" if condition == "real" else f"multiview_{condition}.mp4"
+    return output.with_name(f"{output_prefix(output)}_{suffix}")
+
+
 def episode_specs(n: int = N, seed: int = SEED) -> list[dict[str, float | int]]:
     rng = np.random.default_rng(seed)
     result = []
@@ -42,7 +55,7 @@ def episode_specs(n: int = N, seed: int = SEED) -> list[dict[str, float | int]]:
 
 
 def summarize(group: list[dict], rng: np.random.Generator, reps: int) -> dict:
-    metrics = ("forward_distance_m", "path_m", "displacement_m", "tripod_coherence_scalar", "min_height_m")
+    metrics = ("forward_distance_m", "path_m", "displacement_m", "tripod_coherence_scalar", "min_height_m", "mean_feet_planted", "mean_commanded_stance_legs")
     out = {
         "n": len(group),
         "caught_count": int(sum(row["caught"] for row in group)),
@@ -141,7 +154,7 @@ def main() -> None:
         for index, spec in enumerate(specs):
             video = None
             if index == 0:
-                video = RESULTS / ("stepwalk_multiview.mp4" if condition == "real" else f"stepwalk_multiview_{condition}.mp4")
+                video = condition_video_path(args.out, condition)
             result = run_episode(
                 condition,
                 int(spec["episode_seed"]),
@@ -196,15 +209,15 @@ def main() -> None:
         "bootstrap": {"reps": args.bootstrap_reps, "seed": args.bootstrap_seed, "ci": "95% percentile bootstrap"},
         "paired_test": {"method": "exact two-sided paired sign-flip randomization", "primary_endpoint": "path_m", "multiplicity": "Holm adjustment across two predeclared Path 3 comparisons"},
         "binary_rate_ci": "95% Wilson interval",
-        "condition_metric_files": {condition: str(output.with_name(f"stepwalk_metrics_{condition}.json")) for condition in CONDITIONS},
-        "video_files": {condition: str(RESULTS / ("stepwalk_multiview.mp4" if condition == "real" else f"stepwalk_multiview_{condition}.mp4")) for condition in CONDITIONS},
+        "condition_metric_files": {condition: str(condition_metrics_path(output, condition)) for condition in CONDITIONS},
+        "video_files": {condition: str(condition_video_path(output, condition)) for condition in CONDITIONS},
     }
     output.with_suffix(".json").write_text(json.dumps(metric_json, indent=2) + "\n", encoding="utf-8")
     for condition in CONDITIONS:
-        condition_output = output.with_name(f"stepwalk_metrics_{condition}.json")
+        condition_output = condition_metrics_path(output, condition)
         condition_output.write_text(json.dumps({"condition": condition, "protocol": metric_json["protocol"], "summary": summary[condition], "episodes": groups[condition]}, indent=2) + "\n", encoding="utf-8")
 
-    columns = ["condition", "episode", "episode_seed", "initial_yaw_rad", "prey_x_m", "prey_y_m", "forward_distance_m", "path_m", "displacement_m", "tripod_coherence_scalar", "min_height_m", "fell", "upright", "caught"]
+    columns = ["condition", "episode", "episode_seed", "initial_yaw_rad", "prey_x_m", "prey_y_m", "forward_distance_m", "path_m", "displacement_m", "tripod_coherence_scalar", "min_height_m", "mean_ride_height_m", "mean_feet_planted", "mean_commanded_stance_legs", "fell", "upright", "caught"]
     with output.with_suffix(".csv").open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=columns)
         writer.writeheader()
