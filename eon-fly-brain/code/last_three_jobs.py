@@ -172,6 +172,31 @@ def coupled_phases(source: np.ndarray, coupling: np.ndarray, gain: float) -> np.
     return result
 
 
+def delayed_coupled_phases(source: np.ndarray, coupling: np.ndarray, gain: float, delay_steps: np.ndarray | int) -> np.ndarray:
+    """Advance phases with per-pair delayed neighbor phases."""
+    source = np.asarray(source, dtype=np.float64)
+    coupling = np.asarray(coupling, dtype=np.float64)
+    if source.ndim != 2 or source.shape[1] != 6 or len(source) < 2:
+        raise ValueError(f"expected phase history with shape (time, 6), got {source.shape}")
+    if coupling.shape != (6, 6):
+        raise ValueError(f"expected coupling shape (6, 6), got {coupling.shape}")
+    D = np.broadcast_to(delay_steps, (6, 6)).astype(int) if np.ndim(delay_steps) == 0 else np.asarray(delay_steps, dtype=int)
+    if D.shape != (6, 6) or np.any(D < 0):
+        raise ValueError(f"expected non-negative delay matrix with shape (6, 6), got {D.shape}")
+    result = np.empty_like(source)
+    result[0] = source[0]
+    for step in range(1, len(source)):
+        previous = result[step - 1]
+        indices = np.maximum(0, (step - 1) - D)
+        neighbor = result[indices, np.arange(6)[None, :]]
+        phase_difference = neighbor - previous[:, None]
+        coupling_term = np.sum(coupling * np.sin(phase_difference), axis=1)
+        result[step] = previous + source[step] - source[step - 1] + gain * coupling_term
+    if not np.isfinite(result).all():
+        raise AssertionError("delayed coupled phase contains non-finite values")
+    return result
+
+
 def clean_clock() -> np.ndarray:
     frequency = 0.8 + 0.5 * 0.8
     phase = np.arange(BODY_STEPS, dtype=np.float64)[:, None] * (2.0 * np.pi * frequency / CTRL_HZ)
