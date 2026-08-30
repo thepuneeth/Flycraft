@@ -430,6 +430,8 @@ Outcome D uses an 8-dimensional fixed random low-rank edge-value basis over the
 11,000-node, 485,074-edge canonical all-leg graph, a closed-form ridge decoder
 during D1, and CMA-ES weight fine-tuning during D2 because no PPO stack is
 installed and full sparse-CSR autograd is impractical on this CPU.
+All D phase/coherence diagnostics call the canonical `probe_vnc_phase.py`
+procedure; E3 supplies only its own verdict labels.
 The measured connectome weights initialize the connectome condition; controls
 use seeded randomized values, an exact degree-sequence configuration-model
 support (random), or degree-preserving rewiring (rewired). No graph

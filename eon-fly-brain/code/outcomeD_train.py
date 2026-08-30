@@ -29,7 +29,7 @@ DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE.parent))
 from hexapod_gait import HexapodGait, XML, pd_torque  # noqa: E402
-from probe_structured_descending import phase_metrics  # noqa: E402
+from probe_vnc_phase import phase_metrics  # noqa: E402
 from reservoir_3way import degree_preserving_rewire  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
 
@@ -154,7 +154,7 @@ def replay_target(q: np.ndarray) -> dict:
         last = now
         heights.append(float(data.qpos[2]))
     dx, dy = float(data.qpos[0]) - x0, float(data.qpos[1]) - y0
-    phases = phase_metrics(q.reshape(-1, 6, 3)[..., 0], TARGET_DT)
+    phases = phase_metrics(q.reshape(-1, 6, 3)[..., 0], TARGET_DT, "E3-PRESENT", "E3-ABSENT")
     return {
         "steps": int(len(q)),
         "secs": float(len(q) * TARGET_DT),
@@ -508,7 +508,7 @@ def locomotion_episode(
     up_z_values = np.asarray(up_z_values)
     dx, dy = float(data.qpos[0]) - x0, float(data.qpos[1]) - y0
     fell = bool(heights.min() < H_MIN or up_z_values.min() < UPRIGHT_COS_MIN)
-    phase = phase_metrics(actions.reshape(-1, 6, 3)[..., 0], TARGET_DT)
+    phase = phase_metrics(actions.reshape(-1, 6, 3)[..., 0], TARGET_DT, "E3-PRESENT", "E3-ABSENT")
     upright = float(not fell)
     locomotion_return = float(dx * np.cos(yaw0) + dy * np.sin(yaw0) + D2_UPRIGHT_BONUS * upright - FALL_PENALTY * float(fell))
     if renderer:

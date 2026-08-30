@@ -50,6 +50,47 @@ def wrap_cycles(value: np.ndarray | float) -> np.ndarray | float:
     return (np.asarray(value) + 0.5) % 1.0 - 0.5
 
 
+def phase_metrics(
+    scores: np.ndarray,
+    sample_dt: float,
+    present_label: str = "E0-PRESENT",
+    absent_label: str = "E0-ABSENT",
+) -> dict:
+    tail = scores[len(scores) // 2:]
+    filtered = fft_bandpass(tail, sample_dt, *BANDPASS_HZ)
+    phase = np.angle(analytic_signal(filtered))
+    difference_rad = np.zeros((6, 6), dtype=float)
+    concentration = np.zeros((6, 6), dtype=float)
+    for left in range(6):
+        for right in range(6):
+            vector = np.exp(1j * (phase[:, left] - phase[:, right]))
+            mean_vector = np.mean(vector)
+            difference_rad[left, right] = np.angle(mean_vector)
+            concentration[left, right] = abs(mean_vector)
+    within = pair_list((TRIPOD_A, TRIPOD_B))
+    cross = [(left, right) for left in TRIPOD_A for right in TRIPOD_B]
+    difference_cycles = difference_rad / (2 * np.pi)
+    within_cycles = np.asarray([difference_cycles[left, right] for left, right in within])
+    cross_cycles = np.asarray([difference_cycles[left, right] for left, right in cross])
+    within_ok = np.abs(wrap_cycles(within_cycles)) <= PHASE_TOLERANCE_CYCLES
+    cross_ok = (0.5 - np.abs(wrap_cycles(cross_cycles))) <= PHASE_TOLERANCE_CYCLES
+    within_cos = float(np.mean([np.cos(difference_rad[left, right]) for left, right in within]))
+    cross_cos = float(np.mean([np.cos(difference_rad[left, right]) for left, right in cross]))
+    return {
+        "phase_difference_matrix_rad": difference_rad.tolist(),
+        "phase_difference_matrix_cycles": difference_cycles.tolist(),
+        "phase_concentration_matrix": concentration.tolist(),
+        "within_phase_cosine": within_cos,
+        "cross_phase_cosine": cross_cos,
+        "tripod_coherence_scalar": within_cos - cross_cos,
+        "within_pairs_in_phase": int(within_ok.sum()),
+        "cross_pairs_antiphase": int(cross_ok.sum()),
+        "within_pair_phase_cycles": within_cycles.tolist(),
+        "cross_pair_phase_cycles": cross_cycles.tolist(),
+        "verdict": present_label if bool(within_ok.all() and cross_ok.all()) else absent_label,
+    }
+
+
 def run(data: Path, weights_name: str, index_name: str) -> dict:
     vnc = VNCStepper(
         data,
@@ -70,27 +111,7 @@ def run(data: Path, weights_name: str, index_name: str) -> dict:
     sample_dt = 0.005 * 4
     history = np.stack([vnc.step(vnc.descending_current(100.0)).cpu().numpy() for _ in range(steps)])
     scores = leg_scores(history, vnc.io)[..., 0]
-    tail = scores[steps // 2:]
-    filtered = fft_bandpass(tail, sample_dt, *BANDPASS_HZ)
-    phase = np.angle(analytic_signal(filtered))
-    difference_rad = np.zeros((6, 6), dtype=float)
-    concentration = np.zeros((6, 6), dtype=float)
-    for left in range(6):
-        for right in range(6):
-            vector = np.exp(1j * (phase[:, left] - phase[:, right]))
-            mean_vector = np.mean(vector)
-            difference_rad[left, right] = np.angle(mean_vector)
-            concentration[left, right] = abs(mean_vector)
-
-    within = pair_list((TRIPOD_A, TRIPOD_B))
-    cross = [(left, right) for left in TRIPOD_A for right in TRIPOD_B]
-    difference_cycles = difference_rad / (2 * np.pi)
-    within_cycles = np.asarray([difference_cycles[left, right] for left, right in within])
-    cross_cycles = np.asarray([difference_cycles[left, right] for left, right in cross])
-    within_ok = np.abs(wrap_cycles(within_cycles)) <= PHASE_TOLERANCE_CYCLES
-    cross_ok = (0.5 - np.abs(wrap_cycles(cross_cycles))) <= PHASE_TOLERANCE_CYCLES
-    within_cos = float(np.mean([np.cos(difference_rad[left, right]) for left, right in within]))
-    cross_cos = float(np.mean([np.cos(difference_rad[left, right]) for left, right in cross]))
+    phase = phase_metrics(scores, sample_dt)
     result = {
         "protocol": {
             "weights_name": weights_name,
@@ -110,22 +131,12 @@ def run(data: Path, weights_name: str, index_name: str) -> dict:
             "phase_tolerance_cycles": PHASE_TOLERANCE_CYCLES,
         },
         "leg_names": list(LEG_NAMES),
-        "phase_difference_matrix_rad": difference_rad.tolist(),
-        "phase_difference_matrix_cycles": difference_cycles.tolist(),
-        "phase_concentration_matrix": concentration.tolist(),
-        "within_phase_cosine": within_cos,
-        "cross_phase_cosine": cross_cos,
-        "tripod_coherence_scalar": within_cos - cross_cos,
-        "within_pair_count": len(within),
-        "within_pairs_in_phase": int(within_ok.sum()),
-        "cross_pair_count": len(cross),
-        "cross_pairs_antiphase": int(cross_ok.sum()),
-        "within_pair_phase_cycles": within_cycles.tolist(),
-        "cross_pair_phase_cycles": cross_cycles.tolist(),
-        "verdict": "E0-PRESENT" if bool(within_ok.all() and cross_ok.all()) else "E0-ABSENT",
+        **phase,
+        "within_pair_count": len(pair_list((TRIPOD_A, TRIPOD_B))),
+        "cross_pair_count": len([(left, right) for left in TRIPOD_A for right in TRIPOD_B]),
     }
-    assert difference_rad.shape == (6, 6)
-    assert np.allclose(np.diag(difference_rad), 0.0)
+    assert np.asarray(phase["phase_difference_matrix_rad"]).shape == (6, 6)
+    assert np.allclose(np.diag(phase["phase_difference_matrix_rad"]), 0.0)
     return result
 
 

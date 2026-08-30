@@ -20,12 +20,7 @@ from mn_to_joint import translate  # noqa: E402
 from probe_vnc_phase import (  # noqa: E402
     BANDPASS_HZ,
     PHASE_TOLERANCE_CYCLES,
-    TRIPOD_A,
-    TRIPOD_B,
-    analytic_signal,
-    fft_bandpass,
-    pair_list,
-    wrap_cycles,
+    phase_metrics as _phase_metrics,
 )
 from run_hexapod_chase import retina  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
@@ -33,6 +28,10 @@ from vnc_stepper import VNCStepper  # noqa: E402
 
 LEG_NAMES = ("T1L", "T1R", "T2L", "T2R", "T3L", "T3R")
 DESC_KEYS = ("dng100_left", "dng100_right", "dnb08_left", "dnb08_right")
+
+
+def phase_metrics(scores: np.ndarray, sample_dt: float) -> dict:
+    return _phase_metrics(scores, sample_dt, "E3-PRESENT", "E3-ABSENT")
 
 
 def brain_type_indices(data: Path) -> dict[str, np.ndarray]:
@@ -54,42 +53,6 @@ def brain_type_indices(data: Path) -> dict[str, np.ndarray]:
             raise ValueError(f"expected {expected} {cell_type} {side} cells in brain matrix, found {len(indices)}")
         result[key] = indices
     return result
-
-
-def phase_metrics(scores: np.ndarray, sample_dt: float) -> dict:
-    tail = scores[len(scores) // 2:]
-    filtered = fft_bandpass(tail, sample_dt, *BANDPASS_HZ)
-    phase = np.angle(analytic_signal(filtered))
-    difference_rad = np.zeros((6, 6), dtype=float)
-    concentration = np.zeros((6, 6), dtype=float)
-    for left in range(6):
-        for right in range(6):
-            vector = np.exp(1j * (phase[:, left] - phase[:, right]))
-            mean_vector = np.mean(vector)
-            difference_rad[left, right] = np.angle(mean_vector)
-            concentration[left, right] = abs(mean_vector)
-    within = pair_list((TRIPOD_A, TRIPOD_B))
-    cross = [(left, right) for left in TRIPOD_A for right in TRIPOD_B]
-    difference_cycles = difference_rad / (2 * np.pi)
-    within_cycles = np.asarray([difference_cycles[left, right] for left, right in within])
-    cross_cycles = np.asarray([difference_cycles[left, right] for left, right in cross])
-    within_ok = np.abs(wrap_cycles(within_cycles)) <= PHASE_TOLERANCE_CYCLES
-    cross_ok = (0.5 - np.abs(wrap_cycles(cross_cycles))) <= PHASE_TOLERANCE_CYCLES
-    within_cos = float(np.mean([np.cos(difference_rad[left, right]) for left, right in within]))
-    cross_cos = float(np.mean([np.cos(difference_rad[left, right]) for left, right in cross]))
-    return {
-        "phase_difference_matrix_rad": difference_rad.tolist(),
-        "phase_difference_matrix_cycles": difference_cycles.tolist(),
-        "phase_concentration_matrix": concentration.tolist(),
-        "within_phase_cosine": within_cos,
-        "cross_phase_cosine": cross_cos,
-        "tripod_coherence_scalar": within_cos - cross_cos,
-        "within_pairs_in_phase": int(within_ok.sum()),
-        "cross_pairs_antiphase": int(cross_ok.sum()),
-        "within_pair_phase_cycles": within_cycles.tolist(),
-        "cross_pair_phase_cycles": cross_cycles.tolist(),
-        "verdict": "E3-PRESENT" if bool(within_ok.all() and cross_ok.all()) else "E3-ABSENT",
-    }
 
 
 def run(vnc_data: Path, brain_data: Path, weights_name: str, index_name: str) -> dict:
