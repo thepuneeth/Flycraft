@@ -28,7 +28,7 @@ PROJECT = HERE.parents[2]
 DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE.parent))
-from hexapod_gait import HexapodGait, XML, home_stance, pd_torque  # noqa: E402
+from hexapod_gait import H_MIN, HexapodGait, XML, home_stance, pd_torque  # noqa: E402
 from probe_vnc_phase import phase_metrics  # noqa: E402
 from reservoir_3way import degree_preserving_rewire  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
@@ -49,7 +49,6 @@ CTRL_HZ = 50.0
 KP = 3.0
 KD = 0.05
 STANCE = home_stance().reshape(18)
-H_MIN = 0.02
 FALL_PENALTY = 0.5
 UPRIGHT_COS_MIN = 0.5
 EVALUATION_SEEDS = (20260829, 20260830, 20260831, 20260832)

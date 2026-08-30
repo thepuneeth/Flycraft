@@ -19,7 +19,7 @@ from run_hexapod_chase import retina  # noqa: E402
 from run_reservoir_walk import FrozenBrain  # noqa: E402
 from step_decode import MatchedRandomTiming, decode_vector, step_statistics  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
-from hexapod_gait import HexapodGait, XML, pd_torque  # noqa: E402
+from hexapod_gait import H_MIN, HexapodGait, XML, pd_torque  # noqa: E402
 
 
 CTRL_HZ = 50.0
@@ -29,7 +29,6 @@ KP = 3.0
 KD = 0.05
 VNC_DRIVE = 100.0
 VNC_TURN_SCALE = 6.0
-H_MIN = 0.02
 CATCH_DISTANCE = 0.25
 VNC_WEIGHTS = "all_legs_weight_csr.pkl"
 VNC_INDEX = "all_legs_io_index.npz"

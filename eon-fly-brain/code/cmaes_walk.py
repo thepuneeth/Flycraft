@@ -23,7 +23,7 @@ DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE.parent))
 from fetch_manc import load_annotations  # noqa: E402
-from hexapod_gait import XML, home_stance, pd_torque  # noqa: E402
+from hexapod_gait import H_MIN, XML, home_stance, pd_torque  # noqa: E402
 from probe_structured_descending import DESC_KEYS, brain_type_indices, phase_metrics  # noqa: E402
 from run_hexapod_chase import retina  # noqa: E402
 from run_sensory_feedback import ANGLE_LIMIT_RAD, LEG_NAMES, PROPRIO_SUBCLASSES, foot_loads  # noqa: E402
@@ -50,7 +50,6 @@ ANGLE_NORMALIZATION_RAD = ANGLE_LIMIT_RAD
 ROLLOUT_SECS = 4.0
 EVALUATION_SECS = 8.0
 FALL_CONST = 0.5
-H_MIN = 0.02
 EVALUATION_SEEDS = (20260829, 20260830, 20260831, 20260832)
 OPTIMIZER_SEED = 20260829
 POPSIZE = 14

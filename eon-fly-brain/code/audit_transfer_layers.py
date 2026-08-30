@@ -13,7 +13,7 @@ HERE = Path(__file__).resolve()
 DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE))
-from hexapod_gait import XML, home_stance, pd_torque  # noqa: E402
+from hexapod_gait import H_MIN, XML, home_stance, pd_torque  # noqa: E402
 from mn_to_joint import translate  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
 
@@ -154,7 +154,7 @@ def run(data_dir: Path, weights_name: str, index_name: str, secs: float) -> dict
             "body_forward_displacement_m": float((body[-1, 0] - x0) * np.cos(yaw0) + (body[-1, 1] - y0) * np.sin(yaw0)),
             "min_body_height_m": float(body[:, 2].min()),
             "final_body_height_m": float(body[-1, 2]),
-            "fell": bool(body[:, 2].min() < 0.02),
+            "fell": bool(body[:, 2].min() < H_MIN),
             "mean_foot_floor_contact_fraction": float(np.mean(contact_history)),
             "foot_z_temporal_std_mean_m": float(foot_z.std(axis=0).mean()),
         },

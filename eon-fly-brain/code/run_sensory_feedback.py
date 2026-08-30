@@ -17,7 +17,7 @@ RESULTS = HERE.parent.parent / "results" / "path2"
 XML = HERE.parent.parent.parent / "assets" / "hexapod" / "hexapod.xml"
 sys.path.insert(0, str(HERE))
 from audit_vnc_legs import leg_scores  # noqa: E402
-from hexapod_gait import home_stance, pd_torque  # noqa: E402
+from hexapod_gait import H_MIN, home_stance, pd_torque  # noqa: E402
 from mn_to_joint import translate  # noqa: E402
 from probe_structured_descending import DESC_KEYS, brain_type_indices, phase_metrics  # noqa: E402
 from run_hexapod_chase import retina  # noqa: E402
@@ -236,7 +236,7 @@ def run(vnc_data: Path, brain_data: Path, weights_name: str, index_name: str) ->
             "forward_displacement_m": float(dx),
             "min_height_m": min_height,
             "final_height_m": float(body_history[-1, 2]),
-            "fell": bool(min_height < 0.02),
+            "fell": bool(min_height < H_MIN),
             "motor_temporal_std_mean": float(motor_history.std(axis=0).mean()),
             "target_temporal_std_mean_rad": float(target_history.std(axis=0).mean()),
             "joint_position_std_mean_rad": float(qpos_history.std(axis=0).mean()),

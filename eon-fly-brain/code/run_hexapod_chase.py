@@ -23,7 +23,7 @@ import mujoco
 HERE = Path(__file__).resolve().parent
 DATA = HERE.parent / "data"
 sys.path.insert(0, str(HERE))
-from hexapod_gait import HexapodGait, pd_torque, XML
+from hexapod_gait import H_MIN, HexapodGait, pd_torque, XML
 
 
 def retina(trunk_xy, yaw, prey):
@@ -138,7 +138,7 @@ def main():
 
     print("=== hexapod chase result ===")
     print(f"start dist={d0:.2f}m  min dist={mind:.2f}m  path={path:.2f}m")
-    print(f"mean|az|={np.mean(az_hist):.1f}deg  final height={d.qpos[2]:.3f}  fell={d.qpos[2]<0.02}")
+    print(f"mean|az|={np.mean(az_hist):.1f}deg  final height={d.qpos[2]:.3f}  fell={d.qpos[2]<H_MIN}")
     heights = np.asarray(height_hist)
     yaw1 = 2 * np.arctan2(d.qpos[6], d.qpos[3])
     print(f"VERDICT: {'CAUGHT at '+format(caught,'.1f')+'s' if caught is not None else 'not caught in '+str(a.secs)+'s'}")
@@ -153,7 +153,7 @@ def main():
         "mean_abs_az_deg": float(np.mean(az_hist)),
         "final_height_m": float(heights[-1]),
         "min_height_m": float(heights.min()),
-        "fell": bool(heights.min() < 0.02),
+        "fell": bool(heights.min() < H_MIN),
         "caught": caught is not None,
         "catch_time_s": caught,
         "secs": a.secs,

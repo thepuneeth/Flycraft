@@ -17,7 +17,7 @@ DATA = HERE.parent.parent / "data"
 RESULTS = HERE.parent.parent / "results" / "path2"
 sys.path.insert(0, str(HERE.parent))
 from collect_reservoir_states import PROTOCOL, make_stepper, population_rates  # noqa: E402
-from hexapod_gait import XML, pd_torque  # noqa: E402
+from hexapod_gait import H_MIN, XML, pd_torque  # noqa: E402
 from probe_vnc_phase import (  # noqa: E402
     BANDPASS_HZ,
     PHASE_TOLERANCE_CYCLES,
@@ -192,7 +192,7 @@ def run_episode(
         "displacement_m": float(np.hypot(dx, dy)),
         "min_prey_distance_m": min_distance,
         "caught": caught,
-        "fell": bool(heights.min() < 0.02),
+        "fell": bool(heights.min() < H_MIN),
         "min_height_m": float(heights.min()),
         "final_height_m": float(heights[-1]),
         "mean_target_temporal_sd_rad": float(targets.std(axis=0).mean()),

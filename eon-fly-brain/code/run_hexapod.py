@@ -25,6 +25,9 @@ import mujoco
 HERE = Path(__file__).resolve().parent
 DATA = HERE.parent / "data"
 XML = HERE.parent.parent / "assets" / "hexapod" / "hexapod.xml"
+import sys
+sys.path.insert(0, str(HERE))
+from hexapod_gait import H_MIN  # noqa: E402
 
 
 def retina(trunk_xy, trunk_yaw, prey_xy):
@@ -131,7 +134,7 @@ def main():
 
     disp = np.hypot(d.qpos[0] - x0, d.qpos[1] - y0)
     A = {k: np.array(vv) for k, vv in log.items()}
-    fell = A["height"].min() < 0.02
+    fell = A["height"].min() < H_MIN
     print("=== rich-readout hexapod result ===")
     print(f"seed={a.seed} scale={a.scale} secs={a.secs} n_desc={n_desc}")
     print(f"start->prey dist: {A['dist'][0]:.2f} m  final: {A['dist'][-1]:.2f} m  min: {A['dist'].min():.2f} m")

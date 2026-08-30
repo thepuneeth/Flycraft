@@ -21,6 +21,7 @@ XML = Path(__file__).resolve().parent.parent.parent / "assets" / "hexapod" / "he
 
 LEFT = {0, 2, 4}
 TRIPOD_A = {0, 3, 4}                      # half-cycle out of phase with the rest
+H_MIN = 0.08                              # ride-height floor; below this is a fall
 # per-leg joint indices in ctrl: leg i -> [3i (coxa), 3i+1 (femur), 3i+2 (tibia)]
 
 
@@ -119,12 +120,12 @@ def run(mode="walk", drive=0.8, turn=0.0, secs=5.0, stance=None,
     if verbose:
         print(f"mode={mode} drive={drive} turn={turn} secs={secs} kp={kp} kd={kd}")
         print(f"  displacement={disp:.3f} m  forward(along heading)={fwd_body:+.3f} m  side={dx*-np.sin(yaw0)+dy*np.cos(yaw0):+.3f} m")
-        print(f"  yaw change={np.rad2deg(yaw1-yaw0):+.1f} deg  final height={H[-1]:.3f} (min {H.min():.3f})  fell={H.min()<0.02}")
+        print(f"  yaw change={np.rad2deg(yaw1-yaw0):+.1f} deg  final height={H[-1]:.3f} (min {H.min():.3f})  fell={H.min()<H_MIN}")
     if video and frames:
         import imageio.v2 as imageio
         imageio.mimwrite(video, frames, fps=25)
         print(f"  video -> {video}")
-    return dict(disp=disp, fwd=fwd_body, yaw=np.rad2deg(yaw1 - yaw0), height=H[-1], fell=bool(H.min() < 0.02))
+    return dict(disp=disp, fwd=fwd_body, yaw=np.rad2deg(yaw1 - yaw0), height=H[-1], fell=bool(H.min() < H_MIN))
 
 
 if __name__ == "__main__":

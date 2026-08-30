@@ -15,7 +15,7 @@ import torch
 HERE = Path(__file__).resolve()
 DATA = HERE.parent.parent / "data"
 sys.path.insert(0, str(HERE))
-from hexapod_gait import XML, pd_torque  # noqa: E402
+from hexapod_gait import H_MIN, XML, pd_torque  # noqa: E402
 from mn_to_joint import translate  # noqa: E402
 from run_hexapod_chase import retina  # noqa: E402
 from vnc_stepper import VNCStepper  # noqa: E402
@@ -218,7 +218,7 @@ def main():
     print(f"start dist={d0:.2f}m  min dist={mind:.2f}m  path={path:.2f}m")
     print(f"displacement={displacement:.2f}m  forward={forward_displacement:+.2f}m  side={side_displacement:+.2f}m  yaw={np.rad2deg(yaw1-yaw0):+.1f}deg")
     print(f"motor temporal std={motor_hist.std(axis=0).mean():.5f}  mean|az|={np.mean(az_hist):.1f}deg")
-    print(f"final height={heights[-1]:.3f}  min height={heights.min():.3f}  fell={heights.min()<0.02}")
+    print(f"final height={heights[-1]:.3f}  min height={heights.min():.3f}  fell={heights.min()<H_MIN}")
     print(f"VERDICT: {'CAUGHT at '+format(caught,'.1f')+'s' if caught is not None else 'not caught in '+str(a.secs)+'s'}")
     print("RESULT_JSON " + json.dumps({
         "mode": "open_loop" if a.open_loop else "brain_coupled",
@@ -236,7 +236,7 @@ def main():
         "mean_abs_az_deg": float(np.mean(az_hist)),
         "final_height_m": float(heights[-1]),
         "min_height_m": float(heights.min()),
-        "fell": bool(heights.min() < 0.02),
+        "fell": bool(heights.min() < H_MIN),
         "caught": caught is not None,
         "catch_time_s": caught,
         "secs": a.secs,
