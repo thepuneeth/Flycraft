@@ -1,0 +1,715 @@
+{
+  "protocol": {
+    "weights_name": "all_legs_weight_csr.pkl",
+    "index_name": "all_legs_io_index.npz",
+    "model": "paper",
+    "drive": 100.0,
+    "gW": 0.03,
+    "tau": 0.02,
+    "dt": 0.005,
+    "substeps": 4,
+    "sample_dt_s": 0.02,
+    "steps": 1500,
+    "burn_fraction": 0.5,
+    "heterogeneity": true,
+    "heterogeneity_seed": 1,
+    "shuffle": false,
+    "shuffle_seed": 1,
+    "decode": "mean trochanter flexor/Acc. tr flexor > mean trochanter extensor; ties stance"
+  },
+  "real": {
+    "timing_source": "real_vnc",
+    "protocol": {
+      "weights_name": "all_legs_weight_csr.pkl",
+      "index_name": "all_legs_io_index.npz",
+      "model": "paper",
+      "drive": 100.0,
+      "gW": 0.03,
+      "tau": 0.02,
+      "dt": 0.005,
+      "substeps": 4,
+      "sample_dt_s": 0.02,
+      "steps": 1500,
+      "burn_fraction": 0.5,
+      "heterogeneity": true,
+      "heterogeneity_seed": 1,
+      "shuffle": false,
+      "shuffle_seed": 1,
+      "decode": "mean trochanter flexor/Acc. tr flexor > mean trochanter extensor; ties stance"
+    },
+    "leg_names": [
+      "T1L",
+      "T1R",
+      "T2L",
+      "T2R",
+      "T3L",
+      "T3R"
+    ],
+    "motor_pools": [
+      {
+        "leg": "T1L",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_l",
+          "tr flexor mn tr flexor mn_l"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_l"
+        ],
+        "swing_count": 11,
+        "stance_count": 2
+      },
+      {
+        "leg": "T1R",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_r",
+          "tr flexor mn tr flexor mn_r"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_r"
+        ],
+        "swing_count": 10,
+        "stance_count": 2
+      },
+      {
+        "leg": "T2L",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_l",
+          "tr flexor mn tr flexor mn_l"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_l"
+        ],
+        "swing_count": 9,
+        "stance_count": 2
+      },
+      {
+        "leg": "T2R",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_r",
+          "tr flexor mn tr flexor mn_r"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_r"
+        ],
+        "swing_count": 9,
+        "stance_count": 2
+      },
+      {
+        "leg": "T3L",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_l",
+          "tr flexor mn tr flexor mn_l"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_l"
+        ],
+        "swing_count": 9,
+        "stance_count": 1
+      },
+      {
+        "leg": "T3R",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_r",
+          "tr flexor mn tr flexor mn_r"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_r"
+        ],
+        "swing_count": 9,
+        "stance_count": 2
+      }
+    ],
+    "weights_sha256": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+    "step_statistics": {
+      "burn_fraction": 0.5,
+      "sample_dt_s": 0.02,
+      "per_leg": [
+        {
+          "leg": "T1L",
+          "step_onsets": 13,
+          "step_frequency_hz": 0.8666666666666667,
+          "duty_factor_swing": 0.5,
+          "swing_fraction": 0.5
+        },
+        {
+          "leg": "T1R",
+          "step_onsets": 13,
+          "step_frequency_hz": 0.8666666666666667,
+          "duty_factor_swing": 0.244,
+          "swing_fraction": 0.244
+        },
+        {
+          "leg": "T2L",
+          "step_onsets": 26,
+          "step_frequency_hz": 1.7333333333333334,
+          "duty_factor_swing": 0.7613333333333333,
+          "swing_fraction": 0.7613333333333333
+        },
+        {
+          "leg": "T2R",
+          "step_onsets": 14,
+          "step_frequency_hz": 0.9333333333333333,
+          "duty_factor_swing": 0.6346666666666667,
+          "swing_fraction": 0.6346666666666667
+        },
+        {
+          "leg": "T3L",
+          "step_onsets": 1,
+          "step_frequency_hz": 0.06666666666666667,
+          "duty_factor_swing": 0.9986666666666667,
+          "swing_fraction": 0.9986666666666667
+        },
+        {
+          "leg": "T3R",
+          "step_onsets": 2,
+          "step_frequency_hz": 0.13333333333333333,
+          "duty_factor_swing": 0.9786666666666667,
+          "swing_fraction": 0.9786666666666667
+        }
+      ],
+      "mean_step_frequency_hz": 0.7666666666666667,
+      "mean_duty_factor_swing": 0.6862222222222222
+    },
+    "decoded_state_phase": {
+      "phase_difference_matrix_rad": [
+        [
+          0.0,
+          3.0518237029504176,
+          2.522496300217735,
+          2.201724688623509,
+          2.874188997197264,
+          -2.65116089982879
+        ],
+        [
+          -3.0518237029504176,
+          0.0,
+          -1.0219919238449133,
+          -2.083209915976866,
+          -1.432646745610125,
+          0.11402366185468378
+        ],
+        [
+          -2.522496300217735,
+          1.0219919238449133,
+          0.0,
+          -1.2963091591494529,
+          0.029543453870022454,
+          0.9059658239803252
+        ],
+        [
+          -2.201724688623509,
+          2.083209915976866,
+          1.2963091591494529,
+          0.0,
+          1.2554698948504877,
+          2.1043375739229147
+        ],
+        [
+          -2.874188997197264,
+          1.432646745610125,
+          -0.029543453870022454,
+          -1.2554698948504877,
+          0.0,
+          2.6978595265456833
+        ],
+        [
+          2.65116089982879,
+          -0.11402366185468378,
+          -0.9059658239803252,
+          -2.1043375739229147,
+          -2.6978595265456833,
+          0.0
+        ]
+      ],
+      "phase_difference_matrix_cycles": [
+        [
+          0.0,
+          0.48571282776957103,
+          0.4014677551106702,
+          0.35041536752189556,
+          0.4574413862842823,
+          -0.4219453621397091
+        ],
+        [
+          -0.48571282776957103,
+          0.0,
+          -0.16265506647991382,
+          -0.3315531556257702,
+          -0.2280128112683685,
+          0.018147429413611714
+        ],
+        [
+          -0.4014677551106702,
+          0.16265506647991382,
+          0.0,
+          -0.20631401045393388,
+          0.004701986719421459,
+          0.14418893915879072
+        ],
+        [
+          -0.35041536752189556,
+          0.3315531556257702,
+          0.20631401045393388,
+          0.0,
+          0.1998142396685172,
+          0.3349157268238386
+        ],
+        [
+          -0.4574413862842823,
+          0.2280128112683685,
+          -0.004701986719421459,
+          -0.1998142396685172,
+          0.0,
+          0.4293776794173059
+        ],
+        [
+          0.4219453621397091,
+          -0.018147429413611714,
+          -0.14418893915879072,
+          -0.3349157268238386,
+          -0.4293776794173059,
+          0.0
+        ]
+      ],
+      "phase_concentration_matrix": [
+        [
+          1.0,
+          0.08560909299942432,
+          0.08071696427269198,
+          0.2602067936327777,
+          0.09493985105659539,
+          0.10394111580230911
+        ],
+        [
+          0.08560909299942432,
+          1.0,
+          0.2866468709441151,
+          0.22877843455203026,
+          0.2733645568700871,
+          0.18771632592404625
+        ],
+        [
+          0.08071696427269198,
+          0.2866468709441151,
+          1.0,
+          0.2584109549179408,
+          0.17109683910546986,
+          0.14669793963836178
+        ],
+        [
+          0.2602067936327777,
+          0.22877843455203026,
+          0.2584109549179408,
+          1.0,
+          0.10947590459186907,
+          0.23540625533077855
+        ],
+        [
+          0.09493985105659539,
+          0.2733645568700871,
+          0.17109683910546986,
+          0.10947590459186907,
+          1.0,
+          0.12065914242401678
+        ],
+        [
+          0.10394111580230911,
+          0.18771632592404625,
+          0.14669793963836178,
+          0.23540625533077855,
+          0.12065914242401678,
+          1.0
+        ]
+      ],
+      "within_phase_cosine": 0.14797861189778105,
+      "cross_phase_cosine": -0.35402242540473317,
+      "tripod_coherence_scalar": 0.5020010373025142,
+      "within_pairs_in_phase": 2,
+      "cross_pairs_antiphase": 4,
+      "within_pair_phase_cycles": [
+        0.35041536752189556,
+        0.4574413862842823,
+        0.1998142396685172,
+        -0.16265506647991382,
+        0.018147429413611714,
+        0.14418893915879072
+      ],
+      "cross_pair_phase_cycles": [
+        0.48571282776957103,
+        0.4014677551106702,
+        -0.4219453621397091,
+        0.3315531556257702,
+        0.20631401045393388,
+        0.3349157268238386,
+        0.2280128112683685,
+        -0.004701986719421459,
+        0.4293776794173059
+      ],
+      "verdict": "P1-ABSENT"
+    },
+    "mean_swing_pool_activity": [
+      0.07205823967266353,
+      0.009543623032313459,
+      0.28059708163173236,
+      0.061674932994450996,
+      0.3348831432358775,
+      0.2700925521959673
+    ],
+    "mean_stance_pool_activity": [
+      0.06548718173244651,
+      0.05614477381154215,
+      0.11395359655252692,
+      0.010870274141602465,
+      0.00010128380512458229,
+      0.013138384548414284
+    ]
+  },
+  "shuffled": {
+    "timing_source": "column_shuffled_vnc",
+    "protocol": {
+      "weights_name": "all_legs_weight_csr.pkl",
+      "index_name": "all_legs_io_index.npz",
+      "model": "paper",
+      "drive": 100.0,
+      "gW": 0.03,
+      "tau": 0.02,
+      "dt": 0.005,
+      "substeps": 4,
+      "sample_dt_s": 0.02,
+      "steps": 1500,
+      "burn_fraction": 0.5,
+      "heterogeneity": true,
+      "heterogeneity_seed": 1,
+      "shuffle": true,
+      "shuffle_seed": 1,
+      "decode": "mean trochanter flexor/Acc. tr flexor > mean trochanter extensor; ties stance"
+    },
+    "leg_names": [
+      "T1L",
+      "T1R",
+      "T2L",
+      "T2R",
+      "T3L",
+      "T3R"
+    ],
+    "motor_pools": [
+      {
+        "leg": "T1L",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_l",
+          "tr flexor mn tr flexor mn_l"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_l"
+        ],
+        "swing_count": 11,
+        "stance_count": 2
+      },
+      {
+        "leg": "T1R",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_r",
+          "tr flexor mn tr flexor mn_r"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_r"
+        ],
+        "swing_count": 10,
+        "stance_count": 2
+      },
+      {
+        "leg": "T2L",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_l",
+          "tr flexor mn tr flexor mn_l"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_l"
+        ],
+        "swing_count": 9,
+        "stance_count": 2
+      },
+      {
+        "leg": "T2R",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_r",
+          "tr flexor mn tr flexor mn_r"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_r"
+        ],
+        "swing_count": 9,
+        "stance_count": 2
+      },
+      {
+        "leg": "T3L",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_l",
+          "tr flexor mn tr flexor mn_l"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_l"
+        ],
+        "swing_count": 9,
+        "stance_count": 1
+      },
+      {
+        "leg": "T3R",
+        "swing_labels": [
+          "acc. tr flexor mn acc. tr flexor mn_r",
+          "tr flexor mn tr flexor mn_r"
+        ],
+        "stance_labels": [
+          "tr extensor mn tr extensor mn_r"
+        ],
+        "swing_count": 9,
+        "stance_count": 2
+      }
+    ],
+    "weights_sha256": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+    "step_statistics": {
+      "burn_fraction": 0.5,
+      "sample_dt_s": 0.02,
+      "per_leg": [
+        {
+          "leg": "T1L",
+          "step_onsets": 0,
+          "step_frequency_hz": 0.0,
+          "duty_factor_swing": 0.0,
+          "swing_fraction": 0.0
+        },
+        {
+          "leg": "T1R",
+          "step_onsets": 0,
+          "step_frequency_hz": 0.0,
+          "duty_factor_swing": 0.0,
+          "swing_fraction": 0.0
+        },
+        {
+          "leg": "T2L",
+          "step_onsets": 0,
+          "step_frequency_hz": 0.0,
+          "duty_factor_swing": 0.0,
+          "swing_fraction": 0.0
+        },
+        {
+          "leg": "T2R",
+          "step_onsets": 0,
+          "step_frequency_hz": 0.0,
+          "duty_factor_swing": 1.0,
+          "swing_fraction": 1.0
+        },
+        {
+          "leg": "T3L",
+          "step_onsets": 0,
+          "step_frequency_hz": 0.0,
+          "duty_factor_swing": 0.0,
+          "swing_fraction": 0.0
+        },
+        {
+          "leg": "T3R",
+          "step_onsets": 0,
+          "step_frequency_hz": 0.0,
+          "duty_factor_swing": 1.0,
+          "swing_fraction": 1.0
+        }
+      ],
+      "mean_step_frequency_hz": 0.0,
+      "mean_duty_factor_swing": 0.3333333333333333
+    },
+    "decoded_state_phase": {
+      "phase_difference_matrix_rad": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "phase_difference_matrix_cycles": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "phase_concentration_matrix": [
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      ],
+      "within_phase_cosine": 1.0,
+      "cross_phase_cosine": 1.0,
+      "tripod_coherence_scalar": 0.0,
+      "within_pairs_in_phase": 6,
+      "cross_pairs_antiphase": 0,
+      "within_pair_phase_cycles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cross_pair_phase_cycles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "verdict": "P1-ABSENT"
+    },
+    "mean_swing_pool_activity": [
+      0.1375934488741008,
+      0.008320469233145321,
+      0.444423898396669,
+      0.5842213374034119,
+      0.027962206663356887,
+      0.6361855007189289
+    ],
+    "mean_stance_pool_activity": [
+      0.4998847026427587,
+      0.2504329367478689,
+      0.9974572296539942,
+      0.3998100108802319,
+      0.8804904820124309,
+      0.4929735319217046
+    ]
+  },
+  "assignment_rule": "trochanter flexor/Acc. tr flexor versus trochanter extensor, selected from the existing mn_to_joint annotation map"
+}

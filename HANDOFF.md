@@ -1,8 +1,8 @@
 # Flycraft — Path 2 handoff
 
-Status: frozen rerun, E0–E4 localization, reservoir R0–R3, and Outcome C/D
-complete; final claim remains gated on user approval. Documentation and audits
-updated.
+Status: frozen rerun, E0–E4 localization, reservoir R0–R3, Outcome C/D, and
+Path 3 zero-learning step decode complete; final claim remains gated on user
+approval. Documentation and audits updated.
 
 ## Working headline
 
@@ -312,6 +312,66 @@ distance threshold or wall-time logger was declared before training. Equal
 budget remains auditable from checkpoints: D1 12 × 8 candidates and D2 12 × 6
 candidates evaluated on four fixed seeds per condition.
 
+## Path 3: zero-learning step-timing decode (complete; final claim gated)
+
+Phase 0 verified the cross-body method sources in `PATH2_METHODS.md`. The
+fixed decode uses the existing `mn_to_joint.py` map: per-leg mean trochanter
+`Tr flexor`/`Acc. tr flexor` activity greater than mean `Tr extensor` activity
+means swing; ties mean stance. `gait_engine.py` wraps the unchanged Path-1
+`HexapodGait` lift-swing-place/push-back primitive. No learning, reward,
+optimizer, phase selection, catch term, or distance term is present. The brain
+continues to provide only the existing frozen steering signals.
+This is the single common direct antagonist pair across T1, T2, and T3; no
+alternative pool assignment was tried or selected by outcome.
+
+P1 decode gate: real VNC frequencies were `0.867, 0.867, 1.733, 0.933,
+0.067, 0.133 Hz` for T1L/T1R/T2L/T2R/T3L/T3R, with swing duties `.500, .244,
+.761, .635, .999, .979`; decoded state scalar `+.502`, only `2/6` within-
+tripod and `4/9` cross-tripod pairs passing, `P1-ABSENT`. Shuffled VNC had no
+step onsets and `P1-ABSENT`.
+
+P2 clean-clock ceiling: `0.5303 m` forward, `1.0797 m` path, no fall, canonical
+tripod scalar `2.000`, `P2-ENGINE-PRESENT`.
+
+P3 representative real closed loop: `0.1937 m` forward, `0.4609 m` path, no
+fall, realized scalar `+.1119`, `P3-ABSENT`. The four-view video is
+`eon-fly-brain/results/path2/stepwalk_multiview.mp4`; visual verdict is
+irregular asymmetric stepping/lurching, not a coordinated tripod.
+
+P4 used 20 shared static-prey starts, 8 s each, same engine/decode/steering/body
+and fixed seeds. Means have 95% percentile-bootstrap CIs (100,000 replicates,
+seed `20260829`); falls are height-gated at `.02 m`.
+The predeclared four-seed evaluation set is `20260829`–`20260832`, present as
+episodes 0–3 in every condition; P4 CIs use all 20, and videos are fixed-seed
+exemplars rather than post-hoc best selections.
+
+| timing source | forward m [95% CI] | path m [95% CI] | falls | upright | realized scalar [95% CI] |
+|---|---:|---:|---:|---:|---:|
+| real VNC | .0448 [.0114, .0804] | .2569 [.1965, .3135] | 0/20 | 20/20 | −.0413 [−.1625, .0880] |
+| shuffled VNC | −.0059 [−.0089, −.0032] | .0442 [.0254, .0638] | 0/20 | 20/20 | +.2599 [.1284, .4040] |
+| random matched-rate | .0782 [.0353, .1235] | .3515 [.2732, .4221] | 0/20 | 20/20 | +.0348 [−.0891, .1569] |
+
+Primary path tests: real minus shuffled `+.2127 m` [+.1636, +.2563], exact
+paired sign-flip `p=1.53e-5`, Holm `p=3.05e-5`; real minus random `−.0946 m`
+[−.1265, −.0625], exact `p=6.10e-5`, Holm `p=6.10e-5`. All 60 realized
+phase verdicts are `P3-ABSENT`. Real timing produces more movement than
+shuffled but less than random matched-rate timing; it does not produce a
+connectome-specific coordinated walk. Proposed protocol verdict:
+**NO WALK; no connectome-specific timing advantage**. Do not promote this to a
+final claim without user approval.
+
+Path 3 localizes primary failure to layer i: real decoded states pass only
+`2/6` within-tripod and `4/9` cross-tripod pairs. Layer ii carries variation
+(real episode motor temporal SD `.148`, target temporal SD `.092` rad) but does
+not repair phase. Layer iii passes the clean-clock ceiling (`.5303 m` forward,
+scalar `2.000`) and remains upright in P3; decoded timing still produces no
+tripod.
+
+Artifacts: `eon-fly-brain/results/path2/step_decode_p1.json`,
+`gait_engine_sanity.json`, `stepwalk_metrics_{real,shuffled,random}.json`,
+`stepwalk_controls.{json,csv,png}`, and the three
+`stepwalk_multiview*.mp4` videos.
+
 ## Reproduction commands
 
 Run from `/Users/puneeth/Documents/Flycraft` with
@@ -391,6 +451,23 @@ Run from `/Users/puneeth/Documents/Flycraft` with
 # Re-evaluate saved models at held-out descending drive 90; no retraining.
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
   --heldout-drive 90
+
+# Path 3: fixed decode, engine ceiling, representative episode, and controls.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/step_decode.py \
+  --data eon-fly-brain/results/path2 \
+  --out eon-fly-brain/results/path2/step_decode_p1
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_stepwalk.py \
+  --engine_only --secs 8 \
+  --out eon-fly-brain/results/path2/gait_engine_sanity.json
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/run_stepwalk.py \
+  --condition real --secs 8 \
+  --video eon-fly-brain/results/path2/stepwalk_multiview.mp4 \
+  --out eon-fly-brain/results/path2/stepwalk_metrics_real_episode.json
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/stepwalk_controls.py \
+  --data eon-fly-brain/data --vnc_data eon-fly-brain/results/path2 \
+  --n 20 --secs 8 \
+  --timing_reference eon-fly-brain/results/path2/step_decode_p1.json \
+  --out eon-fly-brain/results/path2/stepwalk_controls
 ```
 
 The synchronized four-camera episode is
@@ -432,4 +509,8 @@ the claim before user approval.
 | `eon-fly-brain/code/cmaes_walk.py` | Outcome C gain-tuning CMA-ES harness (frozen VNC pattern) |
 | `eon-fly-brain/code/cmaes_3way.py` | matched Outcome C connectome/random/rewired endpoint |
 | `eon-fly-brain/code/outcomeD_train.py` | Outcome D fixed-topology weight learning, controls, and audits |
+| `eon-fly-brain/code/step_decode.py` | Path 3 fixed antagonist-sign step decoder and P1 gate |
+| `eon-fly-brain/code/gait_engine.py` | Path 3 fixed per-leg wrapper over Path-1 `HexapodGait` |
+| `eon-fly-brain/code/run_stepwalk.py` | Path 3 episode runner and P2/P3 metrics |
+| `eon-fly-brain/code/stepwalk_controls.py` | Path 3 paired real/shuffled/random timing controls |
 | `PATH2_METHODS.md` | methods-complete working report |

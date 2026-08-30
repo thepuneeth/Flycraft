@@ -507,6 +507,159 @@ budget is nevertheless fixed and equal: D1 used 12 generations × 8 candidates
 per condition, and D2 used 12 generations × 6 candidates evaluated on the four
 fixed seeds.
 
+## Path 3 method sources
+
+Method study performed 2026-08-30. These sources set the interface only; they
+do not change the frozen graph, VNC constants, steering, body, or evaluation.
+
+### Sun et al., *C. elegans* multi-legged robot
+
+The paper decodes motor-neuron voltage into discrete leg-region commands using
+thresholded activation, including OLQ-RMD pairs mapped to four robot leg
+regions. A fixed robot-specific kinematic/inverse-kinematic layer turns each
+extend/contract command into leg motion. It explicitly rejects direct whole-
+brain-to-joint transfer when robot and worm kinematics differ. Reuse: discrete
+neural command plus body-specific solver. Avoid: its worm-specific regions and
+stimulus thresholds. The paper states the circuit is used directly, with no
+training: [PMC11201571](https://pmc.ncbi.nlm.nih.gov/articles/PMC11201571/).
+
+### NeuroMechFly v2 hybrid controller
+
+The hybrid controller combines a tripod stepping pattern with local sensory
+corrections for overstretch and stumbling. Its clean step is a per-leg
+swing/stance trajectory with lift during swing and ground-contact/adhesion
+during stance. Reuse: shape of a body-appropriate step and the idea that stuck
+legs need sensory rescue. Avoid: importing its designed CPG or corrections as
+Path 3 timing. This is a reference controller, not a Path 3 learned component:
+[hybrid tutorial](https://neuromechfly.org/tutorials/4c_hybrid_controller/),
+[Nature Methods paper](https://www.nature.com/articles/s41592-024-02497-y).
+
+### NCAP
+
+NCAP uses a small circuit motif as a structural prior while the body and its
+mechanics produce locomotion; the neural architecture is organized into
+rhythm-generation and pattern-formation roles. Reuse: keep neural structure
+and body-specific mechanics as separate layers. Avoid: its trained ANN and
+quadruped task as evidence for this zero-learning experiment. Path 3 uses the
+connectome only for step timing and leaves step shape fixed:
+[arXiv:2410.07174](https://arxiv.org/abs/2410.07174).
+
+### Connectome-CPG
+
+The connectome-CPG study identifies a core fly walking rhythm circuit and tests
+descending DNb08 influence on rhythmic leg output. Reuse: treat network rhythm
+as an empirical timing signal, then evaluate embodiment separately. Avoid:
+turning its fly-specific CPG result into a tripod label or a learned body
+controller. Path 3 therefore measures decoded states post hoc and adds no
+training, reward, or phase selection:
+[bioRxiv 2025.09.12.675944](https://www.biorxiv.org/content/10.1101/2025.09.12.675944v1.full).
+
+**Path 3 gate choice:** the antagonist-sign decode and the Path-1
+`HexapodGait` swing/stance primitive require zero training. For each leg,
+`swing` means mean `Tr flexor`/`Acc. tr flexor` activity exceeds mean `Tr
+extensor` activity; otherwise `stance`. The fixed engine supplies the
+lift-swing-place/push-back trajectory; the frozen brain supplies steering only.
+
+## Path 3 — zero-learning step-timing decode
+
+Implementation uses `code/step_decode.py`, `code/gait_engine.py`, and
+`code/run_stepwalk.py`. The six motor pools are selected once from the existing
+`mn_to_joint.py` map: positive trochanter `Tr flexor`/`Acc. tr flexor` channels
+are the swing pool and negative trochanter `Tr extensor` channels are the
+stance pool. The rule is `swing = pool_swing > pool_stance`, with ties stance.
+This is the single common direct antagonist pair exposed across T1, T2, and
+T3; no alternative pool assignment was tried or selected by outcome.
+It uses no threshold, fit, optimizer, reward, gait score, catch score, or
+distance score. The step engine calls the unchanged Path-1 `HexapodGait`
+target function; state transitions only choose phase 0 (swing) or π (stance),
+then the inherited fixed rate advances to the half-cycle endpoint.
+
+### P1 decode gate
+
+The frozen all-leg paper-rate VNC used 1,500 samples at 50 Hz, heterogeneity
+seed 1, constant drive 100, and the same column shuffle implementation used by
+Path 2. Numbers below are measured on the second half; decoded-state coherence
+uses the canonical `probe_vnc_phase.py` metric.
+
+| timing source | T1L Hz / duty | T1R Hz / duty | T2L Hz / duty | T2R Hz / duty | T3L Hz / duty | T3R Hz / duty | scalar | within / cross | verdict |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| real VNC | .867 / .500 | .867 / .244 | 1.733 / .761 | .933 / .635 | .067 / .999 | .133 / .979 | .502 | 2/6, 4/9 | P1-ABSENT |
+| shuffled VNC | 0 / .000 | 0 / .000 | 0 / .000 | 0 / 1.000 | 0 / .000 | 0 / 1.000 | .000 | 6/6, 0/9 | P1-ABSENT |
+
+The real and shuffled state sequences are therefore not indistinguishable,
+but the real sequence is not an alternating tripod. Full pools, traces, and
+protocol are in `results/path2/step_decode_p1.json` and
+`results/path2/step_decode_p1_traces.npz`.
+
+### P2 fixed-engine gate
+
+A clean external alternating-tripod clock drove the same `StepGaitEngine` for
+8 s with Path-1 forward input `.8`; no neural signal entered this ceiling run.
+It produced `0.5303 m` forward distance, `1.0797 m` path, no fall, and
+canonical tripod scalar `2.000` (`P2-ENGINE-PRESENT`). The source primitive
+file was not edited; the sanity record is
+`results/path2/gait_engine_sanity.json`.
+
+### P3 real closed loop
+
+The frozen brain supplied only the existing forward/turn steering pass. Each
+50 Hz step decoded live VNC antagonist activity, passed the six states through
+the fixed engine, and applied the unchanged PD servo. The representative
+8-second episode produced forward distance `0.1937 m`, path `0.4609 m`, no
+fall, and realized tripod scalar `+0.1119` (`P3-ABSENT`). The synchronized
+four-view video shows irregular asymmetric stepping/lurching, not a coordinated
+alternating tripod: `results/path2/stepwalk_multiview.mp4`.
+
+### P4 timing-source controls
+
+The paired study used 20 shared static-prey starts, 8 s per episode, and the
+same engine, decode rule, steering, body, PD constants, and seeds. The random
+condition used independent alternating-renewal swing/stance durations whose
+per-leg mean frequency and swing duty were fixed from the P1 real decode; only
+the timing source changed. Means have 95% percentile-bootstrap CIs (100,000
+replicates, seed `20260829`). Falls use the existing height threshold `.02 m`.
+
+The predeclared four-seed evaluation set is `20260829`–`20260832`, present as
+episodes 0–3 in every condition. P4 CIs use all 20 paired episodes; videos are
+fixed-seed exemplars, not post-hoc best selections.
+
+| timing source | forward m [95% CI] | path m [95% CI] | falls | upright | realized scalar [95% CI] | phase verdicts |
+|---|---:|---:|---:|---:|---:|---|
+| real VNC | .0448 [.0114, .0804] | .2569 [.1965, .3135] | 0/20 | 20/20 | −.0413 [−.1625, .0880] | 20/20 P3-ABSENT |
+| shuffled VNC | −.0059 [−.0089, −.0032] | .0442 [.0254, .0638] | 0/20 | 20/20 | +.2599 [.1284, .4040] | 20/20 P3-ABSENT |
+| random matched-rate | .0782 [.0353, .1235] | .3515 [.2732, .4221] | 0/20 | 20/20 | +.0348 [−.0891, .1569] | 20/20 P3-ABSENT |
+
+For the predeclared primary path endpoint, real minus shuffled was `+0.2127
+m` [+.1636, +.2563], exact paired sign-flip `p=1.53×10⁻⁵`, Holm
+`p=3.05×10⁻⁵`; real minus random was `−0.0946 m` [−.1265, −.0625], exact
+`p=6.10×10⁻⁵`, Holm `p=6.10×10⁻⁵`. Forward-distance differences were
+`+0.0507 m` [+.0159, +.0879] and `−0.0335 m` [−.0545, −.0131], respectively;
+their exact p-values are retained in the JSON. Real timing beats shuffled on
+movement, but not random timing, and no condition produces the declared
+coordinated walk. Proposed phase verdict: **NO WALK; no connectome-specific
+timing advantage**. This is evidence assembly only; final headline wording
+remains withheld pending user approval.
+
+### Path 3 layer localization
+
+Layer i remains the primary failure: the real VNC produces dynamic decoded
+states, but only `2/6` within-tripod and `4/9` cross-tripod state pairs pass in
+P1. Layer ii is not silent: the real closed-loop episode has motor temporal SD
+`.148` and target temporal SD `.092` rad, so the fixed decode/interface carries
+variation but cannot repair its phase. Layer iii passes its clean-clock gate
+(`.5303 m` forward, scalar `2.000`) and remains upright in P3; when driven by
+the decoded timing it produces no tripod. This localizes the transfer failure
+to layer-i timing organization, with layers ii/iii transmitting or expressing
+the incoherence rather than causing total signal loss.
+
+The control manifest, raw episode table, per-condition metrics, and figure are
+`results/path2/stepwalk_controls.json`,
+`results/path2/stepwalk_controls.csv`,
+`results/path2/stepwalk_metrics_{real,shuffled,random}.json`, and
+`results/path2/stepwalk_controls.png`. Fixed-condition videos are
+`results/path2/stepwalk_multiview_{shuffled,random}.mp4` in addition to the
+real video above.
+
 ## Integrity and zero-learning checks
 
 The current artifact set includes:
@@ -523,6 +676,8 @@ The current artifact set includes:
   bootstrap CI summary.
 - Outcome D target, D1/D2 checkpoints, three-way metrics, CI summary, and
   matched-condition multiview episodes.
+- Path 3 method-source record, antagonist pool decode, fixed-engine ceiling,
+  paired timing controls, CIs/sign-flip tests, and condition videos.
 
 The frozen E0–E4 audit flags remain `zero_learning=true`; those checks are
 scoped to the frozen baseline and still pass. Outcome C/D are explicit,
