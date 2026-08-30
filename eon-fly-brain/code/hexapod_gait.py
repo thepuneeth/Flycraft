@@ -25,6 +25,14 @@ H_MIN = 0.08                              # ride-height floor; below this is a f
 # per-leg joint indices in ctrl: leg i -> [3i (coxa), 3i+1 (femur), 3i+2 (tibia)]
 
 
+def resolve_phase_group(phase_group=None) -> frozenset[int]:
+    values = TRIPOD_A if phase_group is None else phase_group
+    group = frozenset(int(leg) for leg in values)
+    if not group <= set(range(6)):
+        raise ValueError(f"phase group has invalid legs: {sorted(group)}")
+    return group
+
+
 def home_stance(model: mujoco.MjModel | None = None) -> np.ndarray:
     """Return the six-leg stance encoded by the model's author-declared home keyframe."""
     model = model or mujoco.MjModel.from_xml_path(str(XML))
@@ -47,8 +55,9 @@ def resolve_stance(stance: np.ndarray | tuple[float, ...] | None = None) -> np.n
 class HexapodGait:
     """Tripod CPG producing 18 joint targets from a {forward,turn} drive."""
     def __init__(self, stance=None, swing_amp=0.35, lift_amp=0.7,
-                 base_freq=0.8, drive_freq=0.5, turn_scale=1.0):
+                 base_freq=0.8, drive_freq=0.5, turn_scale=1.0, phase_group=None):
         self.stance = resolve_stance(stance)
+        self.phase_group = resolve_phase_group(phase_group)
         self.swing_amp, self.lift_amp = float(swing_amp), float(lift_amp)
         self.base_freq, self.drive_freq = base_freq, drive_freq
         self.turn_scale = turn_scale
@@ -61,7 +70,7 @@ class HexapodGait:
         bias = float(np.clip(turn / self.turn_scale, -0.9, 0.9))   # >0 steer left
         q = np.zeros(18)
         for leg in range(6):
-            p = self.phi + (np.pi if leg in TRIPOD_A else 0.0)
+            p = self.phi + (np.pi if leg in self.phase_group else 0.0)
             side = 1.0 if leg in LEFT else -1.0
             # turn: inside legs take a shorter stride (differential drive)
             side_gain = (1 - bias) if leg in LEFT else (1 + bias)

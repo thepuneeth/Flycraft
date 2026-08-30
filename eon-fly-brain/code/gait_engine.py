@@ -32,7 +32,7 @@ def advance_leg(phase: float, swing: bool, forward: float, dt: float, primitive:
 
 def path1_leg_target(primitive: HexapodGait, phase: float, leg: int, forward: float, turn: float) -> np.ndarray:
     """Ask Path-1's own target function for one arbitrary leg phase."""
-    primitive.phi = float(phase) - (np.pi if leg in TRIPOD_A else 0.0)
+    primitive.phi = float(phase) - (np.pi if leg in primitive.phase_group else 0.0)
     target = primitive.targets(forward, turn, 0.0)
     return target[3 * leg:3 * leg + 3].copy()
 
@@ -40,8 +40,8 @@ def path1_leg_target(primitive: HexapodGait, phase: float, leg: int, forward: fl
 class StepGaitEngine:
     """Per-leg state machine; neural input chooses half-cycle, Path 1 chooses shape."""
 
-    def __init__(self, stance: np.ndarray | None = None):
-        self.primitive = HexapodGait(stance=stance)
+    def __init__(self, stance: np.ndarray | None = None, phase_group=None):
+        self.primitive = HexapodGait(stance=stance, phase_group=phase_group)
         self.phases = np.zeros(6, dtype=np.float64)
         self.states = np.zeros(6, dtype=bool)
         self.initialized = False
@@ -83,6 +83,7 @@ def protocol() -> dict:
         "base_freq_hz": primitive.base_freq,
         "drive_freq_hz": primitive.drive_freq,
         "turn_scale": primitive.turn_scale,
+        "phase_group": sorted(primitive.phase_group),
         "phase_rule": "state transition starts swing at phase 0 or stance at phase pi; fixed Path-1 rate advances and clamps at half-cycle endpoint",
     }
 
@@ -95,6 +96,7 @@ def self_check() -> None:
     assert np.array_equal(engine.primitive.stance, STANCE)
     assert np.isclose(engine.primitive.swing_amp, 0.35)
     assert np.isclose(engine.primitive.lift_amp, 0.7)
+    assert engine.primitive.phase_group == frozenset(TRIPOD_A)
 
 
 if __name__ == "__main__":
