@@ -91,7 +91,7 @@
     }
   },
   "e_series_reference": {
-    "artifact": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/e4_sensory_feedback.json",
+    "artifact": "eon-fly-brain/results/path2/e4_sensory_feedback.json",
     "verdict": "E4-ABSENT",
     "zero_learning": true,
     "body_corrected": true

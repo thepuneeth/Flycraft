@@ -1,4 +1,4 @@
-"""Frozen B: connectome-edge inter-leg phase coupling over the Path-1 shape."""
+"""Frozen last-three B/C/D zero-learning transfer controls."""
 from __future__ import annotations
 
 import argparse
@@ -378,6 +378,7 @@ def run_direct_episode(motors: np.ndarray, io, episode: dict, video: Path | None
     data.qpos[3:7] = (np.cos(yaw / 2.0), 0.0, 0.0, np.sin(yaw / 2.0))
     physics_steps = max(1, int(round((1.0 / CTRL_HZ) / model.opt.timestep)))
     stance = translate(np.zeros(len(io["motor_out"]), dtype=np.float32), io, gains=MAP_GAINS)
+    assert np.allclose(stance.reshape(6, 3), home_stance(model))
     for _ in range(int(DIRECT_SETTLE_S / model.opt.timestep)):
         data.ctrl[:] = pd_torque(model, data, stance, KP, KD)
         mujoco.mj_step(model, data)
@@ -487,6 +488,7 @@ def run_c(args) -> int:
         raise AssertionError("Phase C integrity failed")
     e4_path = RESULTS / "e4_sensory_feedback.json"
     e4 = json.loads(e4_path.read_text(encoding="utf-8"))
+    e4_record_path = str(e4_path.relative_to(HERE.parents[2]))
     if e4.get("verdict") != "E4-ABSENT" or e4.get("zero_learning") is not True:
         raise AssertionError("corrected E-series reference is not E4-ABSENT/zero-learning")
     rng = np.random.default_rng(BOOTSTRAP_SEED)
@@ -517,7 +519,7 @@ def run_c(args) -> int:
         },
         "graph": graph,
         "sources": source_records,
-        "e_series_reference": {"artifact": str(e4_path), "verdict": e4["verdict"], "zero_learning": e4["zero_learning"], "body_corrected": True},
+        "e_series_reference": {"artifact": e4_record_path, "verdict": e4["verdict"], "zero_learning": e4["zero_learning"], "body_corrected": True},
         "summary": summary,
         "comparisons": comparison_rows,
         "pre_registered_null": "raw MN waveform will not produce a walk; corrected E-series ABSENT is reproduced on the standing body",
@@ -593,6 +595,7 @@ def run_tonic_episode(motors: np.ndarray, io, episode: dict, video: Path | None 
     data.qpos[3:7] = (np.cos(yaw / 2.0), 0.0, 0.0, np.sin(yaw / 2.0))
     physics_steps = max(1, int(round((1.0 / CTRL_HZ) / model.opt.timestep)))
     home = translate(np.zeros(len(io["motor_out"]), dtype=np.float32), io, gains=MAP_GAINS)
+    assert np.allclose(home.reshape(6, 3), home_stance(model))
     for _ in range(int(DIRECT_SETTLE_S / model.opt.timestep)):
         data.ctrl[:] = pd_torque(model, data, home, KP, KD)
         mujoco.mj_step(model, data)

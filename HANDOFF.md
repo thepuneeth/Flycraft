@@ -1,20 +1,25 @@
 # Flycraft — Path 2 handoff
 
-Status: corrected body-setup rerun complete through E0–E4 and Path 3; current
-`H_MIN=.08 m` gate, Methods 1–2, and corrected Path 3 controls are complete.
-Pre-fix body-level results are confounded/superseded; the final claim remains
-gated on user approval.
+Status: corrected body-setup rerun complete through E0–E4, Path 3, and the
+last-three B/C/D jobs; current `H_MIN=.08 m` gate and zero-learning controls
+are complete. Pre-fix body-level results are confounded/superseded; the final
+claim remains gated on user approval.
 
 ## Current result (claim review pending)
 
-Corrected home-pose body setup makes the clean external tripod clock stand and
-travel (`1.660 m` forward, `2.038 m` path in 8 s; minimum height `.121 m`; no
-fall), but the expanded frozen VNC still does not produce the declared
-alternating tripod. All 212 published T1/T2/T3 coordination candidates are
-included, including both formerly omitted T1 `IN12B013` cells. E0, E3, E4,
-Path 3, Method 1, and Method 2 remain phase-absent. Method 1's real 4/2
-grouping falls in 16/20 episodes; Method 2 restores near-half duty but not
-canonical inter-leg phase.
+Working headline: all 212 published T1/T2/T3 coordination candidates are
+included, but no tested zero-learning route transfers a canonical tripod to
+the hexapod. Corrected home-pose setup makes the clean external tripod clock
+stand and travel (`1.660 m` forward, `2.038 m` path in 8 s; minimum height
+`.121 m`; no fall). Method 1's real 4/2 grouping falls in 16/20; Method 2 is
+phase-absent in all 20; B dynamic edge coupling falls in 20/20; C direct MN
+waveform is `C1-ABSENT`; D earns tonic pose equally under shuffled/random
+controls.
+
+All 212 published T1/T2/T3 coordination candidates are included, including
+both formerly omitted T1 `IN12B013` cells. E0, E3, E4, Path 3, Method 1,
+Method 2, B, and C remain phase-absent for the declared tripod endpoint. D's
+positive is pose only.
 
 The five-condition study shows real VNC wiring beats column-shuffled VNC on
 path (`+0.2663 m`, 95% CI `[+.2611,+.2714]`, exact `p=1.91×10⁻⁶`, Holm
@@ -23,8 +28,9 @@ below matched random descending drive (`−.0621 m`, 95% CI
 `[−.1192,−.0092]`, Holm `p=.0422`). This is a real VNC motor-output positive,
 not evidence that connectome coordination transfers to a tripod.
 
-This is corrected evidence assembly, not final claim wording. Outcome C/D were
-not rerun; the fixed zero-learning routes still show no coordinated walk.
+This is corrected evidence assembly, not final claim wording. Learned Outcome
+C/D remain separate methods; last-three B/C/D are fixed zero-learning transfer
+tests.
 
 ## Pre-fix working headline (confounded/superseded)
 
@@ -195,9 +201,9 @@ Full metrics and tests: `results/path2/bodyfix_vnc_control_study_3s_stats.json`.
 
 ## Failure localization
 
-`results/path2/bodyfix_transfer_layers.png` is corrected mechanistic figure;
-`results/path2/bodyfix_transfer_layers.json` contains corrected measurements.
-The old `transfer_layers.*` files remain as superseded provenance.
+`results/path2/transfer_layers.png` is the current corrected mechanistic figure;
+`results/path2/transfer_layers.json` contains the rerun measurements. The
+older `bodyfix_transfer_layers.*` snapshot remains provenance.
 
 1. **VNC dynamics (layer i):** dynamic output exists — 260 motor channels,
    mean temporal SD .152 — and T1 oscillates. But all-leg inter-leg phase is
@@ -314,9 +320,10 @@ Do not write the final claim until the user approves the assembled evidence.
 
 ## Outcome D: learn VNC weights (pre-fix; superseded; final claim gated)
 
-> Outcome D was not rerun after body correction because corrected B1–B3 still
-> showed no tripod and no real-over-random advantage. Old learning outputs are
-> retained for method provenance; body-level metrics are confounded/superseded.
+> Learned Outcome D was not rerun after body correction because corrected B1–B3
+> still showed no tripod and no real-over-random advantage. Old learning
+> outputs are retained for method provenance; last-three D is a separate fixed
+> map tonic-pose test, and old body-level metrics are confounded/superseded.
 
 Outcome C ceilings, so the remaining rung that could plausibly produce
 walking is learning the VNC weights themselves — the FlyGM recipe (connectome
@@ -426,15 +433,33 @@ continuous per-leg drive has `20/20 M2-PHASE-ABSENT`. Current artifacts are
 `results/path2/hminfix_stepwalk_controls.*` plus their condition metrics and
 four-view videos.
 
-Layer i remains primary failure: VNC phase relations are absent before and
-after decoding. Layer ii transmits usable oscillation and balanced duty but
-does not repair coordination; Method 1 can impose scalar 2.0 and still falls
-16/20, while Method 2 carries finite phase and target motion without a tripod.
-Layer iii passes the clean engine gate (`2.038 m` path, `.121 m` minimum height,
-no fall, scalar 2.0), so body/engine is not total-signal-loss bottleneck.
-Effective connectome ownership remains about 25%: it owns descending drive,
-VNC dynamics, motor activity, and steering, but not successful whole-body
-coordination or rhythm. No 50–60% ownership upgrade is justified.
+### Last three jobs — final zero-learning controls
+
+Full methods, tables, CIs, paired tests, K provenance, and videos are in
+`PATH2_METHODS.md`. Short record:
+
+- B dynamic K: real `1.4188 m` path `[1.4136,1.4240]`, coherence `.3542`,
+  20/20 falls; shuffled K path `1.6140 m`, coherence `−.3196`, 20/20 falls;
+  random K path `1.1995 m`, coherence `.2059`, 0/20 falls. Real minus
+  shuffled coherence `+.6737` `[+.6737,+.6737]`, Holm `p=3.81×10⁻⁶`, but no
+  tripod transfer.
+- C direct MN: real path `1.1090 m` `[1.1004,1.1177]` versus shuffled `.0929 m`
+  `[.0867,.0991]`; difference `+1.0161 m` `[+1.0113,+1.0208]`, Holm
+  `p=3.81×10⁻⁶`. Real remains `C1-ABSENT` (4/6 within, 2/9 cross), so this
+  is motor-output motion, not coordinated walking.
+- D tonic pose: real mean ride height `.1470 m` `[.1466,.1474]`, shuffled
+  `.1396 m` `[.1391,.1402]`, random `.1459 m` `[.1454,.1465]`; all 0/20
+  falls and all `D-POSE-PRESENT` under the fixed `.12 m` threshold. Controls
+  earn same pose; this does not upgrade coordination.
+
+Layer i remains primary failure: VNC output is dynamic (`260` motor outputs,
+mean temporal SD `.152`) but all raw/decoded/coupled phase tests remain
+absent. Layer ii transmits it (`18/18` active targets, mean target SD `.133`
+rad) but cannot repair phase. Layer iii can carry a clean tripod (`2.038 m`
+path, `.121 m` minimum height, no fall, scalar `2.0`) and can hold tonic pose,
+but it does not create missing coordination. Effective connectome ownership
+is about 25–35%: descending drive, VNC dynamics, motor activity, steering, and
+tonic pose are present; successful whole-body coordination is not.
 
 ## Path 3: zero-learning step-timing decode (corrected; final claim gated)
 
@@ -662,21 +687,25 @@ Corrected rerun checks already recorded:
 - immutable target and exact row/column degree sequences for D controls;
 - `git diff --check`.
 
-All 65 JSON and 44 CSV files parse; all 212 published candidates are selected
+All 68 JSON and 47 CSV files parse; all 212 published candidates are selected
 with 0 omitted; VNC hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`; brain
 hash is `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
 The all-leg index hash is
 `3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449` and
 matches the frozen graph record. The corrected engine, E3/E4, layer, Path 3,
-Method-1, and Method-2 artifacts retain zero-learning or learning=false
-protocol flags; source scan found no optimizer, backprop, reward, target-fit,
-or performance-based choice in frozen rerun paths. New method/control videos
-are readable H.264, 8.000 s; the preflight video is 4.000 s. Outcome C/D
-remain separately labeled learning rungs and were not rerun.
-The lexical zero-learning scan's only matches are the preflight inventory
-filename `outcomeD_train.py` and Method-2's deterministic `np.polyfit` slope
-used to estimate phase frequency; neither is training, optimization, or a
+Method-1, Method-2, and last-three B/C/D artifacts retain zero-learning or
+learning=false protocol flags; source scan found no optimizer, backprop,
+reward, target-fit, or performance-based choice in frozen rerun paths. New
+method/control videos are readable H.264: B/C are 8.000 s, D is a 1.500 s
+tonic hold, and preflight is 4.000 s. Learned Outcome C/D remain separately
+labeled methods; last-three B/C/D are fixed transfer controls and are
+complete.
+The broad lexical zero-learning scan is scoped to frozen no-learning paths.
+Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
+the substring `train` inside plotting layout `constrained`, the preflight
+inventory filename `outcomeD_train.py`, and an existing explanatory
+`task training` phrase; none is executable learning, optimization, or a
 performance-derived choice.
 
 Do not add constants, retune gains, delete superseded artifacts, or broaden
@@ -707,4 +736,5 @@ the claim before user approval.
 | `eon-fly-brain/code/preflight.py` | Gate-A home-pose, floor, graph-hash, and clean-engine checks |
 | `eon-fly-brain/code/connectome_coordination.py` | Method-1 phase-derived grouping and controls |
 | `eon-fly-brain/code/continuous_phase.py` | Method-2 continuous VNC phase source and controls |
+| `eon-fly-brain/code/last_three_jobs.py` | B dynamic coupling, C direct MN waveform, and D tonic pose controls |
 | `PATH2_METHODS.md` | methods-complete working report |
