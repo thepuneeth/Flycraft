@@ -14,21 +14,27 @@ RESULTS = HERE.parent.parent / "results" / "path2"
 ANATOMY_DATA = HERE.parent.parent / "data"
 sys.path.insert(0, str(HERE))
 from audit_intersegmental import cross_edges, load_annotations  # noqa: E402
+from analyze_control_study import exact_sign_flip, holm_adjust, paired_bootstrap_ci  # noqa: E402
 from fetch_manc import NEUROTRANSMITTERS, nt_signs  # noqa: E402
 from last_three_jobs import (  # noqa: E402
     CONDITIONS,
+    DIRECT_SUMMARY_METRICS,
     SUMMARY_METRICS,
     calibrate_gain,
     comparisons,
     coupled_phases,
+    direct_sources,
     endpoint_legs,
     graph_record,
     run_engine,
+    run_direct_episode,
     summarize,
     vnc_phase_source,
 )
+from mn_to_joint import translate_antagonist  # noqa: E402
 from preflight import EXPECTED_SHA256  # noqa: E402
 from stepwalk_controls import episode_specs  # noqa: E402
+from hexapod_gait import home_stance  # noqa: E402
 
 
 LEG_NAMES = ("T1L", "T1R", "T2L", "T2R", "T3L", "T3R")
@@ -40,6 +46,8 @@ COORD_RANDOM_SEED = 20260834
 INHIB_SHUFFLE_SEED = 20260835
 INHIB_RANDOM_SEED = 20260836
 SMOKE_SECS = 1.0
+WAVE_BASELINE = RESULTS / "lastthree_C_direct_mn_waveform.json"
+WAVE_MAP_NAME = "mn_to_joint.translate_antagonist(motor_activity, io, gains=(-0.55, 0.65, 0.65))"
 
 
 def sign_table(matrix: np.ndarray) -> dict:
@@ -347,9 +355,194 @@ def run_coord_inhib(args: argparse.Namespace) -> int:
     )
 
 
+def wave_comparisons(groups: dict[str, list[dict]], baseline: list[dict], rng: np.random.Generator) -> list[dict]:
+    rows = comparisons(groups, rng, DIRECT_SUMMARY_METRICS)
+    baseline_by_episode = {int(row["episode"]): row for row in baseline}
+    baseline_rows = []
+    for metric in DIRECT_SUMMARY_METRICS:
+        differences = np.asarray(
+            [row[metric] - baseline_by_episode[int(row["episode"])] [metric] for row in groups["real"]],
+            dtype=np.float64,
+        )
+        low, high = paired_bootstrap_ci(differences, rng, 100_000)
+        baseline_rows.append({
+            "comparison": "wave_real_minus_phase_c_real",
+            "metric": metric,
+            "n_pairs": len(differences),
+            "mean_difference": float(differences.mean()),
+            "ci_low": low,
+            "ci_high": high,
+            "p_exact_two_sided_paired_sign_flip": exact_sign_flip(differences),
+        })
+    for metric in DIRECT_SUMMARY_METRICS:
+        related = [row for row in baseline_rows if row["metric"] == metric]
+        related.extend(row for row in rows if row["metric"] == metric)
+        adjusted = holm_adjust([row["p_exact_two_sided_paired_sign_flip"] for row in related])
+        for row, pvalue in zip(related, adjusted):
+            row["p_holm_across_phase_c_and_two_controls_for_metric"] = pvalue
+    return rows + baseline_rows
+
+
+def run_wave_antag(args: argparse.Namespace) -> int:
+    null_text = (
+        "the fuller antagonist map does not beat Phase C forward distance beyond CI overlap, "
+        "or does not beat shuffled/random"
+    )
+    print(f"PRE-REGISTERED NULL WAVE-ANTAG: {null_text}", flush=True)
+    if not WAVE_BASELINE.exists():
+        raise FileNotFoundError(f"missing frozen Phase C baseline: {WAVE_BASELINE}")
+    baseline_result = json.loads(WAVE_BASELINE.read_text(encoding="utf-8"))
+    if baseline_result.get("verdict") != "C1-ABSENT" and baseline_result.get("gate_c1", {}).get("verdict") != "GATE C1: PASS":
+        raise AssertionError("Phase C baseline is not the committed C1 record")
+    steps = int(round(args.secs * 50.0))
+    sources, io, source_records = direct_sources(args.data, args.weights_name, args.index_name, steps)
+    zero = translate_antagonist(np.zeros(len(io["motor_out"]), dtype=np.float32), io, gains=(-0.55, 0.65, 0.65))
+    assert np.allclose(zero.reshape(6, 3), home_stance())
+    specs = episode_specs(args.n, args.seed)
+    smoke = {}
+    smoke_steps = int(round(SMOKE_SECS * 50.0))
+    for condition in CONDITIONS:
+        result = run_direct_episode(
+            sources[condition][:smoke_steps], io, specs[0], secs=SMOKE_SECS,
+            mapper=translate_antagonist, mapper_name=WAVE_MAP_NAME,
+        )
+        smoke[condition] = {
+            key: result[key] for key in ("path_m", "forward_distance_m", "tripod_coherence_scalar", "mean_feet_planted", "fell")
+        }
+        print(
+            f"smoke {condition}: forward={result['forward_distance_m']:.4f} "
+            f"path={result['path_m']:.4f} coherence={result['tripod_coherence_scalar']:+.4f} "
+            f"feet={result['mean_feet_planted']:.3f} fell={result['fell']}",
+            flush=True,
+        )
+    if not all(np.isfinite(value[key]) for value in smoke.values() for key in ("path_m", "forward_distance_m", "tripod_coherence_scalar", "mean_feet_planted")):
+        raise AssertionError("WAVE-ANTAG smoke produced non-finite metrics")
+
+    rows = []
+    for condition in CONDITIONS:
+        for index, spec in enumerate(specs):
+            video = args.video if condition == "real" and index == 0 else None
+            result = run_direct_episode(
+                sources[condition][:steps], io, spec, video=video, secs=args.secs,
+                mapper=translate_antagonist, mapper_name=WAVE_MAP_NAME,
+            )
+            rows.append({**spec, **result, "condition": condition})
+            print(
+                f"{condition} {index + 1}/{args.n} forward={result['forward_distance_m']:.4f} "
+                f"path={result['path_m']:.4f} coherence={result['tripod_coherence_scalar']:+.4f} "
+                f"feet={result['mean_feet_planted']:.3f} fell={result['fell']}",
+                flush=True,
+            )
+    groups = {condition: [row for row in rows if row["condition"] == condition] for condition in CONDITIONS}
+    reference = [
+        (row["episode"], row["episode_seed"], row["initial_yaw_rad"], row["prey_x_m"], row["prey_y_m"])
+        for row in groups["real"]
+    ]
+    shared_starts = all(
+        [
+            (row["episode"], row["episode_seed"], row["initial_yaw_rad"], row["prey_x_m"], row["prey_y_m"])
+            for row in groups[condition]
+        ]
+        == reference
+        for condition in CONDITIONS
+    )
+    protocols = [row["protocol"] for row in rows]
+    same_pipeline = all(protocol == protocols[0] for protocol in protocols)
+    finite_metrics = all(np.isfinite(row[name]) for row in rows for name in DIRECT_SUMMARY_METRICS)
+    graph = graph_record(args.data)
+    if not shared_starts or not same_pipeline or not finite_metrics or not graph["hash_equal"] or any(len(group) != args.n for group in groups.values()):
+        raise AssertionError("WAVE-ANTAG control integrity failed")
+
+    baseline_rows = baseline_result["rows"]
+    baseline_real = [row for row in baseline_rows if row["condition"] == "real"]
+    if len(baseline_real) != args.n:
+        raise AssertionError("Phase C baseline does not have 20 real episodes")
+    for row, old in zip(groups["real"], sorted(baseline_real, key=lambda value: int(value["episode"]))):
+        if (row["episode"], row["episode_seed"], row["initial_yaw_rad"], row["prey_x_m"], row["prey_y_m"]) != (old["episode"], old["episode_seed"], old["initial_yaw_rad"], old["prey_x_m"], old["prey_y_m"]):
+            raise AssertionError("WAVE-ANTAG and Phase C starts are not paired")
+    rng = np.random.default_rng(20260829)
+    summary = {condition: summarize(groups[condition], rng, DIRECT_SUMMARY_METRICS) for condition in CONDITIONS}
+    comparison_rows = wave_comparisons(groups, baseline_real, rng)
+    phase_c_forward = baseline_result["summary"]["real"]["metrics"]["forward_distance_m"]
+    wave_forward = summary["real"]["metrics"]["forward_distance_m"]
+    beats_phase_c = wave_forward["ci_low"] > phase_c_forward["ci_high"]
+    beats_controls = all(
+        wave_forward["mean"] > summary[condition]["metrics"]["forward_distance_m"]["mean"]
+        for condition in ("shuffled", "random")
+    )
+    phase_present = all(row["phase"]["verdict"] == "C1-PRESENT" for row in groups["real"])
+    verdict = "WAVE-ANTAG-PRESENT" if beats_phase_c and beats_controls and phase_present and summary["real"]["falls"] == 0 else "WAVE-ANTAG-NULL"
+    result = {
+        "method": "WAVE-ANTAG fuller fixed antagonist MN-to-joint waveform",
+        "protocol": {
+            "planned_n_per_condition": PLANNED_N,
+            "planned_secs": PLANNED_SECS,
+            "n_per_condition": args.n,
+            "secs": args.secs,
+            "episode_seed": args.seed,
+            "shared_episode_starts": shared_starts,
+            "same_fixed_pipeline": same_pipeline,
+            "only_condition_difference": "motor source; fixed fuller antagonist map across all conditions",
+            "motor_to_joint": WAVE_MAP_NAME,
+            "map_rule": "coxa uses fly coxa pools; femur uses all trochanter+femur pools; tibia uses all tibia+tarsus pools; each target is mean positive sign minus mean negative sign",
+            "motor_map_gains": [-0.55, 0.65, 0.65],
+            "engine": None,
+            "phase_machine": None,
+            "h_min_m": 0.08,
+            "learning": False,
+        },
+        "graph": graph,
+        "sources": source_records,
+        "phase_c_baseline": {
+            "artifact": str(WAVE_BASELINE.relative_to(HERE.parents[2])),
+            "method": baseline_result["method"],
+            "verdict": baseline_result["gate_c1"]["verdict"],
+            "zero_learning": baseline_result["zero_learning"],
+        },
+        "smoke": smoke,
+        "summary": summary,
+        "comparisons": comparison_rows,
+        "beats_phase_c_forward_beyond_ci_overlap": bool(beats_phase_c),
+        "beats_shuffled_random_forward_means": bool(beats_controls),
+        "real_phase_present": bool(phase_present),
+        "pre_registered_null": null_text,
+        "verdict": verdict,
+        "gate_wave_antag": {
+            "shared_episode_starts": shared_starts,
+            "same_fixed_pipeline": same_pipeline,
+            "finite_metrics": finite_metrics,
+            "graph_hash_equal": graph["hash_equal"],
+            "phase_c_baseline_paired": True,
+            "rows": len(rows),
+            "smoke_complete": True,
+            "verdict": "GATE WAVE-ANTAG: PASS",
+        },
+        "zero_learning": True,
+        "rows": rows,
+    }
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.with_suffix(".json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    columns = (
+        "condition", "episode", "episode_seed", "initial_yaw_rad", "prey_x_m", "prey_y_m",
+        "forward_distance_m", "path_m", "displacement_m", "tripod_coherence_scalar", "mean_feet_planted",
+        "min_height_m", "motor_temporal_std_mean", "target_temporal_std_mean_rad", "active_target_channels", "fell",
+    )
+    with args.out.with_suffix(".csv").open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows({key: row[key] for key in columns} for row in rows)
+    print(json.dumps({"summary": summary, "comparisons": comparison_rows}, sort_keys=True))
+    print("GATE WAVE-ANTAG: PASS (shared starts; fixed fuller map; finite; Phase C paired)")
+    print(f"RESULT: {verdict}")
+    print(f"json -> {args.out.with_suffix('.json')}")
+    print(f"csv -> {args.out.with_suffix('.csv')}")
+    print(f"video -> {args.video}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--phase", choices=("COORD-212", "COORD-INHIB"), default="COORD-212")
+    parser.add_argument("--phase", choices=("COORD-212", "COORD-INHIB", "WAVE-ANTAG"), default="COORD-212")
     parser.add_argument("--data", type=Path, default=Path("eon-fly-brain/results/path2"))
     parser.add_argument("--weights_name", default="all_legs_weight_csr.pkl")
     parser.add_argument("--index_name", default="all_legs_io_index.npz")
@@ -360,11 +553,15 @@ def main() -> int:
     parser.add_argument("--video", type=Path, default=None)
     args = parser.parse_args()
     if args.n < PLANNED_N or args.secs != PLANNED_SECS:
-        raise ValueError("coordination phases are frozen at n=20 and secs=8")
-    stem = {"COORD-212": "untried_coord212", "COORD-INHIB": "untried_coord_inhib"}[args.phase]
+        raise ValueError("untried phases are frozen at n=20 and secs=8")
+    stem = {"COORD-212": "untried_coord212", "COORD-INHIB": "untried_coord_inhib", "WAVE-ANTAG": "untried_wave_antag"}[args.phase]
     args.out = args.out or Path(f"eon-fly-brain/results/path2/{stem}")
     args.video = args.video or Path(f"eon-fly-brain/results/path2/{stem}_real_multiview.mp4")
-    return run_coord212(args) if args.phase == "COORD-212" else run_coord_inhib(args)
+    if args.phase == "COORD-212":
+        return run_coord212(args)
+    if args.phase == "COORD-INHIB":
+        return run_coord_inhib(args)
+    return run_wave_antag(args)
 
 
 if __name__ == "__main__":

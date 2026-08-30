@@ -367,7 +367,15 @@ def direct_sources(data: Path, weights_name: str, index_name: str, steps: int) -
     }
 
 
-def run_direct_episode(motors: np.ndarray, io, episode: dict, video: Path | None = None, secs: float = PLANNED_SECS) -> dict:
+def run_direct_episode(
+    motors: np.ndarray,
+    io,
+    episode: dict,
+    video: Path | None = None,
+    secs: float = PLANNED_SECS,
+    mapper=translate,
+    mapper_name: str = "mn_to_joint.translate(motor_activity, io, gains=(-0.55, 0.65, 0.65))",
+) -> dict:
     steps = int(round(secs * CTRL_HZ))
     if motors.shape != (steps, len(io["motor_out"])):
         raise ValueError(f"motor history shape {motors.shape}; expected {(steps, len(io['motor_out']))}")
@@ -377,7 +385,7 @@ def run_direct_episode(motors: np.ndarray, io, episode: dict, video: Path | None
     yaw = float(episode["initial_yaw_rad"])
     data.qpos[3:7] = (np.cos(yaw / 2.0), 0.0, 0.0, np.sin(yaw / 2.0))
     physics_steps = max(1, int(round((1.0 / CTRL_HZ) / model.opt.timestep)))
-    stance = translate(np.zeros(len(io["motor_out"]), dtype=np.float32), io, gains=MAP_GAINS)
+    stance = mapper(np.zeros(len(io["motor_out"]), dtype=np.float32), io, gains=MAP_GAINS)
     assert np.allclose(stance.reshape(6, 3), home_stance(model))
     for _ in range(int(DIRECT_SETTLE_S / model.opt.timestep)):
         data.ctrl[:] = pd_torque(model, data, stance, KP, KD)
@@ -396,7 +404,7 @@ def run_direct_episode(motors: np.ndarray, io, episode: dict, video: Path | None
     cameras = make_cameras(model) if renderer else []
     frames = []
     for step, motor in enumerate(motors):
-        target = translate(motor, io, gains=MAP_GAINS)
+        target = mapper(motor, io, gains=MAP_GAINS)
         targets.append(target)
         for _ in range(physics_steps):
             data.ctrl[:] = pd_torque(model, data, target, KP, KD)
@@ -441,7 +449,7 @@ def run_direct_episode(motors: np.ndarray, io, episode: dict, video: Path | None
             "settle_s": DIRECT_SETTLE_S,
             "kp": KP,
             "kd": KD,
-            "motor_to_joint": "mn_to_joint.translate(motor_activity, io, gains=(-0.55, 0.65, 0.65))",
+            "motor_to_joint": mapper_name,
             "engine": None,
             "decode": None,
             "phase_machine": None,
