@@ -1,0 +1,244 @@
+{
+  "genes": [
+    {
+      "index": 0,
+      "name": "dng100_level",
+      "default": 100.0,
+      "bounds": [
+        0.0,
+        300.0
+      ],
+      "injection_point": "DNg100 left/right descending current"
+    },
+    {
+      "index": 1,
+      "name": "dnb08_level",
+      "default": 100.0,
+      "bounds": [
+        0.0,
+        300.0
+      ],
+      "injection_point": "DNb08 left/right descending current"
+    },
+    {
+      "index": 2,
+      "name": "left_right_balance",
+      "default": 0.0,
+      "bounds": [
+        -1.0,
+        1.0
+      ],
+      "injection_point": "multiplicative left/right descending balance"
+    },
+    {
+      "index": 3,
+      "name": "tonic_offset",
+      "default": 0.0,
+      "bounds": [
+        -50.0,
+        50.0
+      ],
+      "injection_point": "uniform current added to every VNC neuron"
+    },
+    {
+      "index": 4,
+      "name": "T1_from_T2",
+      "default": 1.0,
+      "bounds": [
+        0.0,
+        3.0
+      ],
+      "injection_point": "all CSR edges source T2 -> target T1"
+    },
+    {
+      "index": 5,
+      "name": "T1_from_T3",
+      "default": 1.0,
+      "bounds": [
+        0.0,
+        3.0
+      ],
+      "injection_point": "all CSR edges source T3 -> target T1"
+    },
+    {
+      "index": 6,
+      "name": "T2_from_T1",
+      "default": 1.0,
+      "bounds": [
+        0.0,
+        3.0
+      ],
+      "injection_point": "all CSR edges source T1 -> target T2"
+    },
+    {
+      "index": 7,
+      "name": "T2_from_T3",
+      "default": 1.0,
+      "bounds": [
+        0.0,
+        3.0
+      ],
+      "injection_point": "all CSR edges source T3 -> target T2"
+    },
+    {
+      "index": 8,
+      "name": "T3_from_T1",
+      "default": 1.0,
+      "bounds": [
+        0.0,
+        3.0
+      ],
+      "injection_point": "all CSR edges source T1 -> target T3"
+    },
+    {
+      "index": 9,
+      "name": "T3_from_T2",
+      "default": 1.0,
+      "bounds": [
+        0.0,
+        3.0
+      ],
+      "injection_point": "all CSR edges source T2 -> target T3"
+    },
+    {
+      "index": 10,
+      "name": "campaniform_sensilla_gain",
+      "default": 100.0,
+      "bounds": [
+        0.0,
+        300.0
+      ],
+      "injection_point": "all E4 campaniform sensilla sensory currents"
+    },
+    {
+      "index": 11,
+      "name": "campaniform_sensilla_sign",
+      "default": 1.0,
+      "bounds": [
+        -1.0,
+        1.0
+      ],
+      "injection_point": "sign of all E4 campaniform sensilla sensory currents"
+    },
+    {
+      "index": 12,
+      "name": "hair_plate_gain",
+      "default": 100.0,
+      "bounds": [
+        0.0,
+        300.0
+      ],
+      "injection_point": "all E4 hair plate sensory currents"
+    },
+    {
+      "index": 13,
+      "name": "hair_plate_sign",
+      "default": 1.0,
+      "bounds": [
+        -1.0,
+        1.0
+      ],
+      "injection_point": "sign of all E4 hair plate sensory currents"
+    },
+    {
+      "index": 14,
+      "name": "chordotonal_organ_gain",
+      "default": 100.0,
+      "bounds": [
+        0.0,
+        300.0
+      ],
+      "injection_point": "all E4 chordotonal organ sensory currents"
+    },
+    {
+      "index": 15,
+      "name": "chordotonal_organ_sign",
+      "default": 1.0,
+      "bounds": [
+        -1.0,
+        1.0
+      ],
+      "injection_point": "sign of all E4 chordotonal organ sensory currents"
+    },
+    {
+      "index": 16,
+      "name": "leg_gain",
+      "default": 100.0,
+      "bounds": [
+        0.0,
+        300.0
+      ],
+      "injection_point": "all E4 leg sensory currents"
+    },
+    {
+      "index": 17,
+      "name": "leg_sign",
+      "default": 1.0,
+      "bounds": [
+        -1.0,
+        1.0
+      ],
+      "injection_point": "sign of all E4 leg sensory currents"
+    }
+  ],
+  "dimension": 18,
+  "default_gene": [
+    100.0,
+    100.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    100.0,
+    1.0,
+    100.0,
+    1.0,
+    100.0,
+    1.0,
+    100.0,
+    1.0
+  ],
+  "initial_stds": [
+    90.0,
+    90.0,
+    0.6,
+    30.0,
+    0.8999999999999999,
+    0.8999999999999999,
+    0.8999999999999999,
+    0.8999999999999999,
+    0.8999999999999999,
+    0.8999999999999999,
+    90.0,
+    0.6,
+    90.0,
+    0.6,
+    90.0,
+    0.6,
+    90.0,
+    0.6
+  ],
+  "frozen_constants_excluded": {
+    "vnc_gW": 0.03,
+    "vnc_tau": 0.02,
+    "vnc_dt": 0.005,
+    "vnc_substeps": 4,
+    "vnc_threshold": 7.5,
+    "vnc_activation_gain": 1.0,
+    "vnc_fr_cap": 200.0,
+    "pd_kp": 3.0,
+    "pd_kd": 0.05,
+    "stance": [
+      0.0,
+      0.6,
+      -1.2
+    ]
+  },
+  "optional_feedback_delay": false,
+  "weights_are_modified": false,
+  "sensory_encoding": "fixed E4 contact/joint-angle encoding; class gain and sign only"
+}
