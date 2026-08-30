@@ -481,6 +481,30 @@ checkpoints, videos, curves, and CIs are in
 `eon-fly-brain/results/path2/outcomeD_3way.{json,csv,png}`, and
 `eon-fly-brain/results/path2/outcomeD_walk_multiview*.mp4`.
 
+### Outcome D secondary checklist
+
+The saved D1/D2 models were replayed once at held-out descending drive `90`
+after training at drive `100` (`outcomeD_heldout_drive_90.json`). This was an
+evaluation-only change: no model was retrained and no weight changed. Values
+are four-seed means with 95% percentile-bootstrap CIs (10,000 replicates,
+seed `20260829`); falls use the same orientation/height gate as D2.
+
+| condition | D1 forward m [95% CI] | D1 falls | D2 forward m [95% CI] | D2 return [95% CI] | D2 falls |
+|---|---:|---:|---:|---:|---:|
+| connectome | .3136 [.1404, .4745] | 4/4 | .1984 [−.2748, .6721] | −.3016 [−.7748, .1721] | 4/4 |
+| random topology | .4339 [.2905, .6245] | 0/4 | .4752 [.3602, .5907] | −.0248 [−.1398, .0907] | 4/4 |
+| rewired topology | .4028 [.1955, .5856] | 0/4 | .0709 [−.0527, .2290] | −.4291 [−.5527, −.2710] | 4/4 |
+
+All held-out-drive command traces still score `E3-PRESENT`; this remains a
+decoder-command diagnostic, not a body-level walking result. Outcome D has no
+prey state or prey input, so held-out prey-start generalization is not
+applicable. A fixed-distance sample-efficiency endpoint and wall-time logger
+were not declared before training; therefore updates/wall-time to threshold
+are not estimable without adding a post-hoc criterion. The matched training
+budget is nevertheless fixed and equal: D1 used 12 generations × 8 candidates
+per condition, and D2 used 12 generations × 6 candidates evaluated on the four
+fixed seeds.
+
 ## Integrity and zero-learning checks
 
 The current artifact set includes:

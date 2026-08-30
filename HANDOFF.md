@@ -300,6 +300,18 @@ records are in `results/path2/outcomeD_metrics_*.json`,
 `results/path2/outcomeD_walk_multiview*.mp4`; stable D1 imitation videos are
 `results/path2/outcomeD_imitation_multiview_*.mp4`.
 
+Secondary checklist: saved models were replayed at held-out descending drive
+`90` after training at drive `100` (`results/path2/outcomeD_heldout_drive_90.json`);
+no retraining or weight change occurred. Four-seed forward CIs use 10,000
+percentile-bootstrap replicates, seed `20260829`. D1 connectome/random/rewired
+falls were 4/4, 0/4, 0/4; D2 falls were 4/4 in all three conditions. All
+held-out command traces remain `E3-PRESENT`, which is not a body-level walking
+claim. Outcome D has no prey input, so held-out prey-start generalization is
+not applicable. Fixed-distance sample efficiency is not estimable: no
+distance threshold or wall-time logger was declared before training. Equal
+budget remains auditable from checkpoints: D1 12 × 8 candidates and D2 12 × 6
+candidates evaluated on four fixed seeds per condition.
+
 ## Reproduction commands
 
 Run from `/Users/puneeth/Documents/Flycraft` with
@@ -375,6 +387,10 @@ Run from `/Users/puneeth/Documents/Flycraft` with
   --condition random --fresh
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
   --condition rewired --fresh
+
+# Re-evaluate saved models at held-out descending drive 90; no retraining.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/outcomeD_train.py \
+  --heldout-drive 90
 ```
 
 The synchronized four-camera episode is

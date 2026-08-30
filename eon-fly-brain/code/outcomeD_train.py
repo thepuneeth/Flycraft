@@ -44,6 +44,7 @@ VNC_ACTIVATION_GAIN = 1.0
 VNC_FR_CAP = 200.0
 VNC_HETEROGENEITY = True
 VNC_SEED = 1
+VNC_DRIVE = 100.0
 CTRL_HZ = 50.0
 KP = 3.0
 KD = 0.05
@@ -314,8 +315,14 @@ class Trainer:
         )
         self.vnc.W = graph.sparse(np.zeros(LOW_RANK, dtype=np.float32))
         self.current = np.zeros(graph.n, dtype=np.float32)
+        self.set_drive(VNC_DRIVE)
+
+    def set_drive(self, drive: float) -> None:
+        if not np.isfinite(drive):
+            raise ValueError(f"drive must be finite, got {drive!r}")
+        self.current.fill(0.0)
         for key in ("dng100_left", "dng100_right", "dnb08_left", "dnb08_right"):
-            self.current[self.vnc.io[key]] = 100.0
+            self.current[self.vnc.io[key]] = float(drive)
 
     def set_theta(self, theta: np.ndarray) -> None:
         self.vnc.W = self.graph.sparse(theta)
@@ -740,11 +747,82 @@ def completed_reports() -> list[dict]:
     ]
 
 
+def heldout_episode_summary(rows: list[dict]) -> dict:
+    forward = np.asarray([row["forward_distance_m"] for row in rows], dtype=np.float64)
+    returns = np.asarray([row["locomotion_return"] for row in rows], dtype=np.float64)
+    return {
+        "n": len(rows),
+        "forward_distance_m": {
+            "mean": float(forward.mean()),
+            "ci_low": bootstrap_ci(forward)[0],
+            "ci_high": bootstrap_ci(forward)[1],
+        },
+        "locomotion_return": {
+            "mean": float(returns.mean()),
+            "ci_low": bootstrap_ci(returns)[0],
+            "ci_high": bootstrap_ci(returns)[1],
+        },
+        "falls": int(sum(row["fell"] for row in rows)),
+        "phase_verdicts": sorted(set(row["phase"]["verdict"] for row in rows)),
+        "per_seed": [
+            {
+                "seed": row["seed"],
+                "forward_distance_m": row["forward_distance_m"],
+                "locomotion_return": row["locomotion_return"],
+                "fell": row["fell"],
+                "min_root_up_z": row["min_root_up_z"],
+                "max_tilt_deg": row["max_tilt_deg"],
+                "tripod_coherence_scalar": row["tripod_coherence_scalar"],
+                "phase_verdict": row["phase"]["verdict"],
+            }
+            for row in rows
+        ],
+    }
+
+
+def evaluate_heldout_drive(q: np.ndarray, drive: float) -> dict:
+    """Evaluate saved D1/D2 models at one untrained descending-drive level."""
+    reports = {}
+    for condition in CONDITIONS:
+        graph = Graph(condition)
+        d1 = train_d1(graph, q, fresh=False)
+        d2_path = RESULTS / f"outcomeD_ckpt_{condition}_d2.pkl"
+        if not d2_path.exists():
+            raise FileNotFoundError(f"missing completed D2 checkpoint: {d2_path}")
+        d2 = pickle.load(d2_path.open("rb"))
+        trainer = Trainer(graph)
+        trainer.set_drive(drive)
+        d1_rows = [
+            locomotion_episode(trainer, d1["theta"], d1["decoder"], seed, 8.0)
+            for seed in EVALUATION_SEEDS
+        ]
+        d2_rows = [
+            locomotion_episode(trainer, np.asarray(d2["best_theta"]), d1["decoder"], seed, 8.0)
+            for seed in EVALUATION_SEEDS
+        ]
+        reports[condition] = {
+            "d1": heldout_episode_summary(d1_rows),
+            "d2": heldout_episode_summary(d2_rows),
+        }
+    return {
+        "gate": "Outcome D held-out drive audit",
+        "drive": float(drive),
+        "training_drive": VNC_DRIVE,
+        "evaluation_seeds": list(EVALUATION_SEEDS),
+        "retrained": False,
+        "weights_changed": False,
+        "conditions": reports,
+        "prey_generalization": "not applicable: Outcome D has no prey state or prey input",
+        "sample_efficiency": "not estimable: no fixed distance threshold or wall-time logger was declared before training",
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--condition", choices=CONDITIONS, default=None)
     parser.add_argument("--target-only", action="store_true")
     parser.add_argument("--fresh", action="store_true")
+    parser.add_argument("--heldout-drive", type=float, default=None)
     args = parser.parse_args()
     torch.set_num_threads(1)
     target_path, q = ensure_target()
@@ -753,6 +831,11 @@ def main() -> None:
         replay_path.write_text(json.dumps({"target_artifact": str(target_path), "replay": replay_target(q)}, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"target_artifact": str(target_path), "target_replay": str(replay_path)}, sort_keys=True), flush=True)
     if args.target_only:
+        return
+    if args.heldout_drive is not None:
+        output = RESULTS / f"outcomeD_heldout_drive_{args.heldout_drive:g}.json"
+        output.write_text(json.dumps(evaluate_heldout_drive(q, args.heldout_drive), indent=2) + "\n", encoding="utf-8")
+        print(f"held-out drive report -> {output}")
         return
     conditions = (args.condition,) if args.condition else CONDITIONS
     reports = []
