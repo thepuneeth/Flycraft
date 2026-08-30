@@ -67,6 +67,18 @@ class StepGaitEngine:
         self.initialized = True
         return targets.astype(np.float32)
 
+    def continuous_targets(self, phases: np.ndarray, forward: float, turn: float) -> np.ndarray:
+        """Apply externally supplied per-leg phase directly to Path 1's fixed shape."""
+        values = np.asarray(phases, dtype=np.float64).reshape(-1)
+        if values.shape != (6,) or not np.isfinite(values).all():
+            raise ValueError(f"phase shape {values.shape}; expected six finite values")
+        if not np.isfinite(float(forward)) or not np.isfinite(float(turn)):
+            raise ValueError("forward and turn must be finite")
+        targets = np.empty(18, dtype=np.float64)
+        for leg, phase in enumerate(values):
+            targets[3 * leg:3 * leg + 3] = path1_leg_target(self.primitive, phase, leg, forward, turn)
+        return targets.astype(np.float32)
+
 
 def clean_tripod_states(phase: float) -> np.ndarray:
     """External ideal tripod clock used only for the P2 engine ceiling."""
@@ -97,6 +109,9 @@ def self_check() -> None:
     assert np.isclose(engine.primitive.swing_amp, 0.35)
     assert np.isclose(engine.primitive.lift_amp, 0.7)
     assert engine.primitive.phase_group == frozenset(TRIPOD_A)
+    continuous = engine.continuous_targets(np.linspace(0.0, 2.0 * np.pi, 6, endpoint=False), 0.8, 0.0)
+    assert continuous.shape == (18,)
+    assert np.isfinite(continuous).all()
 
 
 if __name__ == "__main__":
