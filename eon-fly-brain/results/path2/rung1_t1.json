@@ -1,0 +1,120 @@
+{
+  "gate": "GATE T-1: PASS",
+  "dataset": "eon-fly-brain/results/path2/rung1_bc_dataset.npz",
+  "setup": {
+    "target_source": "HexapodGait clean-clock target at forward=.8, turn=0, 50 Hz",
+    "target_shape": [
+      3000,
+      18
+    ],
+    "target_sha256": "11ed3dce7f28389a20c48db66c8597f3ecd0780c1691a97e16c23b49fd23a314",
+    "input_source": "collect_reservoir_states.collect population rates after fixed tonic drive",
+    "vnc_protocol": {
+      "drive": 100.0,
+      "burn_steps": 3000,
+      "record_steps": 3000,
+      "sample_dt_s": 0.02,
+      "model": "paper",
+      "tau": 0.02,
+      "dt": 0.005,
+      "substeps": 4,
+      "gW": 0.03,
+      "threshold": 7.5,
+      "activation_gain": 1.0,
+      "fr_cap": 200.0,
+      "heterogeneity": true,
+      "seed": 1
+    },
+    "active_column_rule": "connectome training-window state std > 1e-7; same indices for every substrate",
+    "active_column_count": 5164,
+    "active_indices_sha256": "ed795854c34f9fb14f46ff1bcce0374e7fada5313719fe983f84133dd8fba2a2",
+    "standardization": "per-condition mean and scale from that condition's training window only; scales below 1e-7 replaced by 1",
+    "split": {
+      "train": [
+        0,
+        2100
+      ],
+      "validation": [
+        2100,
+        2550
+      ],
+      "test": [
+        2550,
+        3000
+      ]
+    },
+    "deployment_holdout": "closed-loop body drives are separate from this recorded trajectory",
+    "no_body_outcome_used": true,
+    "conditions": [
+      "connectome",
+      "random",
+      "rewired",
+      "static-input"
+    ],
+    "random_rule": "R3 seeded signed-edge weight permutation on fixed sparse graph",
+    "rewired_rule": "R3 seeded degree-preserving directed endpoint swaps",
+    "static_rule": "connectome training-window mean state repeated for every row",
+    "graph_tensor_sha256_before": {
+      "connectome": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+      "random": "0b8f5c35efc0025ab585ac1cf816787b76b3c3b559a2d6a137dd447b263a6037",
+      "rewired": "772e31e44fcaf0f1d055a904883e2fe1567f7eb3d2910a23e23d8711a15cc650"
+    },
+    "graph_files": {
+      "sha256": {
+        "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+        "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+      },
+      "hash_equal": true
+    },
+    "stats": {
+      "connectome": {
+        "condition": "connectome",
+        "rows": 3000,
+        "input_dim": 5164,
+        "train_mean_abs": 0.35020095109939575,
+        "train_scale_mean": 0.10126865655183792,
+        "train_scale_nonunit": 5133,
+        "train_x_mean_abs": 0.0005221983883529902,
+        "train_x_std_mean": 0.9939969182014465
+      },
+      "random": {
+        "condition": "random",
+        "rows": 3000,
+        "input_dim": 5164,
+        "train_mean_abs": 0.5634885430335999,
+        "train_scale_mean": 0.4122263491153717,
+        "train_scale_nonunit": 3180,
+        "train_x_mean_abs": 0.0018347087316215038,
+        "train_x_std_mean": 0.6158016920089722
+      },
+      "rewired": {
+        "condition": "rewired",
+        "rows": 3000,
+        "input_dim": 5164,
+        "train_mean_abs": 0.5153729319572449,
+        "train_scale_mean": 0.3892781138420105,
+        "train_scale_nonunit": 3300,
+        "train_x_mean_abs": 0.00116976338904351,
+        "train_x_std_mean": 0.6390395164489746
+      },
+      "static-input": {
+        "condition": "static-input",
+        "rows": 3000,
+        "input_dim": 5164,
+        "train_mean_abs": 0.3502011299133301,
+        "train_scale_mean": 1.0,
+        "train_scale_nonunit": 0,
+        "train_x_mean_abs": 0.0,
+        "train_x_std_mean": 0.0
+      }
+    }
+  },
+  "self_checks": {
+    "xy_shapes": true,
+    "step_alignment": true,
+    "train_window_only_standardization": true,
+    "split_rows_disjoint": true,
+    "identical_input_shape": true,
+    "finite": true
+  }
+}
