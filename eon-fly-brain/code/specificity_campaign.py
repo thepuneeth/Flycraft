@@ -1178,6 +1178,45 @@ def write_axis(axis: dict) -> None:
         writer.writerows({key: row.get(key) for key in columns} for row in rows)
 
 
+def single_difference_audit(axis: dict) -> dict:
+    expected = {
+        "B1": "VNC substrate",
+        "B2": "VNC substrate plus declared sweep value",
+        "B3": "VNC substrate plus declared sweep value",
+        "B4": "VNC substrate",
+        "B5": "VNC substrate",
+        "B6": "VNC substrate plus declared body perturbation",
+        "B7": "full visual-network substrate",
+    }[axis["axis"]]
+    if axis["protocol"]["only_condition_difference"] != expected:
+        raise AssertionError(f"{axis['axis']} substrate contract changed")
+    condition_configs = []
+    for condition in axis["conditions"]:
+        config = {
+            "sweep": tuple(condition.get("sweep", {})),
+            "perturbations": tuple(condition.get("perturbations", {})),
+        }
+        condition_configs.append((condition["substrate"], config))
+    if len({repr(config) for _, config in condition_configs}) != 1:
+        raise AssertionError(f"{axis['axis']} declared sweep differs by substrate")
+    input_keys = ("episode", "episode_seed", "initial_yaw_rad", "prey_x_m", "prey_y_m", "sweep_value", "perturbation", "perturbation_kind", "perturbation_factor", "azimuth_rad")
+    groups = {}
+    for row in axis["rows"]:
+        group = (row["substrate"], row.get("seed"))
+        groups.setdefault(group, []).append(tuple(row.get(key) for key in input_keys))
+    real_signature = sorted(groups[("real", None)])
+    for name in ("random", "rewired"):
+        for seed in RNG_SEEDS:
+            if sorted(groups[(name, seed)]) != real_signature:
+                raise AssertionError(f"{axis['axis']} row inputs differ by substrate")
+    return {
+        "passed": True,
+        "varying_fields": ["substrate", "kind", "seed", "tensor_sha256"],
+        "declared_sweep_or_body_fields_equal": True,
+        "row_input_signatures_equal": True,
+    }
+
+
 def write_landscape(state: dict) -> None:
     rows = []
     for axis_name in AXIS_ORDER:
@@ -1258,6 +1297,7 @@ def integrity_scan(state: dict, data: Path) -> dict:
             raise AssertionError(f"{axis_name} zero-learning marker missing")
         if axis.get("protocol", {}).get("learning") is not False and axis_name != "B7":
             raise AssertionError(f"{axis_name} protocol marker missing")
+        axis["single_difference_assert"] = single_difference_audit(axis)
         conditions = axis.get("conditions", [])
         if len(conditions) != 1 + 2 * K:
             raise AssertionError(f"{axis_name} condition count changed")
@@ -1269,6 +1309,8 @@ def integrity_scan(state: dict, data: Path) -> dict:
         videos = state["axes"][axis_name].get("video_artifacts", {})
         if not all(videos.get(key, {}).get("exists") for key in ("real", "random_median")):
             raise AssertionError(f"{axis_name} survivor video missing")
+        if "visual review completed" not in state["axes"][axis_name].get("video_note", ""):
+            raise AssertionError(f"{axis_name} survivor video review note missing")
     return {
         "real_graph_hash_pre": before,
         "real_graph_hash_post": after,
@@ -1277,6 +1319,8 @@ def integrity_scan(state: dict, data: Path) -> dict:
         "rewired_seed_set_equal": True,
         "none_dropped": True,
         "zero_learning_markers": True,
+        "single_difference_asserts": True,
+        "survivor_video_review_notes": True,
         "primary_test_count_fixed": state.get("meta", {}).get("primary_test_count") == 7,
         "holm_across_full_family": state.get("meta", {}).get("holm_scope") == "all seven campaign primaries",
         "checkpoint_integrity": True,
@@ -1350,6 +1394,7 @@ def main() -> int:
             axis = run_b6(substrates, io, histories, targets, budget, rng)
         else:
             raise AssertionError(axis_name)
+        axis["single_difference_assert"] = single_difference_audit(axis)
         write_axis(axis)
         axis["checkpoint"] = {"completed_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "elapsed_s": time.time() - started, "rollouts_completed": budget.rollouts}
         state["axes"][axis_name] = axis
@@ -1363,6 +1408,9 @@ def main() -> int:
     for axis_name in state["meta"]["survivors_after_campaign_wide_holm_before_video"]:
         axis = state["axes"][axis_name]
         axis["video_note"] = "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated"
+        write_axis(axis)
+    for axis in state["axes"].values():
+        axis["single_difference_assert"] = single_difference_audit(axis)
         write_axis(axis)
     apply_meta(state)
     state["integrity"] = integrity_scan(state, VNC_DATA)

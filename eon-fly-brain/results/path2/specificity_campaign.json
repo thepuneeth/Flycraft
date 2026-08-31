@@ -11276,7 +11276,18 @@
         "elapsed_s": 81.90789198875427,
         "rollouts_completed": 502
       },
-      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated"
+      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated",
+      "single_difference_assert": {
+        "passed": true,
+        "varying_fields": [
+          "substrate",
+          "kind",
+          "seed",
+          "tensor_sha256"
+        ],
+        "declared_sweep_or_body_fields_equal": true,
+        "row_input_signatures_equal": true
+      }
     },
     "B4": {
       "axis": "B4",
@@ -12013,6 +12024,17 @@
         "completed_at_utc": "2026-08-31T01:16:55Z",
         "elapsed_s": 25.975997924804688,
         "rollouts_completed": 502
+      },
+      "single_difference_assert": {
+        "passed": true,
+        "varying_fields": [
+          "substrate",
+          "kind",
+          "seed",
+          "tensor_sha256"
+        ],
+        "declared_sweep_or_body_fields_equal": true,
+        "row_input_signatures_equal": true
       }
     },
     "B5": {
@@ -13250,6 +13272,17 @@
         "completed_at_utc": "2026-08-31T01:16:55Z",
         "elapsed_s": 0.029806137084960938,
         "rollouts_completed": 502
+      },
+      "single_difference_assert": {
+        "passed": true,
+        "varying_fields": [
+          "substrate",
+          "kind",
+          "seed",
+          "tensor_sha256"
+        ],
+        "declared_sweep_or_body_fields_equal": true,
+        "row_input_signatures_equal": true
       }
     },
     "B7": {
@@ -28751,6 +28784,17 @@
         "completed_at_utc": "2026-08-31T01:37:08Z",
         "elapsed_s": 1213.4868590831757,
         "rollouts_completed": 677
+      },
+      "single_difference_assert": {
+        "passed": true,
+        "varying_fields": [
+          "substrate",
+          "kind",
+          "seed",
+          "tensor_sha256"
+        ],
+        "declared_sweep_or_body_fields_equal": true,
+        "row_input_signatures_equal": true
       }
     },
     "B2": {
@@ -84105,7 +84149,18 @@
         "random_seed": 20260837,
         "selection_rule": "random-network seed closest to primary scalar median; video only, never analysis selection"
       },
-      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated"
+      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated",
+      "single_difference_assert": {
+        "passed": true,
+        "varying_fields": [
+          "substrate",
+          "kind",
+          "seed",
+          "tensor_sha256"
+        ],
+        "declared_sweep_or_body_fields_equal": true,
+        "row_input_signatures_equal": true
+      }
     },
     "B3": {
       "axis": "B3",
@@ -128448,7 +128503,18 @@
         "random_seed": 20260837,
         "selection_rule": "random-network seed closest to primary scalar median; video only, never analysis selection"
       },
-      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated"
+      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated",
+      "single_difference_assert": {
+        "passed": true,
+        "varying_fields": [
+          "substrate",
+          "kind",
+          "seed",
+          "tensor_sha256"
+        ],
+        "declared_sweep_or_body_fields_equal": true,
+        "row_input_signatures_equal": true
+      }
     },
     "B6": {
       "axis": "B6",
@@ -236584,7 +236650,18 @@
         "random_seed": 20260837,
         "selection_rule": "random-network seed closest to primary scalar median; video only, never analysis selection"
       },
-      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated"
+      "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated",
+      "single_difference_assert": {
+        "passed": true,
+        "varying_fields": [
+          "substrate",
+          "kind",
+          "seed",
+          "tensor_sha256"
+        ],
+        "declared_sweep_or_body_fields_equal": true,
+        "row_input_signatures_equal": true
+      }
     }
   },
   "checkpoint_timestamps": [
@@ -236675,6 +236752,8 @@
     "rewired_seed_set_equal": true,
     "none_dropped": true,
     "zero_learning_markers": true,
+    "single_difference_asserts": true,
+    "survivor_video_review_notes": true,
     "primary_test_count_fixed": true,
     "holm_across_full_family": true,
     "checkpoint_integrity": true,

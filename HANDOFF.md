@@ -871,8 +871,9 @@ Corrected rerun checks already recorded:
   confirms no catch/prey/target/gait/coherence term;
 - immutable target and exact row/column degree sequences for D controls;
 - specificity campaign: fixed seven-axis family, 12 random + 12 rewired
-  seeds, complete curve/perturbation manifests, Holm correction, checkpoint
-  resume, and required real/median-random survivor videos;
+  seeds, complete curve/perturbation manifests, executable single-difference
+  input-signature asserts, Holm correction, checkpoint resume, and required
+  real/median-random survivor videos;
 - `git diff --check`.
 
 All 54 JSON and 54 CSV files parse; all 212 published candidates are selected

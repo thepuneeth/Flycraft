@@ -1426,8 +1426,9 @@ The current artifact set includes:
   coherence/feet-planted tests, static-input leak audit, and watched
   connectome four-view video.
 - Specificity Gate A, seven fixed primary axes, 24 substrate records,
-  per-axis JSON/CSV checkpoints, Holm family correction, and real/median-random
-  four-view videos for B1/B2/B3/B6.
+  per-axis JSON/CSV checkpoints, executable single-difference input-signature
+  asserts, Holm family correction, and real/median-random four-view videos for
+  B1/B2/B3/B6.
 
 The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0,
 Path 3, Method-1, and Method-2 probes are fixed replay/measurement code with

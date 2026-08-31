@@ -55350,5 +55350,16 @@
     "random_seed": 20260837,
     "selection_rule": "random-network seed closest to primary scalar median; video only, never analysis selection"
   },
-  "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated"
+  "video_note": "real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated",
+  "single_difference_assert": {
+    "passed": true,
+    "varying_fields": [
+      "substrate",
+      "kind",
+      "seed",
+      "tensor_sha256"
+    ],
+    "declared_sweep_or_body_fields_equal": true,
+    "row_input_signatures_equal": true
+  }
 }

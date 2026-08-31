@@ -415,7 +415,9 @@
     "real_ci_low": 8.812196610092517,
     "real_ci_high": 8.812196610092517,
     "nonoverlap_bootstrap_ci": false,
-    "definition": "real-minus-random-network PCA participation ratio"
+    "definition": "real-minus-random-network PCA participation ratio",
+    "p_holm": 0.0263671875,
+    "campaign_family": "B1-B7 fixed seven-axis family"
   },
   "exploratory_metrics": [
     "motor_temporal_sd",
@@ -726,5 +728,21 @@
       "burn_fraction": 0.5
     }
   ],
-  "zero_learning": true
+  "zero_learning": true,
+  "checkpoint": {
+    "completed_at_utc": "2026-08-31T01:16:55Z",
+    "elapsed_s": 25.975997924804688,
+    "rollouts_completed": 502
+  },
+  "single_difference_assert": {
+    "passed": true,
+    "varying_fields": [
+      "substrate",
+      "kind",
+      "seed",
+      "tensor_sha256"
+    ],
+    "declared_sweep_or_body_fields_equal": true,
+    "row_input_signatures_equal": true
+  }
 }

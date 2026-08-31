@@ -667,7 +667,9 @@
     "real_ci_low": 0.5093139933625923,
     "real_ci_high": 0.5093139933625923,
     "nonoverlap_bootstrap_ci": false,
-    "definition": "real-minus-random-network mean decoded-leg autocorrelation peak"
+    "definition": "real-minus-random-network mean decoded-leg autocorrelation peak",
+    "p_holm": 1.0,
+    "campaign_family": "B1-B7 fixed seven-axis family"
   },
   "exploratory_metrics": [
     "duty_factor_mean",
@@ -1226,5 +1228,21 @@
       ]
     }
   ],
-  "zero_learning": true
+  "zero_learning": true,
+  "checkpoint": {
+    "completed_at_utc": "2026-08-31T01:16:55Z",
+    "elapsed_s": 0.029806137084960938,
+    "rollouts_completed": 502
+  },
+  "single_difference_assert": {
+    "passed": true,
+    "varying_fields": [
+      "substrate",
+      "kind",
+      "seed",
+      "tensor_sha256"
+    ],
+    "declared_sweep_or_body_fields_equal": true,
+    "row_input_signatures_equal": true
+  }
 }
