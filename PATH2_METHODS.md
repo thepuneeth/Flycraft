@@ -1,21 +1,23 @@
 # Path 2 — methods and current evidence
 
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
-last-three B/C/D jobs, the four untried zero-training phases, and delayed
-coupling DC-1–DC-3; current `H_MIN=.08 m` gate and all zero-learning controls
-are complete. Pre-fix body-level results are confounded/superseded; the final
-claim remains pending approval.
+last-three B/C/D jobs, the four untried zero-training phases, delayed
+coupling DC-1–DC-3, and Rung 1 trained-readout T-1–T-3; current
+`H_MIN=.08 m` gate and all integrity controls pass. Pre-fix body-level
+results are confounded/superseded; the final claim remains pending approval.
 
 ## Current result (claim review pending)
 
 Working headline: all 212 published T1/T2/T3 coordination candidates are in
-the frozen graph, and the four untried plus delayed-coupling zero-training
-tests remain negative for a canonical tripod transfer. Method 1's real 4/2 grouping falls in 16/20
-episodes; Method 2 remains phase-absent in all 20; B dynamic edge coupling
-falls in 20/20; C direct MN waveform remains `C1-ABSENT`; D earns only a tonic
-pose, also reproduced by shuffled and random controls. COORD-212,
-COORD-INHIB, WAVE-ANTAG, VISION-EVAL, and DC-1–DC-3 all pass integrity gates
-but return NULL outcomes.
+the frozen graph, the six zero-training coordination routes remain negative,
+and the first minimal-training moat test is also `RUNG1-MOAT-NULL`. The
+connectome-fed memoryless readout fell in 20/20 Rung 1 episodes and was below
+random and rewired on both primary body metrics. Method 1's real 4/2 grouping
+falls in 16/20 episodes; Method 2 remains phase-absent in all 20; B dynamic
+edge coupling falls in 20/20; C direct MN waveform remains `C1-ABSENT`; D
+earns only a tonic pose, also reproduced by shuffled and random controls.
+COORD-212, COORD-INHIB, WAVE-ANTAG, VISION-EVAL, DC-1–DC-3, and Rung 1 pass
+integrity gates but return NULL outcomes.
 
 The body correction makes the declared clean-clock engine stand and travel
 (`1.660 m` forward, `2.038 m` path in 8 s, minimum height `.121 m`, no fall),
@@ -45,6 +47,7 @@ remain separate methods and are not part of this headline.
 | tonic body pose | D real/shuffled/random all `D-POSE-PRESENT` | matched-control pose, not coordination |
 | published-cell coordination | COORD-212: 212/212 candidates, `COORD-212-NULL`; COORD-INHIB: `COORD-INHIB-NULL` | no transferred tripod |
 | delayed inter-leg coupling | DC-1/DC-2 pass; blind selection `(g=.20, per_hop_steps=0)`; `DELAY-COUPLING-NULL` | no transferred tripod; no positive delay selected |
+| minimal-training moat | Rung 1 T-1–T-3; connectome falls `20/20`, `RUNG1-MOAT-NULL` | trained readout does not make connectome privileged |
 | richer MN waveform | WAVE-ANTAG `WAVE-ANTAG-NULL`; forward `+.1668 m` `[+.1630,+.1710]`, below Phase C | no added transfer |
 | visual steering | VISION-EVAL `VISION-EVAL-NULL`; real `r=-.7382` vs shuffled `-.7025` and random `-.7792` | no wiring-specific steering |
 
@@ -1213,6 +1216,117 @@ are `results/path2/hminfix_stepwalk_multiview{,_shuffled,_random}.mp4`.
 The `bodyfix_stepwalk_*` and old `stepwalk_*` body-level outputs remain as
 superseded provenance.
 
+## Rung 1 trained readout (T-1..T-3)
+
+Rung 1 is the first permitted training phase. It trained only four separate
+one-hidden-layer readouts; the FlyWire brain, MANC VNC graph, body map, stance,
+PD constants, and `H_MIN=.08 m` remained frozen. The preregistered question
+was whether identical minimal training makes the real connectome a privileged
+locomotor substrate, rather than merely whether a readout can imitate a gait.
+
+### T-1 dataset gate
+
+The dataset reused the R0 `collect_reservoir_states` protocol: paper-rate
+all-leg VNC population rates after 3,000 burn-in steps at tonic descending
+drive 100, then 3,000 samples at 50 Hz. The target was the fixed
+`HexapodGait` clean-clock trajectory at forward `.8`, turn `0`, aligned one
+row per control step to 18 joint targets. The connectome training-window
+state standard deviation selected 5,164 varying columns; those same columns
+were used for all substrates. Per-condition means/scales came only from the
+first 2,100 rows. Rows 0–2,099 were fit, 2,100–2,549 validation, and
+2,550–2,999 test; all three index sets are disjoint. Closed-loop body drives
+were separate from this recorded trajectory.
+
+T-1 passed shape, finite-value, alignment, train-window-only standardization,
+split-disjointness, and identical-input-shape checks. The complete record is
+`results/path2/rung1_t1.{json,csv}` and
+`results/path2/rung1_bc_dataset.npz`.
+
+### T-2 identical-budget training gate
+
+The sole learned map was a memoryless `5164 → 64 → 18` MLP with tanh hidden
+activation, direct joint-target output, MSE loss, Adam learning rate `.001`,
+batch size 512, 80-epoch cap, and fixed seed `20260829`. Every condition used
+the same target, split, standardization procedure, architecture, optimizer,
+batch order, seed, and selection rule: lowest validation joint-target MSE.
+No body metric entered fitting or epoch selection. Setup hash for all four
+conditions is `fa7da77bac7333b4fbf4e4ae2516f013226b07b374d221d05c5ae6176bdb6f43`.
+
+| substrate | train BC MSE (rad²) | validation BC MSE (rad²) | test BC MSE (rad²) | selected epoch |
+|---|---:|---:|---:|---:|
+| connectome | `.00631` | `.21693` | `.17729` | 78 |
+| random signed-edge permutation | `.01937` | `.08602` | `.08796` | 32 |
+| rewired degree-preserving graph | `.01901` | `.13371` | `.15022` | 28 |
+| static input | `.03744` | `.03702` | `.03744` | 72 |
+
+Random and rewired validation error was lower than connectome validation
+error; this was read before deployment and no rescue change was made. T-2
+passed the identical-setup assertion. The four readouts and full histories
+are `results/path2/rung1_readout_{connectome,random,rewired,static-input}.npz`,
+`results/path2/rung1_training.{json,csv}`. The committed all-leg graph and IO
+file hashes were equal before and after training; no VNC weight was passed to
+the optimizer.
+
+### T-3 closed-loop substrate comparison
+
+The preregistration was written before body deployment. Each condition used
+20 paired 8-second episodes from the same 20 episode starts, the exact frozen
+FlyWire steering pass, VNC paper-rate protocol, fixed map/PD/body, and
+`H_MIN=.08 m`. Means use 95% percentile-bootstrap CIs (100,000 replicates,
+seed `20260829`). Falls use Wilson 95% CIs. The clean-clock control was
+`1.6599 m` forward, `2.0380 m` path, `.4192` mean feet-planted, and no falls.
+
+| substrate | path m [95% CI] | forward m [95% CI] | tripod coherence [95% CI] | feet planted [95% CI] | falls (Wilson 95% CI) | phase present |
+|---|---:|---:|---:|---:|---:|---:|
+| connectome | `1.9785 [1.8335,2.1328]` | `−.3068 [−.4506,−.1548]` | `.1957 [.0138,.4006]` | `.1840 [.1690,.2009]` | `20/20 [.839,1.000]` | `0/20` |
+| random | `1.0580 [1.0136,1.1052]` | `.6597 [.6220,.7012]` | `1.6641 [1.4616,1.8135]` | `.4316 [.4199,.4429]` | `19/20 [.764,.991]` | `8/20` |
+| rewired | `1.0518 [.9994,1.1028]` | `.5310 [.4393,.6126]` | `1.5220 [1.3412,1.6844]` | `.3825 [.3623,.3983]` | `20/20 [.839,1.000]` | `6/20` |
+| static input | `.0126 [.0123,.0129]` | `−.0070 [−.0072,−.0068]` | `0.0000 [0,0]` | `.9984 [.9979,.9989]` | `0/20 [.000,.161]` | `0/20` |
+
+| metric | comparison | difference [paired 95% CI] | exact p | Holm p |
+|---|---|---:|---:|---:|
+| coherence | connectome − random | `−1.4684 [−1.7097,−1.2113]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| coherence | connectome − rewired | `−1.3263 [−1.5947,−1.0440]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| feet planted | connectome − random | `−.2476 [−.2669,−.2262]` | `1.91×10⁻⁶` | `3.81×10⁻⁶` |
+| feet planted | connectome − rewired | `−.1984 [−.2229,−.1685]` | `3.81×10⁻⁶` | `3.81×10⁻⁶` |
+
+All four primary group-CI comparisons were non-overlapping, but every
+difference favored random or rewired. The static-input readout had exactly
+zero target temporal standard deviation, mean path `.0126 m`, and mean
+forward displacement `−.0070 m`; the declared leak check therefore passed.
+The required real video is
+`results/path2/rung1_connectome_walk_multiview.mp4`. Watched across all four
+views at early, middle, and late frames, it showed an unstable/falling body,
+not an alternating anti-phase tripod.
+
+The registered decision is **`RUNG1-MOAT-NULL`**. The connectome failed every
+declared stability condition (`20/20` falls, `0/20` phase-present, negative
+mean forward displacement, and feet-planted below the clean control) and was
+significantly below both controls on coherence and feet-planted. This is a
+trained-readout null: minimal nonlinear training did not make the connectome
+necessary or privileged. Do not escalate to RL, larger networks, learned
+coupling, or learnable graph features to rescue this result.
+
+### Rung 1 layer reading
+
+Layer i is not silent: the connectome readout produces strongly time-varying
+targets, and its training loss is lower on the fit window, but its held-out
+BC error is worse than random and deployment has no canonical tripod. Layer ii
+transmits that activity through the learned state-to-joint map, yet the real
+readout target has mean temporal SD `1.0644 rad` and the body falls in every
+episode. Layer iii is not a total-signal-loss bottleneck: the unchanged clean
+clock walks `2.038 m` with no fall, while the learned connectome targets do not.
+The Rung 1 failure is therefore substrate-specific temporal organization at
+layer i, expressed through layer ii and ending in failed layer-iii stability;
+it is not evidence that the body cannot walk or that the VNC is inactive.
+
+This section is evidence assembly only. Final claim wording remains withheld
+pending user approval. Rung 1 artifacts are
+`results/path2/rung1_preflight.json`,
+`results/path2/rung1_preflight_engine_walk_4s.mp4`,
+`results/path2/rung1_preregistered.json`,
+`results/path2/rung1_t3.{json,csv}`, and the four readout `.npz` files above.
+
 ## Integrity and zero-learning checks
 
 The current artifact set includes:
@@ -1246,11 +1360,15 @@ The current artifact set includes:
   correlation CIs/paired tests, and left/right real four-view video.
 - DC-1 delayed-coupling regression, DC-2 full 462-cell blind calibration, and
   DC-3 paired generation table, tests, and watched real four-view video.
+- Rung 1 T-1 BC dataset, T-2 four identical-budget readout artifacts and
+  validation histories, T-3 80-episode substrate comparison, paired
+  coherence/feet-planted tests, static-input leak audit, and watched
+  connectome four-view video.
 
 The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0,
 Path 3, Method-1, and Method-2 probes are fixed replay/measurement code with
 no optimizer, backprop, reward, target fit, or performance-based choice. All
-40 JSON and 43 CSV files parse; all 212 published candidates are selected with
+45 JSON and 46 CSV files parse; all 212 published candidates are selected with
 0 omitted; the frozen all-leg VNC file hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`, and the
 frozen FlyWire brain file hash is
@@ -1260,10 +1378,11 @@ The all-leg index hash is
 matches the frozen graph record. Python compilation, `git diff --check`,
 shared-condition checks, home-keyframe provenance, current `.08 m` floor
 checks, and readable H.264 video checks all pass. Method-1, Method-2,
-last-three B/C, COORD-212, COORD-INHIB, WAVE-ANTAG, and DC-3 real videos are
+last-three B/C, COORD-212, COORD-INHIB, WAVE-ANTAG, DC-3, and Rung 1 real videos are
 8.000 s; D is a 1.5 s tonic hold; preflight and DC-1 preflight are 4.000 s;
-VISION-EVAL left/right video is 4.000 s. The four untried gates and DC-1–DC-3
-gates pass; all five new zero-training verdicts are NULL. Learned Outcome C/D remain separately labeled methods and
+VISION-EVAL left/right video is 4.000 s. The four untried gates, DC-1–DC-3,
+and Rung 1 T-1–T-3 gates pass; all five new zero-training verdicts and Rung 1
+are NULL. Learned Outcome C/D remain separately labeled methods and
 are not part of the zero-learning headline; last-three C/D are fixed-map
 transfer controls, not learned outcomes.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.

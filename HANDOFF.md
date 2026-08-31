@@ -1,26 +1,29 @@
 # Flycraft — Path 2 handoff
 
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
-last-three B/C/D jobs, the four untried zero-training phases, and delayed
-coupling DC-1–DC-3; current `H_MIN=.08 m` gate and zero-learning controls are
-complete. Pre-fix body-level results are confounded/superseded; the final
-claim remains gated on user approval.
+last-three B/C/D jobs, the four untried zero-training phases, delayed
+coupling DC-1–DC-3, and Rung 1 trained-readout T-1–T-3; current
+`H_MIN=.08 m` gate and all integrity controls pass. Pre-fix body-level
+results are confounded/superseded; the final claim remains gated on user
+approval.
 
 ## Current result (claim review pending)
 
 Working headline: all 212 published T1/T2/T3 coordination candidates are
-included, but no tested zero-learning route transfers a canonical tripod to
-the hexapod. Corrected home-pose setup makes the clean external tripod clock
-stand and travel (`1.660 m` forward, `2.038 m` path in 8 s; minimum height
-`.121 m`; no fall). Method 1's real 4/2 grouping falls in 16/20; Method 2 is
-phase-absent in all 20; B dynamic edge coupling falls in 20/20; C direct MN
-waveform is `C1-ABSENT`; D earns tonic pose equally under shuffled/random
-controls.
+included, no tested zero-training route transfers a canonical tripod, and the
+first minimal-training moat test is `RUNG1-MOAT-NULL`. The connectome-fed
+memoryless readout fell in 20/20 Rung 1 episodes and was below random and
+rewired on both primary body metrics. Corrected home-pose setup makes the
+clean external tripod clock stand and travel (`1.660 m` forward, `2.038 m`
+path in 8 s; minimum height `.121 m`; no fall). Method 1's real 4/2 grouping
+falls in 16/20; Method 2 is phase-absent in all 20; B dynamic edge coupling
+falls in 20/20; C direct MN waveform is `C1-ABSENT`; D earns tonic pose
+equally under shuffled/random controls.
 
 All 212 published T1/T2/T3 coordination candidates are included, including
 both formerly omitted T1 `IN12B013` cells. E0, E3, E4, Path 3, Method 1,
-Method 2, B, C, COORD-212, COORD-INHIB, WAVE-ANTAG, and DC remain phase-absent
-for the declared tripod endpoint; VISION-EVAL is NULL against
+Method 2, B, C, COORD-212, COORD-INHIB, WAVE-ANTAG, DC, and Rung 1 remain
+negative for the declared tripod endpoint; VISION-EVAL is NULL against
 shuffled/random visual wiring. D's positive is pose only. Full tables and CIs
 are in `PATH2_METHODS.md`.
 
@@ -557,6 +560,70 @@ Corrected artifacts: `eon-fly-brain/results/path2/step_decode_p1.json`,
 `stepwalk_metrics_*`, and `stepwalk_multiview*.mp4` body outputs are retained as
 superseded provenance.
 
+## Rung 1 trained readout (T-1–T-3)
+
+Rung 1 is complete through the watched deployment. It is the first permitted
+training phase and trains only four separate memoryless `5164 → 64 → 18`
+MLPs. The FlyWire brain, MANC VNC graph, target, fixed map, home stance,
+PD constants, and `H_MIN=.08 m` remain frozen.
+
+T-1 reused the R0 population-state recorder: 3,000 burn-in steps at tonic
+drive 100 and 3,000 samples at 50 Hz. The fixed clean-clock `HexapodGait`
+target supplies 18 joint targets row-aligned to the VNC states. The first
+2,100 rows fit, the next 450 validate, and the last 450 test; standardization
+uses the training window only. The connectome-selected 5,164 varying columns
+are shared by connectome, random, rewired, and static-input. T-1 passed all
+shape, alignment, split, finite-value, and standardization checks.
+
+T-2 used tanh, MSE, Adam (`lr=.001`), batch 512, 80 epochs, and seed
+`20260829` for every condition. Best epoch uses validation MSE only.
+
+| substrate | train BC MSE | validation BC MSE | test BC MSE | epoch |
+|---|---:|---:|---:|---:|
+| connectome | `.00631` | `.21693` | `.17729` | 78 |
+| random | `.01937` | `.08602` | `.08796` | 32 |
+| rewired | `.01901` | `.13371` | `.15022` | 28 |
+| static input | `.03744` | `.03702` | `.03744` | 72 |
+
+Setup hash is identical across all four conditions; random and rewired have
+lower validation error than connectome. No body outcome entered loss or model
+selection. Graph/file hashes match before and after training.
+
+T-3 used 20 paired 8-second episodes per condition, exact shared FlyWire
+steering, fixed VNC/body protocol, 100,000-replicate bootstrap CIs with seed
+`20260829`, Wilson fall CIs, and exact paired sign-flip tests with Holm
+adjustment across random and rewired for each primary metric.
+
+| substrate | path m [95% CI] | forward m [95% CI] | coherence [95% CI] | feet planted [95% CI] | falls | phase present |
+|---|---:|---:|---:|---:|---:|---:|
+| connectome | `1.9785 [1.8335,2.1328]` | `−.3068 [−.4506,−.1548]` | `.1957 [.0138,.4006]` | `.1840 [.1690,.2009]` | `20/20` | `0/20` |
+| random | `1.0580 [1.0136,1.1052]` | `.6597 [.6220,.7012]` | `1.6641 [1.4616,1.8135]` | `.4316 [.4199,.4429]` | `19/20` | `8/20` |
+| rewired | `1.0518 [.9994,1.1028]` | `.5310 [.4393,.6126]` | `1.5220 [1.3412,1.6844]` | `.3825 [.3623,.3983]` | `20/20` | `6/20` |
+| static input | `.0126 [.0123,.0129]` | `−.0070 [−.0072,−.0068]` | `0 [0,0]` | `.9984 [.9979,.9989]` | `0/20` | `0/20` |
+
+Connectome minus random/rewired primary differences were respectively
+coherence `−1.4684 [−1.7097,−1.2113]` and
+`−1.3263 [−1.5947,−1.0440]`, and feet planted
+`−.2476 [−.2669,−.2262]` and `−.1984 [−.2229,−.1685]`.
+All exact/Holm p-values were below `.05`, with non-overlapping CIs, but all
+differences favored controls. Static input produced exactly constant targets,
+mean path `.0126 m`, and mean forward displacement `−.0070 m`, so the leak
+gate passed.
+
+The watched connectome video
+`eon-fly-brain/results/path2/rung1_connectome_walk_multiview.mp4` showed an
+unstable/falling body with no genuine alternating anti-phase tripod. Registered
+decision: **`RUNG1-MOAT-NULL`**. The connectome is not privileged under this
+minimal trained readout; do not escalate to RL, larger nets, learned coupling,
+or learnable graph features to rescue a null. This is evidence assembly only;
+the final claim remains gated on user approval.
+
+Artifacts: `results/path2/rung1_preflight.json`,
+`rung1_preflight_engine_walk_4s.mp4`, `rung1_bc_dataset.npz`,
+`rung1_t1.{json,csv}`, `rung1_training.{json,csv}`,
+`rung1_readout_{connectome,random,rewired,static-input}.npz`,
+`rung1_preregistered.json`, `rung1_t3.{json,csv}`, and the connectome video.
+
 ## Reproduction commands
 
 Run from `/Users/puneeth/Documents/Flycraft` with
@@ -707,6 +774,25 @@ Run from `/Users/puneeth/Documents/Flycraft` with
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/delay_coupling.py \
   --phase finalize --out eon-fly-brain/results/path2/delay_coupling \
   --watched-verdict "not a genuine tripod walk: no alternating anti-phase tripod visible"
+
+# Rung 1 minimal-training moat test. Run phases in order; finalize only after
+# watching the required connectome video.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/preflight.py \
+  --data eon-fly-brain/results/path2 \
+  --video eon-fly-brain/results/path2/rung1_preflight_engine_walk_4s.mp4 \
+  --out eon-fly-brain/results/path2/rung1_preflight.json
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/rung1_readout.py \
+  --phase t1 --data eon-fly-brain/results/path2 \
+  --prefix eon-fly-brain/results/path2/rung1
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/rung1_readout.py \
+  --phase t2 --data eon-fly-brain/results/path2 \
+  --prefix eon-fly-brain/results/path2/rung1
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/rung1_readout.py \
+  --phase t3 --data eon-fly-brain/results/path2 \
+  --prefix eon-fly-brain/results/path2/rung1
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/rung1_readout.py \
+  --phase finalize --prefix eon-fly-brain/results/path2/rung1 \
+  --watched-verdict "not a genuine tripod walk: unstable/falling body; no alternating anti-phase tripod visible"
 ```
 
 The current corrected synchronized four-camera Path-3 episode is
@@ -729,7 +815,7 @@ Corrected rerun checks already recorded:
 - immutable target and exact row/column degree sequences for D controls;
 - `git diff --check`.
 
-All 40 JSON and 43 CSV files parse; all 212 published candidates are selected
+All 45 JSON and 46 CSV files parse; all 212 published candidates are selected
 with 0 omitted; VNC hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`; brain
 hash is `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
@@ -740,10 +826,10 @@ Method-1, Method-2, and last-three B/C/D artifacts retain zero-learning or
 learning=false protocol flags; source scan found no optimizer, backprop,
 reward, target-fit, or performance-based choice in frozen rerun paths. New
 method/control videos are readable H.264: B/C, COORD-212, COORD-INHIB,
-WAVE-ANTAG, and DC-3 are 8.000 s; D is a 1.500 s tonic hold; preflight and
-DC-1 preflight are 4.000 s; and VISION-EVAL left/right is 4.000 s. The four
-untried gates and DC-1–DC-3 gates pass; all five new zero-training verdicts are
-NULL. Learned Outcome C/D remain separately labeled methods;
+WAVE-ANTAG, DC-3, and Rung 1 are 8.000 s; D is a 1.500 s tonic hold; preflight
+and DC-1 preflight are 4.000 s; and VISION-EVAL left/right is 4.000 s. The four
+untried gates, DC-1–DC-3, and Rung 1 T-1–T-3 gates pass; all five new
+zero-training verdicts and Rung 1 are NULL. Learned Outcome C/D remain separately labeled methods;
 last-three B/C/D are fixed transfer controls and are complete.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
 Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
@@ -783,4 +869,5 @@ the claim before user approval.
 | `eon-fly-brain/code/last_three_jobs.py` | B dynamic coupling, C direct MN waveform, and D tonic pose controls |
 | `eon-fly-brain/code/untried_zero_methods.py` | COORD-212, COORD-INHIB, WAVE-ANTAG, and VISION-EVAL frozen phases |
 | `eon-fly-brain/code/delay_coupling.py` | DC-1 delayed generator, DC-2 blind calibration, and DC-3 generation run |
+| `eon-fly-brain/code/rung1_readout.py` | T-1 dataset, T-2 memoryless MLP, T-3 moat comparison, and video finalizer |
 | `PATH2_METHODS.md` | methods-complete working report |

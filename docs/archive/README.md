@@ -36,6 +36,9 @@ repo root. Kept for provenance; do not follow them for current work.
 - `../../RUN_DELAY_COUPLING.md` — delayed inter-leg oscillator coupling with a
   connectome-blind `(g, τ)` calibration and matched real/shuffled/random controls.
   Executed; DC-1/DC-2/DC-3 pass; registered verdict `DELAY-COUPLING-NULL`.
+- `../../RUN_RUNG1_READOUT.md` — minimal-training memoryless readout moat test
+  with connectome/random/rewired/static-input substrates. Executed; T-1/T-2/T-3
+  pass; registered verdict `RUNG1-MOAT-NULL`.
 
 **Established boundary (no active brief).** The frozen, untrained connectome
 (FlyWire brain + MANC VNC) driving the non-fly hexapod earns **steering + step
