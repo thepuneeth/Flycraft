@@ -1,0 +1,1230 @@
+{
+  "axis": "B5",
+  "protocol": {
+    "source": "raw VNC motor output under constant descending drive",
+    "drive": 100.0,
+    "secs": 30.0,
+    "sample_dt_s": 0.02,
+    "model": "paper",
+    "gW": 0.03,
+    "tau": 0.02,
+    "dt": 0.005,
+    "substeps": 4,
+    "threshold": 7.5,
+    "activation_gain": 1.0,
+    "fr_cap": 200.0,
+    "heterogeneity": true,
+    "vnc_seed": 1,
+    "motor_to_joint": "mn_to_joint.translate with fixed gains (-0.55, 0.65, 0.65)",
+    "settle_s": 0.7,
+    "kp": 3.0,
+    "kd": 0.05,
+    "h_min_m": 0.08,
+    "learning": false,
+    "body": false,
+    "decode": "fixed annotated swing-minus-stance antagonist pools",
+    "only_condition_difference": "VNC substrate"
+  },
+  "prior_signal_controls": {
+    "artifact": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/lastthree_C_direct_mn_waveform.json",
+    "real_minus_shuffled_path_m": 1.0160947473488784,
+    "real_minus_timeperm_path_m": 0.8346653368150564,
+    "note": "signal-scramble controls are cited; campaign primaries compare against matched random-network substrates"
+  },
+  "prior_method": "M2 continuous VNC phase result; this replaces its single random draw with 12 random-network seeds",
+  "conditions": [
+    {
+      "substrate": "real",
+      "kind": "real",
+      "seed": null,
+      "tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+      "metrics": {
+        "duty_factor_mean": 0.6862222222222222,
+        "duty_factor_per_leg": [
+          0.5,
+          0.244,
+          0.7613333333333333,
+          0.6346666666666667,
+          0.9986666666666667,
+          0.9786666666666667
+        ],
+        "duty_stability": 0.9373865637021821,
+        "autocorrelation_peak_height": 0.5093139933625923,
+        "rhythmicity_scalar": 0.5093139933625923,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260830,
+      "tensor_sha256": "67360b7214bfa3aca223090db15d076da56c371740929262893f4c5b916b55c2",
+      "metrics": {
+        "duty_factor_mean": 0.05244444444444444,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.31466666666666665,
+          0.0
+        ],
+        "duty_stability": 0.9956002244726171,
+        "autocorrelation_peak_height": 0.9192920119472512,
+        "rhythmicity_scalar": 0.9192920119472512,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260830,
+      "tensor_sha256": "96dbbdf4bc869521d0889e2d0b9a0070966813ae705c9ac1449cf7eab3158ed3",
+      "metrics": {
+        "duty_factor_mean": 0.5144444444444444,
+        "duty_factor_per_leg": [
+          0.26,
+          0.0,
+          1.0,
+          1.0,
+          0.16133333333333333,
+          0.6653333333333333
+        ],
+        "duty_stability": 0.9866506161387184,
+        "autocorrelation_peak_height": 0.26098415655490415,
+        "rhythmicity_scalar": 0.26098415655490415,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260831,
+      "tensor_sha256": "6e55a4eb8d3ed084a99d4c57f56b4b15d2e68f8d71c27ae72e70fee0cf7758b3",
+      "metrics": {
+        "duty_factor_mean": 0.44399999999999995,
+        "duty_factor_per_leg": [
+          0.0,
+          0.964,
+          0.412,
+          1.0,
+          0.288,
+          0.0
+        ],
+        "duty_stability": 0.9697555689698227,
+        "autocorrelation_peak_height": 0.46503892019917964,
+        "rhythmicity_scalar": 0.46503892019917964,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260831,
+      "tensor_sha256": "8f791a8fece4d47c8467cb3fec2ade60637c41696f38e0b034f74b1adc96f835",
+      "metrics": {
+        "duty_factor_mean": 0.6920000000000001,
+        "duty_factor_per_leg": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.152,
+          1.0
+        ],
+        "duty_stability": 0.9902020410288673,
+        "autocorrelation_peak_height": 0.38786490424770004,
+        "rhythmicity_scalar": 0.38786490424770004,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260832,
+      "tensor_sha256": "b3518f4e84380f3ca042b843e083d9f9d8b30b08cf751eb7a574a7e3d1c48ae1",
+      "metrics": {
+        "duty_factor_mean": 0.4964444444444444,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          1.0,
+          0.968,
+          0.010666666666666666,
+          1.0
+        ],
+        "duty_stability": 0.9899433702231246,
+        "autocorrelation_peak_height": 0.6472092589836123,
+        "rhythmicity_scalar": 0.6472092589836123,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260832,
+      "tensor_sha256": "2c091fc7e9f0333cc7343e42a4da0d5ea3127d525240307d1b4fe48babc6096e",
+      "metrics": {
+        "duty_factor_mean": 0.6666666666666666,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.8277777777777778,
+        "rhythmicity_scalar": 0.8277777777777778,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260833,
+      "tensor_sha256": "443061a83e9d0d1ca81fb71ca4744a2850a322a2227e9a74c68b7107dd2963dc",
+      "metrics": {
+        "duty_factor_mean": 0.16666666666666666,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.9516020742542075,
+        "rhythmicity_scalar": 0.9516020742542075,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260833,
+      "tensor_sha256": "e362d7c3771aa8e4c81e48eaf1bc8df4bd90d6985f2af67044e3a12406d2d857",
+      "metrics": {
+        "duty_factor_mean": 0.8033333333333333,
+        "duty_factor_per_leg": [
+          0.0,
+          0.82,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "duty_stability": 0.9960747729482987,
+        "autocorrelation_peak_height": 0.22698607622492575,
+        "rhythmicity_scalar": 0.22698607622492575,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260834,
+      "tensor_sha256": "96d8244a7687a6fb01040f8e3f942efaabdd2ff06f1bd896579c3fc37e95c03b",
+      "metrics": {
+        "duty_factor_mean": 0.6666666666666666,
+        "duty_factor_per_leg": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.9609468235996236,
+        "rhythmicity_scalar": 0.9609468235996236,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260834,
+      "tensor_sha256": "94d62dc50247f75c2e77cef3ecec5fa30d99c91c558cac5f85dd386a869aa722",
+      "metrics": {
+        "duty_factor_mean": 0.5848888888888889,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0013333333333333333,
+          1.0,
+          0.9146666666666666,
+          1.0,
+          0.5933333333333334
+        ],
+        "duty_stability": 0.9752220112486081,
+        "autocorrelation_peak_height": 0.24245430669093157,
+        "rhythmicity_scalar": 0.24245430669093157,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260835,
+      "tensor_sha256": "3659cd3039d505bfb41f4771a599e62d22d7d3bc750e75c0565d612f5d37f288",
+      "metrics": {
+        "duty_factor_mean": 0.3333333333333333,
+        "duty_factor_per_leg": [
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.8277777777777778,
+        "rhythmicity_scalar": 0.8277777777777778,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260835,
+      "tensor_sha256": "cb1fb962d497c85ab81e62991d4fdfebc3cda5a7138841f6e00ce72bee2ebb92",
+      "metrics": {
+        "duty_factor_mean": 0.40199999999999997,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          0.412,
+          0.0
+        ],
+        "duty_stability": 0.9908429343208727,
+        "autocorrelation_peak_height": 0.3973949445522024,
+        "rhythmicity_scalar": 0.3973949445522024,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260836,
+      "tensor_sha256": "467925203f400bbf51648c3da9ab885e9a60c025e314ff79bbe60e0a856bccf6",
+      "metrics": {
+        "duty_factor_mean": 0.6462222222222221,
+        "duty_factor_per_leg": [
+          0.9973333333333333,
+          0.0,
+          0.0,
+          1.0,
+          0.88,
+          1.0
+        ],
+        "duty_stability": 0.9955611432612825,
+        "autocorrelation_peak_height": 0.3641644109725401,
+        "rhythmicity_scalar": 0.3641644109725401,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260836,
+      "tensor_sha256": "d2e57272b7844a43326467f5686048d320a393c26ab1b1eb5ac85d8dcf4183d4",
+      "metrics": {
+        "duty_factor_mean": 0.30977777777777776,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          0.8573333333333333,
+          0.0,
+          1.0,
+          0.0013333333333333333
+        ],
+        "duty_stability": 0.9898827325416447,
+        "autocorrelation_peak_height": 0.2671493422562145,
+        "rhythmicity_scalar": 0.2671493422562145,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260837,
+      "tensor_sha256": "fe82d6a15005893585032e3de8ae4f0152a1eee63dd7d78fb4dd7d58dc766889",
+      "metrics": {
+        "duty_factor_mean": 0.40044444444444444,
+        "duty_factor_per_leg": [
+          0.38,
+          0.02266666666666667,
+          1.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "duty_stability": 0.99115224196832,
+        "autocorrelation_peak_height": 0.3467603447739322,
+        "rhythmicity_scalar": 0.3467603447739322,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260837,
+      "tensor_sha256": "896935d082fa011080f2d79ab6ddc76274096f408e704a5808e46b7d53ac8405",
+      "metrics": {
+        "duty_factor_mean": 0.6666666666666666,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.915214369762734,
+        "rhythmicity_scalar": 0.915214369762734,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260838,
+      "tensor_sha256": "508d9b8c00be6a2e6ee2bbb621022132d890adde93dc1fc500ecfa10ba968f38",
+      "metrics": {
+        "duty_factor_mean": 0.8333333333333334,
+        "duty_factor_per_leg": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.3295353109354279,
+        "rhythmicity_scalar": 0.3295353109354279,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260838,
+      "tensor_sha256": "2d72bae7d4154187ef0530cf4679f1b8423b03ebef5284d3e958c7fe91d981e6",
+      "metrics": {
+        "duty_factor_mean": 0.5391111111111111,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          1.0,
+          0.8053333333333333,
+          0.42933333333333334,
+          1.0
+        ],
+        "duty_stability": 0.9883192577468173,
+        "autocorrelation_peak_height": 0.3156867395515488,
+        "rhythmicity_scalar": 0.3156867395515488,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260839,
+      "tensor_sha256": "3bce21891dc3cafb0a3ade56a38e8735f9eeaf7b15da1d9a8d275969f027df86",
+      "metrics": {
+        "duty_factor_mean": 0.21511111111111111,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          0.0,
+          0.058666666666666666,
+          1.0,
+          0.232
+        ],
+        "duty_stability": 0.9920676731339925,
+        "autocorrelation_peak_height": 0.532408548797322,
+        "rhythmicity_scalar": 0.532408548797322,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260839,
+      "tensor_sha256": "309a016cc574c682c70e19f146a31af5fe2d4fd2e1a451ce8752059af35b36e9",
+      "metrics": {
+        "duty_factor_mean": 0.5055555555555555,
+        "duty_factor_per_leg": [
+          0.976,
+          0.0,
+          0.02266666666666667,
+          1.0,
+          0.034666666666666665,
+          1.0
+        ],
+        "duty_stability": 0.9808295494878314,
+        "autocorrelation_peak_height": 0.37434897812670204,
+        "rhythmicity_scalar": 0.37434897812670204,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260840,
+      "tensor_sha256": "95493f9e4cbd496e3e0d97f8979c0dea22d68298ff2db6c206143f81156f700e",
+      "metrics": {
+        "duty_factor_mean": 0.3333333333333333,
+        "duty_factor_per_leg": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.26621525636432364,
+        "rhythmicity_scalar": 0.26621525636432364,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260840,
+      "tensor_sha256": "f1583b8d338aba027c5844ca02f56b7ade9f314ad181d5d77536c6173f404739",
+      "metrics": {
+        "duty_factor_mean": 0.8302222222222223,
+        "duty_factor_per_leg": [
+          1.0,
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9813333333333333
+        ],
+        "duty_stability": 0.9983370411614338,
+        "autocorrelation_peak_height": 0.2160272548884948,
+        "rhythmicity_scalar": 0.2160272548884948,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260841,
+      "tensor_sha256": "18564b5726e05d56784e39bf6769d479b4c9dcd2f6a63470d0f97c2e564d9da2",
+      "metrics": {
+        "duty_factor_mean": 0.0,
+        "duty_factor_per_leg": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "duty_stability": 1.0,
+        "autocorrelation_peak_height": 0.35604945806673444,
+        "rhythmicity_scalar": 0.35604945806673444,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260841,
+      "tensor_sha256": "894e84c69953c9024e8b850db233a6e77fdc48cd7db00ef263518f0abf8edf22",
+      "metrics": {
+        "duty_factor_mean": 0.12066666666666666,
+        "duty_factor_per_leg": [
+          0.724,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "duty_stability": 0.9939385859124508,
+        "autocorrelation_peak_height": 0.3410559151848553,
+        "rhythmicity_scalar": 0.3410559151848553,
+        "autocorrelation_window_s": [
+          0.1,
+          2.0
+        ]
+      }
+    }
+  ],
+  "primary": {
+    "metric": "rhythmicity_scalar",
+    "real_value": 0.5093139933625923,
+    "random_seed_values": [
+      0.9192920119472512,
+      0.46503892019917964,
+      0.6472092589836123,
+      0.9516020742542075,
+      0.9609468235996236,
+      0.8277777777777778,
+      0.3641644109725401,
+      0.3467603447739322,
+      0.3295353109354279,
+      0.532408548797322,
+      0.26621525636432364,
+      0.35604945806673444
+    ],
+    "random_mean": 0.5805833497226609,
+    "real_minus_random_mean": -0.07126935636006859,
+    "across_seed_ci_low": -0.22025675075414597,
+    "across_seed_ci_high": 0.06946633170138125,
+    "random_distribution_ci_low": 0.2836282713713773,
+    "random_distribution_ci_high": 0.9583770175296341,
+    "random_distribution_min": 0.26621525636432364,
+    "random_distribution_max": 0.9609468235996236,
+    "n_random_match_or_beat_real": 6,
+    "p_raw": 0.81494140625,
+    "paired_test": "exact one-sided sign-flip over 12 independent random-network seeds",
+    "higher_is_better": true,
+    "real_outside_random_distribution": false,
+    "real_ci_low": 0.5093139933625923,
+    "real_ci_high": 0.5093139933625923,
+    "nonoverlap_bootstrap_ci": false,
+    "definition": "real-minus-random-network mean decoded-leg autocorrelation peak"
+  },
+  "exploratory_metrics": [
+    "duty_factor_mean",
+    "duty_stability",
+    "autocorrelation_peak_height"
+  ],
+  "rows": [
+    {
+      "substrate": "real",
+      "kind": "real",
+      "seed": null,
+      "tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+      "duty_factor_mean": 0.6862222222222222,
+      "duty_factor_per_leg": [
+        0.5,
+        0.244,
+        0.7613333333333333,
+        0.6346666666666667,
+        0.9986666666666667,
+        0.9786666666666667
+      ],
+      "duty_stability": 0.9373865637021821,
+      "autocorrelation_peak_height": 0.5093139933625923,
+      "rhythmicity_scalar": 0.5093139933625923,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260830,
+      "tensor_sha256": "67360b7214bfa3aca223090db15d076da56c371740929262893f4c5b916b55c2",
+      "duty_factor_mean": 0.05244444444444444,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.31466666666666665,
+        0.0
+      ],
+      "duty_stability": 0.9956002244726171,
+      "autocorrelation_peak_height": 0.9192920119472512,
+      "rhythmicity_scalar": 0.9192920119472512,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260830,
+      "tensor_sha256": "96dbbdf4bc869521d0889e2d0b9a0070966813ae705c9ac1449cf7eab3158ed3",
+      "duty_factor_mean": 0.5144444444444444,
+      "duty_factor_per_leg": [
+        0.26,
+        0.0,
+        1.0,
+        1.0,
+        0.16133333333333333,
+        0.6653333333333333
+      ],
+      "duty_stability": 0.9866506161387184,
+      "autocorrelation_peak_height": 0.26098415655490415,
+      "rhythmicity_scalar": 0.26098415655490415,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260831,
+      "tensor_sha256": "6e55a4eb8d3ed084a99d4c57f56b4b15d2e68f8d71c27ae72e70fee0cf7758b3",
+      "duty_factor_mean": 0.44399999999999995,
+      "duty_factor_per_leg": [
+        0.0,
+        0.964,
+        0.412,
+        1.0,
+        0.288,
+        0.0
+      ],
+      "duty_stability": 0.9697555689698227,
+      "autocorrelation_peak_height": 0.46503892019917964,
+      "rhythmicity_scalar": 0.46503892019917964,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260831,
+      "tensor_sha256": "8f791a8fece4d47c8467cb3fec2ade60637c41696f38e0b034f74b1adc96f835",
+      "duty_factor_mean": 0.6920000000000001,
+      "duty_factor_per_leg": [
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.152,
+        1.0
+      ],
+      "duty_stability": 0.9902020410288673,
+      "autocorrelation_peak_height": 0.38786490424770004,
+      "rhythmicity_scalar": 0.38786490424770004,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260832,
+      "tensor_sha256": "b3518f4e84380f3ca042b843e083d9f9d8b30b08cf751eb7a574a7e3d1c48ae1",
+      "duty_factor_mean": 0.4964444444444444,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        1.0,
+        0.968,
+        0.010666666666666666,
+        1.0
+      ],
+      "duty_stability": 0.9899433702231246,
+      "autocorrelation_peak_height": 0.6472092589836123,
+      "rhythmicity_scalar": 0.6472092589836123,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260832,
+      "tensor_sha256": "2c091fc7e9f0333cc7343e42a4da0d5ea3127d525240307d1b4fe48babc6096e",
+      "duty_factor_mean": 0.6666666666666666,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.8277777777777778,
+      "rhythmicity_scalar": 0.8277777777777778,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260833,
+      "tensor_sha256": "443061a83e9d0d1ca81fb71ca4744a2850a322a2227e9a74c68b7107dd2963dc",
+      "duty_factor_mean": 0.16666666666666666,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.9516020742542075,
+      "rhythmicity_scalar": 0.9516020742542075,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260833,
+      "tensor_sha256": "e362d7c3771aa8e4c81e48eaf1bc8df4bd90d6985f2af67044e3a12406d2d857",
+      "duty_factor_mean": 0.8033333333333333,
+      "duty_factor_per_leg": [
+        0.0,
+        0.82,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "duty_stability": 0.9960747729482987,
+      "autocorrelation_peak_height": 0.22698607622492575,
+      "rhythmicity_scalar": 0.22698607622492575,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260834,
+      "tensor_sha256": "96d8244a7687a6fb01040f8e3f942efaabdd2ff06f1bd896579c3fc37e95c03b",
+      "duty_factor_mean": 0.6666666666666666,
+      "duty_factor_per_leg": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.9609468235996236,
+      "rhythmicity_scalar": 0.9609468235996236,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260834,
+      "tensor_sha256": "94d62dc50247f75c2e77cef3ecec5fa30d99c91c558cac5f85dd386a869aa722",
+      "duty_factor_mean": 0.5848888888888889,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0013333333333333333,
+        1.0,
+        0.9146666666666666,
+        1.0,
+        0.5933333333333334
+      ],
+      "duty_stability": 0.9752220112486081,
+      "autocorrelation_peak_height": 0.24245430669093157,
+      "rhythmicity_scalar": 0.24245430669093157,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260835,
+      "tensor_sha256": "3659cd3039d505bfb41f4771a599e62d22d7d3bc750e75c0565d612f5d37f288",
+      "duty_factor_mean": 0.3333333333333333,
+      "duty_factor_per_leg": [
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.8277777777777778,
+      "rhythmicity_scalar": 0.8277777777777778,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260835,
+      "tensor_sha256": "cb1fb962d497c85ab81e62991d4fdfebc3cda5a7138841f6e00ce72bee2ebb92",
+      "duty_factor_mean": 0.40199999999999997,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.412,
+        0.0
+      ],
+      "duty_stability": 0.9908429343208727,
+      "autocorrelation_peak_height": 0.3973949445522024,
+      "rhythmicity_scalar": 0.3973949445522024,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260836,
+      "tensor_sha256": "467925203f400bbf51648c3da9ab885e9a60c025e314ff79bbe60e0a856bccf6",
+      "duty_factor_mean": 0.6462222222222221,
+      "duty_factor_per_leg": [
+        0.9973333333333333,
+        0.0,
+        0.0,
+        1.0,
+        0.88,
+        1.0
+      ],
+      "duty_stability": 0.9955611432612825,
+      "autocorrelation_peak_height": 0.3641644109725401,
+      "rhythmicity_scalar": 0.3641644109725401,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260836,
+      "tensor_sha256": "d2e57272b7844a43326467f5686048d320a393c26ab1b1eb5ac85d8dcf4183d4",
+      "duty_factor_mean": 0.30977777777777776,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        0.8573333333333333,
+        0.0,
+        1.0,
+        0.0013333333333333333
+      ],
+      "duty_stability": 0.9898827325416447,
+      "autocorrelation_peak_height": 0.2671493422562145,
+      "rhythmicity_scalar": 0.2671493422562145,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260837,
+      "tensor_sha256": "fe82d6a15005893585032e3de8ae4f0152a1eee63dd7d78fb4dd7d58dc766889",
+      "duty_factor_mean": 0.40044444444444444,
+      "duty_factor_per_leg": [
+        0.38,
+        0.02266666666666667,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "duty_stability": 0.99115224196832,
+      "autocorrelation_peak_height": 0.3467603447739322,
+      "rhythmicity_scalar": 0.3467603447739322,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260837,
+      "tensor_sha256": "896935d082fa011080f2d79ab6ddc76274096f408e704a5808e46b7d53ac8405",
+      "duty_factor_mean": 0.6666666666666666,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.915214369762734,
+      "rhythmicity_scalar": 0.915214369762734,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260838,
+      "tensor_sha256": "508d9b8c00be6a2e6ee2bbb621022132d890adde93dc1fc500ecfa10ba968f38",
+      "duty_factor_mean": 0.8333333333333334,
+      "duty_factor_per_leg": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.3295353109354279,
+      "rhythmicity_scalar": 0.3295353109354279,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260838,
+      "tensor_sha256": "2d72bae7d4154187ef0530cf4679f1b8423b03ebef5284d3e958c7fe91d981e6",
+      "duty_factor_mean": 0.5391111111111111,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        1.0,
+        0.8053333333333333,
+        0.42933333333333334,
+        1.0
+      ],
+      "duty_stability": 0.9883192577468173,
+      "autocorrelation_peak_height": 0.3156867395515488,
+      "rhythmicity_scalar": 0.3156867395515488,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260839,
+      "tensor_sha256": "3bce21891dc3cafb0a3ade56a38e8735f9eeaf7b15da1d9a8d275969f027df86",
+      "duty_factor_mean": 0.21511111111111111,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        0.0,
+        0.058666666666666666,
+        1.0,
+        0.232
+      ],
+      "duty_stability": 0.9920676731339925,
+      "autocorrelation_peak_height": 0.532408548797322,
+      "rhythmicity_scalar": 0.532408548797322,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260839,
+      "tensor_sha256": "309a016cc574c682c70e19f146a31af5fe2d4fd2e1a451ce8752059af35b36e9",
+      "duty_factor_mean": 0.5055555555555555,
+      "duty_factor_per_leg": [
+        0.976,
+        0.0,
+        0.02266666666666667,
+        1.0,
+        0.034666666666666665,
+        1.0
+      ],
+      "duty_stability": 0.9808295494878314,
+      "autocorrelation_peak_height": 0.37434897812670204,
+      "rhythmicity_scalar": 0.37434897812670204,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260840,
+      "tensor_sha256": "95493f9e4cbd496e3e0d97f8979c0dea22d68298ff2db6c206143f81156f700e",
+      "duty_factor_mean": 0.3333333333333333,
+      "duty_factor_per_leg": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.26621525636432364,
+      "rhythmicity_scalar": 0.26621525636432364,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260840,
+      "tensor_sha256": "f1583b8d338aba027c5844ca02f56b7ade9f314ad181d5d77536c6173f404739",
+      "duty_factor_mean": 0.8302222222222223,
+      "duty_factor_per_leg": [
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9813333333333333
+      ],
+      "duty_stability": 0.9983370411614338,
+      "autocorrelation_peak_height": 0.2160272548884948,
+      "rhythmicity_scalar": 0.2160272548884948,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260841,
+      "tensor_sha256": "18564b5726e05d56784e39bf6769d479b4c9dcd2f6a63470d0f97c2e564d9da2",
+      "duty_factor_mean": 0.0,
+      "duty_factor_per_leg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duty_stability": 1.0,
+      "autocorrelation_peak_height": 0.35604945806673444,
+      "rhythmicity_scalar": 0.35604945806673444,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260841,
+      "tensor_sha256": "894e84c69953c9024e8b850db233a6e77fdc48cd7db00ef263518f0abf8edf22",
+      "duty_factor_mean": 0.12066666666666666,
+      "duty_factor_per_leg": [
+        0.724,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duty_stability": 0.9939385859124508,
+      "autocorrelation_peak_height": 0.3410559151848553,
+      "rhythmicity_scalar": 0.3410559151848553,
+      "autocorrelation_window_s": [
+        0.1,
+        2.0
+      ]
+    }
+  ],
+  "zero_learning": true
+}

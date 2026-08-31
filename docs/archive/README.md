@@ -41,13 +41,19 @@ repo root. Kept for provenance; do not follow them for current work.
   pass; registered verdict `RUNG1-MOAT-NULL`.
 
 **Established boundary (no active brief).** The frozen, untrained connectome
-(FlyWire brain + MANC VNC) driving the non-fly hexapod earns **steering + step
-timing + rhythm/duty (~35–40%)** and does **not** supply coordination, waveform,
-or pose un-trained. Coordination is NULL across six independent zero-training
-methods (M1 static grouping, Phase B bulk coupling, E4 proprioceptive feedback,
-COORD-212, COORD-INHIB, DC). The only remaining zero-training walker is a hand-designed
-CPG (WALKNET-class) — human-supplied coordination, outside the frozen-connectome
-moat; it lives in the repo only as the clean-clock positive control (Phase A gate
-T4), never credited to the wiring. This is the boundary result.
+(FlyWire brain + MANC VNC) driving the non-fly hexapod has a real VNC-versus-
+shuffle path positive and the registered seven-axis specificity audit earns
+`SPECIFICITY-EARNED@{B1,B2,B3,B6}` on predeclared displacement/robustness
+comparisons against 12 random and 12 rewired substrates. B5 rhythm and B7
+steering are NULL; B4 fails its distribution/CI gate. These positives do not
+establish canonical tripod coordination: coordination is NULL across six
+independent zero-training methods (M1 static grouping, Phase B bulk coupling,
+E4 proprioceptive feedback, COORD-212, COORD-INHIB, DC), while C direct MN
+waveform remains `C1-ABSENT`. The only remaining zero-training walker is a
+hand-designed CPG (WALKNET-class)—human-supplied coordination, outside the
+frozen-connectome moat; it lives in the repo only as the clean-clock positive
+control (Phase A gate T4), never credited to wiring. Full specificity evidence
+is in `../../eon-fly-brain/results/path2/specificity_campaign.{json,csv}` and
+`../../PATH2_METHODS.md`; final claim wording remains owner-gated.
 
 Current source of truth: `../../HANDOFF.md`, `../../PATH2_METHODS.md`.

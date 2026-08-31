@@ -1,0 +1,8 @@
+axis,primary_metric,real_minus_random_mean,across_seed_ci_low,across_seed_ci_high,p_raw,p_holm,n_random_match_or_beat_real,video_note
+B1,path_m_and_forward_distance_m,0.9165956952248769,0.8149909580176945,0.9979696595617534,0.000244140625,0.001708984375,,real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated
+B4,pca_participation_ratio,3.3411193584656758,1.1234535556960235,5.38869807344966,0.0087890625,0.0263671875,2,not required unless survivor
+B5,rhythmicity_scalar,-0.07126935636006859,-0.22025675075414597,0.06946633170138125,0.81494140625,1.0,6,not required unless survivor
+B7,steering_correlation_magnitude,-0.07283458895576811,-0.17965120739925547,0.07931410723187546,0.82373046875,1.0,10,not required unless survivor
+B2,curve_mean_path_m,0.5747462623342651,0.499417397347206,0.6359710204523938,0.000244140625,0.001708984375,0,real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated
+B3,curve_mean_path_m,0.6147497791096233,0.5214418342139835,0.6907973666586876,0.000244140625,0.001708984375,0,real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated
+B6,worst_case_path_m,0.8643191835288103,0.784506179482332,0.928432433522623,0.000244140625,0.001708984375,0,real-versus-predeclared-median-random H.264 artifacts present; visual review completed; final claim remains owner-gated

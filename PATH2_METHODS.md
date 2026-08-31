@@ -2,20 +2,27 @@
 
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
 last-three B/C/D jobs, the four untried zero-training phases, delayed
-coupling DC-1–DC-3, and Rung 1 trained-readout T-1–T-3; current
-`H_MIN=.08 m` gate and all integrity controls pass. Pre-fix body-level
-results are confounded/superseded; the final claim remains pending approval.
+coupling DC-1–DC-3, Rung 1 trained-readout T-1–T-3, and the registered
+seven-axis specificity audit; current `H_MIN=.08 m` gate and all integrity
+controls pass. Pre-fix body-level results are confounded/superseded; the
+final claim remains pending approval.
 
 ## Current result (claim review pending)
 
-Working headline: all 212 published T1/T2/T3 coordination candidates are in
+Working headline: no registered test establishes transfer of a canonical
+alternating tripod. All 212 published T1/T2/T3 coordination candidates are in
 the frozen graph, the six zero-training coordination routes remain negative,
-and the first minimal-training moat test is also `RUNG1-MOAT-NULL`. The
-connectome-fed memoryless readout fell in 20/20 Rung 1 episodes and was below
-random and rewired on both primary body metrics. Method 1's real 4/2 grouping
-falls in 16/20 episodes; Method 2 remains phase-absent in all 20; B dynamic
-edge coupling falls in 20/20; C direct MN waveform remains `C1-ABSENT`; D
-earns only a tonic pose, also reproduced by shuffled and random controls.
+and the first minimal-training moat test is `RUNG1-MOAT-NULL`. The completed
+specificity audit does find a real-versus-random-network advantage on its
+predeclared path/robustness tests (`SPECIFICITY-EARNED@{B1,B2,B3,B6}`), but
+those axes measure displacement or robustness, not tripod phase. B5 rhythm and
+B7 visual steering remain NULL; B4 does not pass its distribution/CI survivor
+gate. The connectome-fed memoryless readout fell in 20/20 Rung 1 episodes and
+was below random and rewired on both primary body metrics. Method 1's real
+4/2 grouping falls in 16/20 episodes; Method 2 remains phase-absent in all 20;
+B dynamic edge coupling falls in 20/20; C direct MN waveform remains
+`C1-ABSENT`; D earns only a tonic pose, also reproduced by shuffled and random
+controls.
 COORD-212, COORD-INHIB, WAVE-ANTAG, VISION-EVAL, DC-1–DC-3, and Rung 1 pass
 integrity gates but return NULL outcomes.
 
@@ -31,18 +38,66 @@ The real VNC still beats column-shuffled VNC in the separate five-condition
 open-loop control (`+0.2663 m` path, 95% CI `[+.2611, +.2714]`, exact
 `p=1.91×10⁻⁶`, Holm `p=5.72×10⁻⁶`), while brain-coupled VNC is below matched
 random descending drive (`−.0621 m`, 95% CI `[−.1192, −.0092]`, Holm
-`p=.0422`). This is a real VNC motor-output positive, not evidence that
-connectome coordination transfers to a tripod.
+`p=.0422`). In the new full 8 s direct-MN specificity test, real minus the
+12-seed random-network mean is `+.9166 m` `[+.8150, +.9980]` on path and
+`+.2318 m` `[+.2192, +.2450]` forward; both metrics have exact one-sided
+`p=.000244` and `0/12` random seeds matching or beating real. These are real
+VNC/motor-output positives, not evidence that connectome coordination
+transfers to a tripod.
 
 This is a corrected evidence summary, not final claim wording. B/C/D and the
 four untried phases are zero-learning transfer controls; learned Outcome C/D
 remain separate methods and are not part of this headline.
 
+## Specificity campaign (registered evidence; claim review pending)
+
+The campaign ran Gate A followed by B1, B4, B5, B7, B2, B3, and B6 from the
+fixed registry in `RUN_SPECIFICITY_AUDIT.md`. It reused one real substrate,
+12 predeclared random-network seeds (`20260830`–`20260841`), and 12 matching
+degree-preserving rewires. Constants stayed fixed:
+`MAP_GAINS=(-.55,.65,.65)`, `kp=3`, `kd=.05`, `H_MIN=.08`, `.7 s` settle,
+base drive `100`, and episode seed `20260829`. B2 and B3 report complete
+predeclared curves; B6 uses the registered one-factor perturbation set and
+records 18 skipped full-factorial combinations.
+
+| axis | primary real − random mean | across-seed 95% CI | raw p | Holm p | random match/beat | survivor reading |
+|---|---:|---:|---:|---:|---:|---|
+| B1 path **and** forward | `+.9166 m`; `+.2318 m` | `[+.8150,+.9980]`; `[+.2192,+.2450]` | `.000244` | `.001709` | `0/12` on both | earned; both gates pass |
+| B2 complete horizon-curve path | `+.5747 m` | `[+.4994,+.6360]` | `.000244` | `.001709` | `0/12` | earned |
+| B3 complete drive-curve path | `+.6147 m` | `[+.5214,+.6908]` | `.000244` | `.001709` | `0/12` on curve scalar | earned |
+| B4 participation ratio | `+3.3411` | `[+1.1235,+5.3887]` | `.008789` | `.026367` | `2/12` | not earned: distribution and CI gates fail |
+| B5 rhythmicity scalar | `−.0713` | `[−.2203,+.0695]` | `.814941` | `1.000000` | `6/12` | NULL |
+| B6 worst-case path robustness | `+.8643 m` | `[+.7845,+.9284]` | `.000244` | `.001709` | `0/12` | earned |
+| B7 steering-correlation magnitude | `−.0728` | `[−.1797,+.0793]` | `.823730` | `1.000000` | `10/12` | NULL |
+
+B2 point margins at `1/2/4/8/16 s` are `+.0798/+.1355/+.3362/+.9166/+1.4056 m`;
+the registered primary is their complete-curve mean, not a selected horizon.
+B3 point margins at drives `50/100/150/200` are `+.4356/+.9166/+.4678/+.6390 m`;
+the registered primary is their complete-curve mean, not a selected drive.
+The four survivor axes have real-versus-predeclared-median-random four-view
+H.264 artifacts; visual review was completed before this handoff. The
+campaign JSON records `final_claim_written: NO (owner writes)`.
+
+Gate A reproduced the archived Phase C control exactly: real path `1.1090 m`,
+real-minus-shuffled `+1.0161 m`, real-minus-time-permutation `+.8347 m`, and
+all reproduction deltas `0.0`. Campaign integrity is PASS: the real graph
+pre/post hashes are `018a4890…d815506` (weights) and
+`3f65f5b3…d09449` (IO index), all random/rewired seeds are present, all seven
+primary tests received Holm correction, every axis has `learning=false`, and
+the zero-learning lexical scan is clean. The completed campaign used `7,689`
+rollouts including six video-only resume rollouts.
+
+Artifacts: `eon-fly-brain/results/path2/specificity_campaign.{json,csv}`,
+`specificity_B1`–`specificity_B7.{json,csv}`, and the B1/B2/B3/B6 real and
+median-random videos. The primary code is
+`eon-fly-brain/code/specificity_campaign.py`. This section is evidence
+assembly only; final claim wording remains withheld pending user approval.
+
 ### §0.1 Job table and ownership score
 
 | job/result | evidence | current reading |
 |---|---|---|
-| descending drive and VNC dynamics | real VNC has 260 dynamic motor outputs; C real path beats shuffled by `+1.0161 m` `[+1.0113,+1.0208]` | connectome-supported motor signal |
+| descending drive and VNC dynamics | C real path beats shuffled by `+1.0161 m` `[+1.0113,+1.0208]`; specificity B1 beats all 12 random networks on path `+.9166 m` `[+.8150,+.9980]` and forward `+.2318 m` `[+.2192,+.2450]` | real VNC signal is wiring-specific against both signal and network controls; no tripod endpoint |
 | fixed-map embodiment | C direct real forward `+.2241 m` `[+.2187,+.2292]`; `C1-ABSENT` | partial motion, no tripod |
 | tonic body pose | D real/shuffled/random all `D-POSE-PRESENT` | matched-control pose, not coordination |
 | published-cell coordination | COORD-212: 212/212 candidates, `COORD-212-NULL`; COORD-INHIB: `COORD-INHIB-NULL` | no transferred tripod |
@@ -312,7 +367,11 @@ constants and the home-pose body:
    all-leg phase audit nevertheless gives opposite signs for the two
    within-tripod groups (`−0.057` versus `+0.307`) and only moderate negative
    cross-tripod correlation (`−0.185`). This is oscillation without coherent
-   alternating tripod organization. It remains the primary failure layer.
+   alternating tripod organization. Specificity B1 nevertheless separates
+   the real waveform from random wiring on path and forward distance, while
+   B5 does not separate self-generated rhythmicity; the unresolved failure is
+   coordination organization, not absence of dynamic signal. It remains the
+   primary failure layer.
 2. **Layer ii — fixed motor map:** all `18/18` target channels vary; mean
    target temporal SD is `0.133` rad and mean target range is `0.588` rad.
    The map transmits VNC variation but cannot repair its phase structure.
@@ -321,7 +380,9 @@ constants and the home-pose body:
    upright (`min height .129 m`, no fall). It travels `1.079 m` of path and
    `.234 m` forward in this 8 s open-loop run. Physics attenuates/distorts the
    target (`.110` rad mean target-tracking MAE), but does not erase the signal
-   or create the missing tripod.
+   or create the missing tripod. B6's registered worst-case body perturbation
+   scalar also favors real wiring over the random network distribution, so
+   this result is not explained by a fragile single body setting.
 
 The corrected mechanistic reading is therefore: the real VNC carries dynamic
 activity and the fixed map/body transmit it, but the expanded VNC does not
@@ -1364,11 +1425,14 @@ The current artifact set includes:
   validation histories, T-3 80-episode substrate comparison, paired
   coherence/feet-planted tests, static-input leak audit, and watched
   connectome four-view video.
+- Specificity Gate A, seven fixed primary axes, 24 substrate records,
+  per-axis JSON/CSV checkpoints, Holm family correction, and real/median-random
+  four-view videos for B1/B2/B3/B6.
 
 The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0,
 Path 3, Method-1, and Method-2 probes are fixed replay/measurement code with
 no optimizer, backprop, reward, target fit, or performance-based choice. All
-45 JSON and 46 CSV files parse; all 212 published candidates are selected with
+54 JSON and 54 CSV files parse; all 212 published candidates are selected with
 0 omitted; the frozen all-leg VNC file hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`, and the
 frozen FlyWire brain file hash is
@@ -1378,11 +1442,13 @@ The all-leg index hash is
 matches the frozen graph record. Python compilation, `git diff --check`,
 shared-condition checks, home-keyframe provenance, current `.08 m` floor
 checks, and readable H.264 video checks all pass. Method-1, Method-2,
-last-three B/C, COORD-212, COORD-INHIB, WAVE-ANTAG, DC-3, and Rung 1 real videos are
-8.000 s; D is a 1.5 s tonic hold; preflight and DC-1 preflight are 4.000 s;
-VISION-EVAL left/right video is 4.000 s. The four untried gates, DC-1–DC-3,
-and Rung 1 T-1–T-3 gates pass; all five new zero-training verdicts and Rung 1
-are NULL. Learned Outcome C/D remain separately labeled methods and
+last-three B/C, COORD-212, COORD-INHIB, WAVE-ANTAG, DC-3, Rung 1, and
+specificity B1/B2/B3/B6 real videos are 8.000 s; D is a 1.5 s tonic hold;
+preflight and DC-1 preflight are 4.000 s; VISION-EVAL left/right video is
+4.000 s. The four untried gates, DC-1–DC-3, and Rung 1 T-1–T-3 gates pass;
+all five new zero-training verdicts and Rung 1 are NULL. Specificity
+meta-decision is `SPECIFICITY-EARNED@{B1,B2,B3,B6}` for displacement/robustness;
+B4 fails its distribution/CI gate and B5/B7 are NULL. Learned Outcome C/D remain separately labeled methods and
 are not part of the zero-learning headline; last-three C/D are fixed-map
 transfer controls, not learned outcomes.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.

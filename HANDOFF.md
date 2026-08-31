@@ -2,7 +2,8 @@
 
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
 last-three B/C/D jobs, the four untried zero-training phases, delayed
-coupling DC-1–DC-3, and Rung 1 trained-readout T-1–T-3; current
+coupling DC-1–DC-3, Rung 1 trained-readout T-1–T-3, and the registered
+seven-axis specificity audit; current
 `H_MIN=.08 m` gate and all integrity controls pass. Pre-fix body-level
 results are confounded/superseded; the final claim remains gated on user
 approval.
@@ -33,6 +34,20 @@ path (`+0.2663 m`, 95% CI `[+.2611,+.2714]`, exact `p=1.91×10⁻⁶`, Holm
 below matched random descending drive (`−.0621 m`, 95% CI
 `[−.1192,−.0092]`, Holm `p=.0422`). This is a real VNC motor-output positive,
 not evidence that connectome coordination transfers to a tripod.
+
+The completed specificity audit adds the required network-level control. Its
+registered meta-decision is `SPECIFICITY-EARNED@{B1,B2,B3,B6}` for path or
+worst-case robustness, while B5 rhythm and B7 steering are NULL and B4 fails
+the distribution/CI survivor gate. B1's full 8 s real-minus-random result is
+`+.9166 m` `[+.8150,+.9980]` on path and `+.2318 m` `[+.2192,+.2450]` forward;
+both have raw `p=.000244`, Holm `p=.001709`, and `0/12` random seeds matching
+or beating real. B2's complete horizon-curve margin is `+.5747 m`
+`[+.4994,+.6360]`; B3's complete drive-curve margin is `+.6147 m`
+`[+.5214,+.6908]`; B6's worst-case robustness margin is `+.8643 m`
+`[+.7845,+.9284]`. These positives are displacement/robustness specificity,
+not a canonical tripod result. The campaign includes real and predeclared
+median-random four-view videos for B1/B2/B3/B6. Its claim field remains
+`NO (owner writes)`.
 
 This is corrected evidence assembly, not final claim wording. Learned Outcome
 C/D remain separate methods; last-three B/C/D, the four untried phases, and DC
@@ -624,6 +639,44 @@ Artifacts: `results/path2/rung1_preflight.json`,
 `rung1_readout_{connectome,random,rewired,static-input}.npz`,
 `rung1_preregistered.json`, `rung1_t3.{json,csv}`, and the connectome video.
 
+## Specificity audit (registered evidence; claim review pending)
+
+Gate A reproduced the archived Phase C values exactly: real path `1.1090 m`,
+real-minus-shuffled `+1.0161 m`, real-minus-time-permutation `+.8347 m`, and
+zero reproduction deltas. The seven-axis campaign used the fixed registry,
+20 shared episodes where applicable, 12 random-network seeds and 12 matching
+rewires, no learning, and no post-hoc constant changes.
+
+| axis | primary real − random mean [95% CI] | raw p | Holm p | n/12 match/beat | result |
+|---|---:|---:|---:|---:|---|
+| B1 path + forward | `+.9166 m` `[+.8150,+.9980]`; `+.2318 m` `[+.2192,+.2450]` | `.000244` | `.001709` | `0/12` both | earned |
+| B2 horizon curve | `+.5747 m` `[+.4994,+.6360]` | `.000244` | `.001709` | `0/12` | earned |
+| B3 drive curve | `+.6147 m` `[+.5214,+.6908]` | `.000244` | `.001709` | `0/12` | earned |
+| B4 participation ratio | `+3.3411` `[+1.1235,+5.3887]` | `.008789` | `.026367` | `2/12` | gate fail |
+| B5 rhythmicity | `−.0713` `[−.2203,+.0695]` | `.814941` | `1.000000` | `6/12` | NULL |
+| B6 worst-case path | `+.8643 m` `[+.7845,+.9284]` | `.000244` | `.001709` | `0/12` | earned |
+| B7 steering magnitude | `−.0728` `[−.1797,+.0793]` | `.823730` | `1.000000` | `10/12` | NULL |
+
+Registered meta-decision: `SPECIFICITY-EARNED@{B1,B2,B3,B6}`. B1 requires both
+path and forward metrics; B2/B3 use complete predeclared curves, not a best
+point; B6 uses the declared worst-case one-factor perturbation scalar. B4's
+nominal p-value does not earn a survivor because real is inside the random
+distribution and its bootstrap CI overlaps. Real-versus-median-random four-view
+videos were generated and visually reviewed for all four survivor axes:
+
+- `results/path2/specificity_B1_{real,random_median}_walk_multiview.mp4`
+- `results/path2/specificity_B2_{real,random_median}_walk_multiview.mp4`
+- `results/path2/specificity_B3_{real,random_median}_walk_multiview.mp4`
+- `results/path2/specificity_B6_{real,random_median}_walk_multiview.mp4`
+
+The campaign artifacts are `results/path2/specificity_campaign.{json,csv}`,
+`specificity_B1`–`specificity_B7.{json,csv}`, and
+`code/specificity_campaign.py`. Integrity JSON reports PASS: graph hashes are
+equal pre/post, all declared seeds are present, all seven primaries receive
+Holm correction, every axis is `learning=false`, and the zero-learning scan is
+clean. Total recorded rollout count is `7,689` including six video-only resume
+rollouts. Final claim remains `NO (owner writes)`.
+
 ## Reproduction commands
 
 Run from `/Users/puneeth/Documents/Flycraft` with
@@ -775,6 +828,10 @@ Run from `/Users/puneeth/Documents/Flycraft` with
   --phase finalize --out eon-fly-brain/results/path2/delay_coupling \
   --watched-verdict "not a genuine tripod walk: no alternating anti-phase tripod visible"
 
+# Seven-axis wiring-specificity campaign; --resume skips completed checkpoints.
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/specificity_campaign.py
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/specificity_campaign.py --resume
+
 # Rung 1 minimal-training moat test. Run phases in order; finalize only after
 # watching the required connectome video.
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/preflight.py \
@@ -813,9 +870,12 @@ Corrected rerun checks already recorded:
 - zero-learning scan scoped to frozen E0–E4 code/artifacts; D2 objective scan
   confirms no catch/prey/target/gait/coherence term;
 - immutable target and exact row/column degree sequences for D controls;
+- specificity campaign: fixed seven-axis family, 12 random + 12 rewired
+  seeds, complete curve/perturbation manifests, Holm correction, checkpoint
+  resume, and required real/median-random survivor videos;
 - `git diff --check`.
 
-All 45 JSON and 46 CSV files parse; all 212 published candidates are selected
+All 54 JSON and 54 CSV files parse; all 212 published candidates are selected
 with 0 omitted; VNC hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`; brain
 hash is `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
@@ -826,10 +886,13 @@ Method-1, Method-2, and last-three B/C/D artifacts retain zero-learning or
 learning=false protocol flags; source scan found no optimizer, backprop,
 reward, target-fit, or performance-based choice in frozen rerun paths. New
 method/control videos are readable H.264: B/C, COORD-212, COORD-INHIB,
-WAVE-ANTAG, DC-3, and Rung 1 are 8.000 s; D is a 1.500 s tonic hold; preflight
-and DC-1 preflight are 4.000 s; and VISION-EVAL left/right is 4.000 s. The four
-untried gates, DC-1–DC-3, and Rung 1 T-1–T-3 gates pass; all five new
-zero-training verdicts and Rung 1 are NULL. Learned Outcome C/D remain separately labeled methods;
+WAVE-ANTAG, DC-3, Rung 1, and specificity B1/B2/B3/B6 are 8.000 s; D is a
+1.500 s tonic hold; preflight and DC-1 preflight are 4.000 s; and VISION-EVAL
+left/right is 4.000 s. The four untried gates, DC-1–DC-3, and Rung 1 T-1–T-3
+gates pass; all five new zero-training verdicts and Rung 1 are NULL.
+Specificity meta-decision is `SPECIFICITY-EARNED@{B1,B2,B3,B6}` for its
+predeclared displacement/robustness tests; B4 fails its distribution/CI gate,
+and B5/B7 are NULL. Learned Outcome C/D remain separately labeled methods;
 last-three B/C/D are fixed transfer controls and are complete.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
 Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
@@ -870,4 +933,5 @@ the claim before user approval.
 | `eon-fly-brain/code/untried_zero_methods.py` | COORD-212, COORD-INHIB, WAVE-ANTAG, and VISION-EVAL frozen phases |
 | `eon-fly-brain/code/delay_coupling.py` | DC-1 delayed generator, DC-2 blind calibration, and DC-3 generation run |
 | `eon-fly-brain/code/rung1_readout.py` | T-1 dataset, T-2 memoryless MLP, T-3 moat comparison, and video finalizer |
+| `eon-fly-brain/code/specificity_campaign.py` | Gate A plus registered seven-axis random-network specificity audit and checkpointed survivor videos |
 | `PATH2_METHODS.md` | methods-complete working report |

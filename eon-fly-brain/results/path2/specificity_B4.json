@@ -1,0 +1,730 @@
+{
+  "axis": "B4",
+  "protocol": {
+    "source": "raw VNC motor output under constant descending drive",
+    "drive": 100.0,
+    "secs": 30.0,
+    "sample_dt_s": 0.02,
+    "model": "paper",
+    "gW": 0.03,
+    "tau": 0.02,
+    "dt": 0.005,
+    "substeps": 4,
+    "threshold": 7.5,
+    "activation_gain": 1.0,
+    "fr_cap": 200.0,
+    "heterogeneity": true,
+    "vnc_seed": 1,
+    "motor_to_joint": "mn_to_joint.translate with fixed gains (-0.55, 0.65, 0.65)",
+    "settle_s": 0.7,
+    "kp": 3.0,
+    "kd": 0.05,
+    "h_min_m": 0.08,
+    "learning": false,
+    "body": false,
+    "only_condition_difference": "VNC substrate"
+  },
+  "prior_signal_controls": {
+    "artifact": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/lastthree_C_direct_mn_waveform.json",
+    "real_minus_shuffled_path_m": 1.0160947473488784,
+    "real_minus_timeperm_path_m": 0.8346653368150564,
+    "note": "signal-scramble controls are cited; campaign primaries compare against matched random-network substrates"
+  },
+  "conditions": [
+    {
+      "substrate": "real",
+      "kind": "real",
+      "seed": null,
+      "tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+      "metrics": {
+        "motor_temporal_sd": 0.11248025232174941,
+        "pca_effective_rank": 20.118911224197365,
+        "pca_participation_ratio": 8.812196610092517,
+        "spectral_entropy": 0.4993830156908333,
+        "lag1_autocorrelation": 0.8508473482658377,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260830,
+      "tensor_sha256": "67360b7214bfa3aca223090db15d076da56c371740929262893f4c5b916b55c2",
+      "metrics": {
+        "motor_temporal_sd": 0.0062568824537783275,
+        "pca_effective_rank": 3.1273452770022163,
+        "pca_participation_ratio": 2.4986553381092405,
+        "spectral_entropy": 0.13413641251575378,
+        "lag1_autocorrelation": 0.5991322156255048,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260830,
+      "tensor_sha256": "96dbbdf4bc869521d0889e2d0b9a0070966813ae705c9ac1449cf7eab3158ed3",
+      "metrics": {
+        "motor_temporal_sd": 0.04071612690835478,
+        "pca_effective_rank": 23.26252630145303,
+        "pca_participation_ratio": 13.49068050694842,
+        "spectral_entropy": 0.3155753076302712,
+        "lag1_autocorrelation": 0.8781034276522696,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260831,
+      "tensor_sha256": "6e55a4eb8d3ed084a99d4c57f56b4b15d2e68f8d71c27ae72e70fee0cf7758b3",
+      "metrics": {
+        "motor_temporal_sd": 0.042454570602173454,
+        "pca_effective_rank": 21.06256220465232,
+        "pca_participation_ratio": 13.913394935204977,
+        "spectral_entropy": 0.411559615709322,
+        "lag1_autocorrelation": 0.9157889002823738,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260831,
+      "tensor_sha256": "8f791a8fece4d47c8467cb3fec2ade60637c41696f38e0b034f74b1adc96f835",
+      "metrics": {
+        "motor_temporal_sd": 0.015932896439947046,
+        "pca_effective_rank": 7.759519964503854,
+        "pca_participation_ratio": 4.751952777958802,
+        "spectral_entropy": 0.22144488692768352,
+        "lag1_autocorrelation": 0.8858654622386276,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260832,
+      "tensor_sha256": "b3518f4e84380f3ca042b843e083d9f9d8b30b08cf751eb7a574a7e3d1c48ae1",
+      "metrics": {
+        "motor_temporal_sd": 0.02575521364008383,
+        "pca_effective_rank": 12.603702240669925,
+        "pca_participation_ratio": 7.684011511721976,
+        "spectral_entropy": 0.34462014480010034,
+        "lag1_autocorrelation": 0.9326889803215627,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260832,
+      "tensor_sha256": "2c091fc7e9f0333cc7343e42a4da0d5ea3127d525240307d1b4fe48babc6096e",
+      "metrics": {
+        "motor_temporal_sd": 0.0,
+        "pca_effective_rank": 0.0,
+        "pca_participation_ratio": 0.0,
+        "spectral_entropy": 0.0,
+        "lag1_autocorrelation": 0.0,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260833,
+      "tensor_sha256": "443061a83e9d0d1ca81fb71ca4744a2850a322a2227e9a74c68b7107dd2963dc",
+      "metrics": {
+        "motor_temporal_sd": 0.008240886520489935,
+        "pca_effective_rank": 2.1549991787009395,
+        "pca_participation_ratio": 1.577190054429519,
+        "spectral_entropy": 0.12989059129596817,
+        "lag1_autocorrelation": 0.8827472173614878,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260833,
+      "tensor_sha256": "e362d7c3771aa8e4c81e48eaf1bc8df4bd90d6985f2af67044e3a12406d2d857",
+      "metrics": {
+        "motor_temporal_sd": 0.020195064808587987,
+        "pca_effective_rank": 11.278449621116973,
+        "pca_participation_ratio": 6.781278070975236,
+        "spectral_entropy": 0.28127626094102937,
+        "lag1_autocorrelation": 0.8901922941039212,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260834,
+      "tensor_sha256": "96d8244a7687a6fb01040f8e3f942efaabdd2ff06f1bd896579c3fc37e95c03b",
+      "metrics": {
+        "motor_temporal_sd": 0.002336397270461978,
+        "pca_effective_rank": 1.2302502438764928,
+        "pca_participation_ratio": 1.0954045164153046,
+        "spectral_entropy": 0.06480945744347737,
+        "lag1_autocorrelation": 0.9402836293380799,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260834,
+      "tensor_sha256": "94d62dc50247f75c2e77cef3ecec5fa30d99c91c558cac5f85dd386a869aa722",
+      "metrics": {
+        "motor_temporal_sd": 0.03673678829423898,
+        "pca_effective_rank": 18.562224187876254,
+        "pca_participation_ratio": 11.910776817952986,
+        "spectral_entropy": 0.28520037287717204,
+        "lag1_autocorrelation": 0.8857423937001218,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260835,
+      "tensor_sha256": "3659cd3039d505bfb41f4771a599e62d22d7d3bc750e75c0565d612f5d37f288",
+      "metrics": {
+        "motor_temporal_sd": 0.0,
+        "pca_effective_rank": 0.0,
+        "pca_participation_ratio": 0.0,
+        "spectral_entropy": 0.0,
+        "lag1_autocorrelation": 0.0,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260835,
+      "tensor_sha256": "cb1fb962d497c85ab81e62991d4fdfebc3cda5a7138841f6e00ce72bee2ebb92",
+      "metrics": {
+        "motor_temporal_sd": 0.025850982441116117,
+        "pca_effective_rank": 14.433001480806318,
+        "pca_participation_ratio": 9.248019867967392,
+        "spectral_entropy": 0.3168807121115853,
+        "lag1_autocorrelation": 0.8372112064161658,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260836,
+      "tensor_sha256": "467925203f400bbf51648c3da9ab885e9a60c025e314ff79bbe60e0a856bccf6",
+      "metrics": {
+        "motor_temporal_sd": 0.030689805318567163,
+        "pca_effective_rank": 12.894483491514167,
+        "pca_participation_ratio": 7.653247911687213,
+        "spectral_entropy": 0.40415842261989754,
+        "lag1_autocorrelation": 0.8952504522151687,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260836,
+      "tensor_sha256": "d2e57272b7844a43326467f5686048d320a393c26ab1b1eb5ac85d8dcf4183d4",
+      "metrics": {
+        "motor_temporal_sd": 0.02987003079910578,
+        "pca_effective_rank": 18.497206684960805,
+        "pca_participation_ratio": 12.274347269094097,
+        "spectral_entropy": 0.27985046313943435,
+        "lag1_autocorrelation": 0.8799608164008572,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260837,
+      "tensor_sha256": "fe82d6a15005893585032e3de8ae4f0152a1eee63dd7d78fb4dd7d58dc766889",
+      "metrics": {
+        "motor_temporal_sd": 0.014345990670080223,
+        "pca_effective_rank": 9.586734355367016,
+        "pca_participation_ratio": 5.880575039980275,
+        "spectral_entropy": 0.3216855592825539,
+        "lag1_autocorrelation": 0.8795661911906575,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260837,
+      "tensor_sha256": "896935d082fa011080f2d79ab6ddc76274096f408e704a5808e46b7d53ac8405",
+      "metrics": {
+        "motor_temporal_sd": 0.0027121048470852387,
+        "pca_effective_rank": 3.9040274551764544,
+        "pca_participation_ratio": 3.2648070487513787,
+        "spectral_entropy": 0.11014053765361334,
+        "lag1_autocorrelation": 0.8852266929033331,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260838,
+      "tensor_sha256": "508d9b8c00be6a2e6ee2bbb621022132d890adde93dc1fc500ecfa10ba968f38",
+      "metrics": {
+        "motor_temporal_sd": 0.007456420639715616,
+        "pca_effective_rank": 7.12078753919618,
+        "pca_participation_ratio": 4.4208532967234975,
+        "spectral_entropy": 0.3444591904324173,
+        "lag1_autocorrelation": 0.9042699677190794,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260838,
+      "tensor_sha256": "2d72bae7d4154187ef0530cf4679f1b8423b03ebef5284d3e958c7fe91d981e6",
+      "metrics": {
+        "motor_temporal_sd": 0.03484828678126831,
+        "pca_effective_rank": 18.631358068671535,
+        "pca_participation_ratio": 11.829347425132486,
+        "spectral_entropy": 0.31130753827615004,
+        "lag1_autocorrelation": 0.8920244668203062,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260839,
+      "tensor_sha256": "3bce21891dc3cafb0a3ade56a38e8735f9eeaf7b15da1d9a8d275969f027df86",
+      "metrics": {
+        "motor_temporal_sd": 0.01749078829788126,
+        "pca_effective_rank": 9.27212645560209,
+        "pca_participation_ratio": 6.151315677436534,
+        "spectral_entropy": 0.3355352967399762,
+        "lag1_autocorrelation": 0.8583399607088691,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260839,
+      "tensor_sha256": "309a016cc574c682c70e19f146a31af5fe2d4fd2e1a451ce8752059af35b36e9",
+      "metrics": {
+        "motor_temporal_sd": 0.028077386763248634,
+        "pca_effective_rank": 14.730566135504418,
+        "pca_participation_ratio": 9.423976579139573,
+        "spectral_entropy": 0.3219343611940771,
+        "lag1_autocorrelation": 0.8857669827553474,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260840,
+      "tensor_sha256": "95493f9e4cbd496e3e0d97f8979c0dea22d68298ff2db6c206143f81156f700e",
+      "metrics": {
+        "motor_temporal_sd": 0.026917971689124565,
+        "pca_effective_rank": 14.792327155006433,
+        "pca_participation_ratio": 9.37130605136903,
+        "spectral_entropy": 0.4134094231050488,
+        "lag1_autocorrelation": 0.8819356081692904,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260840,
+      "tensor_sha256": "f1583b8d338aba027c5844ca02f56b7ade9f314ad181d5d77536c6173f404739",
+      "metrics": {
+        "motor_temporal_sd": 0.028364860061866597,
+        "pca_effective_rank": 14.32088808789605,
+        "pca_participation_ratio": 8.330894448028149,
+        "spectral_entropy": 0.2900870948705935,
+        "lag1_autocorrelation": 0.8698962140292513,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260841,
+      "tensor_sha256": "18564b5726e05d56784e39bf6769d479b4c9dcd2f6a63470d0f97c2e564d9da2",
+      "metrics": {
+        "motor_temporal_sd": 0.013038075768577366,
+        "pca_effective_rank": 8.58774013322844,
+        "pca_participation_ratio": 5.406972686444523,
+        "spectral_entropy": 0.32055703106535954,
+        "lag1_autocorrelation": 0.9142373701780432,
+        "burn_fraction": 0.5
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260841,
+      "tensor_sha256": "894e84c69953c9024e8b850db233a6e77fdc48cd7db00ef263518f0abf8edf22",
+      "metrics": {
+        "motor_temporal_sd": 0.019675428189096816,
+        "pca_effective_rank": 8.964517522491777,
+        "pca_participation_ratio": 5.421634288363275,
+        "spectral_entropy": 0.23820730579289512,
+        "lag1_autocorrelation": 0.9065006348839502,
+        "burn_fraction": 0.5
+      }
+    }
+  ],
+  "primary": {
+    "metric": "pca_participation_ratio",
+    "real_value": 8.812196610092517,
+    "random_seed_values": [
+      2.4986553381092405,
+      13.913394935204977,
+      7.684011511721976,
+      1.577190054429519,
+      1.0954045164153046,
+      0.0,
+      7.653247911687213,
+      5.880575039980275,
+      4.4208532967234975,
+      6.151315677436534,
+      9.37130605136903,
+      5.406972686444523
+    ],
+    "random_mean": 5.471077251626841,
+    "real_minus_random_mean": 3.3411193584656758,
+    "across_seed_ci_low": 1.1234535556960235,
+    "across_seed_ci_high": 5.38869807344966,
+    "random_distribution_ci_low": 0.3012362420142088,
+    "random_distribution_ci_high": 12.66432049215009,
+    "random_distribution_min": 0.0,
+    "random_distribution_max": 13.913394935204977,
+    "n_random_match_or_beat_real": 2,
+    "p_raw": 0.0087890625,
+    "paired_test": "exact one-sided sign-flip over 12 independent random-network seeds",
+    "higher_is_better": true,
+    "real_outside_random_distribution": false,
+    "real_ci_low": 8.812196610092517,
+    "real_ci_high": 8.812196610092517,
+    "nonoverlap_bootstrap_ci": false,
+    "definition": "real-minus-random-network PCA participation ratio"
+  },
+  "exploratory_metrics": [
+    "motor_temporal_sd",
+    "pca_effective_rank",
+    "pca_participation_ratio",
+    "spectral_entropy",
+    "lag1_autocorrelation"
+  ],
+  "rows": [
+    {
+      "substrate": "real",
+      "kind": "real",
+      "seed": null,
+      "tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+      "motor_temporal_sd": 0.11248025232174941,
+      "pca_effective_rank": 20.118911224197365,
+      "pca_participation_ratio": 8.812196610092517,
+      "spectral_entropy": 0.4993830156908333,
+      "lag1_autocorrelation": 0.8508473482658377,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260830,
+      "tensor_sha256": "67360b7214bfa3aca223090db15d076da56c371740929262893f4c5b916b55c2",
+      "motor_temporal_sd": 0.0062568824537783275,
+      "pca_effective_rank": 3.1273452770022163,
+      "pca_participation_ratio": 2.4986553381092405,
+      "spectral_entropy": 0.13413641251575378,
+      "lag1_autocorrelation": 0.5991322156255048,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260830,
+      "tensor_sha256": "96dbbdf4bc869521d0889e2d0b9a0070966813ae705c9ac1449cf7eab3158ed3",
+      "motor_temporal_sd": 0.04071612690835478,
+      "pca_effective_rank": 23.26252630145303,
+      "pca_participation_ratio": 13.49068050694842,
+      "spectral_entropy": 0.3155753076302712,
+      "lag1_autocorrelation": 0.8781034276522696,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260831,
+      "tensor_sha256": "6e55a4eb8d3ed084a99d4c57f56b4b15d2e68f8d71c27ae72e70fee0cf7758b3",
+      "motor_temporal_sd": 0.042454570602173454,
+      "pca_effective_rank": 21.06256220465232,
+      "pca_participation_ratio": 13.913394935204977,
+      "spectral_entropy": 0.411559615709322,
+      "lag1_autocorrelation": 0.9157889002823738,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260831,
+      "tensor_sha256": "8f791a8fece4d47c8467cb3fec2ade60637c41696f38e0b034f74b1adc96f835",
+      "motor_temporal_sd": 0.015932896439947046,
+      "pca_effective_rank": 7.759519964503854,
+      "pca_participation_ratio": 4.751952777958802,
+      "spectral_entropy": 0.22144488692768352,
+      "lag1_autocorrelation": 0.8858654622386276,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260832,
+      "tensor_sha256": "b3518f4e84380f3ca042b843e083d9f9d8b30b08cf751eb7a574a7e3d1c48ae1",
+      "motor_temporal_sd": 0.02575521364008383,
+      "pca_effective_rank": 12.603702240669925,
+      "pca_participation_ratio": 7.684011511721976,
+      "spectral_entropy": 0.34462014480010034,
+      "lag1_autocorrelation": 0.9326889803215627,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260832,
+      "tensor_sha256": "2c091fc7e9f0333cc7343e42a4da0d5ea3127d525240307d1b4fe48babc6096e",
+      "motor_temporal_sd": 0.0,
+      "pca_effective_rank": 0.0,
+      "pca_participation_ratio": 0.0,
+      "spectral_entropy": 0.0,
+      "lag1_autocorrelation": 0.0,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260833,
+      "tensor_sha256": "443061a83e9d0d1ca81fb71ca4744a2850a322a2227e9a74c68b7107dd2963dc",
+      "motor_temporal_sd": 0.008240886520489935,
+      "pca_effective_rank": 2.1549991787009395,
+      "pca_participation_ratio": 1.577190054429519,
+      "spectral_entropy": 0.12989059129596817,
+      "lag1_autocorrelation": 0.8827472173614878,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260833,
+      "tensor_sha256": "e362d7c3771aa8e4c81e48eaf1bc8df4bd90d6985f2af67044e3a12406d2d857",
+      "motor_temporal_sd": 0.020195064808587987,
+      "pca_effective_rank": 11.278449621116973,
+      "pca_participation_ratio": 6.781278070975236,
+      "spectral_entropy": 0.28127626094102937,
+      "lag1_autocorrelation": 0.8901922941039212,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260834,
+      "tensor_sha256": "96d8244a7687a6fb01040f8e3f942efaabdd2ff06f1bd896579c3fc37e95c03b",
+      "motor_temporal_sd": 0.002336397270461978,
+      "pca_effective_rank": 1.2302502438764928,
+      "pca_participation_ratio": 1.0954045164153046,
+      "spectral_entropy": 0.06480945744347737,
+      "lag1_autocorrelation": 0.9402836293380799,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260834,
+      "tensor_sha256": "94d62dc50247f75c2e77cef3ecec5fa30d99c91c558cac5f85dd386a869aa722",
+      "motor_temporal_sd": 0.03673678829423898,
+      "pca_effective_rank": 18.562224187876254,
+      "pca_participation_ratio": 11.910776817952986,
+      "spectral_entropy": 0.28520037287717204,
+      "lag1_autocorrelation": 0.8857423937001218,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260835,
+      "tensor_sha256": "3659cd3039d505bfb41f4771a599e62d22d7d3bc750e75c0565d612f5d37f288",
+      "motor_temporal_sd": 0.0,
+      "pca_effective_rank": 0.0,
+      "pca_participation_ratio": 0.0,
+      "spectral_entropy": 0.0,
+      "lag1_autocorrelation": 0.0,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260835,
+      "tensor_sha256": "cb1fb962d497c85ab81e62991d4fdfebc3cda5a7138841f6e00ce72bee2ebb92",
+      "motor_temporal_sd": 0.025850982441116117,
+      "pca_effective_rank": 14.433001480806318,
+      "pca_participation_ratio": 9.248019867967392,
+      "spectral_entropy": 0.3168807121115853,
+      "lag1_autocorrelation": 0.8372112064161658,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260836,
+      "tensor_sha256": "467925203f400bbf51648c3da9ab885e9a60c025e314ff79bbe60e0a856bccf6",
+      "motor_temporal_sd": 0.030689805318567163,
+      "pca_effective_rank": 12.894483491514167,
+      "pca_participation_ratio": 7.653247911687213,
+      "spectral_entropy": 0.40415842261989754,
+      "lag1_autocorrelation": 0.8952504522151687,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260836,
+      "tensor_sha256": "d2e57272b7844a43326467f5686048d320a393c26ab1b1eb5ac85d8dcf4183d4",
+      "motor_temporal_sd": 0.02987003079910578,
+      "pca_effective_rank": 18.497206684960805,
+      "pca_participation_ratio": 12.274347269094097,
+      "spectral_entropy": 0.27985046313943435,
+      "lag1_autocorrelation": 0.8799608164008572,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260837,
+      "tensor_sha256": "fe82d6a15005893585032e3de8ae4f0152a1eee63dd7d78fb4dd7d58dc766889",
+      "motor_temporal_sd": 0.014345990670080223,
+      "pca_effective_rank": 9.586734355367016,
+      "pca_participation_ratio": 5.880575039980275,
+      "spectral_entropy": 0.3216855592825539,
+      "lag1_autocorrelation": 0.8795661911906575,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260837,
+      "tensor_sha256": "896935d082fa011080f2d79ab6ddc76274096f408e704a5808e46b7d53ac8405",
+      "motor_temporal_sd": 0.0027121048470852387,
+      "pca_effective_rank": 3.9040274551764544,
+      "pca_participation_ratio": 3.2648070487513787,
+      "spectral_entropy": 0.11014053765361334,
+      "lag1_autocorrelation": 0.8852266929033331,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260838,
+      "tensor_sha256": "508d9b8c00be6a2e6ee2bbb621022132d890adde93dc1fc500ecfa10ba968f38",
+      "motor_temporal_sd": 0.007456420639715616,
+      "pca_effective_rank": 7.12078753919618,
+      "pca_participation_ratio": 4.4208532967234975,
+      "spectral_entropy": 0.3444591904324173,
+      "lag1_autocorrelation": 0.9042699677190794,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260838,
+      "tensor_sha256": "2d72bae7d4154187ef0530cf4679f1b8423b03ebef5284d3e958c7fe91d981e6",
+      "motor_temporal_sd": 0.03484828678126831,
+      "pca_effective_rank": 18.631358068671535,
+      "pca_participation_ratio": 11.829347425132486,
+      "spectral_entropy": 0.31130753827615004,
+      "lag1_autocorrelation": 0.8920244668203062,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260839,
+      "tensor_sha256": "3bce21891dc3cafb0a3ade56a38e8735f9eeaf7b15da1d9a8d275969f027df86",
+      "motor_temporal_sd": 0.01749078829788126,
+      "pca_effective_rank": 9.27212645560209,
+      "pca_participation_ratio": 6.151315677436534,
+      "spectral_entropy": 0.3355352967399762,
+      "lag1_autocorrelation": 0.8583399607088691,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260839,
+      "tensor_sha256": "309a016cc574c682c70e19f146a31af5fe2d4fd2e1a451ce8752059af35b36e9",
+      "motor_temporal_sd": 0.028077386763248634,
+      "pca_effective_rank": 14.730566135504418,
+      "pca_participation_ratio": 9.423976579139573,
+      "spectral_entropy": 0.3219343611940771,
+      "lag1_autocorrelation": 0.8857669827553474,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260840,
+      "tensor_sha256": "95493f9e4cbd496e3e0d97f8979c0dea22d68298ff2db6c206143f81156f700e",
+      "motor_temporal_sd": 0.026917971689124565,
+      "pca_effective_rank": 14.792327155006433,
+      "pca_participation_ratio": 9.37130605136903,
+      "spectral_entropy": 0.4134094231050488,
+      "lag1_autocorrelation": 0.8819356081692904,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260840,
+      "tensor_sha256": "f1583b8d338aba027c5844ca02f56b7ade9f314ad181d5d77536c6173f404739",
+      "motor_temporal_sd": 0.028364860061866597,
+      "pca_effective_rank": 14.32088808789605,
+      "pca_participation_ratio": 8.330894448028149,
+      "spectral_entropy": 0.2900870948705935,
+      "lag1_autocorrelation": 0.8698962140292513,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260841,
+      "tensor_sha256": "18564b5726e05d56784e39bf6769d479b4c9dcd2f6a63470d0f97c2e564d9da2",
+      "motor_temporal_sd": 0.013038075768577366,
+      "pca_effective_rank": 8.58774013322844,
+      "pca_participation_ratio": 5.406972686444523,
+      "spectral_entropy": 0.32055703106535954,
+      "lag1_autocorrelation": 0.9142373701780432,
+      "burn_fraction": 0.5
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260841,
+      "tensor_sha256": "894e84c69953c9024e8b850db233a6e77fdc48cd7db00ef263518f0abf8edf22",
+      "motor_temporal_sd": 0.019675428189096816,
+      "pca_effective_rank": 8.964517522491777,
+      "pca_participation_ratio": 5.421634288363275,
+      "spectral_entropy": 0.23820730579289512,
+      "lag1_autocorrelation": 0.9065006348839502,
+      "burn_fraction": 0.5
+    }
+  ],
+  "zero_learning": true
+}
