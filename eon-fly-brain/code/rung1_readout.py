@@ -25,7 +25,6 @@ from analyze_control_study import (  # noqa: E402
 )
 from collect_reservoir_states import collect, make_stepper, population_rates  # noqa: E402
 from hexapod_gait import H_MIN, XML, HexapodGait, home_stance, pd_torque  # noqa: E402
-from mn_to_joint import translate  # noqa: E402
 from preflight import EXPECTED_SHA256, sha256  # noqa: E402
 from reservoir_3way import degree_preserving_rewire, randomize_weights, tensor_sha256  # noqa: E402
 from run_hexapod_chase import retina  # noqa: E402
