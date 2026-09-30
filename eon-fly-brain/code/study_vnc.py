@@ -119,7 +119,7 @@ def main() -> None:
     ap.add_argument("--timeout", type=float, default=120.0)
     ap.add_argument("--weights_name", default="all_legs_weight_csr.pkl")
     ap.add_argument("--index_name", default="all_legs_io_index.npz")
-    ap.add_argument("--out", type=Path, default=RESULTS / "vnc_control_study")
+    ap.add_argument("--out", type=Path, default=RESULTS / "bodyfix_vnc_control_study")
     a = ap.parse_args()
     if a.n < 20:
         raise ValueError("--n must be >=20 for the planned study")

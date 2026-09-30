@@ -1,0 +1,53 @@
+% Source-derived anatomy and native MuJoCo model render; no generated biology.
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usetikzlibrary{arrows.meta}
+\definecolor{ink}{HTML}{233747}
+\definecolor{blue}{HTML}{256B91}
+\definecolor{orange}{HTML}{B95020}
+\definecolor{purple}{HTML}{70518E}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm,
+ every node/.style={font=\sffamily\fontsize{8}{10}\selectfont,text=ink,align=center},
+ heading/.style={font=\sffamily\bfseries\fontsize{9}{11}\selectfont},
+ flow/.style={-{Stealth[length=4pt]},line width=1.1pt,draw=orange}]
+\path[use as bounding box] (0,0) rectangle (17.8,6.7);
+\node[heading,anchor=west,text=orange] at (0.1,6.45) {A\quad Completed transfer: fixed graph and fixed interface};
+\draw[blue!35,rounded corners=3pt] (0,2.45) rectangle (3.7,6.05);
+\draw[orange!45,fill=orange!3,rounded corners=3pt] (4.05,2.45) rectangle (7.75,6.05);
+\draw[orange!45,fill=orange!3,rounded corners=3pt] (8.1,2.45) rectangle (11.25,6.05);
+\draw[blue!35,rounded corners=3pt] (11.6,2.45) rectangle (17.8,6.05);
+\node[heading] at (1.85,5.8) {Fly brain + nerve cord};
+\node at (1.45,4.25) {\includegraphics[height=2.55cm,trim=120 470 100 640,clip]{fly_brain_vnc.png}};
+\node[anchor=west,font=\sffamily\fontsize{7}{8}\selectfont] at (2.5,4.8) {brain};
+\node[anchor=west,font=\sffamily\fontsize{7}{8}\selectfont] at (2.5,3.55) {VNC};
+\node[font=\sffamily\fontsize{7}{8}\selectfont] at (1.85,2.76) {MaleCNS anatomy reference};
+\node[heading] at (5.9,5.8) {Frozen VNC rate core};
+\node at (5.9,5.15) {11,000 model nodes\\485,074 signed edges};
+\node at (5.9,4.23) {\includegraphics[width=3.1cm,height=1.12cm,keepaspectratio]{manc_connectome_context.png}};
+\node[font=\sffamily\fontsize{7}{9}\selectfont] at (5.9,3.24) {Measured connectivity excerpt\\212 cells; 260 outputs};
+\node[font=\sffamily\bfseries\fontsize{7}{9}\selectfont,text=orange] at (5.9,2.72) {No learned core weights};
+\node[heading] at (9.675,5.8) {Fixed motor map};
+\node at (9.675,5.02) {260 motor-output\\channels};
+\draw[flow] (9.675,4.62) -- (9.675,4.25);
+\node at (9.675,3.96) {Antagonist-style\\mapping};
+\draw[flow] (9.675,3.56) -- (9.675,3.22);
+\node at (9.675,2.93) {18 joint targets};
+\node[heading] at (14.7,5.8) {Non-fly hexapod model};
+\node at (14.7,4.17) {\includegraphics[width=5.7cm,height=2.9cm,trim=200 60 200 200,clip,keepaspectratio]{hexapod_model.png}};
+\node[font=\sffamily\fontsize{7}{9}\selectfont] at (14.7,2.73) {MuJoCo\enspace |\enspace 6 legs\enspace |\enspace 18 joints\enspace |\enspace home pose};
+\draw[flow] (3.72,4.2) -- (4.03,4.2);
+\draw[flow] (7.77,4.2) -- (8.08,4.2);
+\draw[flow] (11.27,4.2) -- (11.58,4.2);
+\node[fill=blue!6,rounded corners=2pt,minimum width=17.8cm,minimum height=.67cm] at (8.9,1.94) {};
+\node[anchor=west,font=\sffamily\bfseries\fontsize{8}{10}\selectfont] at (.18,1.94) {Measured outcomes};
+\node at (6,1.94) {Forward contrast: $+0.236$ m};
+\node at (10.55,1.94) {Odd-yaw contrast: $+6.92^{\circ}$};
+\node[text=orange] at (15.15,1.94) {Coxa-phase gate: not met};
+\node[anchor=west,font=\sffamily\fontsize{7}{9}\selectfont] at (.1,1.38) {Contrasts vs 12 SD-matched weight-permuted nulls; same body and fixed motor map.};
+\draw[purple,dashed,rounded corners=3pt,fill=purple!4] (0,.05) rectangle (17.8,1.05);
+\node[anchor=west,text=purple,font=\sffamily\bfseries\fontsize{8}{10}\selectfont] at (.18,.77) {B\quad Planned translation layer (not evaluated)};
+\node[anchor=west,text=purple] at (.18,.36) {66-D observations $\rightarrow$ encoder $\rightarrow$ 4-D commands $\rightarrow$ fixed descending map + frozen core $\rightarrow$ decoder $\rightarrow$ 18 joints};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,21 @@
+[03:27:15] STEP prepare
+Traceback (most recent call last):
+  File "/root/eon-fly-brain/code/audit_embody_3way.py", line 26, in <module>
+    import specificity_campaign as SC  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/specificity_campaign.py", line 30, in <module>
+    from preflight import EXPECTED_SHA256, sha256  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/preflight.py", line 19, in <module>
+    from run_stepwalk import run_clean_engine  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/run_stepwalk.py", line 17, in <module>
+    from probe_vnc_phase import phase_metrics  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/probe_vnc_phase.py", line 14, in <module>
+    from audit_vnc_legs import leg_scores  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/audit_vnc_legs.py", line 12, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+[03:27:16] PREPARE FAILED

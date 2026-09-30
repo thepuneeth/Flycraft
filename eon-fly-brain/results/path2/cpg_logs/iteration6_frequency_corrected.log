@@ -1,0 +1,32 @@
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+{"arm": "full", "forward_m": -0.03395463956841391, "frequency_hz": 0.6}
+{"arm": "constant_connectome", "forward_m": -0.03307923866981685, "frequency_hz": 0.6}
+{"arm": "time_shuffled_connectome", "forward_m": -0.032754131382180834, "frequency_hz": 0.6}
+{"arm": "cpg_only", "forward_m": 0.2833044013899267, "frequency_hz": 0.6}
+{"arm": "full", "forward_m": 0.028846094923545774, "frequency_hz": 0.8}
+{"arm": "constant_connectome", "forward_m": 0.02751937964737694, "frequency_hz": 0.8}
+{"arm": "time_shuffled_connectome", "forward_m": 0.027196888833439892, "frequency_hz": 0.8}
+{"arm": "cpg_only", "forward_m": 0.5928953103442687, "frequency_hz": 0.8}
+{"arm": "full", "forward_m": -0.0012371587102926384, "frequency_hz": 1.0}
+{"arm": "constant_connectome", "forward_m": -0.00044625234925381983, "frequency_hz": 1.0}
+{"arm": "time_shuffled_connectome", "forward_m": -0.0005054724192310572, "frequency_hz": 1.0}
+{"arm": "cpg_only", "forward_m": 0.4896378047754824, "frequency_hz": 1.0}
+{"arm": "full", "forward_m": 0.0585472504113515, "frequency_hz": 1.2}
+{"arm": "constant_connectome", "forward_m": 0.05911965490498559, "frequency_hz": 1.2}
+{"arm": "time_shuffled_connectome", "forward_m": 0.06126057709071232, "frequency_hz": 1.2}
+{"arm": "cpg_only", "forward_m": 0.7714764436280186, "frequency_hz": 1.2}
+{"arm": "full", "forward_m": 0.31379951457788513, "frequency_hz": 1.5}
+{"arm": "constant_connectome", "forward_m": 0.3141764280487349, "frequency_hz": 1.5}
+{"arm": "time_shuffled_connectome", "forward_m": 0.314731506272755, "frequency_hz": 1.5}
+{"arm": "cpg_only", "forward_m": 0.42806983756496425, "frequency_hz": 1.5}
+{"arm": "full", "forward_m": 0.09052084538782024, "frequency_hz": 2.0}
+{"arm": "constant_connectome", "forward_m": 0.08960517589652418, "frequency_hz": 2.0}
+{"arm": "time_shuffled_connectome", "forward_m": 0.0913231194936461, "frequency_hz": 2.0}
+{"arm": "cpg_only", "forward_m": 0.2884836062050928, "frequency_hz": 2.0}
+{"arm": "full", "forward_m": -0.005962346385953499, "frequency_hz": 3.0}
+{"arm": "constant_connectome", "forward_m": -0.0057205925546621565, "frequency_hz": 3.0}
+{"arm": "time_shuffled_connectome", "forward_m": -0.00586688545566012, "frequency_hz": 3.0}
+{"arm": "cpg_only", "forward_m": 0.03588420688678079, "frequency_hz": 3.0}
+{"best_forward_m": 0.7714764436280186, "best_frequency_hz": 1.2, "best_path_m": 1.9189037310274508, "decision": "CONTINUE_TO_ALL_THREE_VARIANTS", "knife_edge": false, "neighbour_forward_m": [0.4896378047754824, 0.42806983756496425], "neighbour_frequencies_hz": [1.0, 1.5], "success_gate_complete": false, "winner_arm": "cpg_only"}
+-> /root/eon-fly-brain/results/path2/cpg_frequency_sweep_corrected.json

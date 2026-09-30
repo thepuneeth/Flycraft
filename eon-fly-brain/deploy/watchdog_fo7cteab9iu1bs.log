@@ -1,0 +1,15 @@
+[watchdog 20:35:50] 0m | pull ok | beat=2026-09-03T20:35:28Z |   result = torch.sparse_compressed_tensor(
+[watchdog 20:37:53] 2m | pull ok | beat=2026-09-03T20:37:28Z | {"epoch": 125, "heldout_loss": 0.029232406988739967, "stage1": "connectome", "train_loss": 0.08237003535032272}
+[watchdog 20:39:56] 4m | pull ok | beat=2026-09-03T20:39:28Z | {"epoch": 275, "heldout_loss": 0.043961286544799805, "stage1": "connectome", "train_loss": 0.04199030622839928}
+[watchdog 20:41:59] 6m | pull ok | beat=2026-09-03T20:41:58Z | {"epoch": 150, "heldout_loss": 0.008030315861105919, "stage1": "random", "train_loss": 0.010273379273712635}
+[watchdog 20:44:02] 8m | pull ok | beat=2026-09-03T20:43:58Z | {"epoch": 50, "heldout_loss": 0.0167548768222332, "stage1": "rewired", "train_loss": 0.023772699758410454}
+[watchdog 20:46:05] 10m | pull ok | beat=2026-09-03T20:45:58Z | {"epoch": 225, "heldout_loss": 0.010126926004886627, "stage1": "rewired", "train_loss": 0.009218170307576656}
+[watchdog 20:48:09] 12m | pull ok | beat=2026-09-03T20:47:58Z |   result = torch.sparse_compressed_tensor(
+[watchdog 20:50:12] 14m | pull ok | beat=2026-09-03T20:49:58Z |   result = torch.sparse_compressed_tensor(
+[watchdog 20:52:14] run finished with status: FAIL_STAGE2 (after 16m)
+[watchdog 20:52:15] final pull ok
+[watchdog 20:52:15] terminating pod fo7cteab9iu1bs
+[remove] warning: 'runpodctl remove pod' is deprecated, use 'runpodctl pod delete <id>' instead
+[remove] pod "fo7cteab9iu1bs" removed
+[watchdog 20:52:24] pod fo7cteab9iu1bs confirmed gone from pod list
+[watchdog 20:52:24] watchdog done

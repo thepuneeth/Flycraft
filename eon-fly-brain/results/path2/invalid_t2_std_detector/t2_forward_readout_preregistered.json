@@ -1,0 +1,23 @@
+{
+  "experiment": "T2",
+  "target": "fixed forward-progress joint target: HexapodGait forward=0.8, turn=0 at 50 Hz",
+  "conditions": [
+    "connectome",
+    "random",
+    "rewired",
+    "static-input"
+  ],
+  "architecture": {
+    "class": "Linear-Tanh-Linear",
+    "hidden_units": 64,
+    "memoryless": true,
+    "input": "current standardized VNC population state only",
+    "output_dim": 18
+  },
+  "loss": "mean squared error on held-out forward-progress joint-target signal only",
+  "selection": "lowest validation target MSE only",
+  "body_outcome_used_for_training_or_selection": false,
+  "evaluation": "open-loop body forward distance on held-out VNC state segment",
+  "static_input_leak_detector": true,
+  "learning_scope": "readout only; VNC weights frozen"
+}

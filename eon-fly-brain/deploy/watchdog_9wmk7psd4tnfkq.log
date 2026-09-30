@@ -1,0 +1,85 @@
+[watchdog 04:52:03] 0m elapsed |   result = torch.sparse_compressed_tensor(
+[watchdog 04:55:04] 3m elapsed | 
+[watchdog 04:58:04] 6m elapsed | 
+[watchdog 05:01:04] 9m elapsed | 
+[watchdog 05:04:05] 12m elapsed | 
+[watchdog 05:07:05] 15m elapsed | 
+[watchdog 05:10:05] 18m elapsed | 
+[watchdog 05:13:06] 21m elapsed | 
+[watchdog 05:16:06] 24m elapsed | 
+[watchdog 05:19:06] 27m elapsed | 
+[watchdog 05:22:07] 30m elapsed | 
+[watchdog 05:25:07] 33m elapsed | 
+[watchdog 05:28:07] 36m elapsed | 
+[watchdog 05:31:08] 39m elapsed | 
+[watchdog 05:34:09] 42m elapsed | 
+[watchdog 05:37:09] 45m elapsed | 
+[watchdog 05:40:10] 48m elapsed | 
+[watchdog 05:43:10] 51m elapsed | 
+[watchdog 05:46:10] 54m elapsed | 
+[watchdog 05:49:11] 57m elapsed | 
+[watchdog 05:52:11] 60m elapsed | 
+[watchdog 05:55:11] 63m elapsed | 
+[watchdog 05:58:11] 66m elapsed | 
+[watchdog 06:01:12] 69m elapsed | 
+[watchdog 06:04:12] 72m elapsed | 
+[watchdog 06:07:12] 75m elapsed | 
+[watchdog 06:10:13] 78m elapsed | 
+[watchdog 06:13:13] 81m elapsed | 
+[watchdog 06:16:13] 84m elapsed | 
+[watchdog 06:19:14] 87m elapsed | 
+[watchdog 06:22:14] 90m elapsed | 
+[watchdog 06:25:14] 93m elapsed | 
+[watchdog 06:28:15] 96m elapsed | 
+[watchdog 06:31:15] 99m elapsed | 
+[watchdog 06:34:15] 102m elapsed | 
+[watchdog 06:37:16] 105m elapsed | 
+[watchdog 06:40:16] 108m elapsed | 
+[watchdog 06:43:16] 111m elapsed | 
+[watchdog 06:46:17] 114m elapsed | 
+[watchdog 06:49:17] 117m elapsed | 
+[watchdog 06:52:17] 120m elapsed | 
+[watchdog 06:55:18] 123m elapsed | 
+[watchdog 06:58:18] 126m elapsed | 
+[watchdog 07:01:18] 129m elapsed | 
+[watchdog 07:04:19] 132m elapsed | 
+[watchdog 07:07:19] 135m elapsed | 
+[watchdog 07:10:19] 138m elapsed | 
+[watchdog 07:13:20] 141m elapsed | 
+[watchdog 07:16:20] 144m elapsed | 
+[watchdog 07:19:20] 147m elapsed | 
+[watchdog 07:22:20] deadline 150m reached; pulling what exists and terminating
+[watchdog 07:22:20] pulling artifacts
+ssh: connect to host 194.26.196.165 port 41122: Connection refused
+rsync(25120): error: unexpected end of file
+[watchdog 07:22:20] pull FAILED
+[watchdog 07:22:20] terminating pod 9wmk7psd4tnfkq
+[remove] warning: 'runpodctl remove pod' is deprecated, use 'runpodctl pod delete <id>' instead
+[remove] Error: pod not found to terminate
+[watchdog 07:22:29] pod 9wmk7psd4tnfkq confirmed gone from pod list
+[watchdog 07:22:29] done
+] 103m elapsed | 
+[watchdog 06:36:47] 106m elapsed | 
+[watchdog 06:39:47] 109m elapsed | 
+[watchdog 06:42:48] 112m elapsed | 
+[watchdog 06:45:48] 115m elapsed | 
+[watchdog 06:48:48] 118m elapsed | 
+[watchdog 06:51:49] 121m elapsed | 
+[watchdog 06:54:49] 124m elapsed | 
+[watchdog 06:57:49] 127m elapsed | 
+[watchdog 07:00:50] 130m elapsed | 
+[watchdog 07:03:50] 133m elapsed | 
+[watchdog 07:06:50] 136m elapsed | 
+[watchdog 07:09:51] 139m elapsed | 
+[watchdog 07:12:51] 142m elapsed | 
+[watchdog 07:15:51] 145m elapsed | 
+[watchdog 07:18:52] 148m elapsed | 
+[watchdog 07:21:52] deadline 150m reached; pulling what exists and terminating
+[watchdog 07:21:52] pulling artifacts
+ssh: connect to host 194.26.196.165 port 41122: Connection refused
+rsync(25094): error: unexpected end of file
+[watchdog 07:21:52] pull FAILED
+./watchdog_v3.sh: line 70: =: command not found
+[watchdog 07:21:52] 151m elapsed | 
+./watchdog_v3.sh: line 73: syntax error near unexpected token `done'
+./watchdog_v3.sh: line 73: `done'

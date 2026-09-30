@@ -475,7 +475,7 @@
     "ci": "95% percentile bootstrap"
   },
   "paired_test": {
-    "method": "exact two-sided sign-flip randomization",
+    "method": "exact two-sided paired sign-flip under conditional independent, uniform sign-symmetry assumption",
     "pairing": "same episode starts across conditions",
     "primary_endpoint": "path_m",
     "multiplicity": "Holm adjustment across three predeclared path comparisons"

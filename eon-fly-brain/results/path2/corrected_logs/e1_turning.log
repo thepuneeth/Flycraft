@@ -1,0 +1,9 @@
+=== e1_turning start 2026-09-07T01:24:15Z ===
+Traceback (most recent call last):
+  File "/root/eon-fly-brain/code/audit_e1_turning.py", line 329, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/eon-fly-brain/code/audit_e1_turning.py", line 189, in main
+    raise FileExistsError(f"{PREFIX.with_suffix('.json')} exists")
+FileExistsError: /root/eon-fly-brain/results/path2/e1_turning.json exists
+=== e1_turning rc=1 end 2026-09-07T01:24:17Z ===

@@ -1,0 +1,60 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,cite}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\title{Flycraft: Technical Details for the Fixed-Interface Experiments}
+\author{Puneeth Pradeep}
+\date{September 5, 2026}
+\begin{document}
+\maketitle
+These notes preserve the full numerical model and evaluation protocol from the preceding draft. They accompany the shorter student-paper revision and concern only the completed fixed-interface experiments.
+\section{Methods}
+\label{sec:methods}
+\subsection{MaleCNS-v1.0-Derived VNC Graph Construction}
+We used the official MaleCNS v1.0 full-CNS annotation and connectivity files to build an all-leg, VNC-centered closure with all premotor candidates in scope; DNg100/DNb08 input nodes received fixed descending-neuron drive~\cite{malecns,takemura2024manc}. The closure contains 11,000 model nodes (1,325 descending inputs; six DNg100/DNb08 input nodes) and retains traced motor, premotor/descending predecessor, rhythm-core, and upstream cells. The fixed candidate rule required a trace, VNC-intrinsic annotation, one of 66 published coordination labels, and neuromere T1, T2, or T3~\cite{cheong2026premotor}. It yielded 212 selected cells and 62 of 66 labels; four labels were absent or outside scope. The 212 cells are candidates within the 11,000-node closure; the fixed map later sends 260 motor outputs to 18 joints. After an absolute synapse floor of five, the graph contains 485,074 signed nonzero edges.
+
+Each retained edge carries a connectome-derived signed weight. Raw edge magnitude is the integer synapse count from the release; we apply only the neurotransmitter sign and the floor of five, with no additional weight normalization. Acetylcholine edges were positive; gamma-aminobutyric acid (GABA) and glutamate edges were negative; we omitted unclassified or modulatory signs. This sign is a model convention; it has no validated physiological synaptic-efficacy interpretation. The graph stores postsynaptic rows and presynaptic columns. We also retained a T1-only graph with 4,418 nodes and 144,214 signed edges for rhythm characterization.
+
+\subsection{Frozen Rate Model}
+The selected VNC state $v$ follows a bounded recurrent rate model. At each substep, the network computes
+\begin{equation}
+  \begin{aligned}
+  v_{t+1}&=(1-\Delta t/\tau)v_t\\
+  &\quad+\frac{\Delta t}{\tau}\max\left(0,c\tanh\left[
+  \frac{a}{c}(g_W Wv_t+I-\theta)\right]\right),
+  \end{aligned}
+\label{eq:vnc}
+\end{equation}
+where $W$ is the frozen signed graph, $I$ is the fixed descending current, $c$ is the firing-rate cap, $a$ is activation gain, and $\theta$ is threshold. We used $\tau=0.02$ s, $\Delta t=0.005$ s, four substeps per control sample, $g_W=0.03$, and bilateral drive of 100 into the six DNg100/DNb08 inputs. We used $\theta=7.5$, $a=1$, and $c=200$. One heterogeneity draw used NumPy seed 1 and independent normal draws with standard deviations $(0.002,0.1,0.6,10)$ for $(\tau,a,\theta,c)$; values were lower-clipped at $(\Delta t,10^{-3},0,1)$ and remained unchanged across conditions.
+
+\subsection{Motor Map and Hexapod Body}
+The output vector contains signed motor-pool activity for six legs and five fly joint groups. A fixed label rule assigns flexor/extensor-style motor-pool polarity, and the map computes flexor-minus-extensor activity for each pool. It maps fly coxa to hexapod coxa, averages trochanter/femur activity for hexapod femur, and averages available tibia/tarsus activity for hexapod tibia; missing pools stay at home stance. The three map gains are $(-0.55,0.65,0.65)$.
+
+The target angles drive an 18-joint PhantomX-style hexapod in MuJoCo, a physics simulator~\cite{todorov2012mujoco}. We use the project hexapod XML asset with MuJoCo 3.12.0 and its 0.002 s simulation step; each 50 Hz control sample advances 10 physics steps. Each state sets body height to 0.15 m and the prescribed yaw, then settles joints for 0.7 s toward the MJCF home stance under 50 Hz proportional-derivative (PD) torque ($k_p=3.0$, $k_d=0.05$). The simulation passes targets directly in MuJoCo joint order and applies no post-map side/world sign transform. The same map and body serve the measured graph and every control graph. The map is a fixed engineering rule, not a fitted physiological readout. We included a hand-written tripod clock as a temporal-order control.
+
+\subsection{Controls and Endpoints}
+The primary control family uses 12 weight-permuted null seeds. Each null keeps the directed topology and permutes its signed weight multiset. The rewired null changes topology through directed edge swaps while preserving row degree, column degree, and the same signed weight multiset. For amplitude matching, we center each control history on its own channel mean and rescale it so all 18 joint-target channels match the measured graph's temporal standard deviation; temporal means and ordering remain control-specific. This matches only marginal channel scale, not cross-channel covariance, phase, target bounds, or delivered torque. The maximum standard-deviation error across channels is $3.61\times10^{-6}$ rad.
+
+The primary graph-null endpoint was amplitude-matched forward displacement; the coxa-phase proxy was a prespecified neural diagnostic before the fixed motor map, without body-level footfall scoring. Odd yaw, body sensitivity, the 3 s study, and rewiring dose were secondary or diagnostic.
+
+Rhythm used that heterogeneity draw, 1,500 samples at 0.02 s (30 s; first 15 s discarded), without smoothing. Tripod phase used coxa traces for A $=\{\mathrm{T1L,T2R,T3L}\}$ and B $=\{\mathrm{T1R,T2L,T3R}\}$. The 1.5--4 Hz analytic-signal test passed only when all six within-tripod pairs were within 0.15 cycles of zero and all nine cross-tripod pairs were within 0.15 cycles of half a cycle; we used no minimum phase-concentration criterion.
+
+Forward and odd-yaw endpoints used 8 s rollouts. Body sensitivity used nine labeled runs from seven unique settings (six perturbations, one nominal run, and two nominal technical repeats); the equal-weight mean includes all nine labels, not nine independent settings. The 3 s study compared open-loop real VNC, brain-coupled VNC, column-permuted VNC, random descending drive, and a hand-written tripod clock. Null seeds ranged from 20260830 to 20260841; shared episode starts used seeds 20260829 to 20260848.
+
+Graph-null contrasts used one measured graph, 20 shared starts, and 12 null seeds; odd yaw used 20 starts per direction. Graph, heterogeneity draw, body, map, and starts stayed fixed. Null seeds were independent only conditional on these components. Intervals and p-values describe sampled null-network variability, not uncertainty over graph construction, body, map, or starts.
+
+We held the measured mean fixed and resampled null-seed means for conditional 95\% percentile-bootstrap intervals. The seed-level benchmark enumerates flips of 12 null differences under conditional independence and uniform sign symmetry; it is a sign-flip p-value, not a randomization test. Five-condition paired tests used exact two-sided sign flips under the same assumptions and are conditional diagnostics, not randomization tests. Ranges are 95\% percentile-bootstrap CIs with paired resampling. For provenance, 240 outcomes formed 12 seed summaries, so the primary contrast used seed-level summaries. Holm adjustment covered three predeclared 3 s path comparisons; no global adjustment spans endpoint families. Pearson coxa correlations and analytic gate counts came from separate analyses (all\_legs\_coordination.json and bodyfix\_vnc\_phase\_probe\_e0.json); phase results are pair counts from one fixed trace.
+
+Path is cumulative planar step distance; forward displacement is final planar displacement projected onto post-settle yaw, and planar displacement is Euclidean endpoint distance. In the 3 s study, catch means prey distance $<0.25$ m and fall means minimum body height $<0.08$ m. Yaw uses wrapped angular differences; odd yaw is half the positive-minus-negative response.
+
+We fixed graph and motor-map choices before evaluation. No result uses a learned VNC weight, learned motor-map parameter, reward term, or target trajectory to select the graph or motor map. The fixed body controller tracks predetermined joint targets during simulation, and performance never selects the graph.
+
+The project files contain the analysis scripts and canonical JSON/CSV records named in this paper. These records retain graph hashes, run seeds, and bootstrap settings; the project README lists commands for rebuilding the graph and study summaries.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{flycraft_bibm_draft}
+\end{document}

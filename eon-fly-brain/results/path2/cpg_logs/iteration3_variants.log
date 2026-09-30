@@ -1,0 +1,40 @@
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+{"arm": "full", "forward_m": 0.185736918128921, "scale": 0.25, "variant": "v1_amplitude"}
+{"arm": "constant_connectome", "forward_m": 0.34566251134589926, "scale": 0.25, "variant": "v1_amplitude"}
+{"arm": "time_shuffled_connectome", "forward_m": 0.20858107164307876, "scale": 0.25, "variant": "v1_amplitude"}
+{"arm": "cpg_only", "forward_m": 0.14112776974478686, "scale": 0.25, "variant": "v1_amplitude"}
+{"arm": "full", "forward_m": 0.14840586413095555, "scale": 0.5, "variant": "v1_amplitude"}
+{"arm": "constant_connectome", "forward_m": 0.07834475979244139, "scale": 0.5, "variant": "v1_amplitude"}
+{"arm": "time_shuffled_connectome", "forward_m": 0.13465713975959454, "scale": 0.5, "variant": "v1_amplitude"}
+{"arm": "cpg_only", "forward_m": 0.14112776974478686, "scale": 0.5, "variant": "v1_amplitude"}
+{"arm": "full", "forward_m": 0.29080481290268273, "scale": 1.0, "variant": "v1_amplitude"}
+{"arm": "constant_connectome", "forward_m": -0.025276751596673863, "scale": 1.0, "variant": "v1_amplitude"}
+{"arm": "time_shuffled_connectome", "forward_m": -0.057489864700937233, "scale": 1.0, "variant": "v1_amplitude"}
+{"arm": "cpg_only", "forward_m": 0.14112776974478686, "scale": 1.0, "variant": "v1_amplitude"}
+{"arm": "full", "forward_m": 0.4029039787076073, "scale": 0.25, "variant": "v2_frequency"}
+{"arm": "constant_connectome", "forward_m": -0.06282125876574575, "scale": 0.25, "variant": "v2_frequency"}
+{"arm": "time_shuffled_connectome", "forward_m": -0.23230304899241172, "scale": 0.25, "variant": "v2_frequency"}
+{"arm": "cpg_only", "forward_m": 0.14112776974478686, "scale": 0.25, "variant": "v2_frequency"}
+{"arm": "full", "forward_m": -0.04579124983799665, "scale": 0.5, "variant": "v2_frequency"}
+{"arm": "constant_connectome", "forward_m": 0.20286840033048484, "scale": 0.5, "variant": "v2_frequency"}
+{"arm": "time_shuffled_connectome", "forward_m": 0.07725760788567455, "scale": 0.5, "variant": "v2_frequency"}
+{"arm": "cpg_only", "forward_m": 0.14112776974478686, "scale": 0.5, "variant": "v2_frequency"}
+{"arm": "full", "forward_m": -0.38553730599910585, "scale": 1.0, "variant": "v2_frequency"}
+{"arm": "constant_connectome", "forward_m": 0.03303153816263224, "scale": 1.0, "variant": "v2_frequency"}
+{"arm": "time_shuffled_connectome", "forward_m": -0.23103168424565487, "scale": 1.0, "variant": "v2_frequency"}
+{"arm": "cpg_only", "forward_m": 0.14112776974478686, "scale": 1.0, "variant": "v2_frequency"}
+{"arm": "full", "forward_m": -0.05002869171287413, "scale": 0.25, "variant": "v3_phase"}
+{"arm": "constant_connectome", "forward_m": -0.46790802428550854, "scale": 0.25, "variant": "v3_phase"}
+{"arm": "time_shuffled_connectome", "forward_m": -0.09826758180015721, "scale": 0.25, "variant": "v3_phase"}
+{"arm": "cpg_only", "forward_m": -0.25172439177148437, "scale": 0.25, "variant": "v3_phase"}
+{"arm": "full", "forward_m": 0.1710978230942199, "scale": 0.5, "variant": "v3_phase"}
+{"arm": "constant_connectome", "forward_m": -0.36300224059744324, "scale": 0.5, "variant": "v3_phase"}
+{"arm": "time_shuffled_connectome", "forward_m": -0.15354522897591366, "scale": 0.5, "variant": "v3_phase"}
+{"arm": "cpg_only", "forward_m": -0.25172439177148437, "scale": 0.5, "variant": "v3_phase"}
+{"arm": "full", "forward_m": 0.07813375899091926, "scale": 1.0, "variant": "v3_phase"}
+{"arm": "constant_connectome", "forward_m": 0.3162374160899336, "scale": 1.0, "variant": "v3_phase"}
+{"arm": "time_shuffled_connectome", "forward_m": 0.1245091663627177, "scale": 1.0, "variant": "v3_phase"}
+{"arm": "cpg_only", "forward_m": -0.25172439177148437, "scale": 1.0, "variant": "v3_phase"}
+{"best_by_full_forward": {"forward_m": 0.4029039787076073, "scale": 0.25, "variant": "v2_frequency"}, "decision": "CONTINUE_BUG_LOOP_BEFORE_SPECIFICITY", "success_gate_complete": false}
+-> /root/eon-fly-brain/results/path2/cpg_variants_iteration3.json

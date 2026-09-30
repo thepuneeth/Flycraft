@@ -1,0 +1,69 @@
+=== corrected campaign 2026-09-07T01:02:17Z cores=23 threads=2 ===
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+=== preflight: core self-check ===
+launched e0_lif pid=52196
+launched e0_rate pid=52200
+launched e0_controls pid=52206
+launched walk_envelope pid=52213
+launched h1_amplitude pid=52219
+launched e1_turning pid=52224
+launched e3_body pid=52230
+launched h4_dose pid=52237
+launched h5_lesion pid=52242
+OK   h5_lesion
+OK   e0_rate
+OK   e3_body
+OK   e1_turning
+OK   e0_lif
+OK   h1_amplitude
+=== corrected campaign 2026-09-07T01:06:24Z cores=23 threads=2 ===
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+=== preflight: core self-check ===
+skip e0_lif
+skip e0_rate
+skip e0_controls
+skip walk_envelope
+launched h1_amplitude pid=61982
+launched e1_turning pid=61986
+launched e3_body pid=61992
+launched h4_dose pid=61999
+launched h5_lesion pid=62004
+FAIL h5_lesion (see /root/eon-fly-brain/results/path2/corrected_logs/h5_lesion.log)
+=== corrected campaign 2026-09-07T01:09:29Z cores=23 threads=2 ===
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+=== preflight: core self-check ===
+skip e0_lif
+skip e0_rate
+skip e0_controls
+skip walk_envelope
+skip h1_amplitude
+skip e1_turning
+skip e3_body
+launched h4_dose pid=301304
+launched h5_lesion pid=301308
+OK   h5_lesion
+OK   e3_body
+OK   e1_turning
+OK   h1_amplitude
+FAIL h4_dose (see /root/eon-fly-brain/results/path2/corrected_logs/h4_dose.log)
+=== FINISHED: PARTIAL 2026-09-07T01:19:34Z ===
+OK   h4_dose
+=== FINISHED: OK 2026-09-07T01:21:21Z ===
+OK   e0_controls
+OK   h4_dose
+OK   walk_envelope
+launched h1_amplitude pid=999328
+launched e1_turning pid=999334
+launched e3_body pid=999340
+launched h4_dose pid=999347
+launched h5_lesion pid=999353
+OK   h5_lesion
+OK   e0_rate
+OK   e3_body
+OK   e1_turning
+OK   e0_lif
+OK   h1_amplitude
+OK   e0_controls
+OK   h4_dose
+OK   walk_envelope
+=== FINISHED: OK 2026-09-07T01:24:17Z ===

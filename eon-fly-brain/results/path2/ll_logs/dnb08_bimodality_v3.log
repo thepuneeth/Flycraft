@@ -1,0 +1,3 @@
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+{"bimodality": "/root/eon-fly-brain/results/path2/ll_logs/dnb08_bimodality_v3.json", "plot": "/root/eon-fly-brain/results/path2/ll_logs/dnb08_bimodality_v3.png"}

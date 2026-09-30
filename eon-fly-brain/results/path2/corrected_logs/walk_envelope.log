@@ -1,0 +1,23 @@
+=== walk_envelope start 2026-09-07T01:02:24Z ===
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+{"core": "rate", "episodes": 8, "forward_m": 0.0199, "forward_sd": 0.0032, "gain": 0.5, "path_m": 0.3747, "target_sd": 0.06129}
+{"core": "rate", "episodes": 8, "forward_m": 0.124, "forward_sd": 0.0204, "gain": 1.0, "path_m": 1.0048, "target_sd": 0.12258}
+{"core": "rate", "episodes": 8, "forward_m": -0.072, "forward_sd": 0.0976, "gain": 2.0, "path_m": 1.1797, "target_sd": 0.24516}
+{"core": "rate", "episodes": 8, "forward_m": -0.2532, "forward_sd": 0.0889, "gain": 3.5, "path_m": 1.6401, "target_sd": 0.42903}
+{"core": "rate", "episodes": 8, "forward_m": -0.2932, "forward_sd": 0.1277, "gain": 5.0, "path_m": 1.8752, "target_sd": 0.6129}
+{"core": "rate", "episodes": 8, "forward_m": -0.4702, "forward_sd": 0.0711, "gain": 7.5, "path_m": 2.0937, "target_sd": 0.91936}
+{"core": "rate", "episodes": 8, "forward_m": 0.096, "forward_sd": 0.2719, "gain": 10.0, "path_m": 1.6639, "target_sd": 1.22581}
+{"core": "rate", "episodes": 8, "forward_m": 0.2629, "forward_sd": 0.3135, "gain": 15.0, "path_m": 1.9089, "target_sd": 1.83871}
+{"BEST": {"core": "rate", "episodes": 20, "forward_m": 0.3504, "forward_sd": 0.29, "gain": 15.0, "neighbour_forward_m": [0.096], "neighbour_ratio": 0.274, "path_m": 1.8658}}
+{"core": "lif", "episodes": 8, "forward_m": -0.0019, "forward_sd": 0.0003, "gain": 0.5, "path_m": 0.028, "target_sd": 0.01914}
+{"core": "lif", "episodes": 8, "forward_m": 0.0004, "forward_sd": 0.0012, "gain": 1.0, "path_m": 0.0992, "target_sd": 0.03828}
+{"core": "lif", "episodes": 8, "forward_m": 0.0242, "forward_sd": 0.0014, "gain": 2.0, "path_m": 0.2512, "target_sd": 0.07656}
+{"core": "lif", "episodes": 8, "forward_m": 0.072, "forward_sd": 0.0056, "gain": 3.5, "path_m": 0.5306, "target_sd": 0.13398}
+{"core": "lif", "episodes": 8, "forward_m": 0.0759, "forward_sd": 0.0065, "gain": 5.0, "path_m": 0.7729, "target_sd": 0.1914}
+{"core": "lif", "episodes": 8, "forward_m": 0.0338, "forward_sd": 0.0029, "gain": 7.5, "path_m": 1.0107, "target_sd": 0.28711}
+{"core": "lif", "episodes": 8, "forward_m": 0.0167, "forward_sd": 0.0116, "gain": 10.0, "path_m": 0.9916, "target_sd": 0.38281}
+{"core": "lif", "episodes": 8, "forward_m": -0.2524, "forward_sd": 0.0269, "gain": 15.0, "path_m": 1.009, "target_sd": 0.57421}
+{"BEST": {"core": "lif", "episodes": 20, "forward_m": 0.0764, "forward_sd": 0.0063, "gain": 5.0, "neighbour_forward_m": [0.072, 0.0338], "neighbour_ratio": 0.942, "path_m": 0.7763}}
+-> /root/eon-fly-brain/results/path2/walk_gain_envelope.json
+=== walk_envelope rc=0 end 2026-09-07T01:03:03Z ===

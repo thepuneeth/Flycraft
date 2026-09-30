@@ -1,0 +1,193 @@
+{
+  "secs": 8.0,
+  "drive": 100.0,
+  "gains": [
+    0.5,
+    1.0,
+    2.0,
+    3.5,
+    5.0,
+    7.5,
+    10.0,
+    15.0
+  ],
+  "arms": {
+    "rate": {
+      "curve": [
+        {
+          "core": "rate",
+          "gain": 0.5,
+          "forward_m": 0.0199,
+          "forward_sd": 0.0032,
+          "path_m": 0.3747,
+          "target_sd": 0.06129,
+          "episodes": 8
+        },
+        {
+          "core": "rate",
+          "gain": 1.0,
+          "forward_m": 0.124,
+          "forward_sd": 0.0204,
+          "path_m": 1.0048,
+          "target_sd": 0.12258,
+          "episodes": 8
+        },
+        {
+          "core": "rate",
+          "gain": 2.0,
+          "forward_m": -0.072,
+          "forward_sd": 0.0976,
+          "path_m": 1.1797,
+          "target_sd": 0.24516,
+          "episodes": 8
+        },
+        {
+          "core": "rate",
+          "gain": 3.5,
+          "forward_m": -0.2532,
+          "forward_sd": 0.0889,
+          "path_m": 1.6401,
+          "target_sd": 0.42903,
+          "episodes": 8
+        },
+        {
+          "core": "rate",
+          "gain": 5.0,
+          "forward_m": -0.2932,
+          "forward_sd": 0.1277,
+          "path_m": 1.8752,
+          "target_sd": 0.6129,
+          "episodes": 8
+        },
+        {
+          "core": "rate",
+          "gain": 7.5,
+          "forward_m": -0.4702,
+          "forward_sd": 0.0711,
+          "path_m": 2.0937,
+          "target_sd": 0.91936,
+          "episodes": 8
+        },
+        {
+          "core": "rate",
+          "gain": 10.0,
+          "forward_m": 0.096,
+          "forward_sd": 0.2719,
+          "path_m": 1.6639,
+          "target_sd": 1.22581,
+          "episodes": 8
+        },
+        {
+          "core": "rate",
+          "gain": 15.0,
+          "forward_m": 0.2629,
+          "forward_sd": 0.3135,
+          "path_m": 1.9089,
+          "target_sd": 1.83871,
+          "episodes": 8
+        }
+      ],
+      "best": {
+        "core": "rate",
+        "gain": 15.0,
+        "forward_m": 0.3504,
+        "forward_sd": 0.29,
+        "path_m": 1.8658,
+        "episodes": 20,
+        "neighbour_forward_m": [
+          0.096
+        ],
+        "neighbour_ratio": 0.274
+      }
+    },
+    "lif": {
+      "curve": [
+        {
+          "core": "lif",
+          "gain": 0.5,
+          "forward_m": -0.0019,
+          "forward_sd": 0.0003,
+          "path_m": 0.028,
+          "target_sd": 0.01914,
+          "episodes": 8
+        },
+        {
+          "core": "lif",
+          "gain": 1.0,
+          "forward_m": 0.0004,
+          "forward_sd": 0.0012,
+          "path_m": 0.0992,
+          "target_sd": 0.03828,
+          "episodes": 8
+        },
+        {
+          "core": "lif",
+          "gain": 2.0,
+          "forward_m": 0.0242,
+          "forward_sd": 0.0014,
+          "path_m": 0.2512,
+          "target_sd": 0.07656,
+          "episodes": 8
+        },
+        {
+          "core": "lif",
+          "gain": 3.5,
+          "forward_m": 0.072,
+          "forward_sd": 0.0056,
+          "path_m": 0.5306,
+          "target_sd": 0.13398,
+          "episodes": 8
+        },
+        {
+          "core": "lif",
+          "gain": 5.0,
+          "forward_m": 0.0759,
+          "forward_sd": 0.0065,
+          "path_m": 0.7729,
+          "target_sd": 0.1914,
+          "episodes": 8
+        },
+        {
+          "core": "lif",
+          "gain": 7.5,
+          "forward_m": 0.0338,
+          "forward_sd": 0.0029,
+          "path_m": 1.0107,
+          "target_sd": 0.28711,
+          "episodes": 8
+        },
+        {
+          "core": "lif",
+          "gain": 10.0,
+          "forward_m": 0.0167,
+          "forward_sd": 0.0116,
+          "path_m": 0.9916,
+          "target_sd": 0.38281,
+          "episodes": 8
+        },
+        {
+          "core": "lif",
+          "gain": 15.0,
+          "forward_m": -0.2524,
+          "forward_sd": 0.0269,
+          "path_m": 1.009,
+          "target_sd": 0.57421,
+          "episodes": 8
+        }
+      ],
+      "best": {
+        "core": "lif",
+        "gain": 5.0,
+        "forward_m": 0.0764,
+        "forward_sd": 0.0063,
+        "path_m": 0.7763,
+        "episodes": 20,
+        "neighbour_forward_m": [
+          0.072,
+          0.0338
+        ],
+        "neighbour_ratio": 0.942
+      }
+    }
+  }
+}

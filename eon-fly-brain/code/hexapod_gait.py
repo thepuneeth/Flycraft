@@ -14,7 +14,10 @@ Run directly to test: hexapod_gait.py [--mode stand|walk] [--drive .8] [--turn 0
 """
 import argparse
 import numpy as np
-import mujoco
+try:
+    import mujoco
+except ModuleNotFoundError:  # pure gait/CPG math remains runnable without physics deps
+    mujoco = None
 
 from pathlib import Path
 XML = Path(__file__).resolve().parent.parent.parent / "assets" / "hexapod" / "hexapod.xml"
@@ -35,6 +38,8 @@ def resolve_phase_group(phase_group=None) -> frozenset[int]:
 
 def home_stance(model: mujoco.MjModel | None = None) -> np.ndarray:
     """Return the six-leg stance encoded by the model's author-declared home keyframe."""
+    if model is None and mujoco is None:
+        raise ModuleNotFoundError("mujoco is required to load the model home stance")
     model = model or mujoco.MjModel.from_xml_path(str(XML))
     qpos = np.asarray(model.key("home").qpos, dtype=np.float64)
     if qpos.shape != (model.nq,) or model.nq < 25:
@@ -94,6 +99,8 @@ def pd_torque(m, d, target, kp, kd):
 
 def run(mode="walk", drive=0.8, turn=0.0, secs=5.0, stance=None,
         kp=3.0, kd=0.05, video=None, ctrl_hz=100.0, verbose=True):
+    if mujoco is None:
+        raise ModuleNotFoundError("mujoco is required to run the hexapod")
     m = mujoco.MjModel.from_xml_path(str(XML))
     d = mujoco.MjData(m)
     gait = HexapodGait(stance=stance)

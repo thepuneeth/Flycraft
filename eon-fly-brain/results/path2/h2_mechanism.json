@@ -1,0 +1,4537 @@
+{
+  "experiment": "H2",
+  "status": "complete",
+  "pre_registered_null": "no structural scalar predicts forward drive across control seeds",
+  "protocol": {
+    "analysis": "pure graph analysis; no body rollouts",
+    "input_forward_drive": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/specificity_B1.json",
+    "input_forward_drive_definition": "raw B1 8 s forward-distance mean per real/random/rewired condition",
+    "spectral_method": "deterministic 64-step Arnoldi on W, abs(W), and positive-part(W)",
+    "arnoldi_seed": 20260829,
+    "metrics": [
+      "signed_spectral_radius",
+      "signed_leading_real",
+      "signed_leading_imag",
+      "absolute_spectral_radius",
+      "positive_spectral_radius",
+      "motor_source_hhi",
+      "motor_source_top10_share",
+      "motor_positive_edge_fraction",
+      "motor_positive_mass_fraction",
+      "motor_positive_reciprocal_fraction",
+      "motor_positive_reciprocal_mass_fraction"
+    ],
+    "bootstrap": "95% percentile bootstrap using frozen campaign repetitions and seed",
+    "learning": false
+  },
+  "real_graph_hashes": {
+    "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+    "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+  },
+  "substrates": {
+    "cache": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/specificity_vnc_substrates.npz",
+    "cache_reused": true,
+    "random_seeds": [
+      20260830,
+      20260831,
+      20260832,
+      20260833,
+      20260834,
+      20260835,
+      20260836,
+      20260837,
+      20260838,
+      20260839,
+      20260840,
+      20260841
+    ],
+    "rewired_seeds": [
+      20260830,
+      20260831,
+      20260832,
+      20260833,
+      20260834,
+      20260835,
+      20260836,
+      20260837,
+      20260838,
+      20260839,
+      20260840,
+      20260841
+    ],
+    "records": [
+      {
+        "name": "real",
+        "kind": "real",
+        "seed": null,
+        "tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260830,
+        "tensor_sha256": "67360b7214bfa3aca223090db15d076da56c371740929262893f4c5b916b55c2"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260830,
+        "tensor_sha256": "96dbbdf4bc869521d0889e2d0b9a0070966813ae705c9ac1449cf7eab3158ed3"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260831,
+        "tensor_sha256": "6e55a4eb8d3ed084a99d4c57f56b4b15d2e68f8d71c27ae72e70fee0cf7758b3"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260831,
+        "tensor_sha256": "8f791a8fece4d47c8467cb3fec2ade60637c41696f38e0b034f74b1adc96f835"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260832,
+        "tensor_sha256": "b3518f4e84380f3ca042b843e083d9f9d8b30b08cf751eb7a574a7e3d1c48ae1"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260832,
+        "tensor_sha256": "2c091fc7e9f0333cc7343e42a4da0d5ea3127d525240307d1b4fe48babc6096e"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260833,
+        "tensor_sha256": "443061a83e9d0d1ca81fb71ca4744a2850a322a2227e9a74c68b7107dd2963dc"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260833,
+        "tensor_sha256": "e362d7c3771aa8e4c81e48eaf1bc8df4bd90d6985f2af67044e3a12406d2d857"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260834,
+        "tensor_sha256": "96d8244a7687a6fb01040f8e3f942efaabdd2ff06f1bd896579c3fc37e95c03b"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260834,
+        "tensor_sha256": "94d62dc50247f75c2e77cef3ecec5fa30d99c91c558cac5f85dd386a869aa722"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260835,
+        "tensor_sha256": "3659cd3039d505bfb41f4771a599e62d22d7d3bc750e75c0565d612f5d37f288"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260835,
+        "tensor_sha256": "cb1fb962d497c85ab81e62991d4fdfebc3cda5a7138841f6e00ce72bee2ebb92"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260836,
+        "tensor_sha256": "467925203f400bbf51648c3da9ab885e9a60c025e314ff79bbe60e0a856bccf6"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260836,
+        "tensor_sha256": "d2e57272b7844a43326467f5686048d320a393c26ab1b1eb5ac85d8dcf4183d4"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260837,
+        "tensor_sha256": "fe82d6a15005893585032e3de8ae4f0152a1eee63dd7d78fb4dd7d58dc766889"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260837,
+        "tensor_sha256": "896935d082fa011080f2d79ab6ddc76274096f408e704a5808e46b7d53ac8405"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260838,
+        "tensor_sha256": "508d9b8c00be6a2e6ee2bbb621022132d890adde93dc1fc500ecfa10ba968f38"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260838,
+        "tensor_sha256": "2d72bae7d4154187ef0530cf4679f1b8423b03ebef5284d3e958c7fe91d981e6"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260839,
+        "tensor_sha256": "3bce21891dc3cafb0a3ade56a38e8735f9eeaf7b15da1d9a8d275969f027df86"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260839,
+        "tensor_sha256": "309a016cc574c682c70e19f146a31af5fe2d4fd2e1a451ce8752059af35b36e9"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260840,
+        "tensor_sha256": "95493f9e4cbd496e3e0d97f8979c0dea22d68298ff2db6c206143f81156f700e"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260840,
+        "tensor_sha256": "f1583b8d338aba027c5844ca02f56b7ade9f314ad181d5d77536c6173f404739"
+      },
+      {
+        "name": "random",
+        "kind": "random-network",
+        "seed": 20260841,
+        "tensor_sha256": "18564b5726e05d56784e39bf6769d479b4c9dcd2f6a63470d0f97c2e564d9da2"
+      },
+      {
+        "name": "rewired",
+        "kind": "rewired-network",
+        "seed": 20260841,
+        "tensor_sha256": "894e84c69953c9024e8b850db233a6e77fdc48cd7db00ef263518f0abf8edf22"
+      }
+    ],
+    "constructors": {
+      "random-network": "reservoir_3way.randomize_weights fixed sparse structure; signed weight multiset preserved",
+      "rewired-network": "reservoir_3way.degree_preserving_rewire; row and column degree plus weight multiset preserved"
+    }
+  },
+  "structural_records": [
+    {
+      "substrate": "real",
+      "kind": "real",
+      "seed": null,
+      "tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+      "forward_distance_m": 0.22407021664125976,
+      "signed_spectral_radius": 962.6405018286963,
+      "signed_leading_real": 576.2978967004692,
+      "signed_leading_imag": 771.0755280902251,
+      "absolute_spectral_radius": 2367.8410805029193,
+      "positive_spectral_radius": 898.6086342626988,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0006341958396752917,
+      "motor_positive_reciprocal_mass_fraction": 0.0010654946090653539,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 413.4579162597656,
+          "spectral_radius": 962.6405018286963,
+          "leading_eigenvalues": [
+            {
+              "real": 576.2978967004692,
+              "imag": 771.0755280902251,
+              "modulus": 962.6405018286963
+            },
+            {
+              "real": 576.2978967004692,
+              "imag": -771.0755280902251,
+              "modulus": 962.6405018286963
+            },
+            {
+              "real": -306.4315173943862,
+              "imag": 868.0911876831854,
+              "modulus": 920.5881733901589
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 518.0899047851562,
+          "spectral_radius": 2367.8410805029193,
+          "leading_eigenvalues": [
+            {
+              "real": 2367.8410805029193,
+              "imag": 0.0,
+              "modulus": 2367.8410805029193
+            },
+            {
+              "real": 2003.177881190939,
+              "imag": 0.0,
+              "modulus": 2003.177881190939
+            },
+            {
+              "real": 1869.4251116146197,
+              "imag": 0.0,
+              "modulus": 1869.4251116146197
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 225.3973846435547,
+          "spectral_radius": 898.6086342626988,
+          "leading_eigenvalues": [
+            {
+              "real": 898.6086342626988,
+              "imag": 0.0,
+              "modulus": 898.6086342626988
+            },
+            {
+              "real": 747.717426863944,
+              "imag": 0.0,
+              "modulus": 747.717426863944
+            },
+            {
+              "real": -747.7159328589535,
+              "imag": 0.0,
+              "modulus": 747.7159328589535
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 11185,
+        "positive_motor_reciprocal_edges": 10
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260830,
+      "tensor_sha256": "67360b7214bfa3aca223090db15d076da56c371740929262893f4c5b916b55c2",
+      "forward_distance_m": -0.008438122240889075,
+      "signed_spectral_radius": 325.7396666414054,
+      "signed_leading_real": 325.7396666414054,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1371.0913371691051,
+      "positive_spectral_radius": 768.2895632358124,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5830464205152558,
+      "motor_positive_mass_fraction": 0.5668100118637085,
+      "motor_positive_reciprocal_fraction": 0.00095024774316161,
+      "motor_positive_reciprocal_mass_fraction": 0.0008960541454143822,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 292.811767578125,
+          "spectral_radius": 325.7396666414054,
+          "leading_eigenvalues": [
+            {
+              "real": 325.7396666414054,
+              "imag": 0.0,
+              "modulus": 325.7396666414054
+            },
+            {
+              "real": -288.11401826801796,
+              "imag": -83.56494352990326,
+              "modulus": 299.9879786086431
+            },
+            {
+              "real": -288.11401826801796,
+              "imag": 83.56494352990326,
+              "modulus": 299.9879786086431
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 293.09521484375,
+          "spectral_radius": 1371.0913371691051,
+          "leading_eigenvalues": [
+            {
+              "real": 1371.0913371691051,
+              "imag": 0.0,
+              "modulus": 1371.0913371691051
+            },
+            {
+              "real": 1012.304346890098,
+              "imag": 0.0,
+              "modulus": 1012.304346890098
+            },
+            {
+              "real": 957.8955735471953,
+              "imag": 0.0,
+              "modulus": 957.8955735471953
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 208.6099395751953,
+          "spectral_radius": 768.2895632358124,
+          "leading_eigenvalues": [
+            {
+              "real": 768.2895632358124,
+              "imag": 0.0,
+              "modulus": 768.2895632358124
+            },
+            {
+              "real": 568.4094634209937,
+              "imag": 0.0,
+              "modulus": 568.4094634209937
+            },
+            {
+              "real": 531.5406519450356,
+              "imag": 0.0,
+              "modulus": 531.5406519450356
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14733,
+        "positive_reciprocal_edges": 15874,
+        "positive_motor_reciprocal_edges": 14
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260830,
+      "tensor_sha256": "96dbbdf4bc869521d0889e2d0b9a0070966813ae705c9ac1449cf7eab3158ed3",
+      "forward_distance_m": -0.05324191616505726,
+      "signed_spectral_radius": 402.6622368446949,
+      "signed_leading_real": -152.2563825462666,
+      "signed_leading_imag": 372.76650996930783,
+      "absolute_spectral_radius": 1675.334878599415,
+      "positive_spectral_radius": 920.5550050917025,
+      "motor_source_hhi": 0.00022890819324023642,
+      "motor_source_top10_share": 0.010447583996200879,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 2.3051567040965892e-05,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 335.0955810546875,
+          "spectral_radius": 402.6622368446949,
+          "leading_eigenvalues": [
+            {
+              "real": -152.2563825462666,
+              "imag": 372.76650996930783,
+              "modulus": 402.66223684469486
+            },
+            {
+              "real": -152.2563825462666,
+              "imag": -372.76650996930783,
+              "modulus": 402.66223684469486
+            },
+            {
+              "real": 256.35789646238356,
+              "imag": 293.50155260478965,
+              "modulus": 389.69543551347925
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 344.1284484863281,
+          "spectral_radius": 1675.334878599415,
+          "leading_eigenvalues": [
+            {
+              "real": 1675.334878599415,
+              "imag": 0.0,
+              "modulus": 1675.334878599415
+            },
+            {
+              "real": -457.8650015892209,
+              "imag": 0.0,
+              "modulus": 457.8650015892209
+            },
+            {
+              "real": 411.8915113907966,
+              "imag": -15.52796587486499,
+              "modulus": 412.1841031383982
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 246.96739196777344,
+          "spectral_radius": 920.5550050917025,
+          "leading_eigenvalues": [
+            {
+              "real": 920.5550050917025,
+              "imag": 0.0,
+              "modulus": 920.5550050917025
+            },
+            {
+              "real": 344.3439935514269,
+              "imag": 0.0,
+              "modulus": 344.3439935514269
+            },
+            {
+              "real": -339.5636777863395,
+              "imag": 0.0,
+              "modulus": 339.5636777863395
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1874,
+        "positive_motor_reciprocal_edges": 1
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260831,
+      "tensor_sha256": "6e55a4eb8d3ed084a99d4c57f56b4b15d2e68f8d71c27ae72e70fee0cf7758b3",
+      "forward_distance_m": 0.034012178266280814,
+      "signed_spectral_radius": 304.63601889431254,
+      "signed_leading_real": -302.16229190232355,
+      "signed_leading_imag": 38.74342989606081,
+      "absolute_spectral_radius": 1366.7078943654305,
+      "positive_spectral_radius": 766.1302187750787,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5790494281530729,
+      "motor_positive_mass_fraction": 0.560643196105957,
+      "motor_positive_reciprocal_fraction": 0.0008884636413340623,
+      "motor_positive_reciprocal_mass_fraction": 0.00046600954374298453,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 294.2832946777344,
+          "spectral_radius": 304.63601889431254,
+          "leading_eigenvalues": [
+            {
+              "real": -302.16229190232355,
+              "imag": 38.74342989606081,
+              "modulus": 304.63601889431254
+            },
+            {
+              "real": -302.16229190232355,
+              "imag": -38.74342989606081,
+              "modulus": 304.63601889431254
+            },
+            {
+              "real": -279.37162563728737,
+              "imag": 114.16724865813762,
+              "modulus": 301.7990488344681
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 294.8087158203125,
+          "spectral_radius": 1366.7078943654305,
+          "leading_eigenvalues": [
+            {
+              "real": 1366.7078943654305,
+              "imag": 0.0,
+              "modulus": 1366.7078943654305
+            },
+            {
+              "real": 1025.001830791999,
+              "imag": 0.0,
+              "modulus": 1025.001830791999
+            },
+            {
+              "real": 955.3391681192356,
+              "imag": 0.0,
+              "modulus": 955.3391681192356
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 214.66128540039062,
+          "spectral_radius": 766.1302187750787,
+          "leading_eigenvalues": [
+            {
+              "real": 766.1302187750787,
+              "imag": 0.0,
+              "modulus": 766.1302187750787
+            },
+            {
+              "real": 577.3477464424512,
+              "imag": 0.0,
+              "modulus": 577.3477464424512
+            },
+            {
+              "real": 529.8812804183713,
+              "imag": 0.0,
+              "modulus": 529.8812804183713
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14632,
+        "positive_reciprocal_edges": 15979,
+        "positive_motor_reciprocal_edges": 13
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260831,
+      "tensor_sha256": "8f791a8fece4d47c8467cb3fec2ade60637c41696f38e0b034f74b1adc96f835",
+      "forward_distance_m": -0.014707274389709918,
+      "signed_spectral_radius": 437.7224290721628,
+      "signed_leading_real": 372.31603436454685,
+      "signed_leading_imag": 230.17753032798882,
+      "absolute_spectral_radius": 1664.0339531340612,
+      "positive_spectral_radius": 908.2424678898258,
+      "motor_source_hhi": 0.00023104124304896507,
+      "motor_source_top10_share": 0.010764177450631207,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 1.2806425729650073e-05,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 344.5415344238281,
+          "spectral_radius": 437.7224290721628,
+          "leading_eigenvalues": [
+            {
+              "real": 372.31603436454685,
+              "imag": 230.17753032798882,
+              "modulus": 437.72242907216287
+            },
+            {
+              "real": 372.31603436454685,
+              "imag": -230.17753032798882,
+              "modulus": 437.72242907216287
+            },
+            {
+              "real": -432.55431266439575,
+              "imag": 0.0,
+              "modulus": 432.55431266439575
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 356.615234375,
+          "spectral_radius": 1664.0339531340612,
+          "leading_eigenvalues": [
+            {
+              "real": 1664.0339531340612,
+              "imag": 0.0,
+              "modulus": 1664.0339531340612
+            },
+            {
+              "real": 417.22255506938495,
+              "imag": 0.0,
+              "modulus": 417.22255506938495
+            },
+            {
+              "real": 402.5936430927975,
+              "imag": 105.564374816422,
+              "modulus": 416.2036504995035
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 226.60568237304688,
+          "spectral_radius": 908.2424678898258,
+          "leading_eigenvalues": [
+            {
+              "real": 908.2424678898258,
+              "imag": 0.0,
+              "modulus": 908.2424678898258
+            },
+            {
+              "real": -215.58001400683912,
+              "imag": 183.27917995599992,
+              "modulus": 282.95936147180703
+            },
+            {
+              "real": -215.58001400683912,
+              "imag": -183.27917995599992,
+              "modulus": 282.95936147180703
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1817,
+        "positive_motor_reciprocal_edges": 1
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260832,
+      "tensor_sha256": "b3518f4e84380f3ca042b843e083d9f9d8b30b08cf751eb7a574a7e3d1c48ae1",
+      "forward_distance_m": -0.0264409282997825,
+      "signed_spectral_radius": 308.3568051814036,
+      "signed_leading_real": -0.05181053007501861,
+      "signed_leading_imag": 308.3568008287657,
+      "absolute_spectral_radius": 1355.1948315071954,
+      "positive_spectral_radius": 762.8810159518318,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.586054058332344,
+      "motor_positive_mass_fraction": 0.5694789290428162,
+      "motor_positive_reciprocal_fraction": 0.0007427915456816801,
+      "motor_positive_reciprocal_mass_fraction": 0.0006377683603204787,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 283.7562255859375,
+          "spectral_radius": 308.3568051814036,
+          "leading_eigenvalues": [
+            {
+              "real": -0.05181053007501861,
+              "imag": 308.3568008287657,
+              "modulus": 308.3568051814036
+            },
+            {
+              "real": -0.05181053007501861,
+              "imag": -308.3568008287657,
+              "modulus": 308.3568051814036
+            },
+            {
+              "real": 263.59781946799706,
+              "imag": -120.94660521656746,
+              "modulus": 290.0205022781924
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 291.4603576660156,
+          "spectral_radius": 1355.1948315071954,
+          "leading_eigenvalues": [
+            {
+              "real": 1355.1948315071954,
+              "imag": 0.0,
+              "modulus": 1355.1948315071954
+            },
+            {
+              "real": 1002.7854024685532,
+              "imag": 0.0,
+              "modulus": 1002.7854024685532
+            },
+            {
+              "real": 947.9049787272094,
+              "imag": 0.0,
+              "modulus": 947.9049787272094
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 203.67897033691406,
+          "spectral_radius": 762.8810159518318,
+          "leading_eigenvalues": [
+            {
+              "real": 762.8810159518318,
+              "imag": 0.0,
+              "modulus": 762.8810159518318
+            },
+            {
+              "real": 558.9131439911088,
+              "imag": 0.0,
+              "modulus": 558.9131439911088
+            },
+            {
+              "real": 529.1533285450176,
+              "imag": 0.0,
+              "modulus": 529.1533285450176
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14809,
+        "positive_reciprocal_edges": 15562,
+        "positive_motor_reciprocal_edges": 11
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260832,
+      "tensor_sha256": "2c091fc7e9f0333cc7343e42a4da0d5ea3127d525240307d1b4fe48babc6096e",
+      "forward_distance_m": -0.016825255121192387,
+      "signed_spectral_radius": 407.94141830226795,
+      "signed_leading_real": 407.94141830226795,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1664.5694332341147,
+      "positive_spectral_radius": 905.177139436893,
+      "motor_source_hhi": 0.00023367858216636524,
+      "motor_source_top10_share": 0.011634809450314615,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 4.354184784460813e-05,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 330.0946044921875,
+          "spectral_radius": 407.94141830226795,
+          "leading_eigenvalues": [
+            {
+              "real": 407.94141830226795,
+              "imag": 0.0,
+              "modulus": 407.94141830226795
+            },
+            {
+              "real": 299.39450529841963,
+              "imag": 254.41393301726796,
+              "modulus": 392.8912306430373
+            },
+            {
+              "real": 299.39450529841963,
+              "imag": -254.41393301726796,
+              "modulus": 392.8912306430373
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 348.83282470703125,
+          "spectral_radius": 1664.5694332341147,
+          "leading_eigenvalues": [
+            {
+              "real": 1664.5694332341147,
+              "imag": 0.0,
+              "modulus": 1664.5694332341147
+            },
+            {
+              "real": 417.25000704909877,
+              "imag": 0.0,
+              "modulus": 417.25000704909877
+            },
+            {
+              "real": -405.754724207815,
+              "imag": 0.0,
+              "modulus": 405.754724207815
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 231.7705078125,
+          "spectral_radius": 905.177139436893,
+          "leading_eigenvalues": [
+            {
+              "real": 905.177139436893,
+              "imag": 0.0,
+              "modulus": 905.177139436893
+            },
+            {
+              "real": 399.2158297806523,
+              "imag": 0.0,
+              "modulus": 399.2158297806523
+            },
+            {
+              "real": 84.31403561857748,
+              "imag": -240.84736433205583,
+              "modulus": 255.1789754427053
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1712,
+        "positive_motor_reciprocal_edges": 1
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260833,
+      "tensor_sha256": "443061a83e9d0d1ca81fb71ca4744a2850a322a2227e9a74c68b7107dd2963dc",
+      "forward_distance_m": 0.00914528064616469,
+      "signed_spectral_radius": 303.2833364316848,
+      "signed_leading_real": 298.8892205859115,
+      "signed_leading_imag": 51.43943987526314,
+      "absolute_spectral_radius": 1363.405277876198,
+      "positive_spectral_radius": 768.9678236730833,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5813447306976929,
+      "motor_positive_mass_fraction": 0.5588478446006775,
+      "motor_positive_reciprocal_fraction": 0.0006126616746085772,
+      "motor_positive_reciprocal_mass_fraction": 0.0005808387650176883,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 287.4614562988281,
+          "spectral_radius": 303.2833364316848,
+          "leading_eigenvalues": [
+            {
+              "real": 298.8892205859115,
+              "imag": 51.43943987526314,
+              "modulus": 303.28333643168475
+            },
+            {
+              "real": 298.8892205859115,
+              "imag": -51.43943987526314,
+              "modulus": 303.28333643168475
+            },
+            {
+              "real": -117.34755807351911,
+              "imag": -279.13436660639127,
+              "modulus": 302.79769485015765
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 303.9862365722656,
+          "spectral_radius": 1363.405277876198,
+          "leading_eigenvalues": [
+            {
+              "real": 1363.405277876198,
+              "imag": 0.0,
+              "modulus": 1363.405277876198
+            },
+            {
+              "real": 1028.0147328468006,
+              "imag": 0.0,
+              "modulus": 1028.0147328468006
+            },
+            {
+              "real": 969.178456929432,
+              "imag": 0.0,
+              "modulus": 969.178456929432
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 208.27450561523438,
+          "spectral_radius": 768.9678236730833,
+          "leading_eigenvalues": [
+            {
+              "real": 768.9678236730833,
+              "imag": 0.0,
+              "modulus": 768.9678236730833
+            },
+            {
+              "real": 585.526006038033,
+              "imag": 0.0,
+              "modulus": 585.526006038033
+            },
+            {
+              "real": 546.8368283040938,
+              "imag": 0.0,
+              "modulus": 546.8368283040938
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14690,
+        "positive_reciprocal_edges": 15511,
+        "positive_motor_reciprocal_edges": 9
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260833,
+      "tensor_sha256": "e362d7c3771aa8e4c81e48eaf1bc8df4bd90d6985f2af67044e3a12406d2d857",
+      "forward_distance_m": -0.030573504312909443,
+      "signed_spectral_radius": 628.1756584626557,
+      "signed_leading_real": -628.1756584626557,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1681.1775013774281,
+      "positive_spectral_radius": 921.0544852605078,
+      "motor_source_hhi": 0.00023176478857879813,
+      "motor_source_top10_share": 0.010645454905219835,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0,
+      "motor_positive_reciprocal_mass_fraction": 0.0,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 355.24749755859375,
+          "spectral_radius": 628.1756584626557,
+          "leading_eigenvalues": [
+            {
+              "real": -628.1756584626557,
+              "imag": 0.0,
+              "modulus": 628.1756584626557
+            },
+            {
+              "real": -189.330457263345,
+              "imag": 336.97667552386264,
+              "modulus": 386.5220587426569
+            },
+            {
+              "real": -189.330457263345,
+              "imag": -336.97667552386264,
+              "modulus": 386.5220587426569
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 324.9303283691406,
+          "spectral_radius": 1681.1775013774281,
+          "leading_eigenvalues": [
+            {
+              "real": 1681.1775013774281,
+              "imag": 0.0,
+              "modulus": 1681.1775013774281
+            },
+            {
+              "real": 678.4558315491846,
+              "imag": 0.0,
+              "modulus": 678.4558315491846
+            },
+            {
+              "real": 385.34346041255645,
+              "imag": 0.0,
+              "modulus": 385.34346041255645
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 236.4317626953125,
+          "spectral_radius": 921.0544852605078,
+          "leading_eigenvalues": [
+            {
+              "real": 921.0544852605078,
+              "imag": 0.0,
+              "modulus": 921.0544852605078
+            },
+            {
+              "real": -100.22678978282443,
+              "imag": 254.48358615008638,
+              "modulus": 273.50924117839037
+            },
+            {
+              "real": -100.22678978282443,
+              "imag": -254.48358615008638,
+              "modulus": 273.50924117839037
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1863,
+        "positive_motor_reciprocal_edges": 0
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260834,
+      "tensor_sha256": "96d8244a7687a6fb01040f8e3f942efaabdd2ff06f1bd896579c3fc37e95c03b",
+      "forward_distance_m": -0.024595911864475822,
+      "signed_spectral_radius": 304.77440851221115,
+      "signed_leading_real": -190.93022423430574,
+      "signed_leading_imag": 237.55649761226465,
+      "absolute_spectral_radius": 1368.4637129409537,
+      "positive_spectral_radius": 772.4075806391154,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5786141121532312,
+      "motor_positive_mass_fraction": 0.5595095157623291,
+      "motor_positive_reciprocal_fraction": 0.0006839477463921757,
+      "motor_positive_reciprocal_mass_fraction": 0.0006160329794511199,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 289.5102233886719,
+          "spectral_radius": 304.77440851221115,
+          "leading_eigenvalues": [
+            {
+              "real": -190.93022423430574,
+              "imag": 237.55649761226465,
+              "modulus": 304.77440851221115
+            },
+            {
+              "real": -190.93022423430574,
+              "imag": -237.55649761226465,
+              "modulus": 304.77440851221115
+            },
+            {
+              "real": 24.59399141173505,
+              "imag": -298.5351818811741,
+              "modulus": 299.54652265447214
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 302.09112548828125,
+          "spectral_radius": 1368.4637129409537,
+          "leading_eigenvalues": [
+            {
+              "real": 1368.4637129409537,
+              "imag": 0.0,
+              "modulus": 1368.4637129409537
+            },
+            {
+              "real": 1019.6060517060619,
+              "imag": 0.0,
+              "modulus": 1019.6060517060619
+            },
+            {
+              "real": 954.2002032986585,
+              "imag": 0.0,
+              "modulus": 954.2002032986585
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 208.04409790039062,
+          "spectral_radius": 772.4075806391154,
+          "leading_eigenvalues": [
+            {
+              "real": 772.4075806391154,
+              "imag": 0.0,
+              "modulus": 772.4075806391154
+            },
+            {
+              "real": 568.3139995996268,
+              "imag": 0.0,
+              "modulus": 568.3139995996268
+            },
+            {
+              "real": 551.0413439978108,
+              "imag": 0.0,
+              "modulus": 551.0413439978108
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14621,
+        "positive_reciprocal_edges": 15625,
+        "positive_motor_reciprocal_edges": 10
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260834,
+      "tensor_sha256": "94d62dc50247f75c2e77cef3ecec5fa30d99c91c558cac5f85dd386a869aa722",
+      "forward_distance_m": 0.014165175459250712,
+      "signed_spectral_radius": 388.46109732142395,
+      "signed_leading_real": 82.74723509082324,
+      "signed_leading_imag": -379.5456747441457,
+      "absolute_spectral_radius": 1666.2037571225328,
+      "positive_spectral_radius": 907.3033962961588,
+      "motor_source_hhi": 0.00022690356493247385,
+      "motor_source_top10_share": 0.010764177450631207,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 0.0008913272176869214,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 356.1029052734375,
+          "spectral_radius": 388.46109732142395,
+          "leading_eigenvalues": [
+            {
+              "real": 82.74723509082324,
+              "imag": -379.5456747441457,
+              "modulus": 388.46109732142395
+            },
+            {
+              "real": 82.74723509082324,
+              "imag": 379.5456747441457,
+              "modulus": 388.46109732142395
+            },
+            {
+              "real": 238.23805852883757,
+              "imag": 305.3181811364783,
+              "modulus": 387.26807803390824
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 344.0776672363281,
+          "spectral_radius": 1666.2037571225328,
+          "leading_eigenvalues": [
+            {
+              "real": 1666.2037571225328,
+              "imag": 0.0,
+              "modulus": 1666.2037571225328
+            },
+            {
+              "real": 367.790645066706,
+              "imag": 147.83469791524237,
+              "modulus": 396.390030785683
+            },
+            {
+              "real": 367.790645066706,
+              "imag": -147.83469791524237,
+              "modulus": 396.390030785683
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 226.7292022705078,
+          "spectral_radius": 907.3033962961588,
+          "leading_eigenvalues": [
+            {
+              "real": 907.3033962961588,
+              "imag": 0.0,
+              "modulus": 907.3033962961588
+            },
+            {
+              "real": 289.5766581118552,
+              "imag": 0.0,
+              "modulus": 289.5766581118552
+            },
+            {
+              "real": -92.66356648561147,
+              "imag": -243.3288083410747,
+              "modulus": 260.3755854962612
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1848,
+        "positive_motor_reciprocal_edges": 2
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260835,
+      "tensor_sha256": "3659cd3039d505bfb41f4771a599e62d22d7d3bc750e75c0565d612f5d37f288",
+      "forward_distance_m": -0.007649197850164845,
+      "signed_spectral_radius": 294.6878982147421,
+      "signed_leading_real": 294.6878982147421,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1367.4496196577593,
+      "positive_spectral_radius": 767.8951937356059,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5865289485139895,
+      "motor_positive_mass_fraction": 0.5588133335113525,
+      "motor_positive_reciprocal_fraction": 0.0007421901356183794,
+      "motor_positive_reciprocal_mass_fraction": 0.0007917317561805248,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 276.5388488769531,
+          "spectral_radius": 294.6878982147421,
+          "leading_eigenvalues": [
+            {
+              "real": 294.6878982147421,
+              "imag": 0.0,
+              "modulus": 294.6878982147421
+            },
+            {
+              "real": 69.69282002960644,
+              "imag": -286.2440021227985,
+              "modulus": 294.60603849031304
+            },
+            {
+              "real": 69.69282002960644,
+              "imag": 286.2440021227985,
+              "modulus": 294.60603849031304
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 291.0599670410156,
+          "spectral_radius": 1367.4496196577593,
+          "leading_eigenvalues": [
+            {
+              "real": 1367.4496196577593,
+              "imag": 0.0,
+              "modulus": 1367.4496196577593
+            },
+            {
+              "real": 1023.10635273037,
+              "imag": 0.0,
+              "modulus": 1023.10635273037
+            },
+            {
+              "real": 959.1010532066922,
+              "imag": 0.0,
+              "modulus": 959.1010532066922
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 202.7886199951172,
+          "spectral_radius": 767.8951937356059,
+          "leading_eigenvalues": [
+            {
+              "real": 767.8951937356059,
+              "imag": 0.0,
+              "modulus": 767.8951937356059
+            },
+            {
+              "real": 572.8786489143307,
+              "imag": 0.0,
+              "modulus": 572.8786489143307
+            },
+            {
+              "real": 541.5269613153029,
+              "imag": 0.0,
+              "modulus": 541.5269613153029
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14821,
+        "positive_reciprocal_edges": 15626,
+        "positive_motor_reciprocal_edges": 11
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260835,
+      "tensor_sha256": "cb1fb962d497c85ab81e62991d4fdfebc3cda5a7138841f6e00ce72bee2ebb92",
+      "forward_distance_m": -0.06875358116254442,
+      "signed_spectral_radius": 519.1941493948336,
+      "signed_leading_real": -18.38863741865724,
+      "signed_leading_imag": 518.8684060334663,
+      "absolute_spectral_radius": 1674.6656851422104,
+      "positive_spectral_radius": 911.4663382504411,
+      "motor_source_hhi": 0.0002344491111721615,
+      "motor_source_top10_share": 0.010882899996042581,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0002536783358701167,
+      "motor_positive_reciprocal_mass_fraction": 0.00016136096382979304,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 350.978271484375,
+          "spectral_radius": 519.1941493948336,
+          "leading_eigenvalues": [
+            {
+              "real": -18.38863741865724,
+              "imag": 518.8684060334663,
+              "modulus": 519.1941493948336
+            },
+            {
+              "real": -18.38863741865724,
+              "imag": -518.8684060334663,
+              "modulus": 519.1941493948336
+            },
+            {
+              "real": 178.53397825910685,
+              "imag": 395.9704191562473,
+              "modulus": 434.3580944794254
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 356.2954406738281,
+          "spectral_radius": 1674.6656851422104,
+          "leading_eigenvalues": [
+            {
+              "real": 1674.6656851422104,
+              "imag": 0.0,
+              "modulus": 1674.6656851422104
+            },
+            {
+              "real": 511.80654868503433,
+              "imag": 0.0,
+              "modulus": 511.80654868503433
+            },
+            {
+              "real": -456.7981493377937,
+              "imag": 0.0,
+              "modulus": 456.7981493377937
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 248.2835235595703,
+          "spectral_radius": 911.4663382504411,
+          "leading_eigenvalues": [
+            {
+              "real": 911.4663382504411,
+              "imag": 0.0,
+              "modulus": 911.4663382504411
+            },
+            {
+              "real": -292.56861670719286,
+              "imag": 0.0,
+              "modulus": 292.56861670719286
+            },
+            {
+              "real": 146.0407383879171,
+              "imag": 232.37728993248152,
+              "modulus": 274.45783309144707
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1792,
+        "positive_motor_reciprocal_edges": 4
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260836,
+      "tensor_sha256": "467925203f400bbf51648c3da9ab885e9a60c025e314ff79bbe60e0a856bccf6",
+      "forward_distance_m": -0.010653061825049638,
+      "signed_spectral_radius": 299.9644830955337,
+      "signed_leading_real": -185.92078311862025,
+      "signed_leading_imag": -235.39786218937866,
+      "absolute_spectral_radius": 1362.681879033868,
+      "positive_spectral_radius": 768.3110599761355,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5840753492421544,
+      "motor_positive_mass_fraction": 0.5617102384567261,
+      "motor_positive_reciprocal_fraction": 0.0004742868758045938,
+      "motor_positive_reciprocal_mass_fraction": 0.0004096495104022324,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 300.3179931640625,
+          "spectral_radius": 299.9644830955337,
+          "leading_eigenvalues": [
+            {
+              "real": -185.92078311862025,
+              "imag": -235.39786218937866,
+              "modulus": 299.9644830955337
+            },
+            {
+              "real": -185.92078311862025,
+              "imag": 235.39786218937866,
+              "modulus": 299.9644830955337
+            },
+            {
+              "real": -254.2607126306837,
+              "imag": -150.4320617021934,
+              "modulus": 295.4290357690585
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 285.3797302246094,
+          "spectral_radius": 1362.681879033868,
+          "leading_eigenvalues": [
+            {
+              "real": 1362.681879033868,
+              "imag": 0.0,
+              "modulus": 1362.681879033868
+            },
+            {
+              "real": 1010.897891236261,
+              "imag": 0.0,
+              "modulus": 1010.897891236261
+            },
+            {
+              "real": 952.4020169478541,
+              "imag": 0.0,
+              "modulus": 952.4020169478541
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 212.9735870361328,
+          "spectral_radius": 768.3110599761355,
+          "leading_eigenvalues": [
+            {
+              "real": 768.3110599761355,
+              "imag": 0.0,
+              "modulus": 768.3110599761355
+            },
+            {
+              "real": 569.7057313614115,
+              "imag": 0.0,
+              "modulus": 569.7057313614115
+            },
+            {
+              "real": 543.5358342628855,
+              "imag": 0.0,
+              "modulus": 543.5358342628855
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14759,
+        "positive_reciprocal_edges": 15762,
+        "positive_motor_reciprocal_edges": 7
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260836,
+      "tensor_sha256": "d2e57272b7844a43326467f5686048d320a393c26ab1b1eb5ac85d8dcf4183d4",
+      "forward_distance_m": -0.0172130789935787,
+      "signed_spectral_radius": 409.9781224432748,
+      "signed_leading_real": 316.3261766826166,
+      "signed_leading_imag": -260.8060789695494,
+      "absolute_spectral_radius": 1653.8912115713874,
+      "positive_spectral_radius": 906.5248594778452,
+      "motor_source_hhi": 0.0002266749120161197,
+      "motor_source_top10_share": 0.010724603268827416,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 0.0004635926161427051,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 328.4053039550781,
+          "spectral_radius": 409.9781224432748,
+          "leading_eigenvalues": [
+            {
+              "real": 316.3261766826166,
+              "imag": -260.8060789695494,
+              "modulus": 409.9781224432748
+            },
+            {
+              "real": 316.3261766826166,
+              "imag": 260.8060789695494,
+              "modulus": 409.9781224432748
+            },
+            {
+              "real": -384.6898194289424,
+              "imag": 120.05117079102378,
+              "modulus": 402.9870230920195
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 334.62744140625,
+          "spectral_radius": 1653.8912115713874,
+          "leading_eigenvalues": [
+            {
+              "real": 1653.8912115713874,
+              "imag": 0.0,
+              "modulus": 1653.8912115713874
+            },
+            {
+              "real": 70.77876640001935,
+              "imag": -382.2037460575005,
+              "modulus": 388.7021189464946
+            },
+            {
+              "real": 70.77876640001935,
+              "imag": 382.2037460575005,
+              "modulus": 388.7021189464946
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 233.53738403320312,
+          "spectral_radius": 906.5248594778452,
+          "leading_eigenvalues": [
+            {
+              "real": 906.5248594778452,
+              "imag": 0.0,
+              "modulus": 906.5248594778452
+            },
+            {
+              "real": -279.864697060221,
+              "imag": 0.0,
+              "modulus": 279.864697060221
+            },
+            {
+              "real": 144.69644613098006,
+              "imag": 225.2076039206413,
+              "modulus": 267.68549902191575
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1859,
+        "positive_motor_reciprocal_edges": 2
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260837,
+      "tensor_sha256": "fe82d6a15005893585032e3de8ae4f0152a1eee63dd7d78fb4dd7d58dc766889",
+      "forward_distance_m": 0.0066566326247295745,
+      "signed_spectral_radius": 310.5959870456529,
+      "signed_leading_real": 310.5959870456529,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1379.3211259852224,
+      "positive_spectral_radius": 770.3740050874594,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5852625746962682,
+      "motor_positive_mass_fraction": 0.5599740743637085,
+      "motor_positive_reciprocal_fraction": 0.000676178240584218,
+      "motor_positive_reciprocal_mass_fraction": 0.0006282655522227287,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 284.7796936035156,
+          "spectral_radius": 310.5959870456529,
+          "leading_eigenvalues": [
+            {
+              "real": 310.5959870456529,
+              "imag": 0.0,
+              "modulus": 310.5959870456529
+            },
+            {
+              "real": -202.1202895042577,
+              "imag": 226.48708026204739,
+              "modulus": 303.56055236955945
+            },
+            {
+              "real": -202.1202895042577,
+              "imag": -226.48708026204739,
+              "modulus": 303.56055236955945
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 309.9122009277344,
+          "spectral_radius": 1379.3211259852224,
+          "leading_eigenvalues": [
+            {
+              "real": 1379.3211259852224,
+              "imag": 0.0,
+              "modulus": 1379.3211259852224
+            },
+            {
+              "real": 1024.1182113966936,
+              "imag": 0.0,
+              "modulus": 1024.1182113966936
+            },
+            {
+              "real": 949.2944146983805,
+              "imag": 0.0,
+              "modulus": 949.2944146983805
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 199.363525390625,
+          "spectral_radius": 770.3740050874594,
+          "leading_eigenvalues": [
+            {
+              "real": 770.3740050874594,
+              "imag": 0.0,
+              "modulus": 770.3740050874594
+            },
+            {
+              "real": 564.390754152694,
+              "imag": 0.0,
+              "modulus": 564.390754152694
+            },
+            {
+              "real": 539.045826631891,
+              "imag": 0.0,
+              "modulus": 539.045826631891
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14789,
+        "positive_reciprocal_edges": 15801,
+        "positive_motor_reciprocal_edges": 10
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260837,
+      "tensor_sha256": "896935d082fa011080f2d79ab6ddc76274096f408e704a5808e46b7d53ac8405",
+      "forward_distance_m": -0.03212290164674252,
+      "signed_spectral_radius": 405.5261048853844,
+      "signed_leading_real": 79.73027855012563,
+      "signed_leading_imag": 397.61099635929486,
+      "absolute_spectral_radius": 1671.5589319688024,
+      "positive_spectral_radius": 911.9298003913343,
+      "motor_source_hhi": 0.00023028637520182323,
+      "motor_source_top10_share": 0.011080770905061538,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 2.81741358776344e-05,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 349.369140625,
+          "spectral_radius": 405.5261048853844,
+          "leading_eigenvalues": [
+            {
+              "real": 79.73027855012563,
+              "imag": 397.61099635929486,
+              "modulus": 405.5261048853844
+            },
+            {
+              "real": 79.73027855012563,
+              "imag": -397.61099635929486,
+              "modulus": 405.5261048853844
+            },
+            {
+              "real": -102.03973222119423,
+              "imag": 372.402633611715,
+              "modulus": 386.1292898404811
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 340.3409423828125,
+          "spectral_radius": 1671.5589319688024,
+          "leading_eigenvalues": [
+            {
+              "real": 1671.5589319688024,
+              "imag": 0.0,
+              "modulus": 1671.5589319688024
+            },
+            {
+              "real": 393.5002295767968,
+              "imag": 0.0,
+              "modulus": 393.5002295767968
+            },
+            {
+              "real": 332.11573993376896,
+              "imag": 209.14399487091666,
+              "modulus": 392.48194264490803
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 233.20127868652344,
+          "spectral_radius": 911.9298003913343,
+          "leading_eigenvalues": [
+            {
+              "real": 911.9298003913343,
+              "imag": 0.0,
+              "modulus": 911.9298003913343
+            },
+            {
+              "real": 88.78344120644361,
+              "imag": 271.38886785189015,
+              "modulus": 285.5423209025043
+            },
+            {
+              "real": 88.78344120644361,
+              "imag": -271.38886785189015,
+              "modulus": 285.5423209025043
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1801,
+        "positive_motor_reciprocal_edges": 2
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260838,
+      "tensor_sha256": "508d9b8c00be6a2e6ee2bbb621022132d890adde93dc1fc500ecfa10ba968f38",
+      "forward_distance_m": 0.007807474068083591,
+      "signed_spectral_radius": 300.7437183988643,
+      "signed_leading_real": -296.9602725787081,
+      "signed_leading_imag": 47.553976346408206,
+      "absolute_spectral_radius": 1366.2464546417746,
+      "positive_spectral_radius": 767.704431234329,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5780600736079782,
+      "motor_positive_mass_fraction": 0.560916543006897,
+      "motor_positive_reciprocal_fraction": 0.0008899842541247347,
+      "motor_positive_reciprocal_mass_fraction": 0.0012621779460459948,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 278.14825439453125,
+          "spectral_radius": 300.7437183988643,
+          "leading_eigenvalues": [
+            {
+              "real": -296.9602725787081,
+              "imag": 47.553976346408206,
+              "modulus": 300.74371839886425
+            },
+            {
+              "real": -296.9602725787081,
+              "imag": -47.553976346408206,
+              "modulus": 300.74371839886425
+            },
+            {
+              "real": -210.86059327695563,
+              "imag": 210.10700305709366,
+              "modulus": 297.66951898161034
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 293.2811279296875,
+          "spectral_radius": 1366.2464546417746,
+          "leading_eigenvalues": [
+            {
+              "real": 1366.2464546417746,
+              "imag": 0.0,
+              "modulus": 1366.2464546417746
+            },
+            {
+              "real": 1004.428597077659,
+              "imag": 0.0,
+              "modulus": 1004.428597077659
+            },
+            {
+              "real": 958.9657845640302,
+              "imag": 0.0,
+              "modulus": 958.9657845640302
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 200.37339782714844,
+          "spectral_radius": 767.704431234329,
+          "leading_eigenvalues": [
+            {
+              "real": 767.704431234329,
+              "imag": 0.0,
+              "modulus": 767.704431234329
+            },
+            {
+              "real": 568.9544424758703,
+              "imag": 0.0,
+              "modulus": 568.9544424758703
+            },
+            {
+              "real": 526.0565309558111,
+              "imag": 0.0,
+              "modulus": 526.0565309558111
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14607,
+        "positive_reciprocal_edges": 15819,
+        "positive_motor_reciprocal_edges": 13
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260838,
+      "tensor_sha256": "2d72bae7d4154187ef0530cf4679f1b8423b03ebef5284d3e958c7fe91d981e6",
+      "forward_distance_m": -0.0495071422580491,
+      "signed_spectral_radius": 400.6060456248445,
+      "signed_leading_real": -379.4375092455898,
+      "signed_leading_imag": 128.50050727011916,
+      "absolute_spectral_radius": 1667.758325660832,
+      "positive_spectral_radius": 909.9159963569904,
+      "motor_source_hhi": 0.0002298322016008458,
+      "motor_source_top10_share": 0.01021013890537813,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 2.81741358776344e-05,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 343.27032470703125,
+          "spectral_radius": 400.6060456248445,
+          "leading_eigenvalues": [
+            {
+              "real": -379.4375092455898,
+              "imag": 128.50050727011916,
+              "modulus": 400.6060456248445
+            },
+            {
+              "real": -379.4375092455898,
+              "imag": -128.50050727011916,
+              "modulus": 400.6060456248445
+            },
+            {
+              "real": 273.27011990453514,
+              "imag": 291.0301605169971,
+              "modulus": 399.2181267968529
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 349.9593505859375,
+          "spectral_radius": 1667.758325660832,
+          "leading_eigenvalues": [
+            {
+              "real": 1667.758325660832,
+              "imag": 0.0,
+              "modulus": 1667.758325660832
+            },
+            {
+              "real": 417.04590550909853,
+              "imag": 11.812526555893927,
+              "modulus": 417.21316264655127
+            },
+            {
+              "real": 417.04590550909853,
+              "imag": -11.812526555893927,
+              "modulus": 417.21316264655127
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 234.75030517578125,
+          "spectral_radius": 909.9159963569904,
+          "leading_eigenvalues": [
+            {
+              "real": 909.9159963569904,
+              "imag": 0.0,
+              "modulus": 909.9159963569904
+            },
+            {
+              "real": 256.2038850927752,
+              "imag": 50.72164594436642,
+              "modulus": 261.17640801561237
+            },
+            {
+              "real": 256.2038850927752,
+              "imag": -50.72164594436642,
+              "modulus": 261.17640801561237
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1807,
+        "positive_motor_reciprocal_edges": 1
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260839,
+      "tensor_sha256": "3bce21891dc3cafb0a3ade56a38e8735f9eeaf7b15da1d9a8d275969f027df86",
+      "forward_distance_m": 0.009503505364844646,
+      "signed_spectral_radius": 305.1006945012545,
+      "signed_leading_real": 243.65959319779938,
+      "signed_leading_imag": 183.6203595134013,
+      "absolute_spectral_radius": 1375.5118240331883,
+      "positive_spectral_radius": 772.4313816790844,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5784162412442123,
+      "motor_positive_mass_fraction": 0.5560992956161499,
+      "motor_positive_reciprocal_fraction": 0.0008894362342638204,
+      "motor_positive_reciprocal_mass_fraction": 0.0007466419483534992,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 283.5086975097656,
+          "spectral_radius": 305.1006945012545,
+          "leading_eigenvalues": [
+            {
+              "real": 243.65959319779938,
+              "imag": 183.6203595134013,
+              "modulus": 305.1006945012545
+            },
+            {
+              "real": 243.65959319779938,
+              "imag": -183.6203595134013,
+              "modulus": 305.1006945012545
+            },
+            {
+              "real": -240.7247253420416,
+              "imag": -184.6475660423083,
+              "modulus": 303.3860857658933
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 293.99151611328125,
+          "spectral_radius": 1375.5118240331883,
+          "leading_eigenvalues": [
+            {
+              "real": 1375.5118240331883,
+              "imag": 0.0,
+              "modulus": 1375.5118240331883
+            },
+            {
+              "real": 1002.3388909625548,
+              "imag": 0.0,
+              "modulus": 1002.3388909625548
+            },
+            {
+              "real": 971.933732011461,
+              "imag": 0.0,
+              "modulus": 971.933732011461
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 211.17922973632812,
+          "spectral_radius": 772.4313816790844,
+          "leading_eigenvalues": [
+            {
+              "real": 772.4313816790844,
+              "imag": 0.0,
+              "modulus": 772.4313816790844
+            },
+            {
+              "real": 559.7022683727566,
+              "imag": 0.0,
+              "modulus": 559.7022683727566
+            },
+            {
+              "real": 549.7430507497422,
+              "imag": 0.0,
+              "modulus": 549.7430507497422
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14616,
+        "positive_reciprocal_edges": 15815,
+        "positive_motor_reciprocal_edges": 13
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260839,
+      "tensor_sha256": "309a016cc574c682c70e19f146a31af5fe2d4fd2e1a451ce8752059af35b36e9",
+      "forward_distance_m": -0.018656623271262475,
+      "signed_spectral_radius": 469.5992300428557,
+      "signed_leading_real": -469.5992300428557,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1666.5375547093897,
+      "positive_spectral_radius": 904.5971559573024,
+      "motor_source_hhi": 0.00023147035879609551,
+      "motor_source_top10_share": 0.011397364359491867,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0,
+      "motor_positive_reciprocal_mass_fraction": 0.0,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 326.8695373535156,
+          "spectral_radius": 469.5992300428557,
+          "leading_eigenvalues": [
+            {
+              "real": -469.5992300428557,
+              "imag": 0.0,
+              "modulus": 469.5992300428557
+            },
+            {
+              "real": 113.04996579205681,
+              "imag": 412.72827217532057,
+              "modulus": 427.93097739987314
+            },
+            {
+              "real": 113.04996579205681,
+              "imag": -412.72827217532057,
+              "modulus": 427.93097739987314
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 334.03204345703125,
+          "spectral_radius": 1666.5375547093897,
+          "leading_eigenvalues": [
+            {
+              "real": 1666.5375547093897,
+              "imag": 0.0,
+              "modulus": 1666.5375547093897
+            },
+            {
+              "real": 478.4069051914032,
+              "imag": 0.0,
+              "modulus": 478.4069051914032
+            },
+            {
+              "real": -185.30021253840079,
+              "imag": 396.93115492964523,
+              "modulus": 438.0530909839109
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 233.60809326171875,
+          "spectral_radius": 904.5971559573024,
+          "leading_eigenvalues": [
+            {
+              "real": 904.5971559573024,
+              "imag": 0.0,
+              "modulus": 904.5971559573024
+            },
+            {
+              "real": -255.22644993149697,
+              "imag": -95.56921955368222,
+              "modulus": 272.53259707920233
+            },
+            {
+              "real": -255.22644993149697,
+              "imag": 95.56921955368222,
+              "modulus": 272.53259707920233
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1814,
+        "positive_motor_reciprocal_edges": 0
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260840,
+      "tensor_sha256": "95493f9e4cbd496e3e0d97f8979c0dea22d68298ff2db6c206143f81156f700e",
+      "forward_distance_m": -0.024653531782033663,
+      "signed_spectral_radius": 377.14905304913526,
+      "signed_leading_real": -19.59819021507001,
+      "signed_leading_imag": 376.6395082252436,
+      "absolute_spectral_radius": 1372.706618709507,
+      "positive_spectral_radius": 774.3132894559544,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5836400332423127,
+      "motor_positive_mass_fraction": 0.5509535074234009,
+      "motor_positive_reciprocal_fraction": 0.0009492812584757255,
+      "motor_positive_reciprocal_mass_fraction": 0.0008288940880447626,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 285.1495666503906,
+          "spectral_radius": 377.14905304913526,
+          "leading_eigenvalues": [
+            {
+              "real": -19.59819021507001,
+              "imag": 376.6395082252436,
+              "modulus": 377.14905304913526
+            },
+            {
+              "real": -19.59819021507001,
+              "imag": -376.6395082252436,
+              "modulus": 377.14905304913526
+            },
+            {
+              "real": 320.22902680931804,
+              "imag": 6.999589749981776,
+              "modulus": 320.30551644939084
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 304.9051818847656,
+          "spectral_radius": 1372.706618709507,
+          "leading_eigenvalues": [
+            {
+              "real": 1372.706618709507,
+              "imag": 0.0,
+              "modulus": 1372.706618709507
+            },
+            {
+              "real": 1014.0184042788717,
+              "imag": 0.0,
+              "modulus": 1014.0184042788717
+            },
+            {
+              "real": 970.0246003057443,
+              "imag": 0.0,
+              "modulus": 970.0246003057443
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 218.78012084960938,
+          "spectral_radius": 774.3132894559544,
+          "leading_eigenvalues": [
+            {
+              "real": 774.3132894559544,
+              "imag": 0.0,
+              "modulus": 774.3132894559544
+            },
+            {
+              "real": 577.6761154596174,
+              "imag": 0.0,
+              "modulus": 577.6761154596174
+            },
+            {
+              "real": 548.8898170257097,
+              "imag": 0.0,
+              "modulus": 548.8898170257097
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14748,
+        "positive_reciprocal_edges": 15491,
+        "positive_motor_reciprocal_edges": 14
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260840,
+      "tensor_sha256": "f1583b8d338aba027c5844ca02f56b7ade9f314ad181d5d77536c6173f404739",
+      "forward_distance_m": -0.004957657473712184,
+      "signed_spectral_radius": 408.7902816825755,
+      "signed_leading_real": -371.1560131936699,
+      "signed_leading_imag": -171.32632100264027,
+      "absolute_spectral_radius": 1659.123811186871,
+      "positive_spectral_radius": 908.5600498961792,
+      "motor_source_hhi": 0.00022982593713738399,
+      "motor_source_top10_share": 0.011278641814080495,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 0.00013574810873251408,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 312.0018615722656,
+          "spectral_radius": 408.7902816825755,
+          "leading_eigenvalues": [
+            {
+              "real": -371.1560131936699,
+              "imag": -171.32632100264027,
+              "modulus": 408.7902816825754
+            },
+            {
+              "real": -371.1560131936699,
+              "imag": 171.32632100264027,
+              "modulus": 408.7902816825754
+            },
+            {
+              "real": -82.50110639094854,
+              "imag": 393.916035542223,
+              "modulus": 402.46276301421045
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 345.1295471191406,
+          "spectral_radius": 1659.123811186871,
+          "leading_eigenvalues": [
+            {
+              "real": 1659.123811186871,
+              "imag": 0.0,
+              "modulus": 1659.123811186871
+            },
+            {
+              "real": -337.30030195315805,
+              "imag": 225.56547188422002,
+              "modulus": 405.772443376879
+            },
+            {
+              "real": -337.30030195315805,
+              "imag": -225.56547188422002,
+              "modulus": 405.772443376879
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 235.95277404785156,
+          "spectral_radius": 908.5600498961792,
+          "leading_eigenvalues": [
+            {
+              "real": 908.5600498961792,
+              "imag": 0.0,
+              "modulus": 908.5600498961792
+            },
+            {
+              "real": -256.0381190279449,
+              "imag": 132.35366681363712,
+              "modulus": 288.22389129699735
+            },
+            {
+              "real": -256.0381190279449,
+              "imag": -132.35366681363712,
+              "modulus": 288.22389129699735
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1850,
+        "positive_motor_reciprocal_edges": 2
+      }
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260841,
+      "tensor_sha256": "18564b5726e05d56784e39bf6769d479b4c9dcd2f6a63470d0f97c2e564d9da2",
+      "forward_distance_m": -0.0570010929985403,
+      "signed_spectral_radius": 300.57679321993135,
+      "signed_leading_real": -300.57679321993135,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1359.9152889035104,
+      "positive_spectral_radius": 761.9549006572083,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5887451026950018,
+      "motor_positive_mass_fraction": 0.5742202401161194,
+      "motor_positive_reciprocal_fraction": 0.0008738320898030517,
+      "motor_positive_reciprocal_mass_fraction": 0.0007081481162458658,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 289.03155517578125,
+          "spectral_radius": 300.57679321993135,
+          "leading_eigenvalues": [
+            {
+              "real": -300.57679321993135,
+              "imag": 0.0,
+              "modulus": 300.57679321993135
+            },
+            {
+              "real": 299.82292929871943,
+              "imag": 0.0,
+              "modulus": 299.82292929871943
+            },
+            {
+              "real": 195.19088513728178,
+              "imag": 221.65355502511747,
+              "modulus": 295.34688096532915
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 294.914794921875,
+          "spectral_radius": 1359.9152889035104,
+          "leading_eigenvalues": [
+            {
+              "real": 1359.9152889035104,
+              "imag": 0.0,
+              "modulus": 1359.9152889035104
+            },
+            {
+              "real": 1009.5419273757029,
+              "imag": 0.0,
+              "modulus": 1009.5419273757029
+            },
+            {
+              "real": 944.5765026191617,
+              "imag": 0.0,
+              "modulus": 944.5765026191617
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 209.6230926513672,
+          "spectral_radius": 761.9549006572083,
+          "leading_eigenvalues": [
+            {
+              "real": 761.9549006572083,
+              "imag": 0.0,
+              "modulus": 761.9549006572083
+            },
+            {
+              "real": 563.5067674965363,
+              "imag": 0.0,
+              "modulus": 563.5067674965363
+            },
+            {
+              "real": 520.2743418191454,
+              "imag": 0.0,
+              "modulus": 520.2743418191454
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 14877,
+        "positive_reciprocal_edges": 15917,
+        "positive_motor_reciprocal_edges": 13
+      }
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260841,
+      "tensor_sha256": "894e84c69953c9024e8b850db233a6e77fdc48cd7db00ef263518f0abf8edf22",
+      "forward_distance_m": -0.018849965740609077,
+      "signed_spectral_radius": 410.42215786925436,
+      "signed_leading_real": -410.42215786925436,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1670.0910067195769,
+      "positive_spectral_radius": 918.1093529905007,
+      "motor_source_hhi": 0.00022977582142968993,
+      "motor_source_top10_share": 0.010962048359650164,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 7.427726814057678e-05,
+      "spectral": {
+        "signed": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 352.5828857421875,
+          "spectral_radius": 410.42215786925436,
+          "leading_eigenvalues": [
+            {
+              "real": -410.42215786925436,
+              "imag": 0.0,
+              "modulus": 410.42215786925436
+            },
+            {
+              "real": -190.34609530533976,
+              "imag": 359.8306858347152,
+              "modulus": 407.07463500723185
+            },
+            {
+              "real": -190.34609530533976,
+              "imag": -359.8306858347152,
+              "modulus": 407.07463500723185
+            }
+          ]
+        },
+        "absolute": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 328.9140625,
+          "spectral_radius": 1670.0910067195769,
+          "leading_eigenvalues": [
+            {
+              "real": 1670.0910067195769,
+              "imag": 0.0,
+              "modulus": 1670.0910067195769
+            },
+            {
+              "real": -403.62870835850003,
+              "imag": 31.194235499565846,
+              "modulus": 404.8323289209416
+            },
+            {
+              "real": -403.62870835850003,
+              "imag": -31.194235499565846,
+              "modulus": 404.8323289209416
+            }
+          ]
+        },
+        "positive": {
+          "steps_requested": 64,
+          "steps_used": 64,
+          "final_residual": 228.28848266601562,
+          "spectral_radius": 918.1093529905007,
+          "leading_eigenvalues": [
+            {
+              "real": 918.1093529905007,
+              "imag": 0.0,
+              "modulus": 918.1093529905007
+            },
+            {
+              "real": 256.371090372333,
+              "imag": -101.59939953490698,
+              "modulus": 275.7690591138763
+            },
+            {
+              "real": 256.371090372333,
+              "imag": 101.59939953490698,
+              "modulus": 275.7690591138763
+            }
+          ]
+        }
+      },
+      "graph_counts": {
+        "nodes": 11000,
+        "edges": 485074,
+        "motor_outputs": 260,
+        "motor_incoming_edges": 25269,
+        "positive_edges": 281958,
+        "positive_motor_incoming_edges": 15768,
+        "positive_reciprocal_edges": 1839,
+        "positive_motor_reciprocal_edges": 2
+      }
+    }
+  ],
+  "rows": [
+    {
+      "substrate": "real",
+      "kind": "real",
+      "seed": null,
+      "tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+      "forward_distance_m": 0.22407021664125976,
+      "signed_spectral_radius": 962.6405018286963,
+      "signed_leading_real": 576.2978967004692,
+      "signed_leading_imag": 771.0755280902251,
+      "absolute_spectral_radius": 2367.8410805029193,
+      "positive_spectral_radius": 898.6086342626988,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0006341958396752917,
+      "motor_positive_reciprocal_mass_fraction": 0.0010654946090653539
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260830,
+      "tensor_sha256": "67360b7214bfa3aca223090db15d076da56c371740929262893f4c5b916b55c2",
+      "forward_distance_m": -0.008438122240889075,
+      "signed_spectral_radius": 325.7396666414054,
+      "signed_leading_real": 325.7396666414054,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1371.0913371691051,
+      "positive_spectral_radius": 768.2895632358124,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5830464205152558,
+      "motor_positive_mass_fraction": 0.5668100118637085,
+      "motor_positive_reciprocal_fraction": 0.00095024774316161,
+      "motor_positive_reciprocal_mass_fraction": 0.0008960541454143822
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260830,
+      "tensor_sha256": "96dbbdf4bc869521d0889e2d0b9a0070966813ae705c9ac1449cf7eab3158ed3",
+      "forward_distance_m": -0.05324191616505726,
+      "signed_spectral_radius": 402.6622368446949,
+      "signed_leading_real": -152.2563825462666,
+      "signed_leading_imag": 372.76650996930783,
+      "absolute_spectral_radius": 1675.334878599415,
+      "positive_spectral_radius": 920.5550050917025,
+      "motor_source_hhi": 0.00022890819324023642,
+      "motor_source_top10_share": 0.010447583996200879,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 2.3051567040965892e-05
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260831,
+      "tensor_sha256": "6e55a4eb8d3ed084a99d4c57f56b4b15d2e68f8d71c27ae72e70fee0cf7758b3",
+      "forward_distance_m": 0.034012178266280814,
+      "signed_spectral_radius": 304.63601889431254,
+      "signed_leading_real": -302.16229190232355,
+      "signed_leading_imag": 38.74342989606081,
+      "absolute_spectral_radius": 1366.7078943654305,
+      "positive_spectral_radius": 766.1302187750787,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5790494281530729,
+      "motor_positive_mass_fraction": 0.560643196105957,
+      "motor_positive_reciprocal_fraction": 0.0008884636413340623,
+      "motor_positive_reciprocal_mass_fraction": 0.00046600954374298453
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260831,
+      "tensor_sha256": "8f791a8fece4d47c8467cb3fec2ade60637c41696f38e0b034f74b1adc96f835",
+      "forward_distance_m": -0.014707274389709918,
+      "signed_spectral_radius": 437.7224290721628,
+      "signed_leading_real": 372.31603436454685,
+      "signed_leading_imag": 230.17753032798882,
+      "absolute_spectral_radius": 1664.0339531340612,
+      "positive_spectral_radius": 908.2424678898258,
+      "motor_source_hhi": 0.00023104124304896507,
+      "motor_source_top10_share": 0.010764177450631207,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 1.2806425729650073e-05
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260832,
+      "tensor_sha256": "b3518f4e84380f3ca042b843e083d9f9d8b30b08cf751eb7a574a7e3d1c48ae1",
+      "forward_distance_m": -0.0264409282997825,
+      "signed_spectral_radius": 308.3568051814036,
+      "signed_leading_real": -0.05181053007501861,
+      "signed_leading_imag": 308.3568008287657,
+      "absolute_spectral_radius": 1355.1948315071954,
+      "positive_spectral_radius": 762.8810159518318,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.586054058332344,
+      "motor_positive_mass_fraction": 0.5694789290428162,
+      "motor_positive_reciprocal_fraction": 0.0007427915456816801,
+      "motor_positive_reciprocal_mass_fraction": 0.0006377683603204787
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260832,
+      "tensor_sha256": "2c091fc7e9f0333cc7343e42a4da0d5ea3127d525240307d1b4fe48babc6096e",
+      "forward_distance_m": -0.016825255121192387,
+      "signed_spectral_radius": 407.94141830226795,
+      "signed_leading_real": 407.94141830226795,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1664.5694332341147,
+      "positive_spectral_radius": 905.177139436893,
+      "motor_source_hhi": 0.00023367858216636524,
+      "motor_source_top10_share": 0.011634809450314615,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 4.354184784460813e-05
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260833,
+      "tensor_sha256": "443061a83e9d0d1ca81fb71ca4744a2850a322a2227e9a74c68b7107dd2963dc",
+      "forward_distance_m": 0.00914528064616469,
+      "signed_spectral_radius": 303.2833364316848,
+      "signed_leading_real": 298.8892205859115,
+      "signed_leading_imag": 51.43943987526314,
+      "absolute_spectral_radius": 1363.405277876198,
+      "positive_spectral_radius": 768.9678236730833,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5813447306976929,
+      "motor_positive_mass_fraction": 0.5588478446006775,
+      "motor_positive_reciprocal_fraction": 0.0006126616746085772,
+      "motor_positive_reciprocal_mass_fraction": 0.0005808387650176883
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260833,
+      "tensor_sha256": "e362d7c3771aa8e4c81e48eaf1bc8df4bd90d6985f2af67044e3a12406d2d857",
+      "forward_distance_m": -0.030573504312909443,
+      "signed_spectral_radius": 628.1756584626557,
+      "signed_leading_real": -628.1756584626557,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1681.1775013774281,
+      "positive_spectral_radius": 921.0544852605078,
+      "motor_source_hhi": 0.00023176478857879813,
+      "motor_source_top10_share": 0.010645454905219835,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0,
+      "motor_positive_reciprocal_mass_fraction": 0.0
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260834,
+      "tensor_sha256": "96d8244a7687a6fb01040f8e3f942efaabdd2ff06f1bd896579c3fc37e95c03b",
+      "forward_distance_m": -0.024595911864475822,
+      "signed_spectral_radius": 304.77440851221115,
+      "signed_leading_real": -190.93022423430574,
+      "signed_leading_imag": 237.55649761226465,
+      "absolute_spectral_radius": 1368.4637129409537,
+      "positive_spectral_radius": 772.4075806391154,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5786141121532312,
+      "motor_positive_mass_fraction": 0.5595095157623291,
+      "motor_positive_reciprocal_fraction": 0.0006839477463921757,
+      "motor_positive_reciprocal_mass_fraction": 0.0006160329794511199
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260834,
+      "tensor_sha256": "94d62dc50247f75c2e77cef3ecec5fa30d99c91c558cac5f85dd386a869aa722",
+      "forward_distance_m": 0.014165175459250712,
+      "signed_spectral_radius": 388.46109732142395,
+      "signed_leading_real": 82.74723509082324,
+      "signed_leading_imag": -379.5456747441457,
+      "absolute_spectral_radius": 1666.2037571225328,
+      "positive_spectral_radius": 907.3033962961588,
+      "motor_source_hhi": 0.00022690356493247385,
+      "motor_source_top10_share": 0.010764177450631207,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 0.0008913272176869214
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260835,
+      "tensor_sha256": "3659cd3039d505bfb41f4771a599e62d22d7d3bc750e75c0565d612f5d37f288",
+      "forward_distance_m": -0.007649197850164845,
+      "signed_spectral_radius": 294.6878982147421,
+      "signed_leading_real": 294.6878982147421,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1367.4496196577593,
+      "positive_spectral_radius": 767.8951937356059,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5865289485139895,
+      "motor_positive_mass_fraction": 0.5588133335113525,
+      "motor_positive_reciprocal_fraction": 0.0007421901356183794,
+      "motor_positive_reciprocal_mass_fraction": 0.0007917317561805248
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260835,
+      "tensor_sha256": "cb1fb962d497c85ab81e62991d4fdfebc3cda5a7138841f6e00ce72bee2ebb92",
+      "forward_distance_m": -0.06875358116254442,
+      "signed_spectral_radius": 519.1941493948336,
+      "signed_leading_real": -18.38863741865724,
+      "signed_leading_imag": 518.8684060334663,
+      "absolute_spectral_radius": 1674.6656851422104,
+      "positive_spectral_radius": 911.4663382504411,
+      "motor_source_hhi": 0.0002344491111721615,
+      "motor_source_top10_share": 0.010882899996042581,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0002536783358701167,
+      "motor_positive_reciprocal_mass_fraction": 0.00016136096382979304
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260836,
+      "tensor_sha256": "467925203f400bbf51648c3da9ab885e9a60c025e314ff79bbe60e0a856bccf6",
+      "forward_distance_m": -0.010653061825049638,
+      "signed_spectral_radius": 299.9644830955337,
+      "signed_leading_real": -185.92078311862025,
+      "signed_leading_imag": -235.39786218937866,
+      "absolute_spectral_radius": 1362.681879033868,
+      "positive_spectral_radius": 768.3110599761355,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5840753492421544,
+      "motor_positive_mass_fraction": 0.5617102384567261,
+      "motor_positive_reciprocal_fraction": 0.0004742868758045938,
+      "motor_positive_reciprocal_mass_fraction": 0.0004096495104022324
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260836,
+      "tensor_sha256": "d2e57272b7844a43326467f5686048d320a393c26ab1b1eb5ac85d8dcf4183d4",
+      "forward_distance_m": -0.0172130789935787,
+      "signed_spectral_radius": 409.9781224432748,
+      "signed_leading_real": 316.3261766826166,
+      "signed_leading_imag": -260.8060789695494,
+      "absolute_spectral_radius": 1653.8912115713874,
+      "positive_spectral_radius": 906.5248594778452,
+      "motor_source_hhi": 0.0002266749120161197,
+      "motor_source_top10_share": 0.010724603268827416,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 0.0004635926161427051
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260837,
+      "tensor_sha256": "fe82d6a15005893585032e3de8ae4f0152a1eee63dd7d78fb4dd7d58dc766889",
+      "forward_distance_m": 0.0066566326247295745,
+      "signed_spectral_radius": 310.5959870456529,
+      "signed_leading_real": 310.5959870456529,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1379.3211259852224,
+      "positive_spectral_radius": 770.3740050874594,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5852625746962682,
+      "motor_positive_mass_fraction": 0.5599740743637085,
+      "motor_positive_reciprocal_fraction": 0.000676178240584218,
+      "motor_positive_reciprocal_mass_fraction": 0.0006282655522227287
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260837,
+      "tensor_sha256": "896935d082fa011080f2d79ab6ddc76274096f408e704a5808e46b7d53ac8405",
+      "forward_distance_m": -0.03212290164674252,
+      "signed_spectral_radius": 405.5261048853844,
+      "signed_leading_real": 79.73027855012563,
+      "signed_leading_imag": 397.61099635929486,
+      "absolute_spectral_radius": 1671.5589319688024,
+      "positive_spectral_radius": 911.9298003913343,
+      "motor_source_hhi": 0.00023028637520182323,
+      "motor_source_top10_share": 0.011080770905061538,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 2.81741358776344e-05
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260838,
+      "tensor_sha256": "508d9b8c00be6a2e6ee2bbb621022132d890adde93dc1fc500ecfa10ba968f38",
+      "forward_distance_m": 0.007807474068083591,
+      "signed_spectral_radius": 300.7437183988643,
+      "signed_leading_real": -296.9602725787081,
+      "signed_leading_imag": 47.553976346408206,
+      "absolute_spectral_radius": 1366.2464546417746,
+      "positive_spectral_radius": 767.704431234329,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5780600736079782,
+      "motor_positive_mass_fraction": 0.560916543006897,
+      "motor_positive_reciprocal_fraction": 0.0008899842541247347,
+      "motor_positive_reciprocal_mass_fraction": 0.0012621779460459948
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260838,
+      "tensor_sha256": "2d72bae7d4154187ef0530cf4679f1b8423b03ebef5284d3e958c7fe91d981e6",
+      "forward_distance_m": -0.0495071422580491,
+      "signed_spectral_radius": 400.6060456248445,
+      "signed_leading_real": -379.4375092455898,
+      "signed_leading_imag": 128.50050727011916,
+      "absolute_spectral_radius": 1667.758325660832,
+      "positive_spectral_radius": 909.9159963569904,
+      "motor_source_hhi": 0.0002298322016008458,
+      "motor_source_top10_share": 0.01021013890537813,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 6.341958396752917e-05,
+      "motor_positive_reciprocal_mass_fraction": 2.81741358776344e-05
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260839,
+      "tensor_sha256": "3bce21891dc3cafb0a3ade56a38e8735f9eeaf7b15da1d9a8d275969f027df86",
+      "forward_distance_m": 0.009503505364844646,
+      "signed_spectral_radius": 305.1006945012545,
+      "signed_leading_real": 243.65959319779938,
+      "signed_leading_imag": 183.6203595134013,
+      "absolute_spectral_radius": 1375.5118240331883,
+      "positive_spectral_radius": 772.4313816790844,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5784162412442123,
+      "motor_positive_mass_fraction": 0.5560992956161499,
+      "motor_positive_reciprocal_fraction": 0.0008894362342638204,
+      "motor_positive_reciprocal_mass_fraction": 0.0007466419483534992
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260839,
+      "tensor_sha256": "309a016cc574c682c70e19f146a31af5fe2d4fd2e1a451ce8752059af35b36e9",
+      "forward_distance_m": -0.018656623271262475,
+      "signed_spectral_radius": 469.5992300428557,
+      "signed_leading_real": -469.5992300428557,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1666.5375547093897,
+      "positive_spectral_radius": 904.5971559573024,
+      "motor_source_hhi": 0.00023147035879609551,
+      "motor_source_top10_share": 0.011397364359491867,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.0,
+      "motor_positive_reciprocal_mass_fraction": 0.0
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260840,
+      "tensor_sha256": "95493f9e4cbd496e3e0d97f8979c0dea22d68298ff2db6c206143f81156f700e",
+      "forward_distance_m": -0.024653531782033663,
+      "signed_spectral_radius": 377.14905304913526,
+      "signed_leading_real": -19.59819021507001,
+      "signed_leading_imag": 376.6395082252436,
+      "absolute_spectral_radius": 1372.706618709507,
+      "positive_spectral_radius": 774.3132894559544,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5836400332423127,
+      "motor_positive_mass_fraction": 0.5509535074234009,
+      "motor_positive_reciprocal_fraction": 0.0009492812584757255,
+      "motor_positive_reciprocal_mass_fraction": 0.0008288940880447626
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260840,
+      "tensor_sha256": "f1583b8d338aba027c5844ca02f56b7ade9f314ad181d5d77536c6173f404739",
+      "forward_distance_m": -0.004957657473712184,
+      "signed_spectral_radius": 408.7902816825755,
+      "signed_leading_real": -371.1560131936699,
+      "signed_leading_imag": -171.32632100264027,
+      "absolute_spectral_radius": 1659.123811186871,
+      "positive_spectral_radius": 908.5600498961792,
+      "motor_source_hhi": 0.00022982593713738399,
+      "motor_source_top10_share": 0.011278641814080495,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 0.00013574810873251408
+    },
+    {
+      "substrate": "random",
+      "kind": "random-network",
+      "seed": 20260841,
+      "tensor_sha256": "18564b5726e05d56784e39bf6769d479b4c9dcd2f6a63470d0f97c2e564d9da2",
+      "forward_distance_m": -0.0570010929985403,
+      "signed_spectral_radius": 300.57679321993135,
+      "signed_leading_real": -300.57679321993135,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1359.9152889035104,
+      "positive_spectral_radius": 761.9549006572083,
+      "motor_source_hhi": 0.0003529007185388141,
+      "motor_source_top10_share": 0.019787090901895604,
+      "motor_positive_edge_fraction": 0.5887451026950018,
+      "motor_positive_mass_fraction": 0.5742202401161194,
+      "motor_positive_reciprocal_fraction": 0.0008738320898030517,
+      "motor_positive_reciprocal_mass_fraction": 0.0007081481162458658
+    },
+    {
+      "substrate": "rewired",
+      "kind": "rewired-network",
+      "seed": 20260841,
+      "tensor_sha256": "894e84c69953c9024e8b850db233a6e77fdc48cd7db00ef263518f0abf8edf22",
+      "forward_distance_m": -0.018849965740609077,
+      "signed_spectral_radius": 410.42215786925436,
+      "signed_leading_real": -410.42215786925436,
+      "signed_leading_imag": 0.0,
+      "absolute_spectral_radius": 1670.0910067195769,
+      "positive_spectral_radius": 918.1093529905007,
+      "motor_source_hhi": 0.00022977582142968993,
+      "motor_source_top10_share": 0.010962048359650164,
+      "motor_positive_edge_fraction": 0.6240056986821797,
+      "motor_positive_mass_fraction": 0.5572295188903809,
+      "motor_positive_reciprocal_fraction": 0.00012683916793505834,
+      "motor_positive_reciprocal_mass_fraction": 7.427726814057678e-05
+    }
+  ],
+  "real_vs_control_distributions": {
+    "random": {
+      "signed_spectral_radius": {
+        "metric": "signed_spectral_radius",
+        "real_value": 962.6405018286963,
+        "random_seed_values": [
+          325.7396666414054,
+          304.63601889431254,
+          308.3568051814036,
+          303.2833364316848,
+          304.77440851221115,
+          294.6878982147421,
+          299.9644830955337,
+          310.5959870456529,
+          300.7437183988643,
+          305.1006945012545,
+          377.14905304913526,
+          300.57679321993135
+        ],
+        "random_mean": 311.30073859884425,
+        "random_mean_ci_low": 302.28665050271314,
+        "random_mean_ci_high": 324.89382848223346,
+        "real_minus_random_mean": 651.339763229852,
+        "real_minus_random_mean_ci_low": 637.7466733464629,
+        "real_minus_random_mean_ci_high": 660.3538513259832,
+        "random_distribution_min": 294.6878982147421,
+        "random_distribution_max": 377.14905304913526,
+        "n_random_match_or_beat_real": 0
+      },
+      "signed_leading_real": {
+        "metric": "signed_leading_real",
+        "real_value": 576.2978967004692,
+        "random_seed_values": [
+          325.7396666414054,
+          -302.16229190232355,
+          -0.05181053007501861,
+          298.8892205859115,
+          -190.93022423430574,
+          294.6878982147421,
+          -185.92078311862025,
+          310.5959870456529,
+          -296.9602725787081,
+          243.65959319779938,
+          -19.59819021507001,
+          -300.57679321993135
+        ],
+        "random_mean": 14.780999990539778,
+        "random_mean_ci_low": -128.16579421179668,
+        "random_mean_ci_high": 157.29216527325266,
+        "real_minus_random_mean": 561.5168967099295,
+        "real_minus_random_mean_ci_low": 419.0057314272166,
+        "real_minus_random_mean_ci_high": 704.4636909122659,
+        "random_distribution_min": -302.16229190232355,
+        "random_distribution_max": 325.7396666414054,
+        "n_random_match_or_beat_real": 0
+      },
+      "signed_leading_imag": {
+        "metric": "signed_leading_imag",
+        "real_value": 771.0755280902251,
+        "random_seed_values": [
+          0.0,
+          38.74342989606081,
+          308.3568008287657,
+          51.43943987526314,
+          237.55649761226465,
+          0.0,
+          -235.39786218937866,
+          0.0,
+          47.553976346408206,
+          183.6203595134013,
+          376.6395082252436,
+          0.0
+        ],
+        "random_mean": 84.04267917566906,
+        "random_mean_ci_low": -4.729912562724976,
+        "random_mean_ci_high": 175.2607962095823,
+        "real_minus_random_mean": 687.0328489145561,
+        "real_minus_random_mean_ci_low": 595.8147318806429,
+        "real_minus_random_mean_ci_high": 775.8054406529501,
+        "random_distribution_min": -235.39786218937866,
+        "random_distribution_max": 376.6395082252436,
+        "n_random_match_or_beat_real": 0
+      },
+      "absolute_spectral_radius": {
+        "metric": "absolute_spectral_radius",
+        "real_value": 2367.8410805029193,
+        "random_seed_values": [
+          1371.0913371691051,
+          1366.7078943654305,
+          1355.1948315071954,
+          1363.405277876198,
+          1368.4637129409537,
+          1367.4496196577593,
+          1362.681879033868,
+          1379.3211259852224,
+          1366.2464546417746,
+          1375.5118240331883,
+          1372.706618709507,
+          1359.9152889035104
+        ],
+        "random_mean": 1367.3913220686427,
+        "random_mean_ci_low": 1363.7909114053566,
+        "random_mean_ci_high": 1371.0476225413713,
+        "real_minus_random_mean": 1000.4497584342766,
+        "real_minus_random_mean_ci_low": 996.793457961548,
+        "real_minus_random_mean_ci_high": 1004.0501690975627,
+        "random_distribution_min": 1355.1948315071954,
+        "random_distribution_max": 1379.3211259852224,
+        "n_random_match_or_beat_real": 0
+      },
+      "positive_spectral_radius": {
+        "metric": "positive_spectral_radius",
+        "real_value": 898.6086342626988,
+        "random_seed_values": [
+          768.2895632358124,
+          766.1302187750787,
+          762.8810159518318,
+          768.9678236730833,
+          772.4075806391154,
+          767.8951937356059,
+          768.3110599761355,
+          770.3740050874594,
+          767.704431234329,
+          772.4313816790844,
+          774.3132894559544,
+          761.9549006572083
+        ],
+        "random_mean": 768.4717053417248,
+        "random_mean_ci_low": 766.4525745443251,
+        "random_mean_ci_high": 770.4362963802143,
+        "real_minus_random_mean": 130.13692892097401,
+        "real_minus_random_mean_ci_low": 128.17233788248453,
+        "real_minus_random_mean_ci_high": 132.15605971837377,
+        "random_distribution_min": 761.9549006572083,
+        "random_distribution_max": 774.3132894559544,
+        "n_random_match_or_beat_real": 0
+      },
+      "motor_source_hhi": {
+        "metric": "motor_source_hhi",
+        "real_value": 0.0003529007185388141,
+        "random_seed_values": [
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141,
+          0.0003529007185388141
+        ],
+        "random_mean": 0.0003529007185388141,
+        "random_mean_ci_low": 0.0003529007185388141,
+        "random_mean_ci_high": 0.0003529007185388141,
+        "real_minus_random_mean": 0.0,
+        "real_minus_random_mean_ci_low": 0.0,
+        "real_minus_random_mean_ci_high": 0.0,
+        "random_distribution_min": 0.0003529007185388141,
+        "random_distribution_max": 0.0003529007185388141,
+        "n_random_match_or_beat_real": 12
+      },
+      "motor_source_top10_share": {
+        "metric": "motor_source_top10_share",
+        "real_value": 0.019787090901895604,
+        "random_seed_values": [
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604,
+          0.019787090901895604
+        ],
+        "random_mean": 0.0197870909018956,
+        "random_mean_ci_low": 0.0197870909018956,
+        "random_mean_ci_high": 0.0197870909018956,
+        "real_minus_random_mean": 3.469446951953614e-18,
+        "real_minus_random_mean_ci_low": 3.469446951953614e-18,
+        "real_minus_random_mean_ci_high": 3.469446951953614e-18,
+        "random_distribution_min": 0.019787090901895604,
+        "random_distribution_max": 0.019787090901895604,
+        "n_random_match_or_beat_real": 12
+      },
+      "motor_positive_edge_fraction": {
+        "metric": "motor_positive_edge_fraction",
+        "real_value": 0.6240056986821797,
+        "random_seed_values": [
+          0.5830464205152558,
+          0.5790494281530729,
+          0.586054058332344,
+          0.5813447306976929,
+          0.5786141121532312,
+          0.5865289485139895,
+          0.5840753492421544,
+          0.5852625746962682,
+          0.5780600736079782,
+          0.5784162412442123,
+          0.5836400332423127,
+          0.5887451026950018
+        ],
+        "random_mean": 0.5827364227577928,
+        "random_mean_ci_low": 0.5808038835463745,
+        "random_mean_ci_high": 0.5846920469085969,
+        "real_minus_random_mean": 0.041269275924386895,
+        "real_minus_random_mean_ci_low": 0.039313651773582814,
+        "real_minus_random_mean_ci_high": 0.04320181513580523,
+        "random_distribution_min": 0.5780600736079782,
+        "random_distribution_max": 0.5887451026950018,
+        "n_random_match_or_beat_real": 0
+      },
+      "motor_positive_mass_fraction": {
+        "metric": "motor_positive_mass_fraction",
+        "real_value": 0.5572295188903809,
+        "random_seed_values": [
+          0.5668100118637085,
+          0.560643196105957,
+          0.5694789290428162,
+          0.5588478446006775,
+          0.5595095157623291,
+          0.5588133335113525,
+          0.5617102384567261,
+          0.5599740743637085,
+          0.560916543006897,
+          0.5560992956161499,
+          0.5509535074234009,
+          0.5742202401161194
+        ],
+        "random_mean": 0.5614980608224869,
+        "random_mean_ci_low": 0.5582921082774799,
+        "random_mean_ci_high": 0.5649598026027282,
+        "real_minus_random_mean": -0.004268541932106018,
+        "real_minus_random_mean_ci_low": -0.007730283712347313,
+        "real_minus_random_mean_ci_high": -0.0010625893870989838,
+        "random_distribution_min": 0.5509535074234009,
+        "random_distribution_max": 0.5742202401161194,
+        "n_random_match_or_beat_real": 10
+      },
+      "motor_positive_reciprocal_fraction": {
+        "metric": "motor_positive_reciprocal_fraction",
+        "real_value": 0.0006341958396752917,
+        "random_seed_values": [
+          0.00095024774316161,
+          0.0008884636413340623,
+          0.0007427915456816801,
+          0.0006126616746085772,
+          0.0006839477463921757,
+          0.0007421901356183794,
+          0.0004742868758045938,
+          0.000676178240584218,
+          0.0008899842541247347,
+          0.0008894362342638204,
+          0.0009492812584757255,
+          0.0008738320898030517
+        ],
+        "random_mean": 0.0007811084533210524,
+        "random_mean_ci_low": 0.0006967065215225448,
+        "random_mean_ci_high": 0.0008590152116434517,
+        "real_minus_random_mean": -0.00014691261364576074,
+        "real_minus_random_mean_ci_low": -0.00022481937196816,
+        "real_minus_random_mean_ci_high": -6.251068184725312e-05,
+        "random_distribution_min": 0.0004742868758045938,
+        "random_distribution_max": 0.00095024774316161,
+        "n_random_match_or_beat_real": 10
+      },
+      "motor_positive_reciprocal_mass_fraction": {
+        "metric": "motor_positive_reciprocal_mass_fraction",
+        "real_value": 0.0010654946090653539,
+        "random_seed_values": [
+          0.0008960541454143822,
+          0.00046600954374298453,
+          0.0006377683603204787,
+          0.0005808387650176883,
+          0.0006160329794511199,
+          0.0007917317561805248,
+          0.0004096495104022324,
+          0.0006282655522227287,
+          0.0012621779460459948,
+          0.0007466419483534992,
+          0.0008288940880447626,
+          0.0007081481162458658
+        ],
+        "random_mean": 0.0007143510592868552,
+        "random_mean_ci_low": 0.0006024240768359354,
+        "random_mean_ci_high": 0.0008439626834539618,
+        "real_minus_random_mean": 0.0003511435497784987,
+        "real_minus_random_mean_ci_low": 0.00022153192561139202,
+        "real_minus_random_mean_ci_high": 0.0004630705322294185,
+        "random_distribution_min": 0.0004096495104022324,
+        "random_distribution_max": 0.0012621779460459948,
+        "n_random_match_or_beat_real": 1
+      }
+    },
+    "rewired": {
+      "signed_spectral_radius": {
+        "metric": "signed_spectral_radius",
+        "real_value": 962.6405018286963,
+        "random_seed_values": [
+          402.6622368446949,
+          437.7224290721628,
+          407.94141830226795,
+          628.1756584626557,
+          388.46109732142395,
+          519.1941493948336,
+          409.9781224432748,
+          405.5261048853844,
+          400.6060456248445,
+          469.5992300428557,
+          408.7902816825755,
+          410.42215786925436
+        ],
+        "random_mean": 440.7565776621857,
+        "random_mean_ci_low": 409.1244135330411,
+        "random_mean_ci_high": 482.48988827030536,
+        "real_minus_random_mean": 521.8839241665106,
+        "real_minus_random_mean_ci_low": 480.15061355839094,
+        "real_minus_random_mean_ci_high": 553.5160882956552,
+        "random_distribution_min": 388.46109732142395,
+        "random_distribution_max": 628.1756584626557,
+        "n_random_match_or_beat_real": 0
+      },
+      "signed_leading_real": {
+        "metric": "signed_leading_real",
+        "real_value": 576.2978967004692,
+        "random_seed_values": [
+          -152.2563825462666,
+          372.31603436454685,
+          407.94141830226795,
+          -628.1756584626557,
+          82.74723509082324,
+          -18.38863741865724,
+          316.3261766826166,
+          79.73027855012563,
+          -379.4375092455898,
+          -469.5992300428557,
+          -371.1560131936699,
+          -410.42215786925436
+        ],
+        "random_mean": -97.5312038157141,
+        "random_mean_ci_low": -288.7966926170825,
+        "random_mean_ci_high": 96.31206898708191,
+        "real_minus_random_mean": 673.8291005161833,
+        "real_minus_random_mean_ci_low": 479.98582771338727,
+        "real_minus_random_mean_ci_high": 865.0945893175517,
+        "random_distribution_min": -628.1756584626557,
+        "random_distribution_max": 407.94141830226795,
+        "n_random_match_or_beat_real": 0
+      },
+      "signed_leading_imag": {
+        "metric": "signed_leading_imag",
+        "real_value": 771.0755280902251,
+        "random_seed_values": [
+          372.76650996930783,
+          230.17753032798882,
+          0.0,
+          0.0,
+          -379.5456747441457,
+          518.8684060334663,
+          -260.8060789695494,
+          397.61099635929486,
+          128.50050727011916,
+          0.0,
+          -171.32632100264027,
+          0.0
+        ],
+        "random_mean": 69.68715627032013,
+        "random_mean_ci_low": -75.93948464555318,
+        "random_mean_ci_high": 217.25786866303505,
+        "real_minus_random_mean": 701.388371819905,
+        "real_minus_random_mean_ci_low": 553.81765942719,
+        "real_minus_random_mean_ci_high": 847.0150127357781,
+        "random_distribution_min": -379.5456747441457,
+        "random_distribution_max": 518.8684060334663,
+        "n_random_match_or_beat_real": 0
+      },
+      "absolute_spectral_radius": {
+        "metric": "absolute_spectral_radius",
+        "real_value": 2367.8410805029193,
+        "random_seed_values": [
+          1675.334878599415,
+          1664.0339531340612,
+          1664.5694332341147,
+          1681.1775013774281,
+          1666.2037571225328,
+          1674.6656851422104,
+          1653.8912115713874,
+          1671.5589319688024,
+          1667.758325660832,
+          1666.5375547093897,
+          1659.123811186871,
+          1670.0910067195769
+        ],
+        "random_mean": 1667.9121708688851,
+        "random_mean_ci_low": 1663.8968920306008,
+        "random_mean_ci_high": 1671.8718947979246,
+        "real_minus_random_mean": 699.9289096340342,
+        "real_minus_random_mean_ci_low": 695.9691857049946,
+        "real_minus_random_mean_ci_high": 703.9441884723185,
+        "random_distribution_min": 1653.8912115713874,
+        "random_distribution_max": 1681.1775013774281,
+        "n_random_match_or_beat_real": 0
+      },
+      "positive_spectral_radius": {
+        "metric": "positive_spectral_radius",
+        "real_value": 898.6086342626988,
+        "random_seed_values": [
+          920.5550050917025,
+          908.2424678898258,
+          905.177139436893,
+          921.0544852605078,
+          907.3033962961588,
+          911.4663382504411,
+          906.5248594778452,
+          911.9298003913343,
+          909.9159963569904,
+          904.5971559573024,
+          908.5600498961792,
+          918.1093529905007
+        ],
+        "random_mean": 911.1196706079736,
+        "random_mean_ci_low": 908.1752084823951,
+        "random_mean_ci_high": 914.3810829367461,
+        "real_minus_random_mean": -12.51103634527476,
+        "real_minus_random_mean_ci_low": -15.772448674047274,
+        "real_minus_random_mean_ci_high": -9.566574219696188,
+        "random_distribution_min": 904.5971559573024,
+        "random_distribution_max": 921.0544852605078,
+        "n_random_match_or_beat_real": 12
+      },
+      "motor_source_hhi": {
+        "metric": "motor_source_hhi",
+        "real_value": 0.0003529007185388141,
+        "random_seed_values": [
+          0.00022890819324023642,
+          0.00023104124304896507,
+          0.00023367858216636524,
+          0.00023176478857879813,
+          0.00022690356493247385,
+          0.0002344491111721615,
+          0.0002266749120161197,
+          0.00023028637520182323,
+          0.0002298322016008458,
+          0.00023147035879609551,
+          0.00022982593713738399,
+          0.00022977582142968993
+        ],
+        "random_mean": 0.0002303842574434132,
+        "random_mean_ci_low": 0.0002291342359634816,
+        "random_mean_ci_high": 0.00023164785845299478,
+        "real_minus_random_mean": 0.00012251646109540088,
+        "real_minus_random_mean_ci_low": 0.00012125286008581928,
+        "real_minus_random_mean_ci_high": 0.00012376648257533248,
+        "random_distribution_min": 0.0002266749120161197,
+        "random_distribution_max": 0.0002344491111721615,
+        "n_random_match_or_beat_real": 0
+      },
+      "motor_source_top10_share": {
+        "metric": "motor_source_top10_share",
+        "real_value": 0.019787090901895604,
+        "random_seed_values": [
+          0.010447583996200879,
+          0.010764177450631207,
+          0.011634809450314615,
+          0.010645454905219835,
+          0.010764177450631207,
+          0.010882899996042581,
+          0.010724603268827416,
+          0.011080770905061538,
+          0.01021013890537813,
+          0.011397364359491867,
+          0.011278641814080495,
+          0.010962048359650164
+        ],
+        "random_mean": 0.010899389238460828,
+        "random_mean_ci_low": 0.010685029087023625,
+        "random_mean_ci_high": 0.011123642935348977,
+        "real_minus_random_mean": 0.008887701663434775,
+        "real_minus_random_mean_ci_low": 0.008663447966546627,
+        "real_minus_random_mean_ci_high": 0.009102061814871979,
+        "random_distribution_min": 0.01021013890537813,
+        "random_distribution_max": 0.011634809450314615,
+        "n_random_match_or_beat_real": 0
+      },
+      "motor_positive_edge_fraction": {
+        "metric": "motor_positive_edge_fraction",
+        "real_value": 0.6240056986821797,
+        "random_seed_values": [
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797,
+          0.6240056986821797
+        ],
+        "random_mean": 0.6240056986821798,
+        "random_mean_ci_low": 0.6240056986821798,
+        "random_mean_ci_high": 0.6240056986821798,
+        "real_minus_random_mean": -1.1102230246251565e-16,
+        "real_minus_random_mean_ci_low": -1.1102230246251565e-16,
+        "real_minus_random_mean_ci_high": -1.1102230246251565e-16,
+        "random_distribution_min": 0.6240056986821797,
+        "random_distribution_max": 0.6240056986821797,
+        "n_random_match_or_beat_real": 12
+      },
+      "motor_positive_mass_fraction": {
+        "metric": "motor_positive_mass_fraction",
+        "real_value": 0.5572295188903809,
+        "random_seed_values": [
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809,
+          0.5572295188903809
+        ],
+        "random_mean": 0.5572295188903809,
+        "random_mean_ci_low": 0.5572295188903809,
+        "random_mean_ci_high": 0.5572295188903809,
+        "real_minus_random_mean": 0.0,
+        "real_minus_random_mean_ci_low": 0.0,
+        "real_minus_random_mean_ci_high": 0.0,
+        "random_distribution_min": 0.5572295188903809,
+        "random_distribution_max": 0.5572295188903809,
+        "n_random_match_or_beat_real": 12
+      },
+      "motor_positive_reciprocal_fraction": {
+        "metric": "motor_positive_reciprocal_fraction",
+        "real_value": 0.0006341958396752917,
+        "random_seed_values": [
+          6.341958396752917e-05,
+          6.341958396752917e-05,
+          6.341958396752917e-05,
+          0.0,
+          0.00012683916793505834,
+          0.0002536783358701167,
+          0.00012683916793505834,
+          0.00012683916793505834,
+          6.341958396752917e-05,
+          0.0,
+          0.00012683916793505834,
+          0.00012683916793505834
+        ],
+        "random_mean": 9.512937595129375e-05,
+        "random_mean_ci_low": 5.813461863690174e-05,
+        "random_mean_ci_high": 0.00013212413326568577,
+        "real_minus_random_mean": 0.0005390664637239979,
+        "real_minus_random_mean_ci_low": 0.0005020717064096059,
+        "real_minus_random_mean_ci_high": 0.00057606122103839,
+        "random_distribution_min": 0.0,
+        "random_distribution_max": 0.0002536783358701167,
+        "n_random_match_or_beat_real": 0
+      },
+      "motor_positive_reciprocal_mass_fraction": {
+        "metric": "motor_positive_reciprocal_mass_fraction",
+        "real_value": 0.0010654946090653539,
+        "random_seed_values": [
+          2.3051567040965892e-05,
+          1.2806425729650073e-05,
+          4.354184784460813e-05,
+          0.0,
+          0.0008913272176869214,
+          0.00016136096382979304,
+          0.0004635926161427051,
+          2.81741358776344e-05,
+          2.81741358776344e-05,
+          0.0,
+          0.00013574810873251408,
+          7.427726814057678e-05
+        ],
+        "random_mean": 0.00015517119057525028,
+        "random_mean_ci_low": 3.863271725397984e-05,
+        "random_mean_ci_high": 0.0003182396758499332,
+        "real_minus_random_mean": 0.0009103234184901036,
+        "real_minus_random_mean_ci_low": 0.0007472549332154207,
+        "real_minus_random_mean_ci_high": 0.001026861891811374,
+        "random_distribution_min": 0.0,
+        "random_distribution_max": 0.0008913272176869214,
+        "n_random_match_or_beat_real": 0
+      }
+    }
+  },
+  "correlations": {
+    "random_plus_rewired": [
+      {
+        "metric": "signed_spectral_radius",
+        "n": 24,
+        "pearson": {
+          "r": -0.4417015993121952,
+          "ci_low": -0.7265342475447221,
+          "ci_high": -0.10391072333500263,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.38956521739130434,
+          "ci_low": -0.682595352915388,
+          "ci_high": 0.015374164300198577,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "signed_leading_real",
+        "n": 24,
+        "pearson": {
+          "r": 0.24829261187710053,
+          "ci_low": -0.06459965938520587,
+          "ci_high": 0.5670437062902426,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.2982608695652174,
+          "ci_low": -0.08384378242266982,
+          "ci_high": 0.5694203421309122,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "signed_leading_imag",
+        "n": 24,
+        "pearson": {
+          "r": -0.5140064331628807,
+          "ci_low": -0.7522848086243585,
+          "ci_high": -0.1710434972663904,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.44383232101672443,
+          "ci_low": -0.7503083366835817,
+          "ci_high": -0.014383971880057503,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "absolute_spectral_radius",
+        "n": 24,
+        "pearson": {
+          "r": -0.38430389180378505,
+          "ci_low": -0.6875167891276563,
+          "ci_high": 0.003733006073437144,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.3913043478260869,
+          "ci_low": -0.7734058015922474,
+          "ci_high": 0.09559200954153158,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "positive_spectral_radius",
+        "n": 24,
+        "pearson": {
+          "r": -0.3892363548640272,
+          "ci_low": -0.6919327512395383,
+          "ci_high": -0.004267865594965607,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.39999999999999997,
+          "ci_low": -0.7677869925796595,
+          "ci_high": 0.07975500680010914,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_source_hhi",
+        "n": 24,
+        "pearson": {
+          "r": 0.37323325588434303,
+          "ci_low": -0.0069520441612471815,
+          "ci_high": 0.6765114458257319,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.24346561613282505,
+          "ci_low": -0.1923986586429216,
+          "ci_high": 0.6414308233462162,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_source_top10_share",
+        "n": 24,
+        "pearson": {
+          "r": 0.3957716107279667,
+          "ci_low": 0.012369752145446375,
+          "ci_high": 0.698929693974365,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.41687575479144373,
+          "ci_low": -0.009916464008797286,
+          "ci_high": 0.7444397962201181,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_edge_fraction",
+        "n": 24,
+        "pearson": {
+          "r": -0.42825957283170346,
+          "ci_low": -0.7063765630421778,
+          "ci_high": -0.0646683662203818,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.4776386514972217,
+          "ci_low": -0.7732684456467922,
+          "ci_high": -0.08152649292915502,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_mass_fraction",
+        "n": 24,
+        "pearson": {
+          "r": -0.11381857427608592,
+          "ci_low": -0.49835881956202965,
+          "ci_high": 0.4075724600593176,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.1300961307579981,
+          "ci_low": -0.31829392744306584,
+          "ci_high": 0.5752816800177476,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_reciprocal_fraction",
+        "n": 24,
+        "pearson": {
+          "r": 0.3409521096134418,
+          "ci_low": -0.04827660640452861,
+          "ci_high": 0.6634115419380254,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.3269937379671748,
+          "ci_low": -0.07433367117335646,
+          "ci_high": 0.6405189741631465,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_reciprocal_mass_fraction",
+        "n": 24,
+        "pearson": {
+          "r": 0.447927025148426,
+          "ci_low": 0.1428920968886917,
+          "ci_high": 0.6924987430297515,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.44454114688187024,
+          "ci_low": 0.06356870555752842,
+          "ci_high": 0.7044418246651017,
+          "degenerate": false
+        }
+      }
+    ],
+    "random": [
+      {
+        "metric": "signed_spectral_radius",
+        "n": 12,
+        "pearson": {
+          "r": -0.19056154087184993,
+          "ci_low": -0.6401707177559512,
+          "ci_high": 0.34306790934308484,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.09090909090909093,
+          "ci_low": -0.6344086021505376,
+          "ci_high": 0.484375,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "signed_leading_real",
+        "n": 12,
+        "pearson": {
+          "r": 0.21994277296369713,
+          "ci_low": -0.42999087018632937,
+          "ci_high": 0.8827160079547259,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.1258741258741259,
+          "ci_low": -0.5555555555555556,
+          "ci_high": 0.7634408602150538,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "signed_leading_imag",
+        "n": 12,
+        "pearson": {
+          "r": -0.21101717383732146,
+          "ci_low": -0.7751905747640041,
+          "ci_high": 0.29836649602742743,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.09254134140073665,
+          "ci_low": -0.7140268457370925,
+          "ci_high": 0.7283083660607603,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "absolute_spectral_radius",
+        "n": 12,
+        "pearson": {
+          "r": 0.4001595758165647,
+          "ci_low": -0.2219238478552857,
+          "ci_high": 0.7404075310994577,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.35664335664335667,
+          "ci_low": -0.3906810035842294,
+          "ci_high": 0.800711743772242,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "positive_spectral_radius",
+        "n": 12,
+        "pearson": {
+          "r": 0.26684507352783615,
+          "ci_low": -0.7472117062069904,
+          "ci_high": 0.8595285000368451,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.17482517482517487,
+          "ci_low": -0.6928571428571428,
+          "ci_high": 0.7956204379562044,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_source_hhi",
+        "n": 12,
+        "pearson": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        },
+        "spearman": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        }
+      },
+      {
+        "metric": "motor_source_top10_share",
+        "n": 12,
+        "pearson": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        },
+        "spearman": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        }
+      },
+      {
+        "metric": "motor_positive_edge_fraction",
+        "n": 12,
+        "pearson": {
+          "r": -0.6350191115265409,
+          "ci_low": -0.9121436309067038,
+          "ci_high": -0.0409994785999537,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.6153846153846154,
+          "ci_low": -0.9127272727272727,
+          "ci_high": -0.03597122302158273,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_mass_fraction",
+        "n": 12,
+        "pearson": {
+          "r": -0.48433126553807576,
+          "ci_low": -0.9107236710612265,
+          "ci_high": 0.4264949404511931,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.4055944055944056,
+          "ci_low": -0.9,
+          "ci_high": 0.34767025089605735,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_reciprocal_fraction",
+        "n": 12,
+        "pearson": {
+          "r": -0.015369079624416247,
+          "ci_low": -0.48893569702165834,
+          "ci_high": 0.5105719109463631,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.013986013986013986,
+          "ci_low": -0.569813349563806,
+          "ci_high": 0.5177304964539007,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_reciprocal_mass_fraction",
+        "n": 12,
+        "pearson": {
+          "r": -0.044195291468754436,
+          "ci_low": -0.6277131849481413,
+          "ci_high": 0.48945102683536756,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.1258741258741259,
+          "ci_low": -0.7007299270072993,
+          "ci_high": 0.4875444839857651,
+          "degenerate": false
+        }
+      }
+    ],
+    "rewired": [
+      {
+        "metric": "signed_spectral_radius",
+        "n": 12,
+        "pearson": {
+          "r": -0.3120613200540634,
+          "ci_low": -0.8009542399568709,
+          "ci_high": 0.3142905560982283,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.14685314685314685,
+          "ci_low": -0.7872418361780062,
+          "ci_high": 0.65,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "signed_leading_real",
+        "n": 12,
+        "pearson": {
+          "r": 0.18257021674109036,
+          "ci_low": -0.24542749199777247,
+          "ci_high": 0.5399140913258037,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.37762237762237766,
+          "ci_low": -0.24381625441696114,
+          "ci_high": 0.7173954530368394,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "signed_leading_imag",
+        "n": 12,
+        "pearson": {
+          "r": -0.8303828711161408,
+          "ci_low": -0.9645701951328663,
+          "ci_high": -0.49720073541174614,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.7652457077368607,
+          "ci_low": -0.9762356350184164,
+          "ci_high": -0.25013987227407614,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "absolute_spectral_radius",
+        "n": 12,
+        "pearson": {
+          "r": -0.5529680158879384,
+          "ci_low": -0.8472903319686725,
+          "ci_high": -0.2815561696845307,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.7832167832167832,
+          "ci_low": -0.9496402877697842,
+          "ci_high": -0.3948339483394834,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "positive_spectral_radius",
+        "n": 12,
+        "pearson": {
+          "r": -0.43564749430976185,
+          "ci_low": -0.7633305695466506,
+          "ci_high": -0.09388720231312808,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.6083916083916086,
+          "ci_low": -0.7722419928825622,
+          "ci_high": -0.10948767387412235,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_source_hhi",
+        "n": 12,
+        "pearson": {
+          "r": -0.46334197610991307,
+          "ci_low": -0.8433575854210391,
+          "ci_high": 0.36131786029366786,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": -0.2797202797202798,
+          "ci_low": -0.7818215994531784,
+          "ci_high": 0.42857142857142855,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_source_top10_share",
+        "n": 12,
+        "pearson": {
+          "r": 0.39553486121618103,
+          "ci_low": -0.08556915883099708,
+          "ci_high": 0.8052146057499467,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.37828429290270704,
+          "ci_low": -0.22881303982579307,
+          "ci_high": 0.8085106382978723,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_edge_fraction",
+        "n": 12,
+        "pearson": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        },
+        "spearman": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        }
+      },
+      {
+        "metric": "motor_positive_mass_fraction",
+        "n": 12,
+        "pearson": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        },
+        "spearman": {
+          "r": null,
+          "ci_low": null,
+          "ci_high": null,
+          "degenerate": true
+        }
+      },
+      {
+        "metric": "motor_positive_reciprocal_fraction",
+        "n": 12,
+        "pearson": {
+          "r": -0.22319451987031255,
+          "ci_low": -0.7297290106020445,
+          "ci_high": 0.626771916561505,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.0,
+          "ci_low": -0.6093582790731239,
+          "ci_high": 0.6573757351339165,
+          "degenerate": false
+        }
+      },
+      {
+        "metric": "motor_positive_reciprocal_mass_fraction",
+        "n": 12,
+        "pearson": {
+          "r": 0.5348995821749984,
+          "ci_low": -0.4960290143141744,
+          "ci_high": 0.8500506570453669,
+          "degenerate": false
+        },
+        "spearman": {
+          "r": 0.277194688799889,
+          "ci_low": -0.41935483870967744,
+          "ci_high": 0.8142857142857143,
+          "degenerate": false
+        }
+      }
+    ]
+  },
+  "null_screen": {
+    "pooled_group": "random_plus_rewired",
+    "rule": "every non-degenerate pooled Pearson 95% bootstrap CI includes zero",
+    "supported": false,
+    "interpretation": "one or more scalar candidates require independent validation"
+  },
+  "video_reference": {
+    "artifact": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/h1_amplitude_control_strict.json",
+    "reviewed": true,
+    "real_video": {
+      "path": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/h1_amplitude_strict_real_walk_multiview.mp4",
+      "exists": true
+    },
+    "random_video": {
+      "path": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/h1_amplitude_strict_matched_random_median_walk_multiview.mp4",
+      "exists": true,
+      "seed": 20260838
+    }
+  },
+  "integrity": {
+    "file_hashes_pre": {
+      "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+      "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+    },
+    "file_hashes_post": {
+      "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+      "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+    },
+    "file_hashes_equal": true,
+    "b1_input_sha256_pre": "aa8d3ee593fe5e4631fcdafb5fe0ef238613537acb84d7fd6a373908d34ad998",
+    "b1_input_sha256_post": "aa8d3ee593fe5e4631fcdafb5fe0ef238613537acb84d7fd6a373908d34ad998",
+    "b1_input_hash_equal": true,
+    "real_tensor_sha256_pre": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+    "real_tensor_sha256_post": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+    "real_tensor_hash_equal": true,
+    "topology_checks": [
+      {
+        "name": "real",
+        "seed": null,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260830,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260830,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260831,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260831,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260832,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260832,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260833,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260833,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260834,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260834,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260835,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260835,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260836,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260836,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260837,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260837,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260838,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260838,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260839,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260839,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260840,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260840,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      },
+      {
+        "name": "random",
+        "seed": 20260841,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_structure_equal": true
+      },
+      {
+        "name": "rewired",
+        "seed": 20260841,
+        "row_structure_equal": true,
+        "weight_multiset_equal": true,
+        "column_degree_equal": true
+      }
+    ],
+    "all_topology_checks_pass": true,
+    "random_seeds": [
+      20260830,
+      20260831,
+      20260832,
+      20260833,
+      20260834,
+      20260835,
+      20260836,
+      20260837,
+      20260838,
+      20260839,
+      20260840,
+      20260841
+    ],
+    "rewired_seeds": [
+      20260830,
+      20260831,
+      20260832,
+      20260833,
+      20260834,
+      20260835,
+      20260836,
+      20260837,
+      20260838,
+      20260839,
+      20260840,
+      20260841
+    ],
+    "learning": false,
+    "condition_count": 25,
+    "random_condition_count": 12,
+    "rewired_condition_count": 12,
+    "forward_drive_source_zero_learning": true
+  },
+  "zero_learning": true,
+  "zero_learning_audit": {
+    "learning": false,
+    "parameter_updates": 0,
+    "training_markers": []
+  }
+}

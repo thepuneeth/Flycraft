@@ -1,0 +1,9 @@
+=== h5_lesion start 2026-09-07T01:24:15Z ===
+Traceback (most recent call last):
+  File "/root/eon-fly-brain/code/audit_h5_lesion_localization.py", line 323, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/eon-fly-brain/code/audit_h5_lesion_localization.py", line 170, in main
+    raise FileExistsError(f"{PREFIX.with_suffix('.json')} exists")
+FileExistsError: /root/eon-fly-brain/results/path2/h5_lesion_localization.json exists
+=== h5_lesion rc=1 end 2026-09-07T01:24:17Z ===

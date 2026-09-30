@@ -1,0 +1,17 @@
+{
+  "experiment": "T1",
+  "input": "/Users/puneeth/Documents/Flycraft/eon-fly-brain/results/path2/e2_speed.json",
+  "controller": "drive = clip(theta * target_speed, 0, 200)",
+  "scalar_parameter_count": 1,
+  "target_speeds_m_per_s": [
+    0.005,
+    0.01,
+    0.02,
+    0.025
+  ],
+  "calibration": "leave-one-target-speed-out; three fixed calibration targets per fold",
+  "response_source": "completed E2 amplitude-matched 8 s forward-speed curves; drive=0 fixed stance response is 0 m/s",
+  "primary": "leave-one-out mean absolute target-speed error",
+  "learning_scope": "one scalar controller coefficient; VNC graph frozen",
+  "body_outcome_used": "E2 speeds only; no new evaluation selection"
+}

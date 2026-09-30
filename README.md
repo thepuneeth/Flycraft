@@ -1,5 +1,17 @@
 # Flycraft
 
+## Current work (2026-09-05)
+
+Goal-directed embodiment: a frozen, untrained MANC VNC connectome driving an
+18-DoF PhantomX hexapod to walk to a target, training only the body interface.
+See `EMBODY_V5_PLAN.md` for the plan and `EMBODY_V4_SPEC.md` for the two run
+postmortems behind it.
+
+Honest status: the optimiser is fixed and verified, and the arm does not walk.
+Run 2 trained cleanly for 24.9M steps and learned to brace rather than step. The
+CEM teacher walks 0.106 m/s on the same body, and the interface reproduces its
+actions to MSE 2.8e-4, so no claim about the connectome follows from this yet.
+
 ## Path 2 result — working headline
 
 All 212 current Male CNS MANC T1/T2/T3 cells matching the published
@@ -8,7 +20,8 @@ cells. E0–E4 are exhausted: the expanded real VNC, structured brain drive,
 and fixed anatomical proprioceptive feedback still do not form a coherent
 alternating tripod. Real VNC wiring beats its shuffled-topology control, but
 the brain-coupled controller does not beat matched random descending drive in
-the 3 s hexapod study. Final claim wording is pending review.
+the corrected 3 s hexapod study. The paper claim is limited to graph-dependent
+motor drive under the tested interface and nulls.
 
 ```text
 prey -> FlyWire brain -> DNg100/DNb08 -> real MANC VNC
@@ -50,16 +63,20 @@ VNC readout matrix, with the result recorded below.
 
 | condition | mean path (m), 95% bootstrap CI |
 |---|---:|
-| real VNC open-loop | 0.207 [0.205, 0.209] |
-| brain-coupled VNC | 0.185 [0.140, 0.228] |
-| shuffled VNC | 0.065 [0.063, 0.066] |
-| random descending | 0.223 [0.193, 0.256] |
-| Path 1 hand CPG | 0.246 [0.189, 0.300] |
+| real VNC open-loop | 0.351 [0.348, 0.353] |
+| brain-coupled VNC | 0.286 [0.224, 0.340] |
+| shuffled VNC | 0.084 [0.080, 0.090] |
+| random descending | 0.348 [0.317, 0.378] |
+| Path 1 hand CPG | 0.179 [0.129, 0.230] |
 
-Real VNC − shuffled path difference is +0.1425 m [0.1397, 0.1449], exact
-paired sign-flip `p=1.91e-6`, Holm-adjusted `p=5.72e-6`. Brain-coupled − random
-is −0.0383 m [−0.0775, +0.0012], adjusted `p=0.158`. Full metric CIs and
-tests: `eon-fly-brain/results/path2/vnc_control_study_3s_stats.json`.
+Real VNC − shuffled path difference is +0.2663 m [+0.2611, +0.2714], exact
+paired sign-flip p=1.91e-6, Holm-adjusted p=5.72e-6. Brain-coupled − random
+is −0.0621 m [−0.1192, −0.0092], adjusted p=0.0422. Full metric CIs and
+tests: eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s_stats.json.
+
+The bodyfix_* artifacts are canonical for corrected home-pose body results.
+Older vnc_* body-study files retain pre-fix uniform-stance runs for audit only
+and are superseded.
 
 ## Outcome B result
 
@@ -112,11 +129,11 @@ Run from repository root:
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/study_vnc.py \
   --n 20 --secs 3 --seed 20260829 \
-  --out eon-fly-brain/results/path2/vnc_control_study_3s
+  --out eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/analyze_control_study.py \
-  --input eon-fly-brain/results/path2/vnc_control_study_3s.csv \
-  --out eon-fly-brain/results/path2/vnc_control_study_3s_stats
+  --input eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s.csv \
+  --out eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s_stats
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/audit_intersegmental.py \
   --data eon-fly-brain/results/path2 \
@@ -125,7 +142,7 @@ Run from repository root:
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_vnc_phase.py \
   --data eon-fly-brain/results/path2 \
-  --out eon-fly-brain/results/path2/vnc_phase_probe_e0_after_e2
+  --out eon-fly-brain/results/path2/bodyfix_vnc_phase_probe_e0
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_structured_descending.py \
   --data eon-fly-brain/results/path2 --brain_data eon-fly-brain/data \
@@ -162,9 +179,9 @@ overhead, side, front):
   coupling, and phase audit.
 - `eon-fly-brain/results/path2/transfer_layers.png` — VNC → target → physics
   mechanistic figure.
-- `eon-fly-brain/results/path2/vnc_control_study_3s_stats.json` — CIs and
++ `eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s_stats.json` — CIs and
   paired tests.
-- `eon-fly-brain/results/path2/vnc_phase_probe_e0_after_e2.json` — Gate 2
++ `eon-fly-brain/results/path2/bodyfix_vnc_phase_probe_e0.json` — Gate 2
   phase matrix and verdict.
 - `eon-fly-brain/results/path2/e2_intersegmental.json` — full intersegmental
   inventory and selection decision.

@@ -1,0 +1,48 @@
+{
+  "baseline_speed_mps": 0.027727947853147455,
+  "core_frozen": true,
+  "core_tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+  "final_speed_mps": 0.001002654247336617,
+  "fraction_of_teacher": 0.009467934346899123,
+  "history": [
+    {
+      "demos": 5,
+      "distance_m": 0.26630978767679414,
+      "round": 0,
+      "speed_mps": 0.027727947853147455,
+      "stance_dev": 0.7925898518022352,
+      "upright_s": 15.86
+    },
+    {
+      "demos": 10,
+      "distance_m": 0.22918197691342768,
+      "fit_mse": 0.03908006101846695,
+      "round": 1,
+      "speed_mps": 0.00763939923044759,
+      "stance_dev": 0.47522510894786213,
+      "upright_s": 30.0
+    },
+    {
+      "demos": 15,
+      "distance_m": 0.07618679358249422,
+      "fit_mse": 0.025856856256723404,
+      "round": 2,
+      "speed_mps": 0.0025395597860831407,
+      "stance_dev": 0.3044890048610696,
+      "upright_s": 30.0
+    },
+    {
+      "demos": 20,
+      "distance_m": 0.030079627420098516,
+      "fit_mse": 0.023823949974030256,
+      "round": 3,
+      "speed_mps": 0.001002654247336617,
+      "stance_dev": 0.2637958037869102,
+      "upright_s": 30.0
+    }
+  ],
+  "rounds": 3,
+  "speed_gain": 0.03616042026070111,
+  "teacher_speed_mps": 0.1059,
+  "wall_time_s": 2516.2337507499906
+}

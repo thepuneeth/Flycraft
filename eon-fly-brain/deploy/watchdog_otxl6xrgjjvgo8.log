@@ -1,0 +1,7 @@
+[watchdog 00:00:45] run finished with status: FAIL_STAGE2 (after 0m)
+[watchdog 00:00:48] final pull ok
+[watchdog 00:00:48] terminating pod otxl6xrgjjvgo8
+[remove] warning: 'runpodctl remove pod' is deprecated, use 'runpodctl pod delete <id>' instead
+[remove] pod "otxl6xrgjjvgo8" removed
+[watchdog 00:00:57] pod otxl6xrgjjvgo8 confirmed gone from pod list
+[watchdog 00:00:57] watchdog done

@@ -91,32 +91,73 @@ def phase_metrics(
     }
 
 
-def run(data: Path, weights_name: str, index_name: str) -> dict:
-    vnc = VNCStepper(
+def band_power_share(scores: np.ndarray, sample_dt: float) -> dict:
+    """How much of each leg's power actually sits in the tripod band.
+
+    Coherence is computed on a bandpass-filtered signal, so it is well defined
+    even when the band holds almost none of the power -- and then it is the phase
+    of noise. Measured here for both cores at four drives, the share sits at
+    0.14-0.19 whether the dynamics are our rate model or Shiu's LIF, which is why
+    E0 stays ABSENT even where the coherence scalar reaches 0.98. Report this
+    beside any coherence number; a rhythm claim needs both.
+    """
+    centred = scores - scores.mean(axis=0, keepdims=True)
+    frequency = np.fft.rfftfreq(len(centred), sample_dt)
+    power = np.abs(np.fft.rfft(centred, axis=0)) ** 2
+    total = power.sum(axis=0)
+    in_band = power[(frequency >= BANDPASS_HZ[0]) & (frequency <= BANDPASS_HZ[1])].sum(axis=0)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        share = np.where(total > 0, in_band / total, 0.0)
+    return {
+        "band_power_share_mean": float(np.mean(share)),
+        "band_power_share_per_leg": [float(v) for v in share],
+    }
+
+
+def run(data: Path, weights_name: str, index_name: str, core: str = "rate") -> dict:
+    """`core="rate"` is the model every recorded E0 number was produced with.
+
+    `core="lif"` re-asks the same question of Shiu et al.'s published dynamics
+    (vnc_lif_core), on the same graph, with the same drive, the same 20 ms sample
+    period and the same phase analysis. Nothing downstream of `history` changes,
+    so the two verdicts are directly comparable -- which is the point: E0 came
+    back ABSENT at 0.098 under dynamics we invented, and that leaves open whether
+    the absence is a fact about the connectome or about our rate model.
+    """
+    if core == "lif":
+        from vnc_lif_core import ShiuLIFStepper
+
+        vnc = ShiuLIFStepper(
+            data, weights_name=weights_name, index_name=index_name, seed=1,
+        )
+    else:
+        vnc = VNCStepper(
         data,
-        substeps=4,
-        tau=0.02,
-        dt=0.005,
-        gW=0.03,
-        weights_name=weights_name,
-        index_name=index_name,
-        model="paper",
-        threshold=7.5,
-        activation_gain=1.0,
-        fr_cap=200.0,
-        heterogeneity=True,
-        seed=1,
-    )
+            substeps=4,
+            tau=0.02,
+            dt=0.005,
+            gW=0.03,
+            weights_name=weights_name,
+            index_name=index_name,
+            model="paper",
+            threshold=7.5,
+            activation_gain=1.0,
+            fr_cap=200.0,
+            heterogeneity=True,
+            seed=1,
+        )
     steps = 1500
     sample_dt = 0.005 * 4
     history = np.stack([vnc.step(vnc.descending_current(100.0)).cpu().numpy() for _ in range(steps)])
     scores = leg_scores(history, vnc.io)[..., 0]
     phase = phase_metrics(scores, sample_dt)
+    band = band_power_share(scores, sample_dt)
     result = {
         "protocol": {
             "weights_name": weights_name,
             "index_name": index_name,
-            "model": "paper",
+            "model": getattr(vnc, "model", "paper"),
+            "core": core,
             "drive": 100.0,
             "gW": 0.03,
             "tau": 0.02,
@@ -132,6 +173,7 @@ def run(data: Path, weights_name: str, index_name: str) -> dict:
         },
         "leg_names": list(LEG_NAMES),
         **phase,
+        **band,
         "within_pair_count": len(pair_list((TRIPOD_A, TRIPOD_B))),
         "cross_pair_count": len([(left, right) for left in TRIPOD_A for right in TRIPOD_B]),
     }
@@ -169,13 +211,14 @@ def main() -> None:
     ap.add_argument("--data", type=Path, default=RESULTS)
     ap.add_argument("--weights_name", default="all_legs_weight_csr.pkl")
     ap.add_argument("--index_name", default="all_legs_io_index.npz")
-    ap.add_argument("--out", type=Path, default=RESULTS / "vnc_phase_probe_e0")
+    ap.add_argument("--core", choices=("rate", "lif"), default="rate")
+    ap.add_argument("--out", type=Path, default=RESULTS / "bodyfix_vnc_phase_probe_e0")
     a = ap.parse_args()
-    result = run(a.data, a.weights_name, a.index_name)
+    result = run(a.data, a.weights_name, a.index_name, a.core)
     make_figure(result, a.out)
     a.out.with_suffix(".json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     np.savetxt(a.out.with_suffix(".csv"), np.asarray(result["phase_difference_matrix_rad"]), delimiter=",", header=",".join(result["leg_names"]), comments="")
-    print(json.dumps({key: result[key] for key in ("within_phase_cosine", "cross_phase_cosine", "tripod_coherence_scalar", "within_pairs_in_phase", "cross_pairs_antiphase", "verdict")}, sort_keys=True))
+    print(json.dumps({key: result[key] for key in ("within_phase_cosine", "cross_phase_cosine", "tripod_coherence_scalar", "band_power_share_mean", "within_pairs_in_phase", "cross_pairs_antiphase", "verdict")}, sort_keys=True))
     print("phase difference matrix (cycles)")
     print(np.asarray(result["phase_difference_matrix_cycles"]))
     print(f"audit -> {a.out.with_suffix('.json')}")

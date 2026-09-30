@@ -1,0 +1,855 @@
+{
+  "experiment": "cpg_connectome_walk",
+  "status": "iteration_1_v1_complete",
+  "pre_registered_null": "CPG-interface forward drive is no greater with the real connectome than with degree-preserving rewires.",
+  "protocol": {
+    "secs": 8.0,
+    "drive": 100.0,
+    "frequency_hz": 1.2,
+    "v1_scale": 0.5,
+    "v1_affine": "clip(0.5 + scale * mean(signed_leg_score_hz / rate_ceiling_hz), 0, 1)",
+    "episodes": 8,
+    "noise_seed": 20260906,
+    "cpg_seed": 0,
+    "time_shuffle_seed": 20260906,
+    "body": {
+      "kind": "leg_length",
+      "factor": 1.0,
+      "label": "leg_length_x1"
+    },
+    "learning": false,
+    "cpg_role": "hand-written prior supplies rhythm and tripod coordination"
+  },
+  "zero_learning": true,
+  "zero_learning_audit": {
+    "learning": false,
+    "parameter_updates": 0,
+    "training_markers": []
+  },
+  "integrity": {
+    "file_hashes_pre": {
+      "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+      "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+    },
+    "file_hashes_post": {
+      "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+      "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+    },
+    "file_hashes_equal": true,
+    "real_tensor_sha256_pre": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+    "real_tensor_sha256_post": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+    "real_tensor_hash_equal": true,
+    "expected_real_tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc"
+  },
+  "episode_spec_hash": "855f78a75ea2d91a59557e572e435b79dbf92b08859848bc23dfc86bf7f5faad",
+  "rows": [
+    {
+      "arm": "full",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 3.9131780419793643,
+      "forward_distance_m": -0.25580071160511453,
+      "displacement_m": 0.9368493108018551,
+      "mean_feet_planted": 0.18875,
+      "min_height_m": 0.08412800359413976,
+      "final_height_m": 0.1116196228384505,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "full",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 3.2910876828916362,
+      "forward_distance_m": 0.2833366594951534,
+      "displacement_m": 0.502230884923994,
+      "mean_feet_planted": 0.19166666666666665,
+      "min_height_m": 0.07058373739388105,
+      "final_height_m": 0.1259751204984388,
+      "fell": true,
+      "path_per_forward": 11.615467228122423
+    },
+    {
+      "arm": "full",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 3.5233420725360713,
+      "forward_distance_m": -1.0822902914435282,
+      "displacement_m": 1.4573822159701133,
+      "mean_feet_planted": 0.185,
+      "min_height_m": 0.06731463458613964,
+      "final_height_m": 0.16572082779019856,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "full",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 4.103421002541919,
+      "forward_distance_m": 0.36997219619829136,
+      "displacement_m": 2.0178829141811065,
+      "mean_feet_planted": 0.18499999999999997,
+      "min_height_m": 0.07041267597733099,
+      "final_height_m": 0.1345671717057735,
+      "fell": true,
+      "path_per_forward": 11.09116048369926
+    },
+    {
+      "arm": "full",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 3.5247939302409113,
+      "forward_distance_m": -0.05060072405838653,
+      "displacement_m": 0.961449218417282,
+      "mean_feet_planted": 0.16291666666666665,
+      "min_height_m": 0.06979621540884538,
+      "final_height_m": 0.08452105555452602,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "full",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 3.340421431986044,
+      "forward_distance_m": -0.0936948735531184,
+      "displacement_m": 0.40190309948767367,
+      "mean_feet_planted": 0.1925,
+      "min_height_m": 0.07832338313830527,
+      "final_height_m": 0.20154243668455268,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "full",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 3.425797161500126,
+      "forward_distance_m": -1.0459519231092462,
+      "displacement_m": 1.222074758973668,
+      "mean_feet_planted": 0.19375,
+      "min_height_m": 0.08200122169523949,
+      "final_height_m": 0.12889744474266332,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "full",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.3777132527260405,
+      "forward_distance_m": 0.3571705500720599,
+      "displacement_m": 0.38475693957919344,
+      "mean_feet_planted": 0.18791666666666665,
+      "min_height_m": 0.08816985783291781,
+      "final_height_m": 0.1831445125088654,
+      "fell": false,
+      "path_per_forward": 9.456863820504182
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 3.4367979268666673,
+      "forward_distance_m": 0.43568061018167203,
+      "displacement_m": 0.6307279004455517,
+      "mean_feet_planted": 0.19375,
+      "min_height_m": 0.09470522534969616,
+      "final_height_m": 0.16659154005325225,
+      "fell": false,
+      "path_per_forward": 7.888342621980758
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 3.579435385095242,
+      "forward_distance_m": -1.5001777572971278,
+      "displacement_m": 1.5702378607750227,
+      "mean_feet_planted": 0.18291666666666667,
+      "min_height_m": 0.0838422897518397,
+      "final_height_m": 0.16368734246002786,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 4.12615881700077,
+      "forward_distance_m": -1.0868285892121716,
+      "displacement_m": 1.123003410418938,
+      "mean_feet_planted": 0.17291666666666664,
+      "min_height_m": 0.08775141668782378,
+      "final_height_m": 0.14447507183681418,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 3.8088454956493276,
+      "forward_distance_m": 0.8549512931277211,
+      "displacement_m": 1.902587556786064,
+      "mean_feet_planted": 0.19166666666666668,
+      "min_height_m": 0.08883774238621646,
+      "final_height_m": 0.20965459711081114,
+      "fell": false,
+      "path_per_forward": 4.45504384432848
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 3.4070249422540138,
+      "forward_distance_m": 0.13064420271627017,
+      "displacement_m": 0.13657528215506778,
+      "mean_feet_planted": 0.14541666666666667,
+      "min_height_m": 0.05930050569556067,
+      "final_height_m": 0.07899116137915577,
+      "fell": true,
+      "path_per_forward": 26.078653866129105
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 3.720109818653321,
+      "forward_distance_m": -1.3730248097573932,
+      "displacement_m": 1.4432129666410654,
+      "mean_feet_planted": 0.17958333333333332,
+      "min_height_m": 0.08993404888704533,
+      "final_height_m": 0.11442266501492424,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.8849554266350874,
+      "forward_distance_m": 0.2731145314066016,
+      "displacement_m": 0.27961070619261774,
+      "mean_feet_planted": 0.13333333333333333,
+      "min_height_m": 0.0454275026445232,
+      "final_height_m": 0.0813000046959001,
+      "fell": true,
+      "path_per_forward": 10.563170739311873
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.54118305365195,
+      "forward_distance_m": -0.6135962787128191,
+      "displacement_m": 0.8164397829190523,
+      "mean_feet_planted": 0.19166666666666665,
+      "min_height_m": 0.07794518474790509,
+      "final_height_m": 0.25688211601966715,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 3.767064147155845,
+      "forward_distance_m": -1.4138072967183426,
+      "displacement_m": 1.505591623163471,
+      "mean_feet_planted": 0.19375,
+      "min_height_m": 0.08218534953358156,
+      "final_height_m": 0.17215874244462406,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 3.5145452791115512,
+      "forward_distance_m": 0.6632495636468462,
+      "displacement_m": 1.0710209302602782,
+      "mean_feet_planted": 0.1895833333333333,
+      "min_height_m": 0.07833161548535844,
+      "final_height_m": 0.18018197757491228,
+      "fell": true,
+      "path_per_forward": 5.298978652600978
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 3.3950294550336237,
+      "forward_distance_m": 0.3740968246073875,
+      "displacement_m": 0.9734892328199023,
+      "mean_feet_planted": 0.19625,
+      "min_height_m": 0.08476264693423013,
+      "final_height_m": 0.1552334196401235,
+      "fell": false,
+      "path_per_forward": 9.075269373367945
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 3.478785557349921,
+      "forward_distance_m": -0.485035918878867,
+      "displacement_m": 0.8818545383684171,
+      "mean_feet_planted": 0.19625,
+      "min_height_m": 0.08869254445638311,
+      "final_height_m": 0.19042916275243313,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 3.4018888967868404,
+      "forward_distance_m": 0.7952736370124679,
+      "displacement_m": 0.8295452945916099,
+      "mean_feet_planted": 0.18541666666666665,
+      "min_height_m": 0.08696273890540444,
+      "final_height_m": 0.10404709373004904,
+      "fell": false,
+      "path_per_forward": 4.2776331799032175
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 3.36859055458214,
+      "forward_distance_m": -0.2526958505700722,
+      "displacement_m": 0.6861288547624212,
+      "mean_feet_planted": 0.19666666666666666,
+      "min_height_m": 0.08597264105793004,
+      "final_height_m": 0.18127499048571488,
+      "fell": false,
+      "path_per_forward": null
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 3.9372406180566006,
+      "forward_distance_m": 0.16575712628146305,
+      "displacement_m": 1.5035105743430577,
+      "mean_feet_planted": 0.1695833333333333,
+      "min_height_m": 0.10929695118320769,
+      "final_height_m": 0.19196153861145418,
+      "fell": false,
+      "path_per_forward": 23.753069966783745
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.219253247506681,
+      "forward_distance_m": -0.8187277351989573,
+      "displacement_m": 1.1738488702260432,
+      "mean_feet_planted": 0.1775,
+      "min_height_m": 0.056680219845036676,
+      "final_height_m": 0.09755176398484582,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 4.210267204213338,
+      "forward_distance_m": 0.4814829371245092,
+      "displacement_m": 0.6617780671338382,
+      "mean_feet_planted": 0.12875,
+      "min_height_m": 0.08516407451934337,
+      "final_height_m": 0.18802703915701427,
+      "fell": false,
+      "path_per_forward": 8.744374679937168
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 3.1372510807339395,
+      "forward_distance_m": 0.5906370536183726,
+      "displacement_m": 1.10477766804422,
+      "mean_feet_planted": 0.12583333333333335,
+      "min_height_m": 0.0641895558048568,
+      "final_height_m": 0.14107407080884088,
+      "fell": true,
+      "path_per_forward": 5.311639460332617
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 4.061702117609675,
+      "forward_distance_m": 0.21395097630570623,
+      "displacement_m": 0.29364777009270154,
+      "mean_feet_planted": 0.10958333333333334,
+      "min_height_m": 0.054402031170862425,
+      "final_height_m": 0.1356959927463597,
+      "fell": true,
+      "path_per_forward": 18.984265403893588
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 3.838712440009683,
+      "forward_distance_m": -1.1749557517414146,
+      "displacement_m": 1.180543401509186,
+      "mean_feet_planted": 0.12958333333333333,
+      "min_height_m": 0.043109834469480544,
+      "final_height_m": 0.12840464594568357,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 3.4836444187613345,
+      "forward_distance_m": 0.27273957115437214,
+      "displacement_m": 0.41863250265818674,
+      "mean_feet_planted": 0.13916666666666666,
+      "min_height_m": 0.05373758952762981,
+      "final_height_m": 0.10869164382241173,
+      "fell": true,
+      "path_per_forward": 12.772786889767353
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 3.245964724800628,
+      "forward_distance_m": -0.5526839281058742,
+      "displacement_m": 0.8219989349414054,
+      "mean_feet_planted": 0.12541666666666668,
+      "min_height_m": 0.06296183912131688,
+      "final_height_m": 0.12817593852591014,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.524239912099417,
+      "forward_distance_m": -0.04660188320080223,
+      "displacement_m": 0.1781897661272737,
+      "mean_feet_planted": 0.1404166666666667,
+      "min_height_m": 0.06358413942906795,
+      "final_height_m": 0.11295500874492545,
+      "fell": true,
+      "path_per_forward": null
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.327303816684155,
+      "forward_distance_m": 1.0169078530980513,
+      "displacement_m": 1.3964251821320506,
+      "mean_feet_planted": 0.11791666666666666,
+      "min_height_m": 0.07561031347290778,
+      "final_height_m": 0.13516866104657427,
+      "fell": true,
+      "path_per_forward": 3.2719816319122605
+    }
+  ],
+  "ablation_ladder": {
+    "full": {
+      "summary": {
+        "n": 8,
+        "falls": 5,
+        "metrics": {
+          "forward_distance_m": {
+            "mean": -0.18973238975048615,
+            "sd": 0.547595165213419
+          },
+          "path_m": {
+            "mean": 3.562469322050264,
+            "sd": 0.2725672045201795
+          },
+          "displacement_m": {
+            "mean": 0.9855661677918607,
+            "sd": 0.5341379530341231
+          },
+          "min_height_m": {
+            "mean": 0.07634121620334992,
+            "sd": 0.007324000197480812
+          },
+          "mean_feet_planted": {
+            "mean": 0.18593749999999998,
+            "sd": 0.00922272160210857
+          }
+        },
+        "path_per_forward_mean": 10.721163844108622,
+        "signal": {
+          "frac_active": 0.0918173076923077,
+          "motor_hz": 6.463942050933838,
+          "rate_ceiling_hz": 250.0
+        },
+        "cpg_parameter_range_fraction": {
+          "intrinsic_amplitude": 0.12857143357396128
+        }
+      },
+      "video": {
+        "path": "/root/eon-fly-brain/results/path2/cpg_v1_amplitude_full_multiview.mp4",
+        "metrics": {
+          "horizon_s": 8.0,
+          "path_m": 3.9131780419793643,
+          "forward_distance_m": -0.25580071160511453,
+          "displacement_m": 0.9368493108018551,
+          "mean_feet_planted": 0.18875,
+          "min_height_m": 0.08412800359413976,
+          "final_height_m": 0.1116196228384505,
+          "fell": false
+        }
+      }
+    },
+    "constant_connectome": {
+      "summary": {
+        "n": 8,
+        "falls": 3,
+        "metrics": {
+          "forward_distance_m": {
+            "mean": -0.3599045996934058,
+            "sd": 0.8418428745104095
+          },
+          "path_m": {
+            "mean": 3.5630638582257976,
+            "sd": 0.335971920291315
+          },
+          "displacement_m": {
+            "mean": 0.9877994332916724,
+            "sd": 0.5899927406860395
+          },
+          "min_height_m": {
+            "mean": 0.0784679895188263,
+            "sd": 0.016113095513528918
+          },
+          "mean_feet_planted": {
+            "mean": 0.17390624999999998,
+            "sd": 0.021203930350913457
+          }
+        },
+        "path_per_forward_mean": 12.246302767937554,
+        "signal": {
+          "frac_active": 0.0918173076923077,
+          "motor_hz": 6.463942050933838,
+          "rate_ceiling_hz": 250.0
+        },
+        "cpg_parameter_range_fraction": {
+          "intrinsic_amplitude": 0.0
+        }
+      },
+      "video": {
+        "path": "/root/eon-fly-brain/results/path2/cpg_v1_amplitude_constant_connectome_multiview.mp4",
+        "metrics": {
+          "horizon_s": 8.0,
+          "path_m": 3.4367979268666673,
+          "forward_distance_m": 0.43568061018167203,
+          "displacement_m": 0.6307279004455517,
+          "mean_feet_planted": 0.19375,
+          "min_height_m": 0.09470522534969616,
+          "final_height_m": 0.16659154005325225,
+          "fell": false
+        }
+      }
+    },
+    "time_shuffled_connectome": {
+      "summary": {
+        "n": 8,
+        "falls": 2,
+        "metrics": {
+          "forward_distance_m": {
+            "mean": -0.12148620622725931,
+            "sd": 0.7150169601316543
+          },
+          "path_m": {
+            "mean": 3.5102997194479,
+            "sd": 0.21767158346783444
+          },
+          "displacement_m": {
+            "mean": 1.0781237398169,
+            "sd": 0.2823600789788754
+          },
+          "min_height_m": {
+            "mean": 0.0841105884251415,
+            "sd": 0.013494918331498297
+          },
+          "mean_feet_planted": {
+            "mean": 0.188125,
+            "sd": 0.009372684899335001
+          }
+        },
+        "path_per_forward_mean": 10.601237793163971,
+        "signal": {
+          "frac_active": 0.0918173076923077,
+          "motor_hz": 6.463942050933838,
+          "rate_ceiling_hz": 250.0
+        },
+        "cpg_parameter_range_fraction": {
+          "intrinsic_amplitude": 0.12857143357396128
+        }
+      },
+      "video": null
+    },
+    "cpg_only": {
+      "summary": {
+        "n": 8,
+        "falls": 7,
+        "metrics": {
+          "forward_distance_m": {
+            "mean": 0.10018460353161505,
+            "sd": 0.6464129933383821
+          },
+          "path_m": {
+            "mean": 3.478635714364021,
+            "sd": 0.5134909141240033
+          },
+          "displacement_m": {
+            "mean": 0.7569991615798578,
+            "sd": 0.41633881935070965
+          },
+          "min_height_m": {
+            "mean": 0.06284492218943319,
+            "sd": 0.01228397091172295
+          },
+          "mean_feet_planted": {
+            "mean": 0.12708333333333333,
+            "sd": 0.009535660409454843
+          }
+        },
+        "path_per_forward_mean": 9.817009613168597,
+        "signal": {
+          "frac_active": 0.0,
+          "motor_hz": 0.0,
+          "rate_ceiling_hz": 250.0
+        },
+        "cpg_parameter_range_fraction": {
+          "intrinsic_amplitude": 0.0
+        }
+      },
+      "video": null
+    }
+  },
+  "summaries": {
+    "full": {
+      "n": 8,
+      "falls": 5,
+      "metrics": {
+        "forward_distance_m": {
+          "mean": -0.18973238975048615,
+          "sd": 0.547595165213419
+        },
+        "path_m": {
+          "mean": 3.562469322050264,
+          "sd": 0.2725672045201795
+        },
+        "displacement_m": {
+          "mean": 0.9855661677918607,
+          "sd": 0.5341379530341231
+        },
+        "min_height_m": {
+          "mean": 0.07634121620334992,
+          "sd": 0.007324000197480812
+        },
+        "mean_feet_planted": {
+          "mean": 0.18593749999999998,
+          "sd": 0.00922272160210857
+        }
+      },
+      "path_per_forward_mean": 10.721163844108622,
+      "signal": {
+        "frac_active": 0.0918173076923077,
+        "motor_hz": 6.463942050933838,
+        "rate_ceiling_hz": 250.0
+      },
+      "cpg_parameter_range_fraction": {
+        "intrinsic_amplitude": 0.12857143357396128
+      }
+    },
+    "constant_connectome": {
+      "n": 8,
+      "falls": 3,
+      "metrics": {
+        "forward_distance_m": {
+          "mean": -0.3599045996934058,
+          "sd": 0.8418428745104095
+        },
+        "path_m": {
+          "mean": 3.5630638582257976,
+          "sd": 0.335971920291315
+        },
+        "displacement_m": {
+          "mean": 0.9877994332916724,
+          "sd": 0.5899927406860395
+        },
+        "min_height_m": {
+          "mean": 0.0784679895188263,
+          "sd": 0.016113095513528918
+        },
+        "mean_feet_planted": {
+          "mean": 0.17390624999999998,
+          "sd": 0.021203930350913457
+        }
+      },
+      "path_per_forward_mean": 12.246302767937554,
+      "signal": {
+        "frac_active": 0.0918173076923077,
+        "motor_hz": 6.463942050933838,
+        "rate_ceiling_hz": 250.0
+      },
+      "cpg_parameter_range_fraction": {
+        "intrinsic_amplitude": 0.0
+      }
+    },
+    "time_shuffled_connectome": {
+      "n": 8,
+      "falls": 2,
+      "metrics": {
+        "forward_distance_m": {
+          "mean": -0.12148620622725931,
+          "sd": 0.7150169601316543
+        },
+        "path_m": {
+          "mean": 3.5102997194479,
+          "sd": 0.21767158346783444
+        },
+        "displacement_m": {
+          "mean": 1.0781237398169,
+          "sd": 0.2823600789788754
+        },
+        "min_height_m": {
+          "mean": 0.0841105884251415,
+          "sd": 0.013494918331498297
+        },
+        "mean_feet_planted": {
+          "mean": 0.188125,
+          "sd": 0.009372684899335001
+        }
+      },
+      "path_per_forward_mean": 10.601237793163971,
+      "signal": {
+        "frac_active": 0.0918173076923077,
+        "motor_hz": 6.463942050933838,
+        "rate_ceiling_hz": 250.0
+      },
+      "cpg_parameter_range_fraction": {
+        "intrinsic_amplitude": 0.12857143357396128
+      }
+    },
+    "cpg_only": {
+      "n": 8,
+      "falls": 7,
+      "metrics": {
+        "forward_distance_m": {
+          "mean": 0.10018460353161505,
+          "sd": 0.6464129933383821
+        },
+        "path_m": {
+          "mean": 3.478635714364021,
+          "sd": 0.5134909141240033
+        },
+        "displacement_m": {
+          "mean": 0.7569991615798578,
+          "sd": 0.41633881935070965
+        },
+        "min_height_m": {
+          "mean": 0.06284492218943319,
+          "sd": 0.01228397091172295
+        },
+        "mean_feet_planted": {
+          "mean": 0.12708333333333333,
+          "sd": 0.009535660409454843
+        }
+      },
+      "path_per_forward_mean": 9.817009613168597,
+      "signal": {
+        "frac_active": 0.0,
+        "motor_hz": 0.0,
+        "rate_ceiling_hz": 250.0
+      },
+      "cpg_parameter_range_fraction": {
+        "intrinsic_amplitude": 0.0
+      }
+    }
+  },
+  "self_interrogation": {
+    "a_full_minus_constant_forward_m": 0.17017220994291968,
+    "b_parameter_range_fraction": {
+      "intrinsic_amplitude": 0.12857143357396128
+    },
+    "c_constant_selected_from_forward": false,
+    "d_identical_episode_specs": true,
+    "d_episode_spec_hash": "855f78a75ea2d91a59557e572e435b79dbf92b08859848bc23dfc86bf7f5faad",
+    "e_weight_hashes_match": true,
+    "f_realizations_per_arm": 1,
+    "f_real_arm_sd": 0.547595165213419,
+    "g_rewire_replacement_number": "not run in iteration 1",
+    "h_claim_guard": "connectome modulates a hand-written CPG gait; CPG supplies rhythm and coordination"
+  },
+  "reference_departures": [
+    {
+      "reference": "flygym/src/flygym_demo/complex_terrain/preprogrammed.py:40-116",
+      "departure": "seven fly DOFs retargeted to three hexapod DOFs by fixed joint role",
+      "reason": "PhantomX has coxa/femur/tibia only; mapping is declared, not fitted"
+    },
+    {
+      "reference": "flygym/src/flygym_demo/complex_terrain/preprogrammed.py:88-92",
+      "departure": "adhesion flags omitted",
+      "reason": "hexapod model has no adhesion actuators"
+    },
+    {
+      "reference": "flygym/src/flygym_demo/complex_terrain/preprogrammed.py:123-143",
+      "departure": "mapped excursions are normalised into MuJoCo joint range around home stance",
+      "reason": "fly and hexapod joint limits/geometries differ"
+    },
+    {
+      "reference": "flygym/src/flygym_demo/complex_terrain/cpg_controller.py:166-180",
+      "departure": "controller is sampled at the 20 ms project control grid and uses 1.2 Hz",
+      "reason": "hexapod-scale physical operating point; full frequency sweep is next iteration"
+    }
+  ],
+  "numeric_decision": {
+    "full_forward_m": -0.18973238975048615,
+    "constant_forward_m": -0.3599045996934058,
+    "cpg_only_forward_m": 0.10018460353161505,
+    "full_beats_constant": true,
+    "success_gate_complete": false,
+    "decision": "CONTINUE_TO_FREQUENCY_SWEEP"
+  },
+  "videos": {
+    "full": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_v1_amplitude_full_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 3.9131780419793643,
+        "forward_distance_m": -0.25580071160511453,
+        "displacement_m": 0.9368493108018551,
+        "mean_feet_planted": 0.18875,
+        "min_height_m": 0.08412800359413976,
+        "final_height_m": 0.1116196228384505,
+        "fell": false
+      }
+    },
+    "constant_connectome": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_v1_amplitude_constant_connectome_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 3.4367979268666673,
+        "forward_distance_m": 0.43568061018167203,
+        "displacement_m": 0.6307279004455517,
+        "mean_feet_planted": 0.19375,
+        "min_height_m": 0.09470522534969616,
+        "final_height_m": 0.16659154005325225,
+        "fell": false
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+completed real
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+completed random
+completed rewired
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+{"experiment": "E1", "numeric_decision": "TURNING-NULL", "primary": {"across_seed_ci_high": 0.19627247450087876, "across_seed_ci_low": -0.017195314805795114, "definition": "real minus same-turn joint-target-amplitude-matched random odd yaw response", "higher_is_better": true, "metric": "turn_response_deg", "n_random_match_or_beat_real": 3, "nonoverlap_bootstrap_ci": false, "p_holm": 0.064453125, "p_raw": 0.064453125, "paired_test": "exact one-sided sign-flip over 12 independent random-network seeds", "random_distribution_ci_high": 0.39836971438691426, "random_distribution_ci_low": -0.24967766958110008, "random_distribution_max": 0.48906425371443624, "random_distribution_min": -0.2665927641648108, "random_mean": 0.04746465493058987, "random_seed_values": [0.0727315987712264, -0.14643675994908656, 0.08855580173151681, 0.15926592888708413, 0.06754531661787543, 0.48906425371443624, 0.014503170862945818, -0.2665927641648108, 0.153320965114412, -0.20508332931495357, 0.12745952129450994, 0.015242155601922538], "real_ci_high": 0.21855133990684739, "real_ci_low": 0.062236559906856545, "real_minus_random_mean": 0.09268683496808303, "real_outside_random_distribution": false, "real_value": 0.1401514898986729}, "resource": {"max_rollouts": 12000, "rollouts_completed": 1962, "wallclock_ceiling_s": 28800.0}}
+=== audit_e1_turning rc=0 2026-09-07T03:35:07Z ===

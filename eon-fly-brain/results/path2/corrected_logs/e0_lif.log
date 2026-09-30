@@ -1,0 +1,14 @@
+=== e0_lif start 2026-09-07T01:02:24Z ===
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+{"band_power_share_mean": 0.164607637985339, "cross_pairs_antiphase": 6, "cross_phase_cosine": -0.49035275262260597, "tripod_coherence_scalar": 0.6349188651951865, "verdict": "E0-ABSENT", "within_pairs_in_phase": 2, "within_phase_cosine": 0.14456611257258054}
+phase difference matrix (cycles)
+[[ 0.          0.47422455  0.44258773  0.0917792   0.17834383 -0.30173594]
+ [-0.47422455  0.          0.0668257  -0.4007379  -0.00456469  0.18565709]
+ [-0.44258773 -0.0668257   0.         -0.22738754 -0.38788355  0.38360721]
+ [-0.0917792   0.4007379   0.22738754  0.          0.45979319 -0.44191943]
+ [-0.17834383  0.00456469  0.38788355 -0.45979319  0.          0.39880704]
+ [ 0.30173594 -0.18565709 -0.38360721  0.44191943 -0.39880704  0.        ]]
+audit -> /root/eon-fly-brain/results/path2/bodyfix_vnc_phase_probe_e0_lif.json
+figure -> /root/eon-fly-brain/results/path2/bodyfix_vnc_phase_probe_e0_lif.png / /root/eon-fly-brain/results/path2/bodyfix_vnc_phase_probe_e0_lif.pdf
+=== e0_lif rc=0 end 2026-09-07T01:02:36Z ===

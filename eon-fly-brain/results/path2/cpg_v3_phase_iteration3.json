@@ -1,0 +1,5819 @@
+{
+  "experiment": "cpg_connectome_variants",
+  "status": "all_three_variants_complete",
+  "pre_registered_null": "CPG-interface forward drive is no greater with the real connectome than with degree-preserving rewires.",
+  "protocol": {
+    "secs": 8.0,
+    "drive": 100.0,
+    "frequency_hz": 0.6,
+    "scale_grid": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "episodes_per_arm_per_scale": 8,
+    "noise_seed": 20260906,
+    "cpg_seed": 0,
+    "time_shuffle_seed": 20260906,
+    "body": {
+      "kind": "leg_length",
+      "factor": 1.0,
+      "label": "leg_length_x1"
+    },
+    "learning": false,
+    "cpg_role": "hand-written prior supplies base rhythm and recorded-step coordination",
+    "variant_tension": "V1 most likely to walk/least specific; V3 strongest specificity claim/most likely to fail"
+  },
+  "zero_learning": true,
+  "zero_learning_audit": {
+    "learning": false,
+    "parameter_updates": 0,
+    "training_markers": []
+  },
+  "integrity": {
+    "file_hashes_pre": {
+      "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+      "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+    },
+    "file_hashes_post": {
+      "all_legs_weight_csr.pkl": "018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506",
+      "all_legs_io_index.npz": "3f65f5b3ebed0d63161dca416bffa1a55afc0be4906113103426b16492d09449"
+    },
+    "file_hashes_equal": true,
+    "real_tensor_sha256_pre": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+    "real_tensor_sha256_post": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+    "real_tensor_hash_equal": true,
+    "expected_real_tensor_sha256": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc"
+  },
+  "episode_spec_hash": "855f78a75ea2d91a59557e572e435b79dbf92b08859848bc23dfc86bf7f5faad",
+  "rows": [
+    {
+      "arm": "full",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.477465812082622,
+      "forward_distance_m": 0.4825691868154752,
+      "displacement_m": 0.48953922357354646,
+      "mean_feet_planted": 0.1429166666666667,
+      "min_height_m": 0.07082144998377204,
+      "final_height_m": 0.142366595236437,
+      "fell": true,
+      "path_per_forward": 5.133908006915401,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.261587352689786,
+      "forward_distance_m": 0.16768853049896765,
+      "displacement_m": 0.20545663420446292,
+      "mean_feet_planted": 0.15125,
+      "min_height_m": 0.05330062257382,
+      "final_height_m": 0.11075278293559504,
+      "fell": true,
+      "path_per_forward": 13.486833869676667,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.016420266366872,
+      "forward_distance_m": -0.27049961018856034,
+      "displacement_m": 0.33685089751935576,
+      "mean_feet_planted": 0.14708333333333332,
+      "min_height_m": 0.050614048913275186,
+      "final_height_m": 0.10545272911183137,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.2359511292346945,
+      "forward_distance_m": -0.028802227089524846,
+      "displacement_m": 0.8435094464509093,
+      "mean_feet_planted": 0.1420833333333333,
+      "min_height_m": 0.04241559496317953,
+      "final_height_m": 0.12271506011624475,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.1737192216984282,
+      "forward_distance_m": -0.4896069438579036,
+      "displacement_m": 0.5869537497806607,
+      "mean_feet_planted": 0.15333333333333335,
+      "min_height_m": 0.042117908709266114,
+      "final_height_m": 0.07452166768759673,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.4607528888302754,
+      "forward_distance_m": 0.21565310836660623,
+      "displacement_m": 0.3344997273654431,
+      "mean_feet_planted": 0.15874999999999997,
+      "min_height_m": 0.06263050568770215,
+      "final_height_m": 0.11087051194173189,
+      "fell": true,
+      "path_per_forward": 11.410699838590046,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.5532820540096637,
+      "forward_distance_m": -0.5577289839578603,
+      "displacement_m": 0.9087141696447655,
+      "mean_feet_planted": 0.16041666666666665,
+      "min_height_m": 0.05380887896415568,
+      "final_height_m": 0.10074837579314103,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 2.4362298207386375,
+      "forward_distance_m": 0.08049740570980699,
+      "displacement_m": 0.7242814941299309,
+      "mean_feet_planted": 0.15,
+      "min_height_m": 0.046282127948834524,
+      "final_height_m": 0.06254006775643044,
+      "fell": true,
+      "path_per_forward": 30.264699827982557,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 1.8208467050634807,
+      "forward_distance_m": -0.2838319090263311,
+      "displacement_m": 0.3613386493312225,
+      "mean_feet_planted": 0.18458333333333335,
+      "min_height_m": 0.07765014364703804,
+      "final_height_m": 0.07765014364703804,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.2506640631758654,
+      "forward_distance_m": -0.8911672188653584,
+      "displacement_m": 0.8957763307532379,
+      "mean_feet_planted": 0.18708333333333335,
+      "min_height_m": 0.04359701908624622,
+      "final_height_m": 0.09072473495506873,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.2168553915516798,
+      "forward_distance_m": -0.4416347465079372,
+      "displacement_m": 0.48700849056505335,
+      "mean_feet_planted": 0.17791666666666667,
+      "min_height_m": 0.051754540151568905,
+      "final_height_m": 0.06235510164228678,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.1154296359782747,
+      "forward_distance_m": -0.13268405685279083,
+      "displacement_m": 0.13390102796255218,
+      "mean_feet_planted": 0.16958333333333336,
+      "min_height_m": 0.04246052322359927,
+      "final_height_m": 0.04626371815564136,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.055232096079288,
+      "forward_distance_m": -0.7793759998795499,
+      "displacement_m": 0.968160792666791,
+      "mean_feet_planted": 0.175,
+      "min_height_m": 0.044493584771633135,
+      "final_height_m": 0.1016243855931997,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 1.9920986377662766,
+      "forward_distance_m": -0.1893907772035887,
+      "displacement_m": 0.42518533535976455,
+      "mean_feet_planted": 0.18291666666666664,
+      "min_height_m": 0.05962558973258553,
+      "final_height_m": 0.09624179176013332,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 1.6722842420471276,
+      "forward_distance_m": -0.769863285730396,
+      "displacement_m": 0.7872607637642615,
+      "mean_feet_planted": 0.19125,
+      "min_height_m": 0.042432331942831934,
+      "final_height_m": 0.07630087221046791,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 1.7849515389208632,
+      "forward_distance_m": -0.2553162002181162,
+      "displacement_m": 0.27512031145372384,
+      "mean_feet_planted": 0.17916666666666664,
+      "min_height_m": 0.04070872040223918,
+      "final_height_m": 0.048394377653966314,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.343518292615173,
+      "forward_distance_m": 0.09176865025822942,
+      "displacement_m": 0.529570975950413,
+      "mean_feet_planted": 0.15333333333333335,
+      "min_height_m": 0.04126972833812296,
+      "final_height_m": 0.12006445683744633,
+      "fell": true,
+      "path_per_forward": 25.537242686044806,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.3339029182552524,
+      "forward_distance_m": -0.7993946223156294,
+      "displacement_m": 0.9095538032269468,
+      "mean_feet_planted": 0.1704166666666667,
+      "min_height_m": 0.039761358503779785,
+      "final_height_m": 0.05409166199598679,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.4012718467288408,
+      "forward_distance_m": -0.3368868743973185,
+      "displacement_m": 0.4983098288228289,
+      "mean_feet_planted": 0.14291666666666664,
+      "min_height_m": 0.07402530534986572,
+      "final_height_m": 0.15517000348662519,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.3545548893250206,
+      "forward_distance_m": 0.0792461476822454,
+      "displacement_m": 0.13912054020502893,
+      "mean_feet_planted": 0.16083333333333333,
+      "min_height_m": 0.04587934311160762,
+      "final_height_m": 0.10109753749715833,
+      "fell": true,
+      "path_per_forward": 29.711916076553255,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.317375551293704,
+      "forward_distance_m": -0.5752852986144622,
+      "displacement_m": 0.5949167858528738,
+      "mean_feet_planted": 0.16083333333333333,
+      "min_height_m": 0.041450584913386095,
+      "final_height_m": 0.06042307102937984,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.4925303179221823,
+      "forward_distance_m": 0.40058038552914293,
+      "displacement_m": 0.6029882060087879,
+      "mean_feet_planted": 0.165,
+      "min_height_m": 0.06313818346881828,
+      "final_height_m": 0.0966929083923024,
+      "fell": true,
+      "path_per_forward": 6.2222974662868165,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.2913408885368596,
+      "forward_distance_m": 0.3939487063005691,
+      "displacement_m": 0.6534736502447409,
+      "mean_feet_planted": 0.165,
+      "min_height_m": 0.03754594967990035,
+      "final_height_m": 0.08027066641468437,
+      "fell": true,
+      "path_per_forward": 5.816343224106558,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 2.5450862591235324,
+      "forward_distance_m": -0.040117748844034545,
+      "displacement_m": 0.10520515916267417,
+      "mean_feet_planted": 0.16291666666666665,
+      "min_height_m": 0.0413630466290684,
+      "final_height_m": 0.09461552702445448,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.535167808961788,
+      "forward_distance_m": -0.37223884757811876,
+      "displacement_m": 0.7885937462801197,
+      "mean_feet_planted": 0.1720833333333333,
+      "min_height_m": 0.05290448893872747,
+      "final_height_m": 0.19864803501918743,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.502218423517488,
+      "forward_distance_m": 0.09982620909507813,
+      "displacement_m": 0.810249206842367,
+      "mean_feet_planted": 0.18166666666666664,
+      "min_height_m": 0.09071042790083984,
+      "final_height_m": 0.1365237302975317,
+      "fell": false,
+      "path_per_forward": 25.06574622236014,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.0256410360481683,
+      "forward_distance_m": -0.004485478833635981,
+      "displacement_m": 0.6348232058259006,
+      "mean_feet_planted": 0.12541666666666668,
+      "min_height_m": 0.08475915535358361,
+      "final_height_m": 0.1350923007464832,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.09141826510931,
+      "forward_distance_m": -0.396799778193866,
+      "displacement_m": 1.1478023675366429,
+      "mean_feet_planted": 0.1175,
+      "min_height_m": 0.062171624389934704,
+      "final_height_m": 0.07129263127035124,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.5546394940436037,
+      "forward_distance_m": -0.40599403609908224,
+      "displacement_m": 0.4084744586303874,
+      "mean_feet_planted": 0.15833333333333333,
+      "min_height_m": 0.0772634841456524,
+      "final_height_m": 0.147639776641472,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.7606422950114937,
+      "forward_distance_m": -0.26103329869852965,
+      "displacement_m": 0.43158375535665844,
+      "mean_feet_planted": 0.15166666666666667,
+      "min_height_m": 0.06414340785341593,
+      "final_height_m": 0.10478643819220797,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.2465226988672775,
+      "forward_distance_m": -0.3770221991696548,
+      "displacement_m": 0.3773949897061805,
+      "mean_feet_planted": 0.1358333333333333,
+      "min_height_m": 0.09617209685809672,
+      "final_height_m": 0.10967978065437575,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 2.620173463961753,
+      "forward_distance_m": -0.2960477046940657,
+      "displacement_m": 1.1090037386427511,
+      "mean_feet_planted": 0.15875000000000003,
+      "min_height_m": 0.06028872652328757,
+      "final_height_m": 0.14106239451217334,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.25,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.5781114542615304,
+      "forward_distance_m": 0.7808200638501015,
+      "displacement_m": 0.78174813186239,
+      "mean_feet_planted": 0.1433333333333333,
+      "min_height_m": 0.07594012899143733,
+      "final_height_m": 0.1159205179239646,
+      "fell": true,
+      "path_per_forward": 3.3017997021609133,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.9859803714529396,
+      "forward_distance_m": 1.2764650425835562,
+      "displacement_m": 1.2853859486454144,
+      "mean_feet_planted": 0.14166666666666664,
+      "min_height_m": 0.050655054696315684,
+      "final_height_m": 0.15491420199233408,
+      "fell": true,
+      "path_per_forward": 2.3392574585586274,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.5504181705869424,
+      "forward_distance_m": -0.6017319967874359,
+      "displacement_m": 0.8475958463677767,
+      "mean_feet_planted": 0.14375,
+      "min_height_m": 0.11117320131909166,
+      "final_height_m": 0.28633006122513704,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 3.4287680743637363,
+      "forward_distance_m": -0.7301500288318622,
+      "displacement_m": 0.7301898691441262,
+      "mean_feet_planted": 0.12291666666666666,
+      "min_height_m": 0.04666412462212484,
+      "final_height_m": 0.16062150855829066,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.1973002263539603,
+      "forward_distance_m": 0.2956490087553763,
+      "displacement_m": 0.46558273441489956,
+      "mean_feet_planted": 0.13666666666666666,
+      "min_height_m": 0.06930554588796572,
+      "final_height_m": 0.1360526103207554,
+      "fell": true,
+      "path_per_forward": 7.432124449204679,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.1849554463206524,
+      "forward_distance_m": 0.16321505570724543,
+      "displacement_m": 0.1661517792353426,
+      "mean_feet_planted": 0.11708333333333332,
+      "min_height_m": 0.07360793757991489,
+      "final_height_m": 0.15309256051496192,
+      "fell": true,
+      "path_per_forward": 13.386972401858257,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.579604729154743,
+      "forward_distance_m": 0.17720801768407624,
+      "displacement_m": 0.272968272132904,
+      "mean_feet_planted": 0.13958333333333334,
+      "min_height_m": 0.11258897113083546,
+      "final_height_m": 0.17226374047363868,
+      "fell": false,
+      "path_per_forward": 14.556930114491903,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.2855906581422802,
+      "forward_distance_m": 0.007307421792701399,
+      "displacement_m": 0.22688768117627856,
+      "mean_feet_planted": 0.14375,
+      "min_height_m": 0.06296528883339192,
+      "final_height_m": 0.11782461983459677,
+      "fell": true,
+      "path_per_forward": 449.6237867949411,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.717311558782262,
+      "forward_distance_m": -0.37598025773102944,
+      "displacement_m": 0.5860159129256657,
+      "mean_feet_planted": 0.12916666666666668,
+      "min_height_m": 0.08542576367197811,
+      "final_height_m": 0.11423245327028696,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.759709267874006,
+      "forward_distance_m": -0.6800823636614103,
+      "displacement_m": 0.9091160408276296,
+      "mean_feet_planted": 0.09666666666666668,
+      "min_height_m": 0.08191617676857067,
+      "final_height_m": 0.09518341606307516,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.874488160434942,
+      "forward_distance_m": -0.16526210844958525,
+      "displacement_m": 0.6143978819201957,
+      "mean_feet_planted": 0.12708333333333333,
+      "min_height_m": 0.05896195455558471,
+      "final_height_m": 0.139659488169191,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.629828588761556,
+      "forward_distance_m": -0.6626687831218189,
+      "displacement_m": 0.6924603337235676,
+      "mean_feet_planted": 0.1325,
+      "min_height_m": 0.0853095495631389,
+      "final_height_m": 0.1205544598049647,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.577733147086854,
+      "forward_distance_m": -0.21742261270866864,
+      "displacement_m": 0.5559960563680357,
+      "mean_feet_planted": 0.1375,
+      "min_height_m": 0.05672035465381147,
+      "final_height_m": 0.06512365661247911,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.5754275069835324,
+      "forward_distance_m": -0.8903083062049368,
+      "displacement_m": 0.9374013509732845,
+      "mean_feet_planted": 0.14041666666666666,
+      "min_height_m": 0.08312518465449704,
+      "final_height_m": 0.1624547613062298,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.382101178018642,
+      "forward_distance_m": -0.3371181124854725,
+      "displacement_m": 0.3954709108752599,
+      "mean_feet_planted": 0.14958333333333335,
+      "min_height_m": 0.04534159532678258,
+      "final_height_m": 0.05894851026385446,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.0405280510812376,
+      "forward_distance_m": 0.424824619583376,
+      "displacement_m": 0.6318800751031634,
+      "mean_feet_planted": 0.13083333333333333,
+      "min_height_m": 0.07365817537905575,
+      "final_height_m": 0.13470459332572773,
+      "fell": true,
+      "path_per_forward": 7.157137112399637,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 1.878566653859119,
+      "forward_distance_m": 0.0059420946765569305,
+      "displacement_m": 0.5982947608275103,
+      "mean_feet_planted": 0.08,
+      "min_height_m": 0.04331026471573038,
+      "final_height_m": 0.07003152766886403,
+      "fell": true,
+      "path_per_forward": 316.1455271439112,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 1.9125404086558393,
+      "forward_distance_m": 0.07659619908621956,
+      "displacement_m": 0.5504017740140313,
+      "mean_feet_planted": 0.08291666666666668,
+      "min_height_m": 0.05145622107095018,
+      "final_height_m": 0.05533207764620149,
+      "fell": true,
+      "path_per_forward": 24.969129427728024,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 1.8803316412266367,
+      "forward_distance_m": 0.12281346003638388,
+      "displacement_m": 0.6915618586485859,
+      "mean_feet_planted": 0.06833333333333332,
+      "min_height_m": 0.046823341204848545,
+      "final_height_m": 0.062366473342061905,
+      "fell": true,
+      "path_per_forward": 15.31046874397629,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.0717175211270615,
+      "forward_distance_m": -0.26513150552583586,
+      "displacement_m": 0.4410284202549385,
+      "mean_feet_planted": 0.10083333333333332,
+      "min_height_m": 0.05300192464324262,
+      "final_height_m": 0.08140206008240343,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 1.8768766224315414,
+      "forward_distance_m": -0.0064022293196218105,
+      "displacement_m": 0.7642907109754967,
+      "mean_feet_planted": 0.07083333333333333,
+      "min_height_m": 0.03676542569371502,
+      "final_height_m": 0.0690260906211527,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 1.906467682165146,
+      "forward_distance_m": -0.007131370699694342,
+      "displacement_m": 0.2719532326203197,
+      "mean_feet_planted": 0.07583333333333334,
+      "min_height_m": 0.044308629270003695,
+      "final_height_m": 0.07702026576483681,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 1.8291584619236367,
+      "forward_distance_m": 0.21147957342413248,
+      "displacement_m": 0.6697374378909056,
+      "mean_feet_planted": 0.07125,
+      "min_height_m": 0.04410758868343117,
+      "final_height_m": 0.061288388412365044,
+      "fell": true,
+      "path_per_forward": 8.649338715352764,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 2.4398859708331484,
+      "forward_distance_m": -1.3665280534854503,
+      "displacement_m": 1.3770907685714087,
+      "mean_feet_planted": 0.18833333333333332,
+      "min_height_m": 0.0798850243131332,
+      "final_height_m": 0.10831220017771868,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.535167808961788,
+      "forward_distance_m": -0.37223884757811876,
+      "displacement_m": 0.7885937462801197,
+      "mean_feet_planted": 0.1720833333333333,
+      "min_height_m": 0.05290448893872747,
+      "final_height_m": 0.19864803501918743,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.502218423517488,
+      "forward_distance_m": 0.09982620909507813,
+      "displacement_m": 0.810249206842367,
+      "mean_feet_planted": 0.18166666666666664,
+      "min_height_m": 0.09071042790083984,
+      "final_height_m": 0.1365237302975317,
+      "fell": false,
+      "path_per_forward": 25.06574622236014,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.0256410360481683,
+      "forward_distance_m": -0.004485478833635981,
+      "displacement_m": 0.6348232058259006,
+      "mean_feet_planted": 0.12541666666666668,
+      "min_height_m": 0.08475915535358361,
+      "final_height_m": 0.1350923007464832,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.09141826510931,
+      "forward_distance_m": -0.396799778193866,
+      "displacement_m": 1.1478023675366429,
+      "mean_feet_planted": 0.1175,
+      "min_height_m": 0.062171624389934704,
+      "final_height_m": 0.07129263127035124,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.5546394940436037,
+      "forward_distance_m": -0.40599403609908224,
+      "displacement_m": 0.4084744586303874,
+      "mean_feet_planted": 0.15833333333333333,
+      "min_height_m": 0.0772634841456524,
+      "final_height_m": 0.147639776641472,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.7606422950114937,
+      "forward_distance_m": -0.26103329869852965,
+      "displacement_m": 0.43158375535665844,
+      "mean_feet_planted": 0.15166666666666667,
+      "min_height_m": 0.06414340785341593,
+      "final_height_m": 0.10478643819220797,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.2465226988672775,
+      "forward_distance_m": -0.3770221991696548,
+      "displacement_m": 0.3773949897061805,
+      "mean_feet_planted": 0.1358333333333333,
+      "min_height_m": 0.09617209685809672,
+      "final_height_m": 0.10967978065437575,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 2.620173463961753,
+      "forward_distance_m": -0.2960477046940657,
+      "displacement_m": 1.1090037386427511,
+      "mean_feet_planted": 0.15875000000000003,
+      "min_height_m": 0.06028872652328757,
+      "final_height_m": 0.14106239451217334,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 0.5,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.632087137969167,
+      "forward_distance_m": -0.571762693232948,
+      "displacement_m": 0.5884740502563534,
+      "mean_feet_planted": 0.13708333333333333,
+      "min_height_m": 0.05499449029238311,
+      "final_height_m": 0.147665758048253,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.9937674478669365,
+      "forward_distance_m": 0.10803664124609091,
+      "displacement_m": 0.6696002062663492,
+      "mean_feet_planted": 0.12875,
+      "min_height_m": 0.044157396631589005,
+      "final_height_m": 0.14917248594245702,
+      "fell": true,
+      "path_per_forward": 27.710667541464872,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.736392454269919,
+      "forward_distance_m": -0.34315528052849625,
+      "displacement_m": 0.4106253997126966,
+      "mean_feet_planted": 0.15291666666666665,
+      "min_height_m": 0.060206463725200006,
+      "final_height_m": 0.11897930400535822,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.305044521578317,
+      "forward_distance_m": 0.4103474376636109,
+      "displacement_m": 0.8856886590921316,
+      "mean_feet_planted": 0.09916666666666667,
+      "min_height_m": 0.06412905579639915,
+      "final_height_m": 0.17802060159524358,
+      "fell": true,
+      "path_per_forward": 5.617299658802586,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.911095464620084,
+      "forward_distance_m": -0.2005463120042168,
+      "displacement_m": 0.6300341157521508,
+      "mean_feet_planted": 0.11,
+      "min_height_m": 0.07191096047201427,
+      "final_height_m": 0.14342123515965674,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 3.790301974370395,
+      "forward_distance_m": -1.6890156004596322,
+      "displacement_m": 1.7255447433310225,
+      "mean_feet_planted": 0.1404166666666667,
+      "min_height_m": 0.06464055960596804,
+      "final_height_m": 0.26568764937998396,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 3.2510353902058986,
+      "forward_distance_m": 1.9990795229290867,
+      "displacement_m": 2.0383797650164035,
+      "mean_feet_planted": 0.11958333333333332,
+      "min_height_m": 0.1105079769352051,
+      "final_height_m": 0.18246339016351437,
+      "fell": false,
+      "path_per_forward": 1.6262661654612038,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "full",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.30760685992662,
+      "forward_distance_m": 0.9120863563138589,
+      "displacement_m": 1.0878870601027015,
+      "mean_feet_planted": 0.1175,
+      "min_height_m": 0.06098990901226326,
+      "final_height_m": 0.13540028224935688,
+      "fell": true,
+      "path_per_forward": 3.6264185260857427,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 3.2038681131608175,
+      "forward_distance_m": -0.28299286770239696,
+      "displacement_m": 1.0192973574647974,
+      "mean_feet_planted": 0.13083333333333333,
+      "min_height_m": 0.08590887494459559,
+      "final_height_m": 0.11965462185007988,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 3.2484356357727537,
+      "forward_distance_m": -0.4800261963768766,
+      "displacement_m": 0.49996039056386554,
+      "mean_feet_planted": 0.11208333333333333,
+      "min_height_m": 0.08290374420506343,
+      "final_height_m": 0.15662433013378416,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 3.171557478253476,
+      "forward_distance_m": 0.8709018367723801,
+      "displacement_m": 0.8740841192352367,
+      "mean_feet_planted": 0.12291666666666666,
+      "min_height_m": 0.06875399254798456,
+      "final_height_m": 0.1330025443608685,
+      "fell": true,
+      "path_per_forward": 3.6416934083036017,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 3.4142041128442218,
+      "forward_distance_m": 0.21806674619206,
+      "displacement_m": 1.5569381608298565,
+      "mean_feet_planted": 0.09375,
+      "min_height_m": 0.0978080370109103,
+      "final_height_m": 0.1151774621108765,
+      "fell": false,
+      "path_per_forward": 15.656693065146197,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 3.373257510173812,
+      "forward_distance_m": -0.17869279554503148,
+      "displacement_m": 1.1950378490368354,
+      "mean_feet_planted": 0.13083333333333333,
+      "min_height_m": 0.10783368973050783,
+      "final_height_m": 0.1615763410062745,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.5099473434916284,
+      "forward_distance_m": 0.14239742421902743,
+      "displacement_m": 0.14616458215223735,
+      "mean_feet_planted": 0.12499999999999999,
+      "min_height_m": 0.06426945528767457,
+      "final_height_m": 0.08623618568180219,
+      "fell": true,
+      "path_per_forward": 17.626353547174936,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 3.4069020957836287,
+      "forward_distance_m": 1.7229187090991387,
+      "displacement_m": 1.7396952049930505,
+      "mean_feet_planted": 0.13041666666666665,
+      "min_height_m": 0.07904297613833082,
+      "final_height_m": 0.13634985034134428,
+      "fell": true,
+      "path_per_forward": 1.9774015325220964,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "constant_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 2.241036462739782,
+      "forward_distance_m": 0.5173264720611674,
+      "displacement_m": 0.8227912206595842,
+      "mean_feet_planted": 0.125,
+      "min_height_m": 0.07504054124727037,
+      "final_height_m": 0.11957100207457358,
+      "fell": true,
+      "path_per_forward": 4.3319578327606,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.96780557381074,
+      "forward_distance_m": -0.15370528594845165,
+      "displacement_m": 0.6796570372411439,
+      "mean_feet_planted": 0.11791666666666668,
+      "min_height_m": 0.10527201668615409,
+      "final_height_m": 0.12431363279388272,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 3.861628740738557,
+      "forward_distance_m": -0.08904245431668739,
+      "displacement_m": 0.5846366736885517,
+      "mean_feet_planted": 0.15833333333333333,
+      "min_height_m": 0.09906312621844962,
+      "final_height_m": 0.17263178018515202,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.982692530907909,
+      "forward_distance_m": -0.6711906804194814,
+      "displacement_m": 1.0295492694962916,
+      "mean_feet_planted": 0.12,
+      "min_height_m": 0.05467799332554343,
+      "final_height_m": 0.15383199286326757,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 3.7023808574271673,
+      "forward_distance_m": 1.000165194401797,
+      "displacement_m": 1.3713653662263632,
+      "mean_feet_planted": 0.12833333333333333,
+      "min_height_m": 0.0969673221585813,
+      "final_height_m": 0.13471657360357725,
+      "fell": false,
+      "path_per_forward": 3.7017693458544882,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.978591017690755,
+      "forward_distance_m": -0.2875037051092504,
+      "displacement_m": 1.011776859171712,
+      "mean_feet_planted": 0.12458333333333334,
+      "min_height_m": 0.07017698673313084,
+      "final_height_m": 0.2032050374822252,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.646083735101331,
+      "forward_distance_m": -0.2104501163855788,
+      "displacement_m": 1.1268042085382532,
+      "mean_feet_planted": 0.125,
+      "min_height_m": 0.06868950452607,
+      "final_height_m": 0.12688030151067883,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 3.5597558007283854,
+      "forward_distance_m": 1.0533385890712759,
+      "displacement_m": 2.0403724903294496,
+      "mean_feet_planted": 0.14833333333333332,
+      "min_height_m": 0.09503779118454246,
+      "final_height_m": 0.13141139189396497,
+      "fell": false,
+      "path_per_forward": 3.3794981382643607,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "time_shuffled_connectome",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 3.00778171890043,
+      "forward_distance_m": 0.3544617896081182,
+      "displacement_m": 0.5633534898687702,
+      "mean_feet_planted": 0.125,
+      "min_height_m": 0.07851280914020178,
+      "final_height_m": 0.12819168575352377,
+      "fell": true,
+      "path_per_forward": 8.485489288494929,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 0,
+      "horizon_s": 8.0,
+      "path_m": 2.535167808961788,
+      "forward_distance_m": -0.37223884757811876,
+      "displacement_m": 0.7885937462801197,
+      "mean_feet_planted": 0.1720833333333333,
+      "min_height_m": 0.05290448893872747,
+      "final_height_m": 0.19864803501918743,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 1,
+      "horizon_s": 8.0,
+      "path_m": 2.502218423517488,
+      "forward_distance_m": 0.09982620909507813,
+      "displacement_m": 0.810249206842367,
+      "mean_feet_planted": 0.18166666666666664,
+      "min_height_m": 0.09071042790083984,
+      "final_height_m": 0.1365237302975317,
+      "fell": false,
+      "path_per_forward": 25.06574622236014,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 2,
+      "horizon_s": 8.0,
+      "path_m": 2.0256410360481683,
+      "forward_distance_m": -0.004485478833635981,
+      "displacement_m": 0.6348232058259006,
+      "mean_feet_planted": 0.12541666666666668,
+      "min_height_m": 0.08475915535358361,
+      "final_height_m": 0.1350923007464832,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 3,
+      "horizon_s": 8.0,
+      "path_m": 2.09141826510931,
+      "forward_distance_m": -0.396799778193866,
+      "displacement_m": 1.1478023675366429,
+      "mean_feet_planted": 0.1175,
+      "min_height_m": 0.062171624389934704,
+      "final_height_m": 0.07129263127035124,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 4,
+      "horizon_s": 8.0,
+      "path_m": 2.5546394940436037,
+      "forward_distance_m": -0.40599403609908224,
+      "displacement_m": 0.4084744586303874,
+      "mean_feet_planted": 0.15833333333333333,
+      "min_height_m": 0.0772634841456524,
+      "final_height_m": 0.147639776641472,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 5,
+      "horizon_s": 8.0,
+      "path_m": 2.7606422950114937,
+      "forward_distance_m": -0.26103329869852965,
+      "displacement_m": 0.43158375535665844,
+      "mean_feet_planted": 0.15166666666666667,
+      "min_height_m": 0.06414340785341593,
+      "final_height_m": 0.10478643819220797,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 6,
+      "horizon_s": 8.0,
+      "path_m": 2.2465226988672775,
+      "forward_distance_m": -0.3770221991696548,
+      "displacement_m": 0.3773949897061805,
+      "mean_feet_planted": 0.1358333333333333,
+      "min_height_m": 0.09617209685809672,
+      "final_height_m": 0.10967978065437575,
+      "fell": false,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    },
+    {
+      "arm": "cpg_only",
+      "episode": 7,
+      "horizon_s": 8.0,
+      "path_m": 2.620173463961753,
+      "forward_distance_m": -0.2960477046940657,
+      "displacement_m": 1.1090037386427511,
+      "mean_feet_planted": 0.15875000000000003,
+      "min_height_m": 0.06028872652328757,
+      "final_height_m": 0.14106239451217334,
+      "fell": true,
+      "path_per_forward": null,
+      "variant": "v3_phase",
+      "scale": 1.0,
+      "frequency_hz": 0.6
+    }
+  ],
+  "ablation_ladder": {
+    "v3_phase": {
+      "0.25": {
+        "scale": 0.25,
+        "ablation_ladder": {
+          "full": {
+            "n": 8,
+            "falls": 8,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.05002869171287413,
+                "sd": 0.3388826834726233
+              },
+              "path_m": {
+                "mean": 2.3269260682063724,
+                "sd": 0.17182402083614548
+              },
+              "displacement_m": {
+                "mean": 0.5537256678336343,
+                "sd": 0.23997155260209813
+              },
+              "min_height_m": {
+                "mean": 0.05274889221800065,
+                "sd": 0.009299617235520108
+              },
+              "mean_feet_planted": {
+                "mean": 0.15072916666666666,
+                "sd": 0.006273393718713974
+              }
+            },
+            "path_per_forward_mean": 15.074035385791166,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.25
+            }
+          },
+          "constant_connectome": {
+            "n": 8,
+            "falls": 8,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.46790802428550854,
+                "sd": 0.28219102036322297
+              },
+              "path_m": {
+                "mean": 1.988545288822857,
+                "sd": 0.1971628225230139
+              },
+              "displacement_m": {
+                "mean": 0.5417189627320758,
+                "sd": 0.2859197261779221
+              },
+              "min_height_m": {
+                "mean": 0.05034030661971778,
+                "sd": 0.011890617748251094
+              },
+              "mean_feet_planted": {
+                "mean": 0.1809375,
+                "sd": 0.0064976959057294545
+              }
+            },
+            "path_per_forward_mean": null,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.25
+            }
+          },
+          "time_shuffled_connectome": {
+            "n": 8,
+            "falls": 8,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.09826758180015721,
+                "sd": 0.4089921547840258
+              },
+              "path_m": {
+                "mean": 2.384947620475071,
+                "sd": 0.0837098967244608
+              },
+              "displacement_m": {
+                "mean": 0.5041423686842867,
+                "sd": 0.24943466636452763
+              },
+              "min_height_m": {
+                "mean": 0.048054187499318654,
+                "sd": 0.012350899456683042
+              },
+              "mean_feet_planted": {
+                "mean": 0.16015625,
+                "sd": 0.007941128599733175
+              }
+            },
+            "path_per_forward_mean": 16.82194986324786,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.25
+            }
+          },
+          "cpg_only": {
+            "n": 8,
+            "falls": 5,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.25172439177148437,
+                "sd": 0.18091274912256208
+              },
+              "path_m": {
+                "mean": 2.4170529356901103,
+                "sd": 0.24692299331600334
+              },
+              "displacement_m": {
+                "mean": 0.713490683602626,
+                "sd": 0.285419690665502
+              },
+              "min_height_m": {
+                "mean": 0.07355167649544228,
+                "sd": 0.01485649927764743
+              },
+              "mean_feet_planted": {
+                "mean": 0.15015625,
+                "sd": 0.020917473320269026
+              }
+            },
+            "path_per_forward_mean": 25.06574622236014,
+            "signal": {
+              "frac_active": 0.0,
+              "motor_hz": 0.0,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.0
+            }
+          }
+        },
+        "phase_diagnostics": {
+          "full": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                -1.058311954849944,
+                1.3856875905066064,
+                1.3856875905066064,
+                1.3856875905066064,
+                1.3856875905066064
+              ],
+              [
+                1.058311954849944,
+                0.0,
+                -1.5309674907461537,
+                -1.5309674907461537,
+                -1.5309674907461537,
+                -1.5309674907461537
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                -0.16843557894761535,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2205390296102245
+              ],
+              [
+                0.16843557894761535,
+                0.0,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                -0.2436610438652459
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                0.30169822310165384,
+                0.11473772305394628,
+                0.11473772305394628,
+                0.11473772305394628,
+                0.11473772305394628
+              ],
+              [
+                0.30169822310165384,
+                1.0,
+                0.023664815870960396,
+                0.023664815870960396,
+                0.023664815870960396,
+                0.023664815870960396
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 0.40795723994774263,
+            "cross_phase_cosine": 0.5486763777521412,
+            "tripod_coherence_scalar": -0.14071913780439854,
+            "within_pairs_in_phase": 2,
+            "cross_pairs_antiphase": 0,
+            "within_pair_phase_cycles": [
+              0.2205390296102245,
+              0.2205390296102245,
+              0.0,
+              -0.2436610438652459,
+              -0.2436610438652459,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              -0.16843557894761535,
+              0.2205390296102245,
+              0.2205390296102245,
+              0.2436610438652459,
+              0.0,
+              0.0,
+              0.2436610438652459,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "constant_connectome": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                0.0,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16
+              ],
+              [
+                0.0,
+                0.0,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17
+              ],
+              [
+                0.0,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                1.0,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918
+              ],
+              [
+                1.0,
+                1.0,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 1.0,
+            "cross_phase_cosine": 1.0,
+            "tripod_coherence_scalar": 0.0,
+            "within_pairs_in_phase": 6,
+            "cross_pairs_antiphase": 0,
+            "within_pair_phase_cycles": [
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              0.0,
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              0.0,
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              -4.785096886148353e-17,
+              0.0,
+              0.0,
+              -4.785096886148353e-17,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "time_shuffled_connectome": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                0.581152128496968,
+                0.7258459996076255,
+                0.7258459996076255,
+                0.7258459996076255,
+                0.7258459996076255
+              ],
+              [
+                -0.581152128496968,
+                0.0,
+                2.5273164852760375,
+                2.5273164852760375,
+                2.5273164852760375,
+                2.5273164852760375
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                0.09249323393866879,
+                0.11552197876103153,
+                0.11552197876103153,
+                0.11552197876103153,
+                0.11552197876103153
+              ],
+              [
+                -0.09249323393866879,
+                0.0,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.4022349113893167
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                0.46131157266184797,
+                0.02327099593267397,
+                0.02327099593267397,
+                0.02327099593267397,
+                0.02327099593267397
+              ],
+              [
+                0.46131157266184797,
+                1.0,
+                0.013921829460805212,
+                0.013921829460805212,
+                0.013921829460805212,
+                0.013921829460805212
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 0.3102490960317014,
+            "cross_phase_cosine": 0.5219250307878058,
+            "tripod_coherence_scalar": -0.2116759347561044,
+            "within_pairs_in_phase": 4,
+            "cross_pairs_antiphase": 2,
+            "within_pair_phase_cycles": [
+              0.11552197876103153,
+              0.11552197876103153,
+              0.0,
+              0.4022349113893167,
+              0.4022349113893167,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              0.09249323393866879,
+              0.11552197876103153,
+              0.11552197876103153,
+              -0.4022349113893167,
+              0.0,
+              0.0,
+              -0.4022349113893167,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "cpg_only": null
+        }
+      },
+      "0.5": {
+        "scale": 0.5,
+        "ablation_ladder": {
+          "full": {
+            "n": 8,
+            "falls": 6,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": 0.1710978230942199,
+                "sd": 0.6170039797077249
+              },
+              "path_m": {
+                "mean": 2.723841141329598,
+                "sd": 0.43602772489627195
+              },
+              "displacement_m": {
+                "mean": 0.5970637828723915,
+                "sd": 0.3594136283017116
+              },
+              "min_height_m": {
+                "mean": 0.07536253163263469,
+                "sd": 0.023173424344868042
+              },
+              "mean_feet_planted": {
+                "mean": 0.13609374999999999,
+                "sd": 0.009671105078402362
+              }
+            },
+            "path_per_forward_mean": 81.77347848686925,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.5
+            }
+          },
+          "constant_connectome": {
+            "n": 8,
+            "falls": 4,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.36300224059744324,
+                "sd": 0.37917603011901335
+              },
+              "path_m": {
+                "mean": 2.694640932377879,
+                "sd": 0.1892391935178871
+              },
+              "displacement_m": {
+                "mean": 0.6653423203396003,
+                "sd": 0.1691789175939008
+              },
+              "min_height_m": {
+                "mean": 0.0713073443216774,
+                "sd": 0.014545341333940144
+              },
+              "mean_feet_planted": {
+                "mean": 0.13046875000000002,
+                "sd": 0.014464452205464494
+              }
+            },
+            "path_per_forward_mean": 7.157137112399637,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.5000000000000001
+            }
+          },
+          "time_shuffled_connectome": {
+            "n": 8,
+            "falls": 8,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.15354522897591366,
+                "sd": 0.4762989377204042
+              },
+              "path_m": {
+                "mean": 1.9744431202777661,
+                "sd": 0.18815820565538394
+              },
+              "displacement_m": {
+                "mean": 0.6705448704753996,
+                "sd": 0.3040652255536364
+              },
+              "min_height_m": {
+                "mean": 0.049957302449381846,
+                "sd": 0.012254295742585533
+              },
+              "mean_feet_planted": {
+                "mean": 0.09229166666666666,
+                "sd": 0.037556670142895016
+              }
+            },
+            "path_per_forward_mean": 91.26861600774207,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.5
+            }
+          },
+          "cpg_only": {
+            "n": 8,
+            "falls": 5,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.25172439177148437,
+                "sd": 0.18091274912256208
+              },
+              "path_m": {
+                "mean": 2.4170529356901103,
+                "sd": 0.24692299331600334
+              },
+              "displacement_m": {
+                "mean": 0.713490683602626,
+                "sd": 0.285419690665502
+              },
+              "min_height_m": {
+                "mean": 0.07355167649544228,
+                "sd": 0.01485649927764743
+              },
+              "mean_feet_planted": {
+                "mean": 0.15015625,
+                "sd": 0.020917473320269026
+              }
+            },
+            "path_per_forward_mean": 25.06574622236014,
+            "signal": {
+              "frac_active": 0.0,
+              "motor_hz": 0.0,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.0
+            }
+          }
+        },
+        "phase_diagnostics": {
+          "full": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                -1.058311954849944,
+                1.3856875905066064,
+                1.3856875905066064,
+                1.3856875905066064,
+                1.3856875905066064
+              ],
+              [
+                1.058311954849944,
+                0.0,
+                -1.5309674907461537,
+                -1.5309674907461537,
+                -1.5309674907461537,
+                -1.5309674907461537
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                -0.16843557894761535,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2205390296102245
+              ],
+              [
+                0.16843557894761535,
+                0.0,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                -0.2436610438652459
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                0.30169822310165384,
+                0.11473772305394628,
+                0.11473772305394628,
+                0.11473772305394628,
+                0.11473772305394628
+              ],
+              [
+                0.30169822310165384,
+                1.0,
+                0.023664815870960396,
+                0.023664815870960396,
+                0.023664815870960396,
+                0.023664815870960396
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 0.40795723994774263,
+            "cross_phase_cosine": 0.5486763777521412,
+            "tripod_coherence_scalar": -0.14071913780439854,
+            "within_pairs_in_phase": 2,
+            "cross_pairs_antiphase": 0,
+            "within_pair_phase_cycles": [
+              0.2205390296102245,
+              0.2205390296102245,
+              0.0,
+              -0.2436610438652459,
+              -0.2436610438652459,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              -0.16843557894761535,
+              0.2205390296102245,
+              0.2205390296102245,
+              0.2436610438652459,
+              0.0,
+              0.0,
+              0.2436610438652459,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "constant_connectome": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                0.0,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16
+              ],
+              [
+                0.0,
+                0.0,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17
+              ],
+              [
+                0.0,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                1.0,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918
+              ],
+              [
+                1.0,
+                1.0,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 1.0,
+            "cross_phase_cosine": 1.0,
+            "tripod_coherence_scalar": 0.0,
+            "within_pairs_in_phase": 6,
+            "cross_pairs_antiphase": 0,
+            "within_pair_phase_cycles": [
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              0.0,
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              0.0,
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              -4.785096886148353e-17,
+              0.0,
+              0.0,
+              -4.785096886148353e-17,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "time_shuffled_connectome": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                0.581152128496968,
+                0.7258459996076255,
+                0.7258459996076255,
+                0.7258459996076255,
+                0.7258459996076255
+              ],
+              [
+                -0.581152128496968,
+                0.0,
+                2.5273164852760375,
+                2.5273164852760375,
+                2.5273164852760375,
+                2.5273164852760375
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                0.09249323393866879,
+                0.11552197876103153,
+                0.11552197876103153,
+                0.11552197876103153,
+                0.11552197876103153
+              ],
+              [
+                -0.09249323393866879,
+                0.0,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.4022349113893167
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                0.46131157266184797,
+                0.02327099593267397,
+                0.02327099593267397,
+                0.02327099593267397,
+                0.02327099593267397
+              ],
+              [
+                0.46131157266184797,
+                1.0,
+                0.013921829460805212,
+                0.013921829460805212,
+                0.013921829460805212,
+                0.013921829460805212
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 0.3102490960317014,
+            "cross_phase_cosine": 0.5219250307878058,
+            "tripod_coherence_scalar": -0.2116759347561044,
+            "within_pairs_in_phase": 4,
+            "cross_pairs_antiphase": 2,
+            "within_pair_phase_cycles": [
+              0.11552197876103153,
+              0.11552197876103153,
+              0.0,
+              0.4022349113893167,
+              0.4022349113893167,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              0.09249323393866879,
+              0.11552197876103153,
+              0.11552197876103153,
+              -0.4022349113893167,
+              0.0,
+              0.0,
+              -0.4022349113893167,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "cpg_only": null
+        }
+      },
+      "1.0": {
+        "scale": 1.0,
+        "ablation_ladder": {
+          "full": {
+            "n": 8,
+            "falls": 7,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": 0.07813375899091926,
+                "sd": 1.01839941619477
+              },
+              "path_m": {
+                "mean": 2.9909164063509173,
+                "sd": 0.4297255890440302
+              },
+              "displacement_m": {
+                "mean": 1.0045292499412262,
+                "sd": 0.5463549238026244
+              },
+              "min_height_m": {
+                "mean": 0.06644210155887775,
+                "sd": 0.018291292275166324
+              },
+              "mean_feet_planted": {
+                "mean": 0.12567708333333333,
+                "sd": 0.016398807835861118
+              }
+            },
+            "path_per_forward_mean": 9.645162972953601,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 1.0
+            }
+          },
+          "constant_connectome": {
+            "n": 8,
+            "falls": 4,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": 0.3162374160899336,
+                "sd": 0.6712644876693428
+              },
+              "path_m": {
+                "mean": 3.071151094027515,
+                "sd": 0.41606000230924384
+              },
+              "displacement_m": {
+                "mean": 0.981746110616933,
+                "sd": 0.48982240637549074
+              },
+              "min_height_m": {
+                "mean": 0.08269516388904219,
+                "sd": 0.013585426837949131
+              },
+              "mean_feet_planted": {
+                "mean": 0.12135416666666667,
+                "sd": 0.011931062836841762
+              }
+            },
+            "path_per_forward_mean": 8.646819877181487,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 1.0
+            }
+          },
+          "time_shuffled_connectome": {
+            "n": 8,
+            "falls": 4,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": 0.1245091663627177,
+                "sd": 0.5831459867139167
+              },
+              "path_m": {
+                "mean": 3.213339996913159,
+                "sd": 0.4049798651984246
+              },
+              "displacement_m": {
+                "mean": 1.0509394243200667,
+                "sd": 0.4585883498237288
+              },
+              "min_height_m": {
+                "mean": 0.08354969374658419,
+                "sd": 0.01689354478852069
+              },
+              "mean_feet_planted": {
+                "mean": 0.13093749999999998,
+                "sd": 0.013509175765423697
+              }
+            },
+            "path_per_forward_mean": 5.188918924204592,
+            "signal": {
+              "frac_active": 0.0918173076923077,
+              "motor_hz": 6.463942050933838,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 1.0
+            }
+          },
+          "cpg_only": {
+            "n": 8,
+            "falls": 5,
+            "metrics": {
+              "forward_distance_m": {
+                "mean": -0.25172439177148437,
+                "sd": 0.18091274912256208
+              },
+              "path_m": {
+                "mean": 2.4170529356901103,
+                "sd": 0.24692299331600334
+              },
+              "displacement_m": {
+                "mean": 0.713490683602626,
+                "sd": 0.285419690665502
+              },
+              "min_height_m": {
+                "mean": 0.07355167649544228,
+                "sd": 0.01485649927764743
+              },
+              "mean_feet_planted": {
+                "mean": 0.15015625,
+                "sd": 0.020917473320269026
+              }
+            },
+            "path_per_forward_mean": 25.06574622236014,
+            "signal": {
+              "frac_active": 0.0,
+              "motor_hz": 0.0,
+              "rate_ceiling_hz": 250.0
+            },
+            "cpg_parameter_range_fraction": {
+              "selected_parameter": 0.0
+            }
+          }
+        },
+        "phase_diagnostics": {
+          "full": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                -1.058311954849944,
+                1.3856875905066064,
+                1.3856875905066064,
+                1.3856875905066064,
+                1.3856875905066064
+              ],
+              [
+                1.058311954849944,
+                0.0,
+                -1.5309674907461537,
+                -1.5309674907461537,
+                -1.5309674907461537,
+                -1.5309674907461537
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.3856875905066064,
+                1.5309674907461537,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                -0.16843557894761535,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2205390296102245
+              ],
+              [
+                0.16843557894761535,
+                0.0,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                -0.2436610438652459
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                0.30169822310165384,
+                0.11473772305394628,
+                0.11473772305394628,
+                0.11473772305394628,
+                0.11473772305394628
+              ],
+              [
+                0.30169822310165384,
+                1.0,
+                0.023664815870960396,
+                0.023664815870960396,
+                0.023664815870960396,
+                0.023664815870960396
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.11473772305394628,
+                0.023664815870960396,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 0.40795723994774263,
+            "cross_phase_cosine": 0.5486763777521412,
+            "tripod_coherence_scalar": -0.14071913780439854,
+            "within_pairs_in_phase": 2,
+            "cross_pairs_antiphase": 0,
+            "within_pair_phase_cycles": [
+              0.2205390296102245,
+              0.2205390296102245,
+              0.0,
+              -0.2436610438652459,
+              -0.2436610438652459,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              -0.16843557894761535,
+              0.2205390296102245,
+              0.2205390296102245,
+              0.2436610438652459,
+              0.0,
+              0.0,
+              0.2436610438652459,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "constant_connectome": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                0.0,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16
+              ],
+              [
+                0.0,
+                0.0,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16,
+                3.006565044847812e-16
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -3.006565044847812e-16,
+                -3.006565044847812e-16,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17
+              ],
+              [
+                0.0,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                4.785096886148353e-17
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                1.0,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918
+              ],
+              [
+                1.0,
+                1.0,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918,
+                0.13293585300938918
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.13293585300938918,
+                0.13293585300938918,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 1.0,
+            "cross_phase_cosine": 1.0,
+            "tripod_coherence_scalar": 0.0,
+            "within_pairs_in_phase": 6,
+            "cross_pairs_antiphase": 0,
+            "within_pair_phase_cycles": [
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              0.0,
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              0.0,
+              4.785096886148353e-17,
+              4.785096886148353e-17,
+              -4.785096886148353e-17,
+              0.0,
+              0.0,
+              -4.785096886148353e-17,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "time_shuffled_connectome": {
+            "phase_difference_matrix_rad": [
+              [
+                0.0,
+                0.581152128496968,
+                0.7258459996076255,
+                0.7258459996076255,
+                0.7258459996076255,
+                0.7258459996076255
+              ],
+              [
+                -0.581152128496968,
+                0.0,
+                2.5273164852760375,
+                2.5273164852760375,
+                2.5273164852760375,
+                2.5273164852760375
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.7258459996076255,
+                -2.5273164852760375,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_difference_matrix_cycles": [
+              [
+                0.0,
+                0.09249323393866879,
+                0.11552197876103153,
+                0.11552197876103153,
+                0.11552197876103153,
+                0.11552197876103153
+              ],
+              [
+                -0.09249323393866879,
+                0.0,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.4022349113893167
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "phase_concentration_matrix": [
+              [
+                1.0,
+                0.46131157266184797,
+                0.02327099593267397,
+                0.02327099593267397,
+                0.02327099593267397,
+                0.02327099593267397
+              ],
+              [
+                0.46131157266184797,
+                1.0,
+                0.013921829460805212,
+                0.013921829460805212,
+                0.013921829460805212,
+                0.013921829460805212
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              [
+                0.02327099593267397,
+                0.013921829460805212,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ]
+            ],
+            "within_phase_cosine": 0.3102490960317014,
+            "cross_phase_cosine": 0.5219250307878058,
+            "tripod_coherence_scalar": -0.2116759347561044,
+            "within_pairs_in_phase": 4,
+            "cross_pairs_antiphase": 2,
+            "within_pair_phase_cycles": [
+              0.11552197876103153,
+              0.11552197876103153,
+              0.0,
+              0.4022349113893167,
+              0.4022349113893167,
+              0.0
+            ],
+            "cross_pair_phase_cycles": [
+              0.09249323393866879,
+              0.11552197876103153,
+              0.11552197876103153,
+              -0.4022349113893167,
+              0.0,
+              0.0,
+              -0.4022349113893167,
+              0.0,
+              0.0
+            ],
+            "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+          },
+          "cpg_only": null
+        }
+      }
+    }
+  },
+  "self_interrogation": {
+    "v3_phase": {
+      "a_full_minus_constant_forward_m": 0.5341000636916631,
+      "b_parameter_range_fraction": {
+        "selected_parameter": 0.5
+      },
+      "c_constant_selected_from_forward": false,
+      "d_identical_episode_specs": true,
+      "d_episode_spec_hash": "855f78a75ea2d91a59557e572e435b79dbf92b08859848bc23dfc86bf7f5faad",
+      "e_weight_hashes_match": true,
+      "f_realizations_per_arm": 1,
+      "f_real_arm_sd": 0.6170039797077249,
+      "g_rewire_replacement_number": "not run; degree-preserving controls reserved for specificity if walking gate opens",
+      "h_claim_guard": "connectome modulates a hand-written CPG prior; V1 timing, V2 coupling, V3 measured phase claim are reported separately"
+    }
+  },
+  "variants": {
+    "v3_phase": {
+      "mapping": {
+        "normalized_input": "mean(nan_to_num(signed_leg_scores)) * rate_ceiling_hz / rate_ceiling_hz",
+        "scale_grid": [
+          0.25,
+          0.5,
+          1.0
+        ],
+        "selected_scale_rule": "maximum full-arm mean forward over declared grid; no narrowed follow-up",
+        "frequency_hz": 0.6
+      },
+      "ablation_ladder": {
+        "0.25": {
+          "scale": 0.25,
+          "ablation_ladder": {
+            "full": {
+              "n": 8,
+              "falls": 8,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.05002869171287413,
+                  "sd": 0.3388826834726233
+                },
+                "path_m": {
+                  "mean": 2.3269260682063724,
+                  "sd": 0.17182402083614548
+                },
+                "displacement_m": {
+                  "mean": 0.5537256678336343,
+                  "sd": 0.23997155260209813
+                },
+                "min_height_m": {
+                  "mean": 0.05274889221800065,
+                  "sd": 0.009299617235520108
+                },
+                "mean_feet_planted": {
+                  "mean": 0.15072916666666666,
+                  "sd": 0.006273393718713974
+                }
+              },
+              "path_per_forward_mean": 15.074035385791166,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.25
+              }
+            },
+            "constant_connectome": {
+              "n": 8,
+              "falls": 8,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.46790802428550854,
+                  "sd": 0.28219102036322297
+                },
+                "path_m": {
+                  "mean": 1.988545288822857,
+                  "sd": 0.1971628225230139
+                },
+                "displacement_m": {
+                  "mean": 0.5417189627320758,
+                  "sd": 0.2859197261779221
+                },
+                "min_height_m": {
+                  "mean": 0.05034030661971778,
+                  "sd": 0.011890617748251094
+                },
+                "mean_feet_planted": {
+                  "mean": 0.1809375,
+                  "sd": 0.0064976959057294545
+                }
+              },
+              "path_per_forward_mean": null,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.25
+              }
+            },
+            "time_shuffled_connectome": {
+              "n": 8,
+              "falls": 8,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.09826758180015721,
+                  "sd": 0.4089921547840258
+                },
+                "path_m": {
+                  "mean": 2.384947620475071,
+                  "sd": 0.0837098967244608
+                },
+                "displacement_m": {
+                  "mean": 0.5041423686842867,
+                  "sd": 0.24943466636452763
+                },
+                "min_height_m": {
+                  "mean": 0.048054187499318654,
+                  "sd": 0.012350899456683042
+                },
+                "mean_feet_planted": {
+                  "mean": 0.16015625,
+                  "sd": 0.007941128599733175
+                }
+              },
+              "path_per_forward_mean": 16.82194986324786,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.25
+              }
+            },
+            "cpg_only": {
+              "n": 8,
+              "falls": 5,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.25172439177148437,
+                  "sd": 0.18091274912256208
+                },
+                "path_m": {
+                  "mean": 2.4170529356901103,
+                  "sd": 0.24692299331600334
+                },
+                "displacement_m": {
+                  "mean": 0.713490683602626,
+                  "sd": 0.285419690665502
+                },
+                "min_height_m": {
+                  "mean": 0.07355167649544228,
+                  "sd": 0.01485649927764743
+                },
+                "mean_feet_planted": {
+                  "mean": 0.15015625,
+                  "sd": 0.020917473320269026
+                }
+              },
+              "path_per_forward_mean": 25.06574622236014,
+              "signal": {
+                "frac_active": 0.0,
+                "motor_hz": 0.0,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.0
+              }
+            }
+          },
+          "phase_diagnostics": {
+            "full": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  -1.058311954849944,
+                  1.3856875905066064,
+                  1.3856875905066064,
+                  1.3856875905066064,
+                  1.3856875905066064
+                ],
+                [
+                  1.058311954849944,
+                  0.0,
+                  -1.5309674907461537,
+                  -1.5309674907461537,
+                  -1.5309674907461537,
+                  -1.5309674907461537
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  -0.16843557894761535,
+                  0.2205390296102245,
+                  0.2205390296102245,
+                  0.2205390296102245,
+                  0.2205390296102245
+                ],
+                [
+                  0.16843557894761535,
+                  0.0,
+                  -0.2436610438652459,
+                  -0.2436610438652459,
+                  -0.2436610438652459,
+                  -0.2436610438652459
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  0.30169822310165384,
+                  0.11473772305394628,
+                  0.11473772305394628,
+                  0.11473772305394628,
+                  0.11473772305394628
+                ],
+                [
+                  0.30169822310165384,
+                  1.0,
+                  0.023664815870960396,
+                  0.023664815870960396,
+                  0.023664815870960396,
+                  0.023664815870960396
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 0.40795723994774263,
+              "cross_phase_cosine": 0.5486763777521412,
+              "tripod_coherence_scalar": -0.14071913780439854,
+              "within_pairs_in_phase": 2,
+              "cross_pairs_antiphase": 0,
+              "within_pair_phase_cycles": [
+                0.2205390296102245,
+                0.2205390296102245,
+                0.0,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                -0.16843557894761535,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.2436610438652459,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "constant_connectome": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  0.0,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16
+                ],
+                [
+                  0.0,
+                  0.0,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  0.0,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  1.0,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918
+                ],
+                [
+                  1.0,
+                  1.0,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 1.0,
+              "cross_phase_cosine": 1.0,
+              "tripod_coherence_scalar": 0.0,
+              "within_pairs_in_phase": 6,
+              "cross_pairs_antiphase": 0,
+              "within_pair_phase_cycles": [
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                -4.785096886148353e-17,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "time_shuffled_connectome": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  0.581152128496968,
+                  0.7258459996076255,
+                  0.7258459996076255,
+                  0.7258459996076255,
+                  0.7258459996076255
+                ],
+                [
+                  -0.581152128496968,
+                  0.0,
+                  2.5273164852760375,
+                  2.5273164852760375,
+                  2.5273164852760375,
+                  2.5273164852760375
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  0.09249323393866879,
+                  0.11552197876103153,
+                  0.11552197876103153,
+                  0.11552197876103153,
+                  0.11552197876103153
+                ],
+                [
+                  -0.09249323393866879,
+                  0.0,
+                  0.4022349113893167,
+                  0.4022349113893167,
+                  0.4022349113893167,
+                  0.4022349113893167
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  0.46131157266184797,
+                  0.02327099593267397,
+                  0.02327099593267397,
+                  0.02327099593267397,
+                  0.02327099593267397
+                ],
+                [
+                  0.46131157266184797,
+                  1.0,
+                  0.013921829460805212,
+                  0.013921829460805212,
+                  0.013921829460805212,
+                  0.013921829460805212
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 0.3102490960317014,
+              "cross_phase_cosine": 0.5219250307878058,
+              "tripod_coherence_scalar": -0.2116759347561044,
+              "within_pairs_in_phase": 4,
+              "cross_pairs_antiphase": 2,
+              "within_pair_phase_cycles": [
+                0.11552197876103153,
+                0.11552197876103153,
+                0.0,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                0.09249323393866879,
+                0.11552197876103153,
+                0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                -0.4022349113893167,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "cpg_only": null
+          }
+        },
+        "0.5": {
+          "scale": 0.5,
+          "ablation_ladder": {
+            "full": {
+              "n": 8,
+              "falls": 6,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": 0.1710978230942199,
+                  "sd": 0.6170039797077249
+                },
+                "path_m": {
+                  "mean": 2.723841141329598,
+                  "sd": 0.43602772489627195
+                },
+                "displacement_m": {
+                  "mean": 0.5970637828723915,
+                  "sd": 0.3594136283017116
+                },
+                "min_height_m": {
+                  "mean": 0.07536253163263469,
+                  "sd": 0.023173424344868042
+                },
+                "mean_feet_planted": {
+                  "mean": 0.13609374999999999,
+                  "sd": 0.009671105078402362
+                }
+              },
+              "path_per_forward_mean": 81.77347848686925,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.5
+              }
+            },
+            "constant_connectome": {
+              "n": 8,
+              "falls": 4,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.36300224059744324,
+                  "sd": 0.37917603011901335
+                },
+                "path_m": {
+                  "mean": 2.694640932377879,
+                  "sd": 0.1892391935178871
+                },
+                "displacement_m": {
+                  "mean": 0.6653423203396003,
+                  "sd": 0.1691789175939008
+                },
+                "min_height_m": {
+                  "mean": 0.0713073443216774,
+                  "sd": 0.014545341333940144
+                },
+                "mean_feet_planted": {
+                  "mean": 0.13046875000000002,
+                  "sd": 0.014464452205464494
+                }
+              },
+              "path_per_forward_mean": 7.157137112399637,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.5000000000000001
+              }
+            },
+            "time_shuffled_connectome": {
+              "n": 8,
+              "falls": 8,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.15354522897591366,
+                  "sd": 0.4762989377204042
+                },
+                "path_m": {
+                  "mean": 1.9744431202777661,
+                  "sd": 0.18815820565538394
+                },
+                "displacement_m": {
+                  "mean": 0.6705448704753996,
+                  "sd": 0.3040652255536364
+                },
+                "min_height_m": {
+                  "mean": 0.049957302449381846,
+                  "sd": 0.012254295742585533
+                },
+                "mean_feet_planted": {
+                  "mean": 0.09229166666666666,
+                  "sd": 0.037556670142895016
+                }
+              },
+              "path_per_forward_mean": 91.26861600774207,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.5
+              }
+            },
+            "cpg_only": {
+              "n": 8,
+              "falls": 5,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.25172439177148437,
+                  "sd": 0.18091274912256208
+                },
+                "path_m": {
+                  "mean": 2.4170529356901103,
+                  "sd": 0.24692299331600334
+                },
+                "displacement_m": {
+                  "mean": 0.713490683602626,
+                  "sd": 0.285419690665502
+                },
+                "min_height_m": {
+                  "mean": 0.07355167649544228,
+                  "sd": 0.01485649927764743
+                },
+                "mean_feet_planted": {
+                  "mean": 0.15015625,
+                  "sd": 0.020917473320269026
+                }
+              },
+              "path_per_forward_mean": 25.06574622236014,
+              "signal": {
+                "frac_active": 0.0,
+                "motor_hz": 0.0,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.0
+              }
+            }
+          },
+          "phase_diagnostics": {
+            "full": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  -1.058311954849944,
+                  1.3856875905066064,
+                  1.3856875905066064,
+                  1.3856875905066064,
+                  1.3856875905066064
+                ],
+                [
+                  1.058311954849944,
+                  0.0,
+                  -1.5309674907461537,
+                  -1.5309674907461537,
+                  -1.5309674907461537,
+                  -1.5309674907461537
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  -0.16843557894761535,
+                  0.2205390296102245,
+                  0.2205390296102245,
+                  0.2205390296102245,
+                  0.2205390296102245
+                ],
+                [
+                  0.16843557894761535,
+                  0.0,
+                  -0.2436610438652459,
+                  -0.2436610438652459,
+                  -0.2436610438652459,
+                  -0.2436610438652459
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  0.30169822310165384,
+                  0.11473772305394628,
+                  0.11473772305394628,
+                  0.11473772305394628,
+                  0.11473772305394628
+                ],
+                [
+                  0.30169822310165384,
+                  1.0,
+                  0.023664815870960396,
+                  0.023664815870960396,
+                  0.023664815870960396,
+                  0.023664815870960396
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 0.40795723994774263,
+              "cross_phase_cosine": 0.5486763777521412,
+              "tripod_coherence_scalar": -0.14071913780439854,
+              "within_pairs_in_phase": 2,
+              "cross_pairs_antiphase": 0,
+              "within_pair_phase_cycles": [
+                0.2205390296102245,
+                0.2205390296102245,
+                0.0,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                -0.16843557894761535,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.2436610438652459,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "constant_connectome": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  0.0,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16
+                ],
+                [
+                  0.0,
+                  0.0,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  0.0,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  1.0,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918
+                ],
+                [
+                  1.0,
+                  1.0,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 1.0,
+              "cross_phase_cosine": 1.0,
+              "tripod_coherence_scalar": 0.0,
+              "within_pairs_in_phase": 6,
+              "cross_pairs_antiphase": 0,
+              "within_pair_phase_cycles": [
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                -4.785096886148353e-17,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "time_shuffled_connectome": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  0.581152128496968,
+                  0.7258459996076255,
+                  0.7258459996076255,
+                  0.7258459996076255,
+                  0.7258459996076255
+                ],
+                [
+                  -0.581152128496968,
+                  0.0,
+                  2.5273164852760375,
+                  2.5273164852760375,
+                  2.5273164852760375,
+                  2.5273164852760375
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  0.09249323393866879,
+                  0.11552197876103153,
+                  0.11552197876103153,
+                  0.11552197876103153,
+                  0.11552197876103153
+                ],
+                [
+                  -0.09249323393866879,
+                  0.0,
+                  0.4022349113893167,
+                  0.4022349113893167,
+                  0.4022349113893167,
+                  0.4022349113893167
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  0.46131157266184797,
+                  0.02327099593267397,
+                  0.02327099593267397,
+                  0.02327099593267397,
+                  0.02327099593267397
+                ],
+                [
+                  0.46131157266184797,
+                  1.0,
+                  0.013921829460805212,
+                  0.013921829460805212,
+                  0.013921829460805212,
+                  0.013921829460805212
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 0.3102490960317014,
+              "cross_phase_cosine": 0.5219250307878058,
+              "tripod_coherence_scalar": -0.2116759347561044,
+              "within_pairs_in_phase": 4,
+              "cross_pairs_antiphase": 2,
+              "within_pair_phase_cycles": [
+                0.11552197876103153,
+                0.11552197876103153,
+                0.0,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                0.09249323393866879,
+                0.11552197876103153,
+                0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                -0.4022349113893167,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "cpg_only": null
+          }
+        },
+        "1.0": {
+          "scale": 1.0,
+          "ablation_ladder": {
+            "full": {
+              "n": 8,
+              "falls": 7,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": 0.07813375899091926,
+                  "sd": 1.01839941619477
+                },
+                "path_m": {
+                  "mean": 2.9909164063509173,
+                  "sd": 0.4297255890440302
+                },
+                "displacement_m": {
+                  "mean": 1.0045292499412262,
+                  "sd": 0.5463549238026244
+                },
+                "min_height_m": {
+                  "mean": 0.06644210155887775,
+                  "sd": 0.018291292275166324
+                },
+                "mean_feet_planted": {
+                  "mean": 0.12567708333333333,
+                  "sd": 0.016398807835861118
+                }
+              },
+              "path_per_forward_mean": 9.645162972953601,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 1.0
+              }
+            },
+            "constant_connectome": {
+              "n": 8,
+              "falls": 4,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": 0.3162374160899336,
+                  "sd": 0.6712644876693428
+                },
+                "path_m": {
+                  "mean": 3.071151094027515,
+                  "sd": 0.41606000230924384
+                },
+                "displacement_m": {
+                  "mean": 0.981746110616933,
+                  "sd": 0.48982240637549074
+                },
+                "min_height_m": {
+                  "mean": 0.08269516388904219,
+                  "sd": 0.013585426837949131
+                },
+                "mean_feet_planted": {
+                  "mean": 0.12135416666666667,
+                  "sd": 0.011931062836841762
+                }
+              },
+              "path_per_forward_mean": 8.646819877181487,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 1.0
+              }
+            },
+            "time_shuffled_connectome": {
+              "n": 8,
+              "falls": 4,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": 0.1245091663627177,
+                  "sd": 0.5831459867139167
+                },
+                "path_m": {
+                  "mean": 3.213339996913159,
+                  "sd": 0.4049798651984246
+                },
+                "displacement_m": {
+                  "mean": 1.0509394243200667,
+                  "sd": 0.4585883498237288
+                },
+                "min_height_m": {
+                  "mean": 0.08354969374658419,
+                  "sd": 0.01689354478852069
+                },
+                "mean_feet_planted": {
+                  "mean": 0.13093749999999998,
+                  "sd": 0.013509175765423697
+                }
+              },
+              "path_per_forward_mean": 5.188918924204592,
+              "signal": {
+                "frac_active": 0.0918173076923077,
+                "motor_hz": 6.463942050933838,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 1.0
+              }
+            },
+            "cpg_only": {
+              "n": 8,
+              "falls": 5,
+              "metrics": {
+                "forward_distance_m": {
+                  "mean": -0.25172439177148437,
+                  "sd": 0.18091274912256208
+                },
+                "path_m": {
+                  "mean": 2.4170529356901103,
+                  "sd": 0.24692299331600334
+                },
+                "displacement_m": {
+                  "mean": 0.713490683602626,
+                  "sd": 0.285419690665502
+                },
+                "min_height_m": {
+                  "mean": 0.07355167649544228,
+                  "sd": 0.01485649927764743
+                },
+                "mean_feet_planted": {
+                  "mean": 0.15015625,
+                  "sd": 0.020917473320269026
+                }
+              },
+              "path_per_forward_mean": 25.06574622236014,
+              "signal": {
+                "frac_active": 0.0,
+                "motor_hz": 0.0,
+                "rate_ceiling_hz": 250.0
+              },
+              "cpg_parameter_range_fraction": {
+                "selected_parameter": 0.0
+              }
+            }
+          },
+          "phase_diagnostics": {
+            "full": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  -1.058311954849944,
+                  1.3856875905066064,
+                  1.3856875905066064,
+                  1.3856875905066064,
+                  1.3856875905066064
+                ],
+                [
+                  1.058311954849944,
+                  0.0,
+                  -1.5309674907461537,
+                  -1.5309674907461537,
+                  -1.5309674907461537,
+                  -1.5309674907461537
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -1.3856875905066064,
+                  1.5309674907461537,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  -0.16843557894761535,
+                  0.2205390296102245,
+                  0.2205390296102245,
+                  0.2205390296102245,
+                  0.2205390296102245
+                ],
+                [
+                  0.16843557894761535,
+                  0.0,
+                  -0.2436610438652459,
+                  -0.2436610438652459,
+                  -0.2436610438652459,
+                  -0.2436610438652459
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.2205390296102245,
+                  0.2436610438652459,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  0.30169822310165384,
+                  0.11473772305394628,
+                  0.11473772305394628,
+                  0.11473772305394628,
+                  0.11473772305394628
+                ],
+                [
+                  0.30169822310165384,
+                  1.0,
+                  0.023664815870960396,
+                  0.023664815870960396,
+                  0.023664815870960396,
+                  0.023664815870960396
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.11473772305394628,
+                  0.023664815870960396,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 0.40795723994774263,
+              "cross_phase_cosine": 0.5486763777521412,
+              "tripod_coherence_scalar": -0.14071913780439854,
+              "within_pairs_in_phase": 2,
+              "cross_pairs_antiphase": 0,
+              "within_pair_phase_cycles": [
+                0.2205390296102245,
+                0.2205390296102245,
+                0.0,
+                -0.2436610438652459,
+                -0.2436610438652459,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                -0.16843557894761535,
+                0.2205390296102245,
+                0.2205390296102245,
+                0.2436610438652459,
+                0.0,
+                0.0,
+                0.2436610438652459,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "constant_connectome": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  0.0,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16
+                ],
+                [
+                  0.0,
+                  0.0,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16,
+                  3.006565044847812e-16
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -3.006565044847812e-16,
+                  -3.006565044847812e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  0.0,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17,
+                  4.785096886148353e-17
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -4.785096886148353e-17,
+                  -4.785096886148353e-17,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  1.0,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918
+                ],
+                [
+                  1.0,
+                  1.0,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  0.13293585300938918
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.13293585300938918,
+                  0.13293585300938918,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 1.0,
+              "cross_phase_cosine": 1.0,
+              "tripod_coherence_scalar": 0.0,
+              "within_pairs_in_phase": 6,
+              "cross_pairs_antiphase": 0,
+              "within_pair_phase_cycles": [
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                0.0,
+                4.785096886148353e-17,
+                4.785096886148353e-17,
+                -4.785096886148353e-17,
+                0.0,
+                0.0,
+                -4.785096886148353e-17,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "time_shuffled_connectome": {
+              "phase_difference_matrix_rad": [
+                [
+                  0.0,
+                  0.581152128496968,
+                  0.7258459996076255,
+                  0.7258459996076255,
+                  0.7258459996076255,
+                  0.7258459996076255
+                ],
+                [
+                  -0.581152128496968,
+                  0.0,
+                  2.5273164852760375,
+                  2.5273164852760375,
+                  2.5273164852760375,
+                  2.5273164852760375
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.7258459996076255,
+                  -2.5273164852760375,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_difference_matrix_cycles": [
+                [
+                  0.0,
+                  0.09249323393866879,
+                  0.11552197876103153,
+                  0.11552197876103153,
+                  0.11552197876103153,
+                  0.11552197876103153
+                ],
+                [
+                  -0.09249323393866879,
+                  0.0,
+                  0.4022349113893167,
+                  0.4022349113893167,
+                  0.4022349113893167,
+                  0.4022349113893167
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  -0.11552197876103153,
+                  -0.4022349113893167,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "phase_concentration_matrix": [
+                [
+                  1.0,
+                  0.46131157266184797,
+                  0.02327099593267397,
+                  0.02327099593267397,
+                  0.02327099593267397,
+                  0.02327099593267397
+                ],
+                [
+                  0.46131157266184797,
+                  1.0,
+                  0.013921829460805212,
+                  0.013921829460805212,
+                  0.013921829460805212,
+                  0.013921829460805212
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                [
+                  0.02327099593267397,
+                  0.013921829460805212,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              "within_phase_cosine": 0.3102490960317014,
+              "cross_phase_cosine": 0.5219250307878058,
+              "tripod_coherence_scalar": -0.2116759347561044,
+              "within_pairs_in_phase": 4,
+              "cross_pairs_antiphase": 2,
+              "within_pair_phase_cycles": [
+                0.11552197876103153,
+                0.11552197876103153,
+                0.0,
+                0.4022349113893167,
+                0.4022349113893167,
+                0.0
+              ],
+              "cross_pair_phase_cycles": [
+                0.09249323393866879,
+                0.11552197876103153,
+                0.11552197876103153,
+                -0.4022349113893167,
+                0.0,
+                0.0,
+                -0.4022349113893167,
+                0.0,
+                0.0
+              ],
+              "verdict": "MEASURED_PHASE_NOT_TRIPOD"
+            },
+            "cpg_only": null
+          }
+        }
+      },
+      "best": {
+        "scale": 0.5,
+        "full_forward_m": 0.1710978230942199,
+        "full_path_m": 2.723841141329598,
+        "full_path_per_forward": 81.77347848686925
+      },
+      "self_interrogation": {
+        "a_full_minus_constant_forward_m": 0.5341000636916631,
+        "b_parameter_range_fraction": {
+          "selected_parameter": 0.5
+        },
+        "c_constant_selected_from_forward": false,
+        "d_identical_episode_specs": true,
+        "d_episode_spec_hash": "855f78a75ea2d91a59557e572e435b79dbf92b08859848bc23dfc86bf7f5faad",
+        "e_weight_hashes_match": true,
+        "f_realizations_per_arm": 1,
+        "f_real_arm_sd": 0.6170039797077249,
+        "g_rewire_replacement_number": "not run; degree-preserving controls reserved for specificity if walking gate opens",
+        "h_claim_guard": "connectome modulates a hand-written CPG prior; V1 timing, V2 coupling, V3 measured phase claim are reported separately"
+      }
+    }
+  },
+  "videos": {
+    "v1_amplitude:full": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_variants_iteration3_v1_amplitude_full_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 2.4173615472022325,
+        "forward_distance_m": 0.37222648864210817,
+        "displacement_m": 0.5424271495260167,
+        "mean_feet_planted": 0.23875,
+        "min_height_m": 0.10957059155760061,
+        "final_height_m": 0.12332779227230288,
+        "fell": false
+      }
+    },
+    "v1_amplitude:constant_connectome": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_variants_iteration3_v1_amplitude_constant_connectome_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 2.947958233174272,
+        "forward_distance_m": 0.28958558530348444,
+        "displacement_m": 0.6255203220819833,
+        "mean_feet_planted": 0.2508333333333333,
+        "min_height_m": 0.11841450693585663,
+        "final_height_m": 0.20641769068578616,
+        "fell": false
+      }
+    },
+    "v2_frequency:full": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_variants_iteration3_v2_frequency_full_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 2.4353556868164654,
+        "forward_distance_m": 0.08422872148768312,
+        "displacement_m": 1.0521783831987817,
+        "mean_feet_planted": 0.1425,
+        "min_height_m": 0.05069742760847316,
+        "final_height_m": 0.15408125786131902,
+        "fell": true
+      }
+    },
+    "v2_frequency:constant_connectome": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_variants_iteration3_v2_frequency_constant_connectome_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 2.9625827456043488,
+        "forward_distance_m": -0.31698615984599554,
+        "displacement_m": 0.7389896391762572,
+        "mean_feet_planted": 0.115,
+        "min_height_m": 0.07721461089085739,
+        "final_height_m": 0.10765457160165808,
+        "fell": true
+      }
+    },
+    "v3_phase:full": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_variants_iteration3_v3_phase_full_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 2.5781114542615304,
+        "forward_distance_m": 0.7808200638501015,
+        "displacement_m": 0.78174813186239,
+        "mean_feet_planted": 0.1433333333333333,
+        "min_height_m": 0.07594012899143733,
+        "final_height_m": 0.1159205179239646,
+        "fell": true
+      }
+    },
+    "v3_phase:constant_connectome": {
+      "path": "/root/eon-fly-brain/results/path2/cpg_variants_iteration3_v3_phase_constant_connectome_multiview.mp4",
+      "metrics": {
+        "horizon_s": 8.0,
+        "path_m": 2.717311558782262,
+        "forward_distance_m": -0.37598025773102944,
+        "displacement_m": 0.5860159129256657,
+        "mean_feet_planted": 0.12916666666666668,
+        "min_height_m": 0.08542576367197811,
+        "final_height_m": 0.11423245327028696,
+        "fell": false
+      }
+    }
+  },
+  "numeric_decision": {
+    "best_by_full_forward": {
+      "variant": "v2_frequency",
+      "scale": 0.25,
+      "forward_m": 0.4029039787076073
+    },
+    "success_gate_complete": false,
+    "decision": "CONTINUE_BUG_LOOP_BEFORE_SPECIFICITY"
+  },
+  "reference_departures": [
+    {
+      "reference": "flygym/src/flygym_demo/complex_terrain/preprogrammed.py:40-116",
+      "departure": "seven fly DOFs retargeted to three hexapod DOFs by fixed role; adhesion omitted",
+      "reason": "PhantomX has coxa/femur/tibia only and no adhesion actuators"
+    },
+    {
+      "reference": "flygym/src/flygym_demo/complex_terrain/cpg_controller.py:166-180",
+      "departure": "fixed 0.6 Hz operating point and three interface-specific maps",
+      "reason": "Iteration 2 declared the one-shot frequency grid; variant scale grid is declared, not fitted"
+    }
+  ],
+  "variant": "v3_phase"
+}

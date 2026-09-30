@@ -1,0 +1,43 @@
+[watchdog 22:53:06] 0m | pull ok | beat=2026-09-03T22:52:46Z | {"condition": "random", "ema_return": 99.74529283076436, "entropy": -3.302269220352173, "episode": 22, "episode_return": 98.83428203190356, 
+[watchdog 22:55:16] 2m | pull ok | beat=2026-09-03T22:54:46Z | {"condition": "random", "ema_return": 99.68268667164816, "entropy": -3.292252540588379, "episode": 24, "episode_return": 98.78376976266038, 
+[watchdog 22:57:26] 4m | pull ok | beat=2026-09-03T22:57:16Z | {"condition": "random", "ema_return": 99.4117315303819, "entropy": -3.269721508026123, "episode": 28, "episode_return": 98.31068386576331, "
+[watchdog 22:59:40] 6m | pull ok | beat=2026-09-03T22:59:16Z | {"condition": "random", "ema_return": 99.1045468333084, "entropy": -3.2458698749542236, "episode": 32, "episode_return": 97.11302482208845, 
+[watchdog 23:02:15] 8m | pull ok | beat=2026-09-03T23:01:46Z | {"condition": "random", "ema_return": 98.87133287900734, "entropy": -3.234076499938965, "episode": 34, "episode_return": 97.16183941076571, 
+[watchdog 23:04:26] 11m | pull ok | beat=2026-09-03T23:04:16Z | {"condition": "random", "ema_return": 98.50546135614918, "entropy": -3.211609125137329, "episode": 38, "episode_return": 97.03920289448985, 
+[watchdog 23:06:36] 13m | pull ok | beat=2026-09-03T23:06:16Z | {"condition": "random", "ema_return": 98.13576995672128, "entropy": -3.1892786026000977, "episode": 42, "episode_return": 96.0873278359477, 
+[watchdog 23:08:46] 15m | pull ok | beat=2026-09-03T23:08:16Z | {"condition": "random", "ema_return": 97.90523012453454, "entropy": -3.1724750995635986, "episode": 45, "episode_return": 96.35245127344356,
+[watchdog 23:10:56] 17m | pull ok | beat=2026-09-03T23:10:46Z | {"condition": "random", "ema_return": 97.56071053520017, "entropy": -3.1616811752319336, "episode": 47, "episode_return": 93.4833334875459, 
+[watchdog 23:13:06] 20m | pull ok | beat=2026-09-03T23:12:46Z | {"condition": "random", "ema_return": 96.45939727264317, "entropy": -3.1397831439971924, "episode": 51, "episode_return": 89.64419509590076,
+[watchdog 23:15:16] 22m | pull ok | beat=2026-09-03T23:14:46Z | {"condition": "random", "ema_return": 95.43298522053134, "entropy": -3.1284306049346924, "episode": 53, "episode_return": 85.45712699083123,
+[watchdog 23:17:26] 24m | pull ok | beat=2026-09-03T23:17:16Z | {"condition": "random", "ema_return": 92.49797114829803, "entropy": -3.1011476516723633, "episode": 57, "episode_return": 75.9736865881085, 
+[watchdog 23:19:36] 26m | pull ok | beat=2026-09-03T23:19:16Z | {"condition": "random", "ema_return": 88.31968059737979, "entropy": -3.0697405338287354, "episode": 61, "episode_return": 67.43267287846197,
+[watchdog 23:21:47] 28m | pull ok | beat=2026-09-03T23:21:16Z | {"condition": "random", "ema_return": 85.83512136607055, "entropy": -3.0528948307037354, "episode": 63, "episode_return": 60.86445273675429,
+[watchdog 23:23:57] 30m | pull ok | beat=2026-09-03T23:23:46Z | {"condition": "random", "ema_return": 79.81350445668157, "entropy": -3.011199951171875, "episode": 67, "episode_return": 50.559905955557795,
+[watchdog 23:26:07] 33m | pull ok | beat=2026-09-03T23:25:46Z | {"condition": "random", "ema_return": 76.72134741822342, "entropy": -2.985783815383911, "episode": 69, "episode_return": 47.59010617637296, 
+[watchdog 23:28:19] 35m | pull ok | beat=2026-09-03T23:28:16Z | {"condition": "random", "ema_return": 70.84974152334287, "entropy": -2.929661512374878, "episode": 73, "episode_return": 44.690550943579964,
+[watchdog 23:30:30] 37m | pull ok | beat=2026-09-03T23:30:16Z | {"condition": "random", "ema_return": 68.4955065282361, "entropy": -2.901679515838623, "episode": 75, "episode_return": 47.12297434166166, "
+[watchdog 23:32:40] 39m | pull ok | beat=2026-09-03T23:32:16Z | {"condition": "random", "ema_return": 65.98850699424962, "entropy": -2.8527445793151855, "episode": 79, "episode_return": 61.6813650986535, 
+[watchdog 23:34:50] 41m | pull ok | beat=2026-09-03T23:34:46Z | {"condition": "random", "ema_return": 68.53571430164928, "entropy": -2.822418451309204, "episode": 83, "episode_return": 89.28000457003672, 
+[watchdog 23:37:01] 43m | pull ok | beat=2026-09-03T23:36:46Z | {"condition": "random", "ema_return": 71.84888647736611, "entropy": -2.8080129623413086, "episode": 86, "episode_return": 94.48393984155176,
+[watchdog 23:39:12] 46m | pull ok | beat=2026-09-03T23:38:46Z | {"condition": "random", "ema_return": 74.04353994856514, "entropy": -2.800091505050659, "episode": 88, "episode_return": 93.42360059962601, 
+[watchdog 23:41:23] 48m | pull ok | beat=2026-09-03T23:41:17Z | {"condition": "random", "ema_return": 78.04760410544608, "entropy": -2.783634662628174, "episode": 92, "episode_return": 98.54912610497732, 
+[watchdog 23:43:33] 50m | pull ok | beat=2026-09-03T23:43:17Z | {"condition": "random", "ema_return": 81.99676977157768, "entropy": -2.7687196731567383, "episode": 96, "episode_return": 97.6530883808874, 
+[watchdog 23:45:43] 52m | pull ok | beat=2026-09-03T23:45:17Z | {"condition": "random", "ema_return": 82.519683769734, "entropy": -2.7620811462402344, "episode": 98, "episode_return": 70.82264506380174, "
+[watchdog 23:47:54] 54m | pull ok | beat=2026-09-03T23:47:47Z | {"condition": "rewired", "ema_return": 97.13957749863287, "entropy": -3.4176478385925293, "episode": 4, "episode_return": 97.23527325349187,
+[watchdog 23:50:04] 56m | pull ok | beat=2026-09-03T23:49:47Z | {"condition": "rewired", "ema_return": 97.8507126646399, "entropy": -3.394686460494995, "episode": 8, "episode_return": 101.54083394890313, 
+[watchdog 23:52:14] 59m | pull ok | beat=2026-09-03T23:51:47Z | {"condition": "rewired", "ema_return": 98.49260598192113, "entropy": -3.383526563644409, "episode": 10, "episode_return": 104.87635062799743
+[watchdog 23:54:24] 61m | pull ok | beat=2026-09-03T23:54:17Z | {"condition": "rewired", "ema_return": 99.82507674088738, "entropy": -3.3616793155670166, "episode": 14, "episode_return": 104.75951705819, 
+[watchdog 23:56:34] 63m | pull ok | beat=2026-09-03T23:56:17Z | {"condition": "rewired", "ema_return": 100.18447404981109, "entropy": -3.3497440814971924, "episode": 16, "episode_return": 103.496722013387
+[watchdog 23:58:44] 65m | pull ok | beat=2026-09-03T23:58:17Z | {"condition": "rewired", "ema_return": 100.29164145312103, "entropy": -3.3269340991973877, "episode": 20, "episode_return": 100.995975270944
+[watchdog 00:00:49] 67m | pull ok | beat=NONE | 
+[watchdog 00:02:49] SSH UNREACHABLE (1/5) at 69m
+[watchdog 00:04:50] SSH UNREACHABLE (2/5) at 71m
+[watchdog 00:06:50] SSH UNREACHABLE (3/5) at 73m
+[watchdog 00:08:50] SSH UNREACHABLE (4/5) at 75m
+[watchdog 00:10:50] SSH UNREACHABLE (5/5) at 77m
+[watchdog 00:10:50] host unreachable 5 polls running; giving up and terminating
+[watchdog 00:10:50] terminating pod otxl6xrgjjvgo8
+[remove] warning: 'runpodctl remove pod' is deprecated, use 'runpodctl pod delete <id>' instead
+[remove] Error: pod not found to terminate
+[watchdog 00:10:59] pod otxl6xrgjjvgo8 confirmed gone from pod list
+[watchdog 00:10:59] watchdog done

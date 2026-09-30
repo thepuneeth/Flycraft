@@ -183,7 +183,7 @@ def make_figure(result: dict, output: Path) -> None:
     for leg in range(6):
         style = "-" if leg in TRIPOD_A else "--"
         axes[0, 0].plot(time_s, target_coxa[:, leg], color=colors[leg], linestyle=style, linewidth=1.1, label=f"leg {leg} ({'A' if leg in TRIPOD_A else 'B'})")
-    axes[0, 0].set(xlabel="Time in final 4 s (s)", ylabel="Coxa target (rad)", title="Layer ii: fixed map carries VNC output")
+    axes[0, 0].set(xlabel="Time in final 4 s (s)", ylabel="Coxa target (rad)", title="Layer II: fixed map carries VNC output")
     axes[0, 0].legend(ncol=2, fontsize=8, frameon=False)
 
     t = target[-window:]

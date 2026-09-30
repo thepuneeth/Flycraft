@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/root/eon-fly-brain/code/labeled_line_campaign.py", line 1136, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/eon-fly-brain/code/labeled_line_campaign.py", line 756, in main
+    import specificity_campaign as SC
+  File "/root/eon-fly-brain/code/specificity_campaign.py", line 30, in <module>
+    from preflight import EXPECTED_SHA256, sha256  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/preflight.py", line 17, in <module>
+    from gait_engine import clean_tripod_states  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/gait_engine.py", line 9, in <module>
+    STANCE = home_stance()
+             ^^^^^^^^^^^^^
+  File "/root/eon-fly-brain/code/hexapod_gait.py", line 43, in home_stance
+    model = model or mujoco.MjModel.from_xml_path(str(XML))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: ParseXML: Error opening file '/root/assets/hexapod/hexapod.xml'

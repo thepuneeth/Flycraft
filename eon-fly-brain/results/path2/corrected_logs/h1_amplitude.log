@@ -1,0 +1,9 @@
+=== h1_amplitude start 2026-09-07T01:24:15Z ===
+Traceback (most recent call last):
+  File "/root/eon-fly-brain/code/audit_amplitude_control.py", line 307, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/eon-fly-brain/code/audit_amplitude_control.py", line 167, in main
+    raise FileExistsError(f"{PREFIX.with_suffix('.json')} exists; use --mark-videos-reviewed")
+FileExistsError: /root/eon-fly-brain/results/path2/h1_amplitude_control_strict_lif.json exists; use --mark-videos-reviewed
+=== h1_amplitude rc=1 end 2026-09-07T01:24:17Z ===

@@ -1,0 +1,102 @@
+{
+  "file": "paper/figures/overview_pipeline.pdf",
+  "errors": [],
+  "warnings": [
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"Completed\" 和 \"endpoints\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"Fixedmotor\" 和 \"interface\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"260signed\" 和 \"motoroutputs\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"+0.236mvs\" 和 \"matchedrandom\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"↓antagonist-aware\" 和 \"map↓\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"dynamics\" 和 \"11,000\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"dynamics\" 和 \"nodes\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"turning\" 和 \"+6.92◦\" 间距仅 1.3pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"a\" 和 \"in\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"in\" 和 \"p\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"11,000\" 和 \"485,074\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"nodes\" 和 \"signed\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"h\" 和 \"la\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"la\" 和 \"e\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"d\" 和 \"po\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"ro\" 和 \"d\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"solid=completed;\" 和 \"dashed=planned\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"planned\" 和 \"66-Degocentric\" 间距仅 0.1pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"translation\" 和 \"66-Degocentric\" 间距仅 0.1pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"66-Degocentric\" 和 \"observation\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"4-Dlatent\" 和 \"commands\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"fixedDN\" 和 \"expansion\" 间距仅 1.0pt"
+    },
+    {
+      "category": "line-crossing",
+      "message": "检测到 5 处连线交叉。请确认每处交叉是否必要——必要的保留，可避免的重新路由"
+    }
+  ],
+  "summary": {
+    "error_count": 0,
+    "warning_count": 23
+  }
+}

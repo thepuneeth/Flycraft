@@ -1,0 +1,174 @@
+{
+  "generated_utc": "2026-09-02T00:14:41.472883+00:00",
+  "device": "cpu",
+  "torch_version": "2.13.0",
+  "torch_threads": 4,
+  "stage2_started": false,
+  "core": {
+    "n": 11000,
+    "nnz": 485074,
+    "density": 0.004008876033057851,
+    "dense_fp32_mb": 484.0
+  },
+  "benchmark_config": {
+    "batch_sizes": [
+      1,
+      8,
+      32,
+      128,
+      512
+    ],
+    "warmup_batch_steps": 8,
+    "timed_batch_steps": 30,
+    "matmul_repeats": 20
+  },
+  "sparse_mm": [
+    {
+      "batch_size": 1,
+      "repeats": 20,
+      "total_ms": 2.543231250001554,
+      "per_environment_ms": 2.543231250001554,
+      "checksum": -56892.1640625
+    },
+    {
+      "batch_size": 8,
+      "repeats": 20,
+      "total_ms": 2.890458350020708,
+      "per_environment_ms": 0.3613072937525885,
+      "checksum": -445113.8125
+    },
+    {
+      "batch_size": 32,
+      "repeats": 20,
+      "total_ms": 3.556572949992187,
+      "per_environment_ms": 0.11114290468725585,
+      "checksum": -1080444.25
+    },
+    {
+      "batch_size": 128,
+      "repeats": 20,
+      "total_ms": 8.517306250041656,
+      "per_environment_ms": 0.06654145507845044,
+      "checksum": -1939468.625
+    },
+    {
+      "batch_size": 512,
+      "repeats": 20,
+      "total_ms": 30.181797900013407,
+      "per_environment_ms": 0.058948824023463686,
+      "checksum": -710416.4375
+    }
+  ],
+  "end_to_end": [
+    {
+      "batch_size": 1,
+      "warmup_batch_steps": 8,
+      "timed_batch_steps": 30,
+      "wall_time_s": 0.31923833299970283,
+      "batch_steps_per_s": 93.97367702715052,
+      "environment_steps_per_s": 93.97367702715052
+    },
+    {
+      "batch_size": 8,
+      "warmup_batch_steps": 8,
+      "timed_batch_steps": 30,
+      "wall_time_s": 0.4319331249998868,
+      "batch_steps_per_s": 69.45519633394143,
+      "environment_steps_per_s": 555.6415706715314
+    },
+    {
+      "batch_size": 32,
+      "warmup_batch_steps": 8,
+      "timed_batch_steps": 30,
+      "wall_time_s": 0.6906100000005608,
+      "batch_steps_per_s": 43.43985751723206,
+      "environment_steps_per_s": 1390.075440551426
+    },
+    {
+      "batch_size": 128,
+      "warmup_batch_steps": 8,
+      "timed_batch_steps": 30,
+      "wall_time_s": 2.065891332999854,
+      "batch_steps_per_s": 14.521576968154172,
+      "environment_steps_per_s": 1858.761851923734
+    },
+    {
+      "batch_size": 512,
+      "warmup_batch_steps": 8,
+      "timed_batch_steps": 30,
+      "wall_time_s": 7.939143417000196,
+      "batch_steps_per_s": 3.7787451900365716,
+      "environment_steps_per_s": 1934.7175372987247
+    }
+  ],
+  "plateau": {
+    "rule": "smallest measured B with environment steps/s >= 90% of best",
+    "ratio": 0.9,
+    "best_batch_size": 512,
+    "best_steps_per_s": 1934.7175372987247,
+    "threshold_steps_per_s": 1741.2457835688522,
+    "plateau_batch_sizes": [
+      128,
+      512
+    ]
+  },
+  "chosen_batch_size": 128,
+  "selected_throughput_steps_per_s": 1858.761851923734,
+  "self_check": {
+    "batched_core_max_abs_diff": 0.0,
+    "batched_backward_max_abs_diff": 0.0,
+    "tolerance": 1e-05
+  },
+  "reset_check": {
+    "done_mask": [
+      true,
+      false
+    ],
+    "auto_reset_done_env": true,
+    "reset_node_state_max_abs": 0.0,
+    "nonterminal_state_unchanged": true,
+    "pass": true
+  },
+  "invariants": {
+    "hash_equal_pre_post": true,
+    "W_grad_is_none": true,
+    "W_is_parameter": false,
+    "command_map_requires_grad": false,
+    "all_pass": true
+  },
+  "arms": {
+    "conditions": [
+      "connectome",
+      "random",
+      "rewired"
+    ],
+    "batch_size": 128,
+    "device": "cpu",
+    "budget_steps_per_arm": 5000000,
+    "configs": [
+      {
+        "condition": "connectome",
+        "batch_size": 128,
+        "device": "cpu",
+        "budget_steps_per_arm": 5000000
+      },
+      {
+        "condition": "random",
+        "batch_size": 128,
+        "device": "cpu",
+        "budget_steps_per_arm": 5000000
+      },
+      {
+        "condition": "rewired",
+        "batch_size": 128,
+        "device": "cpu",
+        "budget_steps_per_arm": 5000000
+      }
+    ],
+    "same_batch_device_budget": true
+  },
+  "projections": {
+    "5M_steps_per_arm_hours": 0.7472118536602481,
+    "50M_steps_per_arm_hours": 7.472118536602481
+  }
+}

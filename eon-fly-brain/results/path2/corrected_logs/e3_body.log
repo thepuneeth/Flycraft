@@ -1,0 +1,9 @@
+=== e3_body start 2026-09-07T01:24:15Z ===
+Traceback (most recent call last):
+  File "/root/eon-fly-brain/code/audit_e3_body_generalization.py", line 275, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/root/eon-fly-brain/code/audit_e3_body_generalization.py", line 128, in main
+    raise FileExistsError(f"{PREFIX.with_suffix('.json')} exists")
+FileExistsError: /root/eon-fly-brain/results/path2/e3_body_generalization_amplitude_matched.json exists
+=== e3_body rc=1 end 2026-09-07T01:24:17Z ===

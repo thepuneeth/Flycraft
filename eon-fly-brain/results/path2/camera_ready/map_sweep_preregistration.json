@@ -1,0 +1,521 @@
+{
+  "written_at_unix": 1790733169.244599,
+  "script_sha256": "cdf691d7328b4a5718c7541a565effab30a7c54b9a3b954e7811b4caef70386c",
+  "families": {
+    "gain_jitter": {
+      "eps": [
+        0.1,
+        0.25,
+        0.5
+      ],
+      "draws_per_eps": 4,
+      "rule": "each gain x (1 + eps*u), u in {-1,+1} per gain"
+    },
+    "sign_flip": {
+      "fractions": [
+        0.1,
+        0.25,
+        0.5
+      ],
+      "draws_per_fraction": 4,
+      "rule": "flip motor_sign on that fraction of signed channels"
+    },
+    "within_leg_joint_permutation": {
+      "draws": 8,
+      "rule": "permute motor_joint among channels of the same leg"
+    },
+    "cross_leg_permutation": {
+      "draws": 8,
+      "rule": "permute motor_leg across all channels"
+    }
+  },
+  "per_map": "measured graph at realizations 1..10 vs 12 shuffled-weight graphs, each amplitude-matched to its paired realization under the same map",
+  "endpoints": {
+    "primary": "fraction of maps per family with mean(real) - mean(shuffled) > 0",
+    "strict": "fraction of maps per family where mean(real) exceeds every shuffled-weight graph mean",
+    "zero_drive": "fraction of maps with mean(real) > zero-drive (zero input is home stance under every map)"
+  },
+  "sweep_seed": 20260929,
+  "maps": [
+    {
+      "index": 0,
+      "family": "gain_jitter",
+      "level": 0.1,
+      "draw": 0,
+      "gains": [
+        -0.49500000000000005,
+        0.5850000000000001,
+        0.7150000000000001
+      ],
+      "sha256": "7c421ea59cd0a42f75168018814889fc97723f6bf22d203f43cb399883184048"
+    },
+    {
+      "index": 1,
+      "family": "gain_jitter",
+      "level": 0.1,
+      "draw": 1,
+      "gains": [
+        -0.6050000000000001,
+        0.7150000000000001,
+        0.7150000000000001
+      ],
+      "sha256": "8f6626149f7d79c1e611b557be0ca1b51315608304c552d61e88d8b20d19ee3e"
+    },
+    {
+      "index": 2,
+      "family": "gain_jitter",
+      "level": 0.1,
+      "draw": 2,
+      "gains": [
+        -0.6050000000000001,
+        0.5850000000000001,
+        0.7150000000000001
+      ],
+      "sha256": "b7657d5a81fd0895c79ac9e4f6e247bcfee76ee7f0e854a249de9be6cdcfeb83"
+    },
+    {
+      "index": 3,
+      "family": "gain_jitter",
+      "level": 0.1,
+      "draw": 3,
+      "gains": [
+        -0.49500000000000005,
+        0.5850000000000001,
+        0.7150000000000001
+      ],
+      "sha256": "89426cd5e90a57bdbe1f380f76fe4ffb78cbfb4370f0c0f2e5bb5840a519d060"
+    },
+    {
+      "index": 4,
+      "family": "gain_jitter",
+      "level": 0.25,
+      "draw": 0,
+      "gains": [
+        -0.41250000000000003,
+        0.48750000000000004,
+        0.8125
+      ],
+      "sha256": "feb2ea58c10e07822a6f4338d124769274a09da7c3cdc7405e9357fabd4be37f"
+    },
+    {
+      "index": 5,
+      "family": "gain_jitter",
+      "level": 0.25,
+      "draw": 1,
+      "gains": [
+        -0.6875,
+        0.48750000000000004,
+        0.8125
+      ],
+      "sha256": "49bcc9fa88c97c38769e08d9a1d9ca41e15a23c964ecfc1de86712a94474c36d"
+    },
+    {
+      "index": 6,
+      "family": "gain_jitter",
+      "level": 0.25,
+      "draw": 2,
+      "gains": [
+        -0.6875,
+        0.48750000000000004,
+        0.8125
+      ],
+      "sha256": "b2db980bd5a4f5a57b54deb788d7bbe9099cb1f6525b01149096efb48b3826db"
+    },
+    {
+      "index": 7,
+      "family": "gain_jitter",
+      "level": 0.25,
+      "draw": 3,
+      "gains": [
+        -0.41250000000000003,
+        0.48750000000000004,
+        0.8125
+      ],
+      "sha256": "11e3ad0a812166d47f683c698309b942c7db1a9ad97fa0f19826dc525e3a5a22"
+    },
+    {
+      "index": 8,
+      "family": "gain_jitter",
+      "level": 0.5,
+      "draw": 0,
+      "gains": [
+        -0.8250000000000001,
+        0.9750000000000001,
+        0.9750000000000001
+      ],
+      "sha256": "d1d382e2d75d8e27a1444e5d699734f003e562899c80e1c653f593fd02f2d061"
+    },
+    {
+      "index": 9,
+      "family": "gain_jitter",
+      "level": 0.5,
+      "draw": 1,
+      "gains": [
+        -0.275,
+        0.9750000000000001,
+        0.9750000000000001
+      ],
+      "sha256": "483e2b181a58fa5062335323427973eac9e8709d93b528cd98b35cf8bb83d685"
+    },
+    {
+      "index": 10,
+      "family": "gain_jitter",
+      "level": 0.5,
+      "draw": 2,
+      "gains": [
+        -0.8250000000000001,
+        0.325,
+        0.9750000000000001
+      ],
+      "sha256": "90408d9720a748bd9884ef22823e8ab34f26fda56eefa16348e4a2df23e6cbbf"
+    },
+    {
+      "index": 11,
+      "family": "gain_jitter",
+      "level": 0.5,
+      "draw": 3,
+      "gains": [
+        -0.275,
+        0.9750000000000001,
+        0.9750000000000001
+      ],
+      "sha256": "209ebad312fe857a1b3c4a138329d1f3142aef6050dcdcee8349f895a1ab0544"
+    },
+    {
+      "index": 12,
+      "family": "sign_flip",
+      "level": 0.1,
+      "draw": 0,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "b2696c5c88e1d37d63fb023c85c1b57c67ff29ff0e935f6c86467080d73859d1"
+    },
+    {
+      "index": 13,
+      "family": "sign_flip",
+      "level": 0.1,
+      "draw": 1,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "d7d1cc0e1b5cbc61d2a0ba6d896843c326070b3d371c850edb06475ee999ea25"
+    },
+    {
+      "index": 14,
+      "family": "sign_flip",
+      "level": 0.1,
+      "draw": 2,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "43c20acbe4f1e6e622ee4c02f50b815f6d9765aba33fc46c46ae5ad78522369e"
+    },
+    {
+      "index": 15,
+      "family": "sign_flip",
+      "level": 0.1,
+      "draw": 3,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "1beea0dae8c722cceea5a67a11a2e511853b09c43f4da3db1dc271139f0de395"
+    },
+    {
+      "index": 16,
+      "family": "sign_flip",
+      "level": 0.25,
+      "draw": 0,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "c92f441742da82c2d77ed10c7315ad6c2591bf4c33e1337d4057b63a41edbed9"
+    },
+    {
+      "index": 17,
+      "family": "sign_flip",
+      "level": 0.25,
+      "draw": 1,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "563b05a6c703e7017fed12fc7f4324799fd4dc05b95752a02b07f5ece02fa5a9"
+    },
+    {
+      "index": 18,
+      "family": "sign_flip",
+      "level": 0.25,
+      "draw": 2,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "84bdb2a1f2bebc4f6d87574bcf029223e5ce07ae3238c56d800406e2cee0607b"
+    },
+    {
+      "index": 19,
+      "family": "sign_flip",
+      "level": 0.25,
+      "draw": 3,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "be7e629220eee63e71da2538b54ad5edcb4301b17364dbdb78eee97cc632ace8"
+    },
+    {
+      "index": 20,
+      "family": "sign_flip",
+      "level": 0.5,
+      "draw": 0,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "fb1d3827947475ae45b373b806681b91f195a3e5c52d88bdc633f9ab7b596ad9"
+    },
+    {
+      "index": 21,
+      "family": "sign_flip",
+      "level": 0.5,
+      "draw": 1,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "47a7d1c887cd4dd86b944299f5b19d40aecb992fe542971ee95ac2a8a23cd244"
+    },
+    {
+      "index": 22,
+      "family": "sign_flip",
+      "level": 0.5,
+      "draw": 2,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "c241cc2a643a78f64f23a288f24b46de3e518dafb6e79b322e0abd18439203a2"
+    },
+    {
+      "index": 23,
+      "family": "sign_flip",
+      "level": 0.5,
+      "draw": 3,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "230bacd38d550956a9a370d3691e1772f0fb7b2f7ef7abca0d97e840a949bb46"
+    },
+    {
+      "index": 24,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 0,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "720f524411c6eb5502a0e75a3809378852f6f3e89026c8f796d0f3070fdd3e13"
+    },
+    {
+      "index": 25,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 1,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "c98f29428c0550934ae5cbcf300e51cf6a32b827b042c87a03ef0ba1973a319f"
+    },
+    {
+      "index": 26,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 2,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "fb1305741a6109c316cc452aa0fe29651842a2d2b579f894e542f2d3fe4072d9"
+    },
+    {
+      "index": 27,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 3,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "18617114d13229dc5c42c54fd32a82c0ea27b75c6ef36209c53e7693618fc34c"
+    },
+    {
+      "index": 28,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 4,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "9df5130c2471d6781fc01198e8ea03a9c32afbc494c89317fdc0b8e52d6ba0d4"
+    },
+    {
+      "index": 29,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 5,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "c14c4904480aca0df7f57050c53fbedb1722b04f3d1b8d83efb5b500b925aa8d"
+    },
+    {
+      "index": 30,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 6,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "4a2ae14c5865a4a10c689420f7b483e72f7fe09495a000f0c251a6cdf05c2b82"
+    },
+    {
+      "index": 31,
+      "family": "within_leg_joint_permutation",
+      "level": null,
+      "draw": 7,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "73ad03f0f90755f31f4b8e8ddf13a8c2d7dddb0bd4b32d64cc664d7839961cd8"
+    },
+    {
+      "index": 32,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 0,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "6832211027708b083337c9a8cf9e2b02e1aceae3324c27a70fad91191f7170c0"
+    },
+    {
+      "index": 33,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 1,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "770dcbf5146d24a2019b2866c3556ec9a596bb3a38d65806620845c244981258"
+    },
+    {
+      "index": 34,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 2,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "1a001c8f5ea11edac456fd79160166655fb051da180da73eaa9598cbb51ad311"
+    },
+    {
+      "index": 35,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 3,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "8b80aeb643cfd90abdad67a1ac1783c7cddc39f6ac35eab5d32aab6641ea801d"
+    },
+    {
+      "index": 36,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 4,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "a3b7408ae480e07e1d4cf5e313e946d22b56db157c4012b3a268dc7daa9f7af3"
+    },
+    {
+      "index": 37,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 5,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "cfc3c04f6e14fdceba1d1a8a258bba0eb96d73dc2eb0de0ee1bb1a0672000fa3"
+    },
+    {
+      "index": 38,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 6,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "ba2c9c230f7cbf0ed2b2ebc8b26c1d720dda58175848380c403de7fb08a05ebc"
+    },
+    {
+      "index": 39,
+      "family": "cross_leg_permutation",
+      "level": null,
+      "draw": 7,
+      "gains": [
+        -0.55,
+        0.65,
+        0.65
+      ],
+      "sha256": "19d7a068237daae291a834c45b42baeb806b94f8105d26ffeb4943fdfee9eb24"
+    }
+  ]
+}

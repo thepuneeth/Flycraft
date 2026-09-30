@@ -1,0 +1,299 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "file": "paper/figures/overview_pipeline.pdf",
+  "errors": [],
+  "warnings": [
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"Completed\" 和 \"endpoints\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"Fixedmotor\" 和 \"interface\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"forwarddiffer-\" 和 \"ence:\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"forwarddiffer-\" 和 \"+0.236m\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"260selected\" 和 \"motoroutputs\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"+0.236m\" 和 \"12SD-matched\" 间距仅 1.1pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"measuredDrosophila\" 和 \"MaleCNS-v1.0\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"VNCexcerpt\" 和 \"212in-scopecells\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"↓fixed\" 和 \"antagonist-style\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"odd-yawdiffer-\" 和 \"ence:\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"odd-yawdiffer-\" 和 \"+6.92◦\" 间距仅 0.9pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"dynamics\" 和 \"model\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"antagonist-style\" 和 \"map↓\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"+6.92◦\" 和 \"same-turnSD-\" 间距仅 1.1pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"11,000\" 和 \"485,074\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"model\" 和 \"signed\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"nodes\" 和 \"edges\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"motoroutputs\" 和 \"signedconnec-\" 间距仅 1.5pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"proposed\" 和 \"pilot\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"66-D\" 和 \"inconclusive\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"66-Dbody-\" 和 \"centeredobs.\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"fixedde-\" 和 \"scending\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"18-jointdecoder\" 和 \"replaces\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"futuretest\" 和 \"walking+bal-\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"4-Dcommands\" 和 \"forward,steer,\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"centeredobs.\" 和 \"t\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"centeredobs.\" 和 \"r\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"centeredobs.\" 和 \"a\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"centeredobs.\" 和 \"in\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"centeredobs.\" 和 \"b\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"centeredobs.\" 和 \"l\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"centeredobs.\" 和 \"e\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"forward,steer,\" 和 \"legfamily,down\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"scending\" 和 \"in\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"scending\" 和 \"p\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"scending\" 和 \"ut\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"scending\" 和 \"m\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"scending\" 和 \"a\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"replaces\" 和 \"x\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"replaces\" 和 \"e\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"replaces\" 和 \"d\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"replaces\" 和 \"m\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"replaces\" 和 \"a\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"a\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"n\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"c\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"e\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \";\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"ov\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"l\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"i\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"walking+bal-\" 和 \"d\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"c\" 和 \"in\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"in\" 和 \"o\" 间距仅 1.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"in\" 和 \"4\" 间距仅 1.4pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"p\" 和 \"ut\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"×\" 和 \"ut\" 间距仅 1.4pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"m\" 和 \"32\" 间距仅 1.4pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"fi\" 和 \"t\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"x\" 和 \"ra\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"ra\" 和 \"e\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"d\" 和 \"na\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"m\" 和 \"b\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"a\" 和 \"le\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"le\" 和 \"p\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"th\" 和 \"a\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \";\" 和 \"ar\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"ar\" 和 \"n\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"m\" 和 \"ov\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"ov\" 和 \"r\" 间距仅 0.0pt"
+    },
+    {
+      "category": "text-tight",
+      "message": "文字间距过小: \"dashed=\" 和 \"planned\" 间距仅 1.0pt"
+    },
+    {
+      "category": "line-crossing",
+      "message": "检测到 9 处连线交叉。请确认每处交叉是否必要——必要的保留，可避免的重新路由"
+    }
+  ],
+  "summary": {
+    "error_count": 0,
+    "warning_count": 72
+  }
+}

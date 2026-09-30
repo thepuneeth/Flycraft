@@ -57,3 +57,23 @@ is in `../../eon-fly-brain/results/path2/specificity_campaign.{json,csv}` and
 `../../PATH2_METHODS.md`; final claim wording remains owner-gated.
 
 Current source of truth: `../../HANDOFF.md`, `../../PATH2_METHODS.md`.
+
+## Archived 2026-08-31 (executed briefs + superseded specs)
+
+- `RUN_UNTRIED_ZEROTRAIN.md` — untried zero-training coordination/waveform/vision
+  methods. Executed; coordination NULL.
+- `RUN_LAST_THREE_JOBS.md` — coordination, waveform, pose. Executed; negative.
+- `RUN_DELAY_COUPLING.md` — delayed inter-leg phase coupling, the last zero-training
+  coordination lever. Executed.
+- `RUN_RUNG1_READOUT.md` — Rung 1 minimal-training readout moat test. Executed;
+  verdict `RUNG1-MOAT-NULL`.
+- `RUN_SPECIFICITY_AUDIT.md` — wiring-specificity campaign. Executed and audited;
+  registered result in its §11, methods in `PATH2_METHODS.md`.
+- `FIELD_CODE_REVIEW.md` — review of flybody/flygym/flygm and the first embodiment
+  build plan. Superseded by `RESEARCH_SCOUT_FINDINGS.md`.
+- `RESEARCH_SCOUT_BRIEF.md` — the scouting task. Executed; answers in
+  `RESEARCH_SCOUT_FINDINGS.md`.
+- `EMBODY_3WAY_SPEC.md` — EMBODY-3WAY v1. Stage 1 executed and on record; Stage 2
+  withdrawn unrun. Superseded by `EMBODY_3WAY_SPEC_V2.md` (wide 1,325-drive encoder
+  replaced by the fixed 4-command bottleneck).
+

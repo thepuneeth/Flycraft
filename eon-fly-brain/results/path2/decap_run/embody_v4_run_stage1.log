@@ -1,0 +1,177 @@
+=== v4 run started 2026-09-06T13:53:13Z ===
+cores=23 threads=23 stage2_hours=9
+=== STEP deps 2026-09-06T13:53:13Z ===
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+=== STEP tests 2026-09-06T13:53:14Z ===
+PASS test_a_real_gait_outscores_the_shuffle_it_has_to_beat {'walk_per_step': 0.00955, 'stand_per_step': 0.00258, 'ratio': 3.7, 'walked_m': 0.424}
+PASS test_a_truncated_episode_is_bootstrapped_not_zeroed {'timeouts': 2}
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+{"aborted_update": "kl", "kl": 5625.00048828125, "learning_rate": 6.6666666666666675e-06}
+PASS test_adaptive_learning_rate_responds_to_kl
+PASS test_air_time_matches_source_algebra
+{"aborted_update": "kl", "kl": 0.00018024444580078125, "learning_rate": 1.5000000000000002e-05}
+PASS test_an_overshooting_update_is_abandoned_not_continued {'minibatches_run': 0, 'of': 20}
+PASS test_budget_is_enough_gradient_steps {'iterations': 4069, 'gradient_updates': 81380}
+PASS test_collection_and_replay_use_the_same_batch_width {'groups': 4, 'width': 128}
+PASS test_core_is_frozen_through_a_real_update {'grad_norm': 1.2836726903915405, 'loss': 0.006055168807506561, 'policy_loss': -0.02901378832757473, 'value_loss': 0.0007984068943187594, 'entropy': -3.4270551204681396, 'mean_ratio': 0.9894499182701111, 'kl': 0.02154683880507946, 'learning_rate': 1.0000000000000004e-05}
+PASS test_observation_is_bounded
+PASS test_observation_is_egocentric
+PASS test_ppo_hyperparameters_match_source
+PASS test_progress_is_visible_before_the_endpoint_moves {'target_distance_m': 1.418, 'track_lin': 0.0813}
+PASS test_reaches_survive_the_vector_auto_reset
+PASS test_reaching_the_target_pays_and_respawns
+PASS test_replay_reproduces_the_behaviour_policy {'replay_max_delta': 0.0, 'replay_kl': 0.0, 'replay_steps': 24}
+PASS test_reward_scales_match_source
+PASS test_reward_terms_cover_every_scale
+PASS test_stage1_must_beat_a_constant_action_before_ppo_runs {'threshold': 0.00755, 'historic_heldout': 0.0394}
+PASS test_stage1_prior_survives_the_first_update {'kl': 0.014, 'lr': 2.2500000000000005e-05}
+PASS test_stage1_scores_the_parameters_it_saves {'forwards_per_epoch': 1}
+PASS test_stage2_refuses_to_start_behind_a_failed_gate {'refused': True}
+PASS test_the_decaying_prior_never_reaches_the_reported_policy {'iterations_budgeted': 4069, 'zero_after': 400, 'early_bias_rad': 0.2247}
+PASS test_the_rollout_is_short_enough_that_a_step_stays_in_the_trust_region {'first_kl': 0.00018, 'worst_kl': 0.014, 'minibatches': 20}
+PASS test_the_run_2_brace_loses_to_a_real_gait {'skipped': 'run-2 checkpoint predates the action-interface fix', 'brace_stance_dev': 1.81, 'expected_above': 5.0}
+PASS test_the_stuck_detector_matches_run_1s_signature {'trips_after_iterations': 50}
+PASS test_the_target_cannot_be_reached_without_walking {'footprint_m': 0.284, 'min_travel_m': 0.8, 'ratio': 2.81, 'episode_s': 30.0}
+PASS test_the_two_known_hacks_lose
+
+27/27 passed
+=== STEP tests rc=0 2026-09-06T14:00:12Z ===
+=== STEP stage1 2026-09-06T14:00:12Z ===
+{"teacher": [{"fell": false, "params": [[-0.06332767620141762, 0.4881420506307714, 0.2753600611907502, -0.4634264170840422], [-0.0702552645680712, 0.5024266873884478, 0.355999173933637, -0.1511063674100197], [-0.21631792779355136, 0.4855693523512513, 0.27749181979001447, 1.0024455322890145], [-0.0596030715296419, 0.20193989570547335, 0.03515629725195456, -0.5963920886021413], [0.25061162985284147, 0.030229629036115722, 0.1491105871138443, 1.2024061440633835], [0.08589221624334857, 0.12613237013434575, 0.1983901420988194, -0.08908528641899613]], "path_mse_m2": 0.00013013689613394333, "yaw_rate": -0.2}, {"fell": false, "params": [[-0.044237588599528685, 0.2711800501887958, 0.17604486267544517, 0.3744748203622569], [-0.0014301757518681351, 0.27775890945325654, 0.24937147295588302, -2.075185798298697], [-0.19213077582698554, 0.45073485050141576, 0.18811367936164608, -1.3621153051941668], [-0.13265662504763565, 0.5391920328655547, 0.01265325188305548, 0.5032008584045], [0.2544017990091115, 0.053555311046346865, 0.13666044033982555, -1.7888709988219582], [0.18145060482476913, 0.11426355368580414, 0.04104529137683273, 0.03976841578472606]], "path_mse_m2": 0.00027699830714106045, "yaw_rate": 0.0}, {"fell": false, "params": [[-0.09458887935263945, 0.4065568413856541, 0.12074053249312358, 0.982472611908065], [-0.010787086322867928, 0.38216708082100115, 0.30127585491687786, 2.7187046960069696], [-0.15335229101215908, 0.6440436408415451, 0.14586923653880418, -1.1351145986365203], [-0.32766535685413917, 0.3749849621493883, 0.02376960776987644, 0.152007461939931], [-0.044184311043717256, 0.0960712080779616, 0.11451831544228026, -2.022923726677281], [-0.02851519809159182, 0.16544950094812438, 0.20566294961836634, 0.3223916688487807]], "path_mse_m2": 0.00012776769131382255, "yaw_rate": 0.2}]}
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+{"epoch": 1, "heldout_loss": 0.023254305124282837, "stage1": "connectome", "train_loss": 0.025739040225744247}
+{"epoch": 1, "grad_norm_preclip": 1.3879306316375732, "stage1_grad": "connectome"}
+{"epoch": 25, "heldout_loss": 0.014157559722661972, "stage1": "connectome", "train_loss": 0.014518624171614647}
+{"epoch": 25, "grad_norm_preclip": 0.09515009075403214, "stage1_grad": "connectome"}
+{"epoch": 50, "heldout_loss": 0.01431809552013874, "stage1": "connectome", "train_loss": 0.013000966981053352}
+{"epoch": 50, "grad_norm_preclip": 0.06309618800878525, "stage1_grad": "connectome"}
+{"epoch": 75, "heldout_loss": 0.013889334164559841, "stage1": "connectome", "train_loss": 0.01386470627039671}
+{"epoch": 75, "grad_norm_preclip": 0.15352202951908112, "stage1_grad": "connectome"}
+{"epoch": 100, "heldout_loss": 0.013605945743620396, "stage1": "connectome", "train_loss": 0.012495447881519794}
+{"epoch": 100, "grad_norm_preclip": 0.1063762828707695, "stage1_grad": "connectome"}
+{"epoch": 125, "heldout_loss": 0.012082820758223534, "stage1": "connectome", "train_loss": 0.011994742788374424}
+{"epoch": 125, "grad_norm_preclip": 0.046717312186956406, "stage1_grad": "connectome"}
+{"epoch": 150, "heldout_loss": 0.01256568357348442, "stage1": "connectome", "train_loss": 0.011766515672206879}
+{"epoch": 150, "grad_norm_preclip": 0.030384747311472893, "stage1_grad": "connectome"}
+{"epoch": 175, "heldout_loss": 0.012663782574236393, "stage1": "connectome", "train_loss": 0.011705704964697361}
+{"epoch": 175, "grad_norm_preclip": 0.2049657553434372, "stage1_grad": "connectome"}
+{"epoch": 200, "heldout_loss": 0.012222008779644966, "stage1": "connectome", "train_loss": 0.011577843688428402}
+{"epoch": 200, "grad_norm_preclip": 0.03834408521652222, "stage1_grad": "connectome"}
+{"epoch": 225, "heldout_loss": 0.012125657871365547, "stage1": "connectome", "train_loss": 0.011569363065063953}
+{"epoch": 225, "grad_norm_preclip": 0.09743854403495789, "stage1_grad": "connectome"}
+{"epoch": 250, "heldout_loss": 0.013281880877912045, "stage1": "connectome", "train_loss": 0.010763376019895077}
+{"epoch": 250, "grad_norm_preclip": 0.04098768159747124, "stage1_grad": "connectome"}
+{"epoch": 275, "heldout_loss": 0.013830064795911312, "stage1": "connectome", "train_loss": 0.011597895063459873}
+{"epoch": 275, "grad_norm_preclip": 0.07853138446807861, "stage1_grad": "connectome"}
+{"epoch": 300, "heldout_loss": 0.01381179504096508, "stage1": "connectome", "train_loss": 0.011569298803806305}
+{"epoch": 300, "grad_norm_preclip": 0.08371420204639435, "stage1_grad": "connectome"}
+{"epoch": 325, "heldout_loss": 0.01251036673784256, "stage1": "connectome", "train_loss": 0.011895669624209404}
+{"epoch": 325, "grad_norm_preclip": 0.05737891420722008, "stage1_grad": "connectome"}
+{"epoch": 350, "heldout_loss": 0.011827852576971054, "stage1": "connectome", "train_loss": 0.011632089503109455}
+{"epoch": 350, "grad_norm_preclip": 0.09148857742547989, "stage1_grad": "connectome"}
+{"epoch": 375, "heldout_loss": 0.01300231833010912, "stage1": "connectome", "train_loss": 0.011581633239984512}
+{"epoch": 375, "grad_norm_preclip": 0.02831587754189968, "stage1_grad": "connectome"}
+{"epoch": 400, "heldout_loss": 0.012826737947762012, "stage1": "connectome", "train_loss": 0.011368732899427414}
+{"epoch": 400, "grad_norm_preclip": 0.03331412002444267, "stage1_grad": "connectome"}
+{"epoch": 425, "heldout_loss": 0.012776228599250317, "stage1": "connectome", "train_loss": 0.011243305169045925}
+{"epoch": 425, "grad_norm_preclip": 0.032547350972890854, "stage1_grad": "connectome"}
+{"epoch": 450, "heldout_loss": 0.012734382413327694, "stage1": "connectome", "train_loss": 0.011954803951084614}
+{"epoch": 450, "grad_norm_preclip": 0.022984856739640236, "stage1_grad": "connectome"}
+{"epoch": 475, "heldout_loss": 0.013568573631346226, "stage1": "connectome", "train_loss": 0.011382075026631355}
+{"epoch": 475, "grad_norm_preclip": 0.030938001349568367, "stage1_grad": "connectome"}
+{"epoch": 500, "heldout_loss": 0.01389650534838438, "stage1": "connectome", "train_loss": 0.011944577097892761}
+{"epoch": 500, "grad_norm_preclip": 0.05823042616248131, "stage1_grad": "connectome"}
+{"epoch": 525, "heldout_loss": 0.013567742891609669, "stage1": "connectome", "train_loss": 0.011354961432516575}
+{"epoch": 525, "grad_norm_preclip": 0.036851752549409866, "stage1_grad": "connectome"}
+{"epoch": 550, "heldout_loss": 0.012573793530464172, "stage1": "connectome", "train_loss": 0.011219716630876064}
+{"epoch": 550, "grad_norm_preclip": 0.04250803589820862, "stage1_grad": "connectome"}
+{"epoch": 575, "heldout_loss": 0.01264926791191101, "stage1": "connectome", "train_loss": 0.011315837502479553}
+{"epoch": 575, "grad_norm_preclip": 0.0762622058391571, "stage1_grad": "connectome"}
+{"epoch": 600, "heldout_loss": 0.012609218247234821, "stage1": "connectome", "train_loss": 0.011534620076417923}
+{"epoch": 600, "grad_norm_preclip": 0.05139809474349022, "stage1_grad": "connectome"}
+{"epoch": 625, "heldout_loss": 0.015226089395582676, "stage1": "connectome", "train_loss": 0.011441635899245739}
+{"epoch": 625, "grad_norm_preclip": 0.11734581738710403, "stage1_grad": "connectome"}
+{"epoch": 650, "heldout_loss": 0.014122427441179752, "stage1": "connectome", "train_loss": 0.011066831648349762}
+{"epoch": 650, "grad_norm_preclip": 0.07762749493122101, "stage1_grad": "connectome"}
+{"epoch": 675, "heldout_loss": 0.012787409126758575, "stage1": "connectome", "train_loss": 0.011580592952668667}
+{"epoch": 675, "grad_norm_preclip": 0.015479357913136482, "stage1_grad": "connectome"}
+{"epoch": 700, "heldout_loss": 0.012530265375971794, "stage1": "connectome", "train_loss": 0.011370760388672352}
+{"epoch": 700, "grad_norm_preclip": 0.027165254577994347, "stage1_grad": "connectome"}
+{"epoch": 725, "heldout_loss": 0.012888962402939796, "stage1": "connectome", "train_loss": 0.011065183207392693}
+{"epoch": 725, "grad_norm_preclip": 0.04580158740282059, "stage1_grad": "connectome"}
+{"epoch": 750, "heldout_loss": 0.012142897583544254, "stage1": "connectome", "train_loss": 0.011493328027427197}
+{"epoch": 750, "grad_norm_preclip": 0.027631770819425583, "stage1_grad": "connectome"}
+{"epoch": 775, "heldout_loss": 0.013612502254545689, "stage1": "connectome", "train_loss": 0.010911893099546432}
+{"epoch": 775, "grad_norm_preclip": 0.051618292927742004, "stage1_grad": "connectome"}
+{"epoch": 800, "heldout_loss": 0.013483414426445961, "stage1": "connectome", "train_loss": 0.011600346304476261}
+{"epoch": 800, "grad_norm_preclip": 0.04882470890879631, "stage1_grad": "connectome"}
+{"heldout": 0.010989933274686337, "stage1_gate": false, "threshold": 0.006314500700682402}
+EMBODY V4 STAGE1: OK
+{
+  "commands": [
+    -0.2,
+    0.0,
+    0.2
+  ],
+  "condition": "connectome",
+  "constant_action_baseline": 0.012629001401364803,
+  "constant_action_baseline_shipped": 0.0151,
+  "core_parameters": 0,
+  "core_tensor_sha256_post": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+  "core_tensor_sha256_pre": "128b5ceddec4d8e14f3a04fbb66a08a2e83564c674624741eb03fb2bf01517fc",
+  "epochs_run": 824,
+  "final_heldout_loss": 0.010989933274686337,
+  "final_learning_rate": 1e-06,
+  "final_train_loss": 0.012280624359846115,
+  "gate_passed": false,
+  "gate_threshold": 0.006314500700682402,
+  "grad_clip_norm": 1.0,
+  "heldout_steps_per_command": 60,
+  "interface_parameter_count": 4966,
+  "learning_rate": 0.001,
+  "lr_schedule": "ReduceLROnPlateau factor 0.5 patience 60 min_lr 1e-06",
+  "max_epochs": 12000,
+  "min_delta": 1e-06,
+  "observation_dim": 66,
+  "optimizer": "Adam",
+  "patience": 600,
+  "seed": 20260829,
+  "selected_epoch": 224,
+  "selection_rule": "best held-out epoch, restored; held out within each command",
+  "steps_per_command": 200,
+  "stopped_early": true,
+  "tbptt_steps": 20,
+  "train_steps_per_command": 140,
+  "vnc_weights_trained": false,
+  "wall_time_s": 1354.872052951716
+}
+=== STEP stage1 rc=0 2026-09-06T14:22:49Z ===
+=== STEP smoke 2026-09-06T14:22:49Z ===
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+EMBODY V4 SMOKE: OK
+{
+  "core_frozen": true,
+  "device": "cpu",
+  "entropy": -3.4245223999023438,
+  "episode_return": 0.04781795523564314,
+  "grad_norm": 244.21287536621094,
+  "kl": 0.008513465523719788,
+  "learning_rate": 3.375000000000001e-05,
+  "loss": 0.022040486335754395,
+  "mean_ratio": 1.0012768507003784,
+  "obs_dim": 66,
+  "policy_loss": -0.013442703522741795,
+  "replay_kl": 0.0,
+  "replay_max_delta": 0.0,
+  "replay_steps": 24,
+  "targets_reached": 0.0,
+  "value_loss": 0.0012379676336422563
+}
+=== STEP smoke rc=0 2026-09-06T14:23:26Z ===
+=== STEP stage2 2026-09-06T14:23:26Z ===
+Stage-1 gate failed: held-out 0.01099 is not below 0.00631 (a constant action scores 0.012629001401364803). The prior has not learned the gait; fix Stage 1 before training.
+=== STEP stage2 rc=1 2026-09-06T14:23:28Z ===
+=== V4 RUNNER FINISHED: FAIL_STAGE2 2026-09-06T14:23:28Z ===

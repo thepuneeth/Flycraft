@@ -1,0 +1,33 @@
+/usr/local/lib/python3.10/dist-packages/torch/_utils.py:382: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:49.)
+  result = torch.sparse_compressed_tensor(
+/root/eon-fly-brain/code/vnc_lif_core.py:138: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:848.)
+  weights = torch.sparse_csr_tensor(
+prepared random graph_seed=20260830 with 10 Poisson realizations
+prepared rewired graph_seed=20260830 with 10 Poisson realizations
+prepared random graph_seed=20260831 with 10 Poisson realizations
+prepared rewired graph_seed=20260831 with 10 Poisson realizations
+prepared random graph_seed=20260832 with 10 Poisson realizations
+prepared rewired graph_seed=20260832 with 10 Poisson realizations
+prepared random graph_seed=20260833 with 10 Poisson realizations
+prepared rewired graph_seed=20260833 with 10 Poisson realizations
+prepared random graph_seed=20260834 with 10 Poisson realizations
+prepared rewired graph_seed=20260834 with 10 Poisson realizations
+prepared random graph_seed=20260835 with 10 Poisson realizations
+prepared rewired graph_seed=20260835 with 10 Poisson realizations
+prepared random graph_seed=20260836 with 10 Poisson realizations
+prepared rewired graph_seed=20260836 with 10 Poisson realizations
+prepared random graph_seed=20260837 with 10 Poisson realizations
+prepared rewired graph_seed=20260837 with 10 Poisson realizations
+prepared random graph_seed=20260838 with 10 Poisson realizations
+prepared rewired graph_seed=20260838 with 10 Poisson realizations
+prepared random graph_seed=20260839 with 10 Poisson realizations
+prepared rewired graph_seed=20260839 with 10 Poisson realizations
+prepared random graph_seed=20260840 with 10 Poisson realizations
+prepared rewired graph_seed=20260840 with 10 Poisson realizations
+prepared random graph_seed=20260841 with 10 Poisson realizations
+prepared rewired graph_seed=20260841 with 10 Poisson realizations
+{"forward_m": 0.07216957499240072, "path_per_forward": 21.524468210424068, "success": false, "variant": "v1_amplitude"}
+{"forward_m": 0.7646917806898368, "path_per_forward": 2.5094952838848714, "success": false, "variant": "v2_frequency"}
+{"forward_m": 0.838585085589177, "path_per_forward": 2.462350151513246, "success": false, "variant": "v3_phase"}
+{"best_forward_m": 0.838585085589177, "best_variant": "v3_phase", "decision": "CPG-INTERFACE-SPECIFICITY-NULL"}
+-> /root/eon-fly-brain/results/path2/cpg_specificity_variants.json

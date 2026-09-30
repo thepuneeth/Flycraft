@@ -21,3 +21,35 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# third-party reference repos (276M, have their own .git; read-only, not ours)
+fly_field_refs/
+
+# large regenerable training datasets (rebuild: audit_t2_forward_readout.py, rung1_readout.py)
+eon-fly-brain/results/**/*_dataset.npz
+eon-fly-brain/results/**/*_bc_dataset.npz
+
+# paper-writing working context (local drafting aid)
+paper/project_context.md
+
+# scratch renders and third-party literature PDFs (not ours to redistribute)
+tmp/
+
+# LaTeX build artifacts (rebuild with latexmk); run logs under results/ stay tracked
+/*.aux
+/*.fls
+/*.fdb_latexmk
+/*.log
+eon-fly-brain/*.aux
+eon-fly-brain/*.fls
+eon-fly-brain/*.fdb_latexmk
+eon-fly-brain/*.log
+paper/**/*.aux
+paper/**/*.fls
+paper/**/*.fdb_latexmk
+paper/**/*.log
+paper/**/*.out
+paper/**/*.blg
+
+# regenerable LIF history cache (camera_ready_reruns.py; sha256 recorded in its report)
+eon-fly-brain/results/path2/camera_ready/histories.npz

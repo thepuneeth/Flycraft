@@ -1,39 +1,72 @@
 # Flycraft — Path 2 handoff
 
+## Live direction (2026-09-05): EMBODY v5, minimum crutches
+
+The active work is no longer the Path-2 zero-training sweep summarised below.
+It is the goal-directed embodiment line: a frozen MANC VNC core driving a
+PhantomX hexapod to walk to a target, training only the sensory encoder and
+motor decoder.
+
+- `EMBODY_V5_PLAN.md` — **the current plan.** Why the direction changed, which
+  assists the field's own code uses, which of them are compatible with the moat,
+  and the order of work. Read this first.
+- `EMBODY_V4_SPEC.md` — the v4 recipe plus the run-1 and run-2 postmortems that
+  the v5 plan is built on.
+- `results/path2/run2/` — run-2 artifacts (log, checkpoints, Stage 1 record).
+
+Position in one line: **PPO now works and the reward is still gameable.** Run 1
+never applied a gradient (rollout horizon 150 put the replayed policy outside the
+trust region); run 2 fixed that, trained cleanly for 24.9M steps, and produced a
+braced posture rather than a gait. No claim about the connectome is available
+from either — the CEM teacher walks 0.106 m/s on the identical body, and Stage 1
+reproduces its actions to MSE 2.8e-4, so the binding constraint is the training
+procedure, not the wiring.
+
+Balance $8.74. Next step is free and local: fix the brace hack, then DAgger.
+
+---
+
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
 last-three B/C/D jobs, the four untried zero-training phases, delayed
-coupling DC-1–DC-3, Rung 1 trained-readout T-1–T-3, and the registered
-seven-axis specificity audit; current
-`H_MIN=.08 m` gate and all integrity controls pass. Pre-fix body-level
+coupling DC-1–DC-3, Rung 1 trained-readout T-1–T-3, the registered
+seven-axis specificity audit, and `NEXT_EXPERIMENTS.md` H1–H5/E1–E3/T1–T2;
+current `H_MIN=.08 m` gate and all integrity controls pass. Pre-fix body-level
 results are confounded/superseded; the final claim remains gated on user
 approval.
 
 ## Current result (claim review pending)
 
-Working headline: all 212 published T1/T2/T3 coordination candidates are
-included, no tested zero-training route transfers a canonical tripod, and the
-first minimal-training moat test is `RUNG1-MOAT-NULL`. The connectome-fed
-memoryless readout fell in 20/20 Rung 1 episodes and was below random and
-rewired on both primary body metrics. Corrected home-pose setup makes the
-clean external tripod clock stand and travel (`1.660 m` forward, `2.038 m`
-path in 8 s; minimum height `.121 m`; no fall). Method 1's real 4/2 grouping
-falls in 16/20; Method 2 is phase-absent in all 20; B dynamic edge coupling
-falls in 20/20; C direct MN waveform is `C1-ABSENT`; D earns tonic pose
-equally under shuffled/random controls.
+Working headline — owner review pending: all 212 published T1/T2/T3
+coordination candidates are included; no tested zero-learning route produces a
+canonical alternating tripod. This is a transfer negative, not a selection
+artifact. The frozen VNC still owns narrow wiring-specific motor-output,
+forward-drive, turning, and robustness effects, but those effects are not
+coordination. T1 earns a narrow one-scalar target-speed error advantage; T2's
+capacity-capped forward readout is NULL and does not restore a connectome
+advantage. No final claim is written here.
+
+The corrected home-pose setup makes the clean external tripod clock stand and
+travel (`1.660 m` forward, `2.038 m` path in 8 s; minimum height `.121 m`; no
+fall), but the expanded VNC still fails the coordination endpoint. Method 1's
+real 4/2 grouping falls in 16/20; Method 2 is phase-absent in all 20; B
+dynamic edge coupling falls in 20/20; C direct MN waveform is `C1-ABSENT`; D
+earns tonic pose only; COORD-212, COORD-INHIB, WAVE-ANTAG, VISION-EVAL,
+DC-1–DC-3, and Rung 1 remain NULL for the declared tripod endpoint.
 
 All 212 published T1/T2/T3 coordination candidates are included, including
-both formerly omitted T1 `IN12B013` cells. E0, E3, E4, Path 3, Method 1,
-Method 2, B, C, COORD-212, COORD-INHIB, WAVE-ANTAG, DC, and Rung 1 remain
-negative for the declared tripod endpoint; VISION-EVAL is NULL against
-shuffled/random visual wiring. D's positive is pose only. Full tables and CIs
-are in `PATH2_METHODS.md`.
+both formerly omitted T1 `IN12B013` cells. Full tables and CIs are in
+`PATH2_METHODS.md`; the completeness result rules out candidate omission at
+this declared scope, not every non-published boundary cell.
 
-The five-condition study shows real VNC wiring beats column-shuffled VNC on
-path (`+0.2663 m`, 95% CI `[+.2611,+.2714]`, exact `p=1.91×10⁻⁶`, Holm
-`p=5.72×10⁻⁶` for the predeclared B2 path test), while brain-coupled VNC is
-below matched random descending drive (`−.0621 m`, 95% CI
-`[−.1192,−.0092]`, Holm `p=.0422`). This is a real VNC motor-output positive,
-not evidence that connectome coordination transfers to a tripod.
+The corrected five-condition study shows real VNC wiring beats column-shuffled
+VNC on path (`+.2663 m`, 95% CI `[+.2611,+.2714]`, exact `p=1.91×10⁻⁶`, Holm
+`p=5.72×10⁻⁶`) and forward (`+.0259 m`, `[+.0212,+.0308]`); brain-coupled VNC
+is below matched random descending drive on path (`−.0621 m`,
+`[−.1192,−.0092]`, Holm `p=.0422`). The direct-MN 8 s real-minus-shuffled
+control is `+1.0161 m` path `[+1.0113,+1.0208]` and `+.2076 m` forward
+`[+.1992,+.2159]`, both exact/Holm `p=3.81×10⁻⁶`. These are motor-output or
+displacement positives, not tripod evidence; direct-MN real also has lower
+feet-planted fraction than shuffle.
 
 The completed specificity audit adds the required network-level control. Its
 registered meta-decision is `SPECIFICITY-EARNED@{B1,B2,B3,B6}` for path or
@@ -50,8 +83,28 @@ median-random four-view videos for B1/B2/B3/B6. Its claim field remains
 `NO (owner writes)`.
 
 This is corrected evidence assembly, not final claim wording. Learned Outcome
-C/D remain separate methods; last-three B/C/D, the four untried phases, and DC
-are fixed zero-learning transfer tests.
+C/D remain separate methods; owner approval is required before a final claim.
+
+## NEXT_EXPERIMENTS completion
+
+| test | result | compact readout |
+|---|---|---|
+| H1 amplitude match | `STRUCTURE-DRIVE-EARNED` | forward `+.2358 m` vs matched random, 95% CI `[+.1868,+.2805]`, exact/Holm `p=.000244`, `0/12`; all channels matched |
+| H2 mechanism | candidate-only | graph scalar screen unsupported; no mechanism sentence |
+| E1 turning | `TURNING-EARNED` | odd yaw advantage `+6.916°`, CI `[+4.892,+8.899]`, exact/Holm `p=.000244`, `0/12` |
+| E2 speed | `SPEED-MODULATION-NULL` | real `ρ=.400` vs random mean `.017`, `p=.0166`, CI `[+.117,+.650]`, `5/12` controls match/beat; gates fail |
+| H3 gain envelope | reported | `16/25` gain cells pass; baseline CI `[+.1868,+.2804]`, Holm `p=.00610` |
+| H4 dose | `DOSE-RESPONSE-EARNED` | α curve `.2241→.0435,.0282,.0566,.0159→-.0087 m`; Spearman `ρ=-.829`; α=1 CI `[+.2101,+.2538]`, Holm `p=.00122` |
+| H5 lesions | `LESION-LOCALIZATION-EARNED` | T1 loss `+.2664 m` `[+.2555,+.2773]`; sensory `+.1949 m` `[+.1899,+.1999]`; T3 `+.1747 m` `[+.1622,+.1870]`; all Holm `p=5.72×10⁻⁶` |
+| E3 bodies | `BODY-GENERALIZATION-EARNED` | mean advantage `+.2346 m` `[+.1870,+.2765]`; worst-case `+.2416 m` `[+.1915,+.2862]`; `0/12`, all 9 perturbations significant |
+| T2 forward readout | `T2-FORWARD-READOUT-NULL` | connectome−random `−.0094 m` `[-.0296,+.0098]`, `p=.814`; connectome−rewired `−.0653 m` `[-.1002,-.0327]`, `p≈.9996`; static leak pass |
+| T1 scalar drive | `T1-SCALAR-CONTROL-EARNED` | error `.0080 m/s` real vs `.0135` matched random and `.0123` rewired; advantages CI `[.00375,.00698]`/`[.00198,.00622]`; Holm `p=.000976`/`.00269` |
+
+H5's descending-neuron lesion is explicitly excluded from amplitude-matched
+inference because it silences 8/18 nonzero target channels. H4's invalid
+cross-fraction cache-collision run is quarantined in
+`results/path2/invalid_h4_cache_collision/`; H1's pilot with unmatchable
+zero-source channels is not used. Clean reruns keep frozen constants.
 
 ## Pre-fix working headline (confounded/superseded)
 
@@ -239,6 +292,12 @@ older `bodyfix_transfer_layers.*` snapshot remains provenance.
    path / `.234 m` forward in the 8 s open-loop replay. Physics attenuates and
    distorts the signal, but does not erase it or create the missing tripod.
    Layer i is the primary bottleneck; ii/iii transmit the incoherence.
+
+The new controls support this localization. H1 and E3 preserve the
+forward-drive positive under amplitude matching and body perturbations, while
+T2's identical trained readouts do not restore the connectome advantage. H5
+finds large forward-drive losses after T1/T2/T3 or VNC-sensory source lesions,
+but that ranks lesion sensitivity rather than proving a unique causal circuit.
 
 ## E0–E4 branch completion
 
@@ -867,17 +926,21 @@ Corrected rerun checks already recorded:
 - video duration and readable MP4 stream;
 - zero catches/falls in frozen E0–E4/C2 outputs, plus explicit D2
   orientation-gated fall accounting;
-- zero-learning scan scoped to frozen E0–E4 code/artifacts; D2 objective scan
-  confirms no catch/prey/target/gait/coherence term;
+- zero-learning scan scoped to frozen no-learning paths; D2 objective scan
+  confirms no catch/prey/target/gait/coherence term, and H1/E1/E2/H3/H4/H5/E3
+  reports record `learning=false`;
 - immutable target and exact row/column degree sequences for D controls;
 - specificity campaign: fixed seven-axis family, 12 random + 12 rewired
   seeds, complete curve/perturbation manifests, executable single-difference
   input-signature asserts, Holm correction, checkpoint resume, and required
   real/median-random survivor videos;
+- `NEXT_EXPERIMENTS` H1–H5/E1–E3/T1–T2 reports, amplitude-match audits,
+  graph-only mechanism screen, lesion exclusion record, readout leak audit,
+  and reviewed four-view videos;
 - `git diff --check`.
 
-All 54 JSON and 54 CSV files parse; all 212 published candidates are selected
-with 0 omitted; VNC hash is
+All registered JSON and CSV reports parse; all 212 published candidates are
+selected with 0 omitted; VNC hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`; brain
 hash is `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
 The all-leg index hash is
@@ -885,16 +948,20 @@ The all-leg index hash is
 matches the frozen graph record. The corrected engine, E3/E4, layer, Path 3,
 Method-1, Method-2, and last-three B/C/D artifacts retain zero-learning or
 learning=false protocol flags; source scan found no optimizer, backprop,
-reward, target-fit, or performance-based choice in frozen rerun paths. New
-method/control videos are readable H.264: B/C, COORD-212, COORD-INHIB,
-WAVE-ANTAG, DC-3, Rung 1, and specificity B1/B2/B3/B6 are 8.000 s; D is a
-1.500 s tonic hold; preflight and DC-1 preflight are 4.000 s; and VISION-EVAL
-left/right is 4.000 s. The four untried gates, DC-1–DC-3, and Rung 1 T-1–T-3
-gates pass; all five new zero-training verdicts and Rung 1 are NULL.
-Specificity meta-decision is `SPECIFICITY-EARNED@{B1,B2,B3,B6}` for its
-predeclared displacement/robustness tests; B4 fails its distribution/CI gate,
-and B5/B7 are NULL. Learned Outcome C/D remain separately labeled methods;
-last-three B/C/D are fixed transfer controls and are complete.
+reward, target-fit, or performance-based choice in frozen rerun paths. H1,
+E1, E2, H3, H4, H5, and E3 also have equal pre/post graph hashes and complete
+amplitude-match audits. T1/T2 trained only declared scalar/readout objects,
+record zero VNC-weight updates, and T2's static-input leak check passes
+exactly. New method/control videos are readable H.264; H1/E1/E2/H3/H4/H5/E3/
+T2 artifacts are 8.000 s where declared. The four untried gates, DC-1–DC-3,
+and Rung 1 T-1–T-3 gates pass. H1, E1, H3, H4, H5, and E3 earn narrow
+positive results; H2 remains candidate-only, E2 is `SPEED-MODULATION-NULL`,
+T1 earns its scalar result, and T2 is `T2-FORWARD-READOUT-NULL`. None
+establishes the canonical tripod. Specificity meta-decision is
+`SPECIFICITY-EARNED@{B1,B2,B3,B6}` for its predeclared displacement/robustness
+tests; B4 fails its distribution/CI gate, and B5/B7 are NULL. Learned Outcome
+C/D remain separately labeled methods; last-three B/C/D are fixed transfer
+controls and are complete.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
 Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
 the substring `train` inside plotting layout `constrained`, the preflight
@@ -935,4 +1002,14 @@ the claim before user approval.
 | `eon-fly-brain/code/delay_coupling.py` | DC-1 delayed generator, DC-2 blind calibration, and DC-3 generation run |
 | `eon-fly-brain/code/rung1_readout.py` | T-1 dataset, T-2 memoryless MLP, T-3 moat comparison, and video finalizer |
 | `eon-fly-brain/code/specificity_campaign.py` | Gate A plus registered seven-axis random-network specificity audit and checkpointed survivor videos |
+| `eon-fly-brain/code/audit_amplitude_control.py` | H1 strict per-channel temporal-SD amplitude-matched forward control |
+| `eon-fly-brain/code/audit_h2_mechanism.py` | H2 graph-only structural scalar screen |
+| `eon-fly-brain/code/audit_e1_turning.py` | E1 bilateral descending-drive turning control |
+| `eon-fly-brain/code/audit_e2_speed.py` | E2 registered drive/speed re-analysis with amplitude-matched controls |
+| `eon-fly-brain/code/audit_h3_gain_envelope.py` | H3 fixed gain-grid envelope |
+| `eon-fly-brain/code/audit_h4_dose_response.py` | H4 fraction-rewired dose-response audit |
+| `eon-fly-brain/code/audit_h5_lesion_localization.py` | H5 source-segment/pathway lesion ranking |
+| `eon-fly-brain/code/audit_e3_body_generalization.py` | E3 amplitude-matched morphology robustness audit |
+| `eon-fly-brain/code/audit_t1_scalar_drive.py` | T1 one-scalar held-out speed-control audit |
+| `eon-fly-brain/code/audit_t2_forward_readout.py` | T2 capacity-capped forward-target readout and leak audit |
 | `PATH2_METHODS.md` | methods-complete working report |

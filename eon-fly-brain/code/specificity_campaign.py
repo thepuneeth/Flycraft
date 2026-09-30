@@ -151,7 +151,45 @@ def file_hashes(data: Path) -> dict[str, str]:
     return {name: sha256(data / name) for name in EXPECTED_SHA256}
 
 
-def base_vnc(data: Path = VNC_DATA) -> VNCStepper:
+# Which dynamics wrap the measured graph. "rate" is the model every recorded
+# campaign number was produced with and stays the default; "lif" is Shiu et al.
+# (2024) as published (vnc_lif_core), one free parameter instead of the seven
+# constants below. Every audit that routes through base_vnc/substrate_vnc --
+# H1, E1, E3, H4, H5 and the campaign itself -- follows this switch, so the same
+# pre-registered questions can be asked of the published dynamics without any
+# audit's analysis code changing.
+CORE_KIND = (os.environ.get("SC_CORE") or "rate").strip().lower()
+if CORE_KIND not in {"rate", "lif"}:
+    raise ValueError(f"unknown SC_CORE {CORE_KIND!r}; expected rate or lif")
+# vnc_lif_core scales synapse counts by w_syn to get millivolts. A substrate
+# arrives as raw signed counts, so it is scaled on the way in and unscaled on the
+# way out; this is the one number that has to agree in both directions.
+LIF_W_SYN = 0.275
+# Suffix for every artifact an audit writes, so a run under published dynamics
+# cannot overwrite the recorded rate-core result and the two can sit side by side.
+ARM_SUFFIX = "" if CORE_KIND == "rate" else f"_{CORE_KIND}"
+
+# Where the core runs. The rollout is the whole cost of these audits -- 3.07 s of
+# core against 0.18 s of MuJoCo per episode -- and the sparse matmul is 4x faster
+# on a 4090 than on two CPU threads (2.75 vs 10.80 ms per control step), so a box
+# with a GPU should not be leaving it at 0% while the sweep runs on CPU. Only the
+# LIF core honours this; the rate core's recorded numbers are CPU numbers and it
+# is already established that it does not reproduce across machines, so moving it
+# would silently invalidate the comparison it exists for.
+SC_DEVICE = (os.environ.get("SC_DEVICE") or "cpu").strip().lower()
+
+
+def base_vnc(data: Path = VNC_DATA):
+    if CORE_KIND == "lif":
+        from vnc_lif_core import ShiuLIFStepper
+
+        return ShiuLIFStepper(
+            data,
+            weights_name="all_legs_weight_csr.pkl",
+            index_name="all_legs_io_index.npz",
+            seed=VNC_SEED,
+            device=SC_DEVICE,
+        )
     return VNCStepper(
         data,
         substeps=VNC_SUBSTEPS,
@@ -239,8 +277,12 @@ def build_vnc_substrates(data: Path, cache: Path) -> tuple[list[Substrate], dict
     }
 
 
-def substrate_vnc(substrate: Substrate, data: Path = VNC_DATA) -> VNCStepper:
+def substrate_vnc(substrate: Substrate, data: Path = VNC_DATA):
+    """Swap in a control substrate. Substrate weights are always signed counts."""
     vnc = base_vnc(data)
+    # One path for both cores: `ShiuLIFStepper.W` takes counts and does its own
+    # mV scaling, exactly as `VNCStepper.W` takes counts and does none. The LIF
+    # branch that used to live here duplicated that scaling at the call site.
     vnc.W = substrate.weight
     return vnc
 

@@ -1,0 +1,88 @@
+{
+  "experiment": "EMBODY_3WAY_STAGE2_PROTOCOL_ADDENDUM",
+  "parent_preregistration": "/root/eon-fly-brain/results/path2/embody_3way_v3_preregistered.json",
+  "parent_config_hash": "29a638417503a3108dd4021cdcfdf40ca27df66165bae8af6e8cdb4f99bed4be",
+  "device": "cuda",
+  "latent_dim": 4,
+  "command_map_sha256": "97e6d46d0605204716accc8fdc6a945b2e16d367d68feaf408f0d0c56fd11cb3",
+  "batch_size": 128,
+  "effective_steps_per_arm": 4999936,
+  "vector_environment": true,
+  "episode_steps": 400,
+  "gae_lambda": 0.95,
+  "value_network": {
+    "class": "Linear-Tanh-Linear",
+    "hidden_units": 256
+  },
+  "update_epochs": 4,
+  "bptt": {
+    "mode": "chunked_gradient_checkpointing_with_truncation",
+    "chunk_steps": 25,
+    "truncated": true,
+    "grad_clip_norm": 1.0,
+    "amends": "v2 backpropagated through the full 400-step episode untruncated and unclipped",
+    "reason": "the frozen core's recurrent Jacobian explodes with depth (2.6e3 at 30 steps, inf by 200, nan by 400 on this core), which produced a non-finite policy mean and aborted the first v3 Stage 2; truncation and clipping are applied identically to all three arms"
+  },
+  "reward": {
+    "form": "multiplicative bounded factors, ported from flybody Walking.get_reward",
+    "factors": [
+      "forward_speed_tracking",
+      "upright_ride_height"
+    ],
+    "combination": "product",
+    "per_step_range": [
+      0.0,
+      1.0
+    ],
+    "tolerance_implementation": "dm_control.utils.rewards.tolerance, vendored verbatim in dm_rewards.py",
+    "target_speed_mps": 0.1,
+    "upright_height_m": 0.13,
+    "fall_floor_m": 0.08,
+    "amends": "v2 used unbounded per-step signed forward displacement summed over the episode",
+    "reason": "unbounded displacement has no fixed point; the v2 connectome arm maximised it by diving forward at 0.588 m/s and falling in 12/12 evaluation seeds"
+  },
+  "initial_action_std": 0.2,
+  "log_std_clamp": [
+    -5.0,
+    2.0
+  ],
+  "optimizer": {
+    "class": "Adam",
+    "learning_rate": 0.0001,
+    "eps": 1e-08
+  },
+  "ema": {
+    "formula": "ema=(1-alpha)*ema+alpha*episode_return",
+    "alpha": 0.05
+  },
+  "training_seed": 20260829,
+  "evaluation_seeds": [
+    20260830,
+    20260831,
+    20260832,
+    20260833,
+    20260834,
+    20260835,
+    20260836,
+    20260837,
+    20260838,
+    20260839,
+    20260840,
+    20260841
+  ],
+  "evaluation_policy": "deterministic mean action at the last fixed checkpoint",
+  "action_handling": "Gaussian samples are logged before HexapodEnv joint-range clipping; log-probability uses unclipped samples",
+  "stable_forward_rule": {
+    "mean_forward_displacement_m_at_least": 0.2,
+    "all_evaluation_episodes_fall_free": true
+  },
+  "training_ema_threshold_return": 100.0,
+  "evaluation_seed_disclosure": "EVALUATION_SEEDS are a subset of the 128 training initialisation seeds, so no arm is evaluated on unseen initial yaw; the overlap is identical across arms and does not bias the paired contrast",
+  "video_seed": 20260830,
+  "decision_labels": [
+    "EMBODY-MOAT-EARNED",
+    "EMBODY-MOAT-NULL",
+    "EMBODY-PILOT-INCONCLUSIVE"
+  ],
+  "protocol_hash": "7d5b4bbb01b0a8ac25f09b4cde579e2310d95770191b297805d920a85abb6d4e"
+}

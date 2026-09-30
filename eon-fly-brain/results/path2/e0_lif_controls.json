@@ -1,0 +1,4043 @@
+{
+  "device": "cuda",
+  "steps": 1500,
+  "drive": 100.0,
+  "trials_per_control": 10,
+  "real_trials": 30,
+  "summary": [
+    {
+      "kind": "rewired",
+      "real": 0.9984,
+      "real_realization_sd": 0.3273,
+      "mean": -0.0332,
+      "max": 0.5404,
+      "n_match_or_beat_real": 0,
+      "n": 200,
+      "trials_per_arm": 10,
+      "n_beat_real_by_1sd": 0
+    },
+    {
+      "kind": "random",
+      "real": 0.9984,
+      "real_realization_sd": 0.3273,
+      "mean": -0.0124,
+      "max": 1.4131,
+      "n_match_or_beat_real": 3,
+      "n": 200,
+      "trials_per_arm": 10,
+      "n_beat_real_by_1sd": 1
+    }
+  ],
+  "rows": [
+    {
+      "kind": "random",
+      "seed": 11,
+      "trials": 10,
+      "motor_hz": 13.076,
+      "frac_active": 0.6423,
+      "coherence": 1.099,
+      "coherence_sd": 0.403,
+      "band_share": 0.0797
+    },
+    {
+      "kind": "random",
+      "seed": 12,
+      "trials": 10,
+      "motor_hz": 19.326,
+      "frac_active": 0.6673,
+      "coherence": 0.157,
+      "coherence_sd": 0.3927,
+      "band_share": 0.0553
+    },
+    {
+      "kind": "random",
+      "seed": 13,
+      "trials": 10,
+      "motor_hz": 5.132,
+      "frac_active": 0.5962,
+      "coherence": 0.2964,
+      "coherence_sd": 0.2372,
+      "band_share": 0.1005
+    },
+    {
+      "kind": "random",
+      "seed": 14,
+      "trials": 10,
+      "motor_hz": 5.889,
+      "frac_active": 0.5635,
+      "coherence": -0.2677,
+      "coherence_sd": 0.2481,
+      "band_share": 0.0928
+    },
+    {
+      "kind": "random",
+      "seed": 15,
+      "trials": 10,
+      "motor_hz": 3.703,
+      "frac_active": 0.5188,
+      "coherence": 0.0961,
+      "coherence_sd": 0.4056,
+      "band_share": 0.1133
+    },
+    {
+      "kind": "random",
+      "seed": 16,
+      "trials": 10,
+      "motor_hz": 1.764,
+      "frac_active": 0.4142,
+      "coherence": 0.2056,
+      "coherence_sd": 0.4191,
+      "band_share": 0.0905
+    },
+    {
+      "kind": "random",
+      "seed": 17,
+      "trials": 10,
+      "motor_hz": 1.912,
+      "frac_active": 0.3508,
+      "coherence": -0.1975,
+      "coherence_sd": 0.263,
+      "band_share": 0.0772
+    },
+    {
+      "kind": "random",
+      "seed": 18,
+      "trials": 10,
+      "motor_hz": 2.315,
+      "frac_active": 0.4658,
+      "coherence": 0.0886,
+      "coherence_sd": 0.2754,
+      "band_share": 0.0758
+    },
+    {
+      "kind": "random",
+      "seed": 19,
+      "trials": 10,
+      "motor_hz": 5.675,
+      "frac_active": 0.5446,
+      "coherence": 0.1388,
+      "coherence_sd": 0.295,
+      "band_share": 0.0818
+    },
+    {
+      "kind": "random",
+      "seed": 20,
+      "trials": 10,
+      "motor_hz": 2.833,
+      "frac_active": 0.4531,
+      "coherence": -0.2435,
+      "coherence_sd": 0.2463,
+      "band_share": 0.0866
+    },
+    {
+      "kind": "random",
+      "seed": 21,
+      "trials": 10,
+      "motor_hz": 4.625,
+      "frac_active": 0.4877,
+      "coherence": -0.0388,
+      "coherence_sd": 0.2802,
+      "band_share": 0.0876
+    },
+    {
+      "kind": "random",
+      "seed": 22,
+      "trials": 10,
+      "motor_hz": 2.279,
+      "frac_active": 0.3519,
+      "coherence": 0.1156,
+      "coherence_sd": 0.3357,
+      "band_share": 0.0823
+    },
+    {
+      "kind": "random",
+      "seed": 23,
+      "trials": 10,
+      "motor_hz": 18.995,
+      "frac_active": 0.6085,
+      "coherence": 0.2397,
+      "coherence_sd": 0.2531,
+      "band_share": 0.0564
+    },
+    {
+      "kind": "random",
+      "seed": 24,
+      "trials": 10,
+      "motor_hz": 3.666,
+      "frac_active": 0.5854,
+      "coherence": -0.1919,
+      "coherence_sd": 0.0842,
+      "band_share": 0.1001
+    },
+    {
+      "kind": "random",
+      "seed": 25,
+      "trials": 10,
+      "motor_hz": 14.405,
+      "frac_active": 0.6262,
+      "coherence": -0.0327,
+      "coherence_sd": 0.3666,
+      "band_share": 0.0654
+    },
+    {
+      "kind": "random",
+      "seed": 26,
+      "trials": 10,
+      "motor_hz": 1.643,
+      "frac_active": 0.3673,
+      "coherence": -0.2662,
+      "coherence_sd": 0.202,
+      "band_share": 0.0929
+    },
+    {
+      "kind": "random",
+      "seed": 27,
+      "trials": 10,
+      "motor_hz": 8.729,
+      "frac_active": 0.565,
+      "coherence": -0.0342,
+      "coherence_sd": 0.1865,
+      "band_share": 0.0743
+    },
+    {
+      "kind": "random",
+      "seed": 28,
+      "trials": 10,
+      "motor_hz": 17.581,
+      "frac_active": 0.6623,
+      "coherence": 0.2966,
+      "coherence_sd": 0.394,
+      "band_share": 0.062
+    },
+    {
+      "kind": "random",
+      "seed": 29,
+      "trials": 10,
+      "motor_hz": 5.358,
+      "frac_active": 0.5469,
+      "coherence": -0.0262,
+      "coherence_sd": 0.0839,
+      "band_share": 0.1049
+    },
+    {
+      "kind": "random",
+      "seed": 30,
+      "trials": 10,
+      "motor_hz": 10.495,
+      "frac_active": 0.6115,
+      "coherence": -0.249,
+      "coherence_sd": 0.2711,
+      "band_share": 0.0659
+    },
+    {
+      "kind": "random",
+      "seed": 31,
+      "trials": 10,
+      "motor_hz": 8.489,
+      "frac_active": 0.5981,
+      "coherence": -0.2334,
+      "coherence_sd": 0.2883,
+      "band_share": 0.1017
+    },
+    {
+      "kind": "random",
+      "seed": 32,
+      "trials": 10,
+      "motor_hz": 20.218,
+      "frac_active": 0.6419,
+      "coherence": -0.0264,
+      "coherence_sd": 0.2512,
+      "band_share": 0.0584
+    },
+    {
+      "kind": "random",
+      "seed": 33,
+      "trials": 10,
+      "motor_hz": 17.051,
+      "frac_active": 0.6269,
+      "coherence": -0.2489,
+      "coherence_sd": 0.3302,
+      "band_share": 0.0569
+    },
+    {
+      "kind": "random",
+      "seed": 34,
+      "trials": 10,
+      "motor_hz": 1.4,
+      "frac_active": 0.3704,
+      "coherence": -0.1096,
+      "coherence_sd": 0.2217,
+      "band_share": 0.0871
+    },
+    {
+      "kind": "random",
+      "seed": 35,
+      "trials": 10,
+      "motor_hz": 3.912,
+      "frac_active": 0.5523,
+      "coherence": -0.4392,
+      "coherence_sd": 0.3035,
+      "band_share": 0.0823
+    },
+    {
+      "kind": "random",
+      "seed": 36,
+      "trials": 10,
+      "motor_hz": 1.572,
+      "frac_active": 0.3935,
+      "coherence": 0.4117,
+      "coherence_sd": 0.3128,
+      "band_share": 0.0764
+    },
+    {
+      "kind": "random",
+      "seed": 37,
+      "trials": 10,
+      "motor_hz": 12.054,
+      "frac_active": 0.5858,
+      "coherence": -0.1612,
+      "coherence_sd": 0.2144,
+      "band_share": 0.0776
+    },
+    {
+      "kind": "random",
+      "seed": 38,
+      "trials": 10,
+      "motor_hz": 3.537,
+      "frac_active": 0.5204,
+      "coherence": 0.4981,
+      "coherence_sd": 0.3151,
+      "band_share": 0.0818
+    },
+    {
+      "kind": "random",
+      "seed": 39,
+      "trials": 10,
+      "motor_hz": 6.274,
+      "frac_active": 0.5858,
+      "coherence": 0.0941,
+      "coherence_sd": 0.3137,
+      "band_share": 0.089
+    },
+    {
+      "kind": "random",
+      "seed": 40,
+      "trials": 10,
+      "motor_hz": 6.736,
+      "frac_active": 0.5769,
+      "coherence": -0.0463,
+      "coherence_sd": 0.19,
+      "band_share": 0.1016
+    },
+    {
+      "kind": "random",
+      "seed": 41,
+      "trials": 10,
+      "motor_hz": 3.767,
+      "frac_active": 0.5496,
+      "coherence": -0.1893,
+      "coherence_sd": 0.2561,
+      "band_share": 0.1117
+    },
+    {
+      "kind": "random",
+      "seed": 42,
+      "trials": 10,
+      "motor_hz": 3.081,
+      "frac_active": 0.5054,
+      "coherence": 0.4535,
+      "coherence_sd": 0.3272,
+      "band_share": 0.1034
+    },
+    {
+      "kind": "random",
+      "seed": 43,
+      "trials": 10,
+      "motor_hz": 4.209,
+      "frac_active": 0.5227,
+      "coherence": -0.1624,
+      "coherence_sd": 0.238,
+      "band_share": 0.1168
+    },
+    {
+      "kind": "random",
+      "seed": 44,
+      "trials": 10,
+      "motor_hz": 12.577,
+      "frac_active": 0.5996,
+      "coherence": -0.2968,
+      "coherence_sd": 0.2417,
+      "band_share": 0.0724
+    },
+    {
+      "kind": "random",
+      "seed": 45,
+      "trials": 10,
+      "motor_hz": 4.62,
+      "frac_active": 0.5954,
+      "coherence": -0.2293,
+      "coherence_sd": 0.2687,
+      "band_share": 0.0661
+    },
+    {
+      "kind": "random",
+      "seed": 46,
+      "trials": 10,
+      "motor_hz": 6.645,
+      "frac_active": 0.5781,
+      "coherence": -0.0198,
+      "coherence_sd": 0.1415,
+      "band_share": 0.1016
+    },
+    {
+      "kind": "random",
+      "seed": 47,
+      "trials": 10,
+      "motor_hz": 2.732,
+      "frac_active": 0.5281,
+      "coherence": 0.2814,
+      "coherence_sd": 0.2931,
+      "band_share": 0.0979
+    },
+    {
+      "kind": "random",
+      "seed": 48,
+      "trials": 10,
+      "motor_hz": 3.527,
+      "frac_active": 0.3946,
+      "coherence": 0.2857,
+      "coherence_sd": 0.1593,
+      "band_share": 0.0843
+    },
+    {
+      "kind": "random",
+      "seed": 49,
+      "trials": 10,
+      "motor_hz": 4.659,
+      "frac_active": 0.6004,
+      "coherence": 0.0677,
+      "coherence_sd": 0.1347,
+      "band_share": 0.0975
+    },
+    {
+      "kind": "random",
+      "seed": 50,
+      "trials": 10,
+      "motor_hz": 5.123,
+      "frac_active": 0.5242,
+      "coherence": -0.1581,
+      "coherence_sd": 0.2227,
+      "band_share": 0.0875
+    },
+    {
+      "kind": "random",
+      "seed": 51,
+      "trials": 10,
+      "motor_hz": 3.731,
+      "frac_active": 0.5404,
+      "coherence": -0.0383,
+      "coherence_sd": 0.2389,
+      "band_share": 0.0701
+    },
+    {
+      "kind": "random",
+      "seed": 52,
+      "trials": 10,
+      "motor_hz": 19.149,
+      "frac_active": 0.6023,
+      "coherence": -0.2193,
+      "coherence_sd": 0.243,
+      "band_share": 0.0588
+    },
+    {
+      "kind": "random",
+      "seed": 53,
+      "trials": 10,
+      "motor_hz": 4.015,
+      "frac_active": 0.5335,
+      "coherence": -0.1958,
+      "coherence_sd": 0.284,
+      "band_share": 0.0867
+    },
+    {
+      "kind": "random",
+      "seed": 54,
+      "trials": 10,
+      "motor_hz": 2.349,
+      "frac_active": 0.4369,
+      "coherence": -0.445,
+      "coherence_sd": 0.2852,
+      "band_share": 0.0928
+    },
+    {
+      "kind": "random",
+      "seed": 55,
+      "trials": 10,
+      "motor_hz": 6.967,
+      "frac_active": 0.5865,
+      "coherence": -0.1832,
+      "coherence_sd": 0.2258,
+      "band_share": 0.0886
+    },
+    {
+      "kind": "random",
+      "seed": 56,
+      "trials": 10,
+      "motor_hz": 3.457,
+      "frac_active": 0.5877,
+      "coherence": 0.5451,
+      "coherence_sd": 0.3322,
+      "band_share": 0.0905
+    },
+    {
+      "kind": "random",
+      "seed": 57,
+      "trials": 10,
+      "motor_hz": 5.343,
+      "frac_active": 0.5135,
+      "coherence": 0.0657,
+      "coherence_sd": 0.3488,
+      "band_share": 0.0717
+    },
+    {
+      "kind": "random",
+      "seed": 58,
+      "trials": 10,
+      "motor_hz": 4.139,
+      "frac_active": 0.5377,
+      "coherence": -0.0057,
+      "coherence_sd": 0.2521,
+      "band_share": 0.0865
+    },
+    {
+      "kind": "random",
+      "seed": 59,
+      "trials": 10,
+      "motor_hz": 15.199,
+      "frac_active": 0.5746,
+      "coherence": 0.2852,
+      "coherence_sd": 0.3975,
+      "band_share": 0.058
+    },
+    {
+      "kind": "random",
+      "seed": 60,
+      "trials": 10,
+      "motor_hz": 18.308,
+      "frac_active": 0.6365,
+      "coherence": -0.1037,
+      "coherence_sd": 0.302,
+      "band_share": 0.051
+    },
+    {
+      "kind": "random",
+      "seed": 61,
+      "trials": 10,
+      "motor_hz": 20.808,
+      "frac_active": 0.6292,
+      "coherence": 0.3383,
+      "coherence_sd": 0.4725,
+      "band_share": 0.0598
+    },
+    {
+      "kind": "random",
+      "seed": 62,
+      "trials": 10,
+      "motor_hz": 3.341,
+      "frac_active": 0.5335,
+      "coherence": 0.5151,
+      "coherence_sd": 0.3748,
+      "band_share": 0.0866
+    },
+    {
+      "kind": "random",
+      "seed": 63,
+      "trials": 10,
+      "motor_hz": 16.599,
+      "frac_active": 0.6177,
+      "coherence": -0.0899,
+      "coherence_sd": 0.3034,
+      "band_share": 0.0513
+    },
+    {
+      "kind": "random",
+      "seed": 64,
+      "trials": 10,
+      "motor_hz": 8.478,
+      "frac_active": 0.6123,
+      "coherence": -0.0633,
+      "coherence_sd": 0.2322,
+      "band_share": 0.0704
+    },
+    {
+      "kind": "random",
+      "seed": 65,
+      "trials": 10,
+      "motor_hz": 7.839,
+      "frac_active": 0.5742,
+      "coherence": -0.2798,
+      "coherence_sd": 0.2151,
+      "band_share": 0.0837
+    },
+    {
+      "kind": "random",
+      "seed": 66,
+      "trials": 10,
+      "motor_hz": 11.98,
+      "frac_active": 0.6258,
+      "coherence": -0.2673,
+      "coherence_sd": 0.2524,
+      "band_share": 0.0793
+    },
+    {
+      "kind": "random",
+      "seed": 67,
+      "trials": 10,
+      "motor_hz": 2.867,
+      "frac_active": 0.4631,
+      "coherence": -0.2497,
+      "coherence_sd": 0.0966,
+      "band_share": 0.089
+    },
+    {
+      "kind": "random",
+      "seed": 68,
+      "trials": 10,
+      "motor_hz": 4.86,
+      "frac_active": 0.555,
+      "coherence": 0.0621,
+      "coherence_sd": 0.2173,
+      "band_share": 0.1044
+    },
+    {
+      "kind": "random",
+      "seed": 69,
+      "trials": 10,
+      "motor_hz": 16.972,
+      "frac_active": 0.6169,
+      "coherence": -0.2534,
+      "coherence_sd": 0.3174,
+      "band_share": 0.0666
+    },
+    {
+      "kind": "random",
+      "seed": 70,
+      "trials": 10,
+      "motor_hz": 19.627,
+      "frac_active": 0.6508,
+      "coherence": -0.2851,
+      "coherence_sd": 0.2674,
+      "band_share": 0.0535
+    },
+    {
+      "kind": "random",
+      "seed": 71,
+      "trials": 10,
+      "motor_hz": 15.536,
+      "frac_active": 0.6281,
+      "coherence": -0.1456,
+      "coherence_sd": 0.3583,
+      "band_share": 0.0704
+    },
+    {
+      "kind": "random",
+      "seed": 72,
+      "trials": 10,
+      "motor_hz": 2.659,
+      "frac_active": 0.5019,
+      "coherence": -0.0373,
+      "coherence_sd": 0.3124,
+      "band_share": 0.0781
+    },
+    {
+      "kind": "random",
+      "seed": 73,
+      "trials": 10,
+      "motor_hz": 6.272,
+      "frac_active": 0.6081,
+      "coherence": -0.1812,
+      "coherence_sd": 0.1274,
+      "band_share": 0.1081
+    },
+    {
+      "kind": "random",
+      "seed": 74,
+      "trials": 10,
+      "motor_hz": 1.672,
+      "frac_active": 0.2492,
+      "coherence": -0.1522,
+      "coherence_sd": 0.2006,
+      "band_share": 0.0621
+    },
+    {
+      "kind": "random",
+      "seed": 75,
+      "trials": 10,
+      "motor_hz": 6.166,
+      "frac_active": 0.5438,
+      "coherence": -0.318,
+      "coherence_sd": 0.1868,
+      "band_share": 0.0884
+    },
+    {
+      "kind": "random",
+      "seed": 76,
+      "trials": 10,
+      "motor_hz": 5.614,
+      "frac_active": 0.535,
+      "coherence": -0.3198,
+      "coherence_sd": 0.2462,
+      "band_share": 0.0766
+    },
+    {
+      "kind": "random",
+      "seed": 77,
+      "trials": 10,
+      "motor_hz": 5.56,
+      "frac_active": 0.5269,
+      "coherence": 1.1374,
+      "coherence_sd": 0.3398,
+      "band_share": 0.073
+    },
+    {
+      "kind": "random",
+      "seed": 78,
+      "trials": 10,
+      "motor_hz": 2.73,
+      "frac_active": 0.47,
+      "coherence": 0.0802,
+      "coherence_sd": 0.184,
+      "band_share": 0.0928
+    },
+    {
+      "kind": "random",
+      "seed": 79,
+      "trials": 10,
+      "motor_hz": 4.283,
+      "frac_active": 0.5723,
+      "coherence": -0.2299,
+      "coherence_sd": 0.131,
+      "band_share": 0.0833
+    },
+    {
+      "kind": "random",
+      "seed": 80,
+      "trials": 10,
+      "motor_hz": 12.021,
+      "frac_active": 0.5931,
+      "coherence": -0.2465,
+      "coherence_sd": 0.2416,
+      "band_share": 0.0778
+    },
+    {
+      "kind": "random",
+      "seed": 81,
+      "trials": 10,
+      "motor_hz": 4.501,
+      "frac_active": 0.5704,
+      "coherence": -0.0875,
+      "coherence_sd": 0.1908,
+      "band_share": 0.0929
+    },
+    {
+      "kind": "random",
+      "seed": 82,
+      "trials": 10,
+      "motor_hz": 5.161,
+      "frac_active": 0.5481,
+      "coherence": 0.0288,
+      "coherence_sd": 0.2116,
+      "band_share": 0.102
+    },
+    {
+      "kind": "random",
+      "seed": 83,
+      "trials": 10,
+      "motor_hz": 3.293,
+      "frac_active": 0.4873,
+      "coherence": -0.3239,
+      "coherence_sd": 0.2044,
+      "band_share": 0.0915
+    },
+    {
+      "kind": "random",
+      "seed": 84,
+      "trials": 10,
+      "motor_hz": 2.674,
+      "frac_active": 0.4546,
+      "coherence": -0.413,
+      "coherence_sd": 0.2425,
+      "band_share": 0.0939
+    },
+    {
+      "kind": "random",
+      "seed": 85,
+      "trials": 10,
+      "motor_hz": 22.026,
+      "frac_active": 0.6454,
+      "coherence": 0.1297,
+      "coherence_sd": 0.4104,
+      "band_share": 0.0578
+    },
+    {
+      "kind": "random",
+      "seed": 86,
+      "trials": 10,
+      "motor_hz": 13.264,
+      "frac_active": 0.6838,
+      "coherence": -0.1187,
+      "coherence_sd": 0.2492,
+      "band_share": 0.0616
+    },
+    {
+      "kind": "random",
+      "seed": 87,
+      "trials": 10,
+      "motor_hz": 9.108,
+      "frac_active": 0.6062,
+      "coherence": -0.054,
+      "coherence_sd": 0.1659,
+      "band_share": 0.097
+    },
+    {
+      "kind": "random",
+      "seed": 88,
+      "trials": 10,
+      "motor_hz": 2.945,
+      "frac_active": 0.4477,
+      "coherence": -0.3313,
+      "coherence_sd": 0.2294,
+      "band_share": 0.08
+    },
+    {
+      "kind": "random",
+      "seed": 89,
+      "trials": 10,
+      "motor_hz": 8.332,
+      "frac_active": 0.5496,
+      "coherence": -0.3703,
+      "coherence_sd": 0.2561,
+      "band_share": 0.0694
+    },
+    {
+      "kind": "random",
+      "seed": 90,
+      "trials": 10,
+      "motor_hz": 3.373,
+      "frac_active": 0.4215,
+      "coherence": 0.4593,
+      "coherence_sd": 0.1834,
+      "band_share": 0.0781
+    },
+    {
+      "kind": "random",
+      "seed": 91,
+      "trials": 10,
+      "motor_hz": 17.525,
+      "frac_active": 0.6185,
+      "coherence": -0.1159,
+      "coherence_sd": 0.266,
+      "band_share": 0.0603
+    },
+    {
+      "kind": "random",
+      "seed": 92,
+      "trials": 10,
+      "motor_hz": 14.687,
+      "frac_active": 0.6112,
+      "coherence": 0.0414,
+      "coherence_sd": 0.1493,
+      "band_share": 0.0536
+    },
+    {
+      "kind": "random",
+      "seed": 93,
+      "trials": 10,
+      "motor_hz": 6.215,
+      "frac_active": 0.5923,
+      "coherence": -0.4736,
+      "coherence_sd": 0.0944,
+      "band_share": 0.081
+    },
+    {
+      "kind": "random",
+      "seed": 94,
+      "trials": 10,
+      "motor_hz": 4.999,
+      "frac_active": 0.5719,
+      "coherence": -0.1565,
+      "coherence_sd": 0.235,
+      "band_share": 0.0951
+    },
+    {
+      "kind": "random",
+      "seed": 95,
+      "trials": 10,
+      "motor_hz": 13.331,
+      "frac_active": 0.6635,
+      "coherence": -0.1343,
+      "coherence_sd": 0.1976,
+      "band_share": 0.0695
+    },
+    {
+      "kind": "random",
+      "seed": 96,
+      "trials": 10,
+      "motor_hz": 8.888,
+      "frac_active": 0.6042,
+      "coherence": -0.1182,
+      "coherence_sd": 0.1715,
+      "band_share": 0.0924
+    },
+    {
+      "kind": "random",
+      "seed": 97,
+      "trials": 10,
+      "motor_hz": 11.883,
+      "frac_active": 0.5762,
+      "coherence": 0.417,
+      "coherence_sd": 0.4298,
+      "band_share": 0.0844
+    },
+    {
+      "kind": "random",
+      "seed": 98,
+      "trials": 10,
+      "motor_hz": 10.642,
+      "frac_active": 0.635,
+      "coherence": -0.3681,
+      "coherence_sd": 0.4397,
+      "band_share": 0.06
+    },
+    {
+      "kind": "random",
+      "seed": 99,
+      "trials": 10,
+      "motor_hz": 14.691,
+      "frac_active": 0.6054,
+      "coherence": -0.0315,
+      "coherence_sd": 0.3714,
+      "band_share": 0.068
+    },
+    {
+      "kind": "random",
+      "seed": 100,
+      "trials": 10,
+      "motor_hz": 2.886,
+      "frac_active": 0.4731,
+      "coherence": 0.0868,
+      "coherence_sd": 0.1631,
+      "band_share": 0.0789
+    },
+    {
+      "kind": "random",
+      "seed": 101,
+      "trials": 10,
+      "motor_hz": 4.732,
+      "frac_active": 0.5835,
+      "coherence": 0.6315,
+      "coherence_sd": 0.0576,
+      "band_share": 0.1073
+    },
+    {
+      "kind": "random",
+      "seed": 102,
+      "trials": 10,
+      "motor_hz": 5.974,
+      "frac_active": 0.5831,
+      "coherence": -0.464,
+      "coherence_sd": 0.1927,
+      "band_share": 0.0831
+    },
+    {
+      "kind": "random",
+      "seed": 103,
+      "trials": 10,
+      "motor_hz": 1.859,
+      "frac_active": 0.4715,
+      "coherence": 0.0109,
+      "coherence_sd": 0.2048,
+      "band_share": 0.0956
+    },
+    {
+      "kind": "random",
+      "seed": 104,
+      "trials": 10,
+      "motor_hz": 8.583,
+      "frac_active": 0.5796,
+      "coherence": -0.0198,
+      "coherence_sd": 0.2937,
+      "band_share": 0.0675
+    },
+    {
+      "kind": "random",
+      "seed": 105,
+      "trials": 10,
+      "motor_hz": 2.546,
+      "frac_active": 0.41,
+      "coherence": 0.2488,
+      "coherence_sd": 0.2957,
+      "band_share": 0.0857
+    },
+    {
+      "kind": "random",
+      "seed": 106,
+      "trials": 10,
+      "motor_hz": 5.28,
+      "frac_active": 0.5465,
+      "coherence": 0.3879,
+      "coherence_sd": 0.322,
+      "band_share": 0.0943
+    },
+    {
+      "kind": "random",
+      "seed": 107,
+      "trials": 10,
+      "motor_hz": 6.538,
+      "frac_active": 0.5392,
+      "coherence": 0.0593,
+      "coherence_sd": 0.2716,
+      "band_share": 0.0746
+    },
+    {
+      "kind": "random",
+      "seed": 108,
+      "trials": 10,
+      "motor_hz": 7.551,
+      "frac_active": 0.6223,
+      "coherence": 0.0368,
+      "coherence_sd": 0.1576,
+      "band_share": 0.0973
+    },
+    {
+      "kind": "random",
+      "seed": 109,
+      "trials": 10,
+      "motor_hz": 3.144,
+      "frac_active": 0.4631,
+      "coherence": -0.2244,
+      "coherence_sd": 0.2138,
+      "band_share": 0.0907
+    },
+    {
+      "kind": "random",
+      "seed": 110,
+      "trials": 10,
+      "motor_hz": 3.119,
+      "frac_active": 0.5342,
+      "coherence": -0.0177,
+      "coherence_sd": 0.1202,
+      "band_share": 0.1046
+    },
+    {
+      "kind": "random",
+      "seed": 111,
+      "trials": 10,
+      "motor_hz": 15.659,
+      "frac_active": 0.6327,
+      "coherence": 0.2054,
+      "coherence_sd": 0.4237,
+      "band_share": 0.0627
+    },
+    {
+      "kind": "random",
+      "seed": 112,
+      "trials": 10,
+      "motor_hz": 16.77,
+      "frac_active": 0.57,
+      "coherence": 0.1093,
+      "coherence_sd": 0.3529,
+      "band_share": 0.0519
+    },
+    {
+      "kind": "random",
+      "seed": 113,
+      "trials": 10,
+      "motor_hz": 17.001,
+      "frac_active": 0.625,
+      "coherence": 0.0935,
+      "coherence_sd": 0.2929,
+      "band_share": 0.0577
+    },
+    {
+      "kind": "random",
+      "seed": 114,
+      "trials": 10,
+      "motor_hz": 4.267,
+      "frac_active": 0.5604,
+      "coherence": -0.2942,
+      "coherence_sd": 0.2755,
+      "band_share": 0.0827
+    },
+    {
+      "kind": "random",
+      "seed": 115,
+      "trials": 10,
+      "motor_hz": 14.361,
+      "frac_active": 0.6035,
+      "coherence": 0.1357,
+      "coherence_sd": 0.1644,
+      "band_share": 0.0601
+    },
+    {
+      "kind": "random",
+      "seed": 116,
+      "trials": 10,
+      "motor_hz": 6.779,
+      "frac_active": 0.5808,
+      "coherence": 0.0474,
+      "coherence_sd": 0.1038,
+      "band_share": 0.0995
+    },
+    {
+      "kind": "random",
+      "seed": 117,
+      "trials": 10,
+      "motor_hz": 7.944,
+      "frac_active": 0.59,
+      "coherence": 1.4131,
+      "coherence_sd": 0.132,
+      "band_share": 0.0789
+    },
+    {
+      "kind": "random",
+      "seed": 118,
+      "trials": 10,
+      "motor_hz": 6.803,
+      "frac_active": 0.5727,
+      "coherence": 0.0235,
+      "coherence_sd": 0.141,
+      "band_share": 0.0668
+    },
+    {
+      "kind": "random",
+      "seed": 119,
+      "trials": 10,
+      "motor_hz": 16.578,
+      "frac_active": 0.6146,
+      "coherence": -0.092,
+      "coherence_sd": 0.4407,
+      "band_share": 0.0624
+    },
+    {
+      "kind": "random",
+      "seed": 120,
+      "trials": 10,
+      "motor_hz": 7.452,
+      "frac_active": 0.5831,
+      "coherence": -0.2428,
+      "coherence_sd": 0.2045,
+      "band_share": 0.084
+    },
+    {
+      "kind": "random",
+      "seed": 121,
+      "trials": 10,
+      "motor_hz": 3.203,
+      "frac_active": 0.4419,
+      "coherence": -0.0948,
+      "coherence_sd": 0.3854,
+      "band_share": 0.0851
+    },
+    {
+      "kind": "random",
+      "seed": 122,
+      "trials": 10,
+      "motor_hz": 3.184,
+      "frac_active": 0.5304,
+      "coherence": -0.0625,
+      "coherence_sd": 0.2862,
+      "band_share": 0.0884
+    },
+    {
+      "kind": "random",
+      "seed": 123,
+      "trials": 10,
+      "motor_hz": 10.651,
+      "frac_active": 0.6138,
+      "coherence": 0.1105,
+      "coherence_sd": 0.2251,
+      "band_share": 0.0734
+    },
+    {
+      "kind": "random",
+      "seed": 124,
+      "trials": 10,
+      "motor_hz": 13.187,
+      "frac_active": 0.6273,
+      "coherence": -0.2879,
+      "coherence_sd": 0.2156,
+      "band_share": 0.0645
+    },
+    {
+      "kind": "random",
+      "seed": 125,
+      "trials": 10,
+      "motor_hz": 12.948,
+      "frac_active": 0.6185,
+      "coherence": 0.18,
+      "coherence_sd": 0.2664,
+      "band_share": 0.0854
+    },
+    {
+      "kind": "random",
+      "seed": 126,
+      "trials": 10,
+      "motor_hz": 2.616,
+      "frac_active": 0.4654,
+      "coherence": 0.0265,
+      "coherence_sd": 0.1741,
+      "band_share": 0.1066
+    },
+    {
+      "kind": "random",
+      "seed": 127,
+      "trials": 10,
+      "motor_hz": 11.279,
+      "frac_active": 0.6246,
+      "coherence": -0.1598,
+      "coherence_sd": 0.2394,
+      "band_share": 0.0936
+    },
+    {
+      "kind": "random",
+      "seed": 128,
+      "trials": 10,
+      "motor_hz": 14.394,
+      "frac_active": 0.6185,
+      "coherence": -0.0763,
+      "coherence_sd": 0.2762,
+      "band_share": 0.062
+    },
+    {
+      "kind": "random",
+      "seed": 129,
+      "trials": 10,
+      "motor_hz": 6.234,
+      "frac_active": 0.5612,
+      "coherence": -0.3469,
+      "coherence_sd": 0.2013,
+      "band_share": 0.0775
+    },
+    {
+      "kind": "random",
+      "seed": 130,
+      "trials": 10,
+      "motor_hz": 8.73,
+      "frac_active": 0.5712,
+      "coherence": 0.5503,
+      "coherence_sd": 0.423,
+      "band_share": 0.0735
+    },
+    {
+      "kind": "random",
+      "seed": 131,
+      "trials": 10,
+      "motor_hz": 12.094,
+      "frac_active": 0.6119,
+      "coherence": -0.2509,
+      "coherence_sd": 0.1239,
+      "band_share": 0.0943
+    },
+    {
+      "kind": "random",
+      "seed": 132,
+      "trials": 10,
+      "motor_hz": 4.317,
+      "frac_active": 0.5438,
+      "coherence": -0.3905,
+      "coherence_sd": 0.0565,
+      "band_share": 0.1166
+    },
+    {
+      "kind": "random",
+      "seed": 133,
+      "trials": 10,
+      "motor_hz": 2.596,
+      "frac_active": 0.4619,
+      "coherence": -0.4945,
+      "coherence_sd": 0.1225,
+      "band_share": 0.1083
+    },
+    {
+      "kind": "random",
+      "seed": 134,
+      "trials": 10,
+      "motor_hz": 4.28,
+      "frac_active": 0.5781,
+      "coherence": -0.066,
+      "coherence_sd": 0.2072,
+      "band_share": 0.1076
+    },
+    {
+      "kind": "random",
+      "seed": 135,
+      "trials": 10,
+      "motor_hz": 2.043,
+      "frac_active": 0.3973,
+      "coherence": 0.2499,
+      "coherence_sd": 0.3087,
+      "band_share": 0.0742
+    },
+    {
+      "kind": "random",
+      "seed": 136,
+      "trials": 10,
+      "motor_hz": 6.171,
+      "frac_active": 0.6077,
+      "coherence": -0.0497,
+      "coherence_sd": 0.1452,
+      "band_share": 0.0837
+    },
+    {
+      "kind": "random",
+      "seed": 137,
+      "trials": 10,
+      "motor_hz": 1.444,
+      "frac_active": 0.3108,
+      "coherence": -0.3626,
+      "coherence_sd": 0.159,
+      "band_share": 0.0857
+    },
+    {
+      "kind": "random",
+      "seed": 138,
+      "trials": 10,
+      "motor_hz": 14.456,
+      "frac_active": 0.6527,
+      "coherence": 0.2252,
+      "coherence_sd": 0.3756,
+      "band_share": 0.0671
+    },
+    {
+      "kind": "random",
+      "seed": 139,
+      "trials": 10,
+      "motor_hz": 5.365,
+      "frac_active": 0.5631,
+      "coherence": -0.2145,
+      "coherence_sd": 0.2316,
+      "band_share": 0.1112
+    },
+    {
+      "kind": "random",
+      "seed": 140,
+      "trials": 10,
+      "motor_hz": 4.137,
+      "frac_active": 0.5692,
+      "coherence": 0.2438,
+      "coherence_sd": 0.2637,
+      "band_share": 0.1085
+    },
+    {
+      "kind": "random",
+      "seed": 141,
+      "trials": 10,
+      "motor_hz": 2.654,
+      "frac_active": 0.5258,
+      "coherence": -0.3817,
+      "coherence_sd": 0.2096,
+      "band_share": 0.1042
+    },
+    {
+      "kind": "random",
+      "seed": 142,
+      "trials": 10,
+      "motor_hz": 12.4,
+      "frac_active": 0.5738,
+      "coherence": -0.2253,
+      "coherence_sd": 0.2058,
+      "band_share": 0.0624
+    },
+    {
+      "kind": "random",
+      "seed": 143,
+      "trials": 10,
+      "motor_hz": 3.518,
+      "frac_active": 0.505,
+      "coherence": 0.0548,
+      "coherence_sd": 0.1817,
+      "band_share": 0.0906
+    },
+    {
+      "kind": "random",
+      "seed": 144,
+      "trials": 10,
+      "motor_hz": 4.187,
+      "frac_active": 0.5396,
+      "coherence": 0.066,
+      "coherence_sd": 0.2915,
+      "band_share": 0.0889
+    },
+    {
+      "kind": "random",
+      "seed": 145,
+      "trials": 10,
+      "motor_hz": 2.331,
+      "frac_active": 0.4823,
+      "coherence": -0.0289,
+      "coherence_sd": 0.0945,
+      "band_share": 0.1195
+    },
+    {
+      "kind": "random",
+      "seed": 146,
+      "trials": 10,
+      "motor_hz": 6.714,
+      "frac_active": 0.5535,
+      "coherence": -0.2925,
+      "coherence_sd": 0.1828,
+      "band_share": 0.1055
+    },
+    {
+      "kind": "random",
+      "seed": 147,
+      "trials": 10,
+      "motor_hz": 23.331,
+      "frac_active": 0.6435,
+      "coherence": 0.2474,
+      "coherence_sd": 0.3925,
+      "band_share": 0.0511
+    },
+    {
+      "kind": "random",
+      "seed": 148,
+      "trials": 10,
+      "motor_hz": 2.99,
+      "frac_active": 0.4908,
+      "coherence": 0.6496,
+      "coherence_sd": 0.0536,
+      "band_share": 0.1041
+    },
+    {
+      "kind": "random",
+      "seed": 149,
+      "trials": 10,
+      "motor_hz": 6.281,
+      "frac_active": 0.5446,
+      "coherence": -0.3657,
+      "coherence_sd": 0.0811,
+      "band_share": 0.1156
+    },
+    {
+      "kind": "random",
+      "seed": 150,
+      "trials": 10,
+      "motor_hz": 2.012,
+      "frac_active": 0.4096,
+      "coherence": -0.087,
+      "coherence_sd": 0.2134,
+      "band_share": 0.0971
+    },
+    {
+      "kind": "random",
+      "seed": 151,
+      "trials": 10,
+      "motor_hz": 7.009,
+      "frac_active": 0.5408,
+      "coherence": -0.1838,
+      "coherence_sd": 0.1476,
+      "band_share": 0.0865
+    },
+    {
+      "kind": "random",
+      "seed": 152,
+      "trials": 10,
+      "motor_hz": 1.977,
+      "frac_active": 0.4031,
+      "coherence": 0.1744,
+      "coherence_sd": 0.258,
+      "band_share": 0.0796
+    },
+    {
+      "kind": "random",
+      "seed": 153,
+      "trials": 10,
+      "motor_hz": 12.186,
+      "frac_active": 0.6119,
+      "coherence": -0.343,
+      "coherence_sd": 0.2658,
+      "band_share": 0.0931
+    },
+    {
+      "kind": "random",
+      "seed": 154,
+      "trials": 10,
+      "motor_hz": 3.588,
+      "frac_active": 0.4958,
+      "coherence": 0.1214,
+      "coherence_sd": 0.315,
+      "band_share": 0.0902
+    },
+    {
+      "kind": "random",
+      "seed": 155,
+      "trials": 10,
+      "motor_hz": 7.014,
+      "frac_active": 0.5515,
+      "coherence": 0.056,
+      "coherence_sd": 0.2776,
+      "band_share": 0.0773
+    },
+    {
+      "kind": "random",
+      "seed": 156,
+      "trials": 10,
+      "motor_hz": 2.969,
+      "frac_active": 0.3619,
+      "coherence": -0.2086,
+      "coherence_sd": 0.184,
+      "band_share": 0.0778
+    },
+    {
+      "kind": "random",
+      "seed": 157,
+      "trials": 10,
+      "motor_hz": 5.359,
+      "frac_active": 0.5608,
+      "coherence": -0.2016,
+      "coherence_sd": 0.2511,
+      "band_share": 0.1117
+    },
+    {
+      "kind": "random",
+      "seed": 158,
+      "trials": 10,
+      "motor_hz": 3.261,
+      "frac_active": 0.4781,
+      "coherence": 0.1136,
+      "coherence_sd": 0.2906,
+      "band_share": 0.0961
+    },
+    {
+      "kind": "random",
+      "seed": 159,
+      "trials": 10,
+      "motor_hz": 1.949,
+      "frac_active": 0.5346,
+      "coherence": -0.0143,
+      "coherence_sd": 0.2186,
+      "band_share": 0.0981
+    },
+    {
+      "kind": "random",
+      "seed": 160,
+      "trials": 10,
+      "motor_hz": 20.034,
+      "frac_active": 0.6419,
+      "coherence": -0.1614,
+      "coherence_sd": 0.4174,
+      "band_share": 0.0519
+    },
+    {
+      "kind": "random",
+      "seed": 161,
+      "trials": 10,
+      "motor_hz": 6.71,
+      "frac_active": 0.5458,
+      "coherence": 0.1352,
+      "coherence_sd": 0.3149,
+      "band_share": 0.0795
+    },
+    {
+      "kind": "random",
+      "seed": 162,
+      "trials": 10,
+      "motor_hz": 3.276,
+      "frac_active": 0.5196,
+      "coherence": -0.0917,
+      "coherence_sd": 0.1954,
+      "band_share": 0.0989
+    },
+    {
+      "kind": "random",
+      "seed": 163,
+      "trials": 10,
+      "motor_hz": 12.473,
+      "frac_active": 0.6273,
+      "coherence": 0.3435,
+      "coherence_sd": 0.3482,
+      "band_share": 0.0824
+    },
+    {
+      "kind": "random",
+      "seed": 164,
+      "trials": 10,
+      "motor_hz": 16.712,
+      "frac_active": 0.6392,
+      "coherence": 0.0369,
+      "coherence_sd": 0.3377,
+      "band_share": 0.0587
+    },
+    {
+      "kind": "random",
+      "seed": 165,
+      "trials": 10,
+      "motor_hz": 2.813,
+      "frac_active": 0.4431,
+      "coherence": 0.1527,
+      "coherence_sd": 0.3544,
+      "band_share": 0.0881
+    },
+    {
+      "kind": "random",
+      "seed": 166,
+      "trials": 10,
+      "motor_hz": 11.762,
+      "frac_active": 0.6146,
+      "coherence": -0.1185,
+      "coherence_sd": 0.2553,
+      "band_share": 0.0727
+    },
+    {
+      "kind": "random",
+      "seed": 167,
+      "trials": 10,
+      "motor_hz": 3.996,
+      "frac_active": 0.5423,
+      "coherence": -0.1426,
+      "coherence_sd": 0.123,
+      "band_share": 0.1163
+    },
+    {
+      "kind": "random",
+      "seed": 168,
+      "trials": 10,
+      "motor_hz": 3.065,
+      "frac_active": 0.4381,
+      "coherence": -0.2614,
+      "coherence_sd": 0.205,
+      "band_share": 0.0782
+    },
+    {
+      "kind": "random",
+      "seed": 169,
+      "trials": 10,
+      "motor_hz": 3.804,
+      "frac_active": 0.4738,
+      "coherence": -0.2894,
+      "coherence_sd": 0.0681,
+      "band_share": 0.1012
+    },
+    {
+      "kind": "random",
+      "seed": 170,
+      "trials": 10,
+      "motor_hz": 5.994,
+      "frac_active": 0.5896,
+      "coherence": -0.1764,
+      "coherence_sd": 0.2434,
+      "band_share": 0.0796
+    },
+    {
+      "kind": "random",
+      "seed": 171,
+      "trials": 10,
+      "motor_hz": 13.507,
+      "frac_active": 0.6542,
+      "coherence": -0.0828,
+      "coherence_sd": 0.3419,
+      "band_share": 0.0622
+    },
+    {
+      "kind": "random",
+      "seed": 172,
+      "trials": 10,
+      "motor_hz": 14.547,
+      "frac_active": 0.6558,
+      "coherence": 0.6436,
+      "coherence_sd": 0.2582,
+      "band_share": 0.0669
+    },
+    {
+      "kind": "random",
+      "seed": 173,
+      "trials": 10,
+      "motor_hz": 5.154,
+      "frac_active": 0.525,
+      "coherence": -0.3695,
+      "coherence_sd": 0.1746,
+      "band_share": 0.0888
+    },
+    {
+      "kind": "random",
+      "seed": 174,
+      "trials": 10,
+      "motor_hz": 20.506,
+      "frac_active": 0.6062,
+      "coherence": 0.1952,
+      "coherence_sd": 0.4805,
+      "band_share": 0.0519
+    },
+    {
+      "kind": "random",
+      "seed": 175,
+      "trials": 10,
+      "motor_hz": 5.479,
+      "frac_active": 0.5327,
+      "coherence": 0.2182,
+      "coherence_sd": 0.2261,
+      "band_share": 0.0966
+    },
+    {
+      "kind": "random",
+      "seed": 176,
+      "trials": 10,
+      "motor_hz": 3.144,
+      "frac_active": 0.5646,
+      "coherence": 0.4328,
+      "coherence_sd": 0.2782,
+      "band_share": 0.0829
+    },
+    {
+      "kind": "random",
+      "seed": 177,
+      "trials": 10,
+      "motor_hz": 3.19,
+      "frac_active": 0.4712,
+      "coherence": -0.2885,
+      "coherence_sd": 0.1699,
+      "band_share": 0.0797
+    },
+    {
+      "kind": "random",
+      "seed": 178,
+      "trials": 10,
+      "motor_hz": 3.247,
+      "frac_active": 0.5165,
+      "coherence": -0.1907,
+      "coherence_sd": 0.0568,
+      "band_share": 0.1012
+    },
+    {
+      "kind": "random",
+      "seed": 179,
+      "trials": 10,
+      "motor_hz": 6.921,
+      "frac_active": 0.5981,
+      "coherence": -0.2629,
+      "coherence_sd": 0.205,
+      "band_share": 0.0855
+    },
+    {
+      "kind": "random",
+      "seed": 180,
+      "trials": 10,
+      "motor_hz": 1.927,
+      "frac_active": 0.4073,
+      "coherence": 0.4445,
+      "coherence_sd": 0.3569,
+      "band_share": 0.1015
+    },
+    {
+      "kind": "random",
+      "seed": 181,
+      "trials": 10,
+      "motor_hz": 7.339,
+      "frac_active": 0.6042,
+      "coherence": -0.2167,
+      "coherence_sd": 0.2618,
+      "band_share": 0.0893
+    },
+    {
+      "kind": "random",
+      "seed": 182,
+      "trials": 10,
+      "motor_hz": 3.275,
+      "frac_active": 0.5362,
+      "coherence": -0.161,
+      "coherence_sd": 0.1962,
+      "band_share": 0.0845
+    },
+    {
+      "kind": "random",
+      "seed": 183,
+      "trials": 10,
+      "motor_hz": 3.551,
+      "frac_active": 0.5,
+      "coherence": 0.1732,
+      "coherence_sd": 0.2873,
+      "band_share": 0.0667
+    },
+    {
+      "kind": "random",
+      "seed": 184,
+      "trials": 10,
+      "motor_hz": 4.448,
+      "frac_active": 0.5588,
+      "coherence": 0.6619,
+      "coherence_sd": 0.2622,
+      "band_share": 0.0992
+    },
+    {
+      "kind": "random",
+      "seed": 185,
+      "trials": 10,
+      "motor_hz": 17.919,
+      "frac_active": 0.6454,
+      "coherence": -0.1219,
+      "coherence_sd": 0.267,
+      "band_share": 0.0545
+    },
+    {
+      "kind": "random",
+      "seed": 186,
+      "trials": 10,
+      "motor_hz": 16.635,
+      "frac_active": 0.6523,
+      "coherence": 0.1104,
+      "coherence_sd": 0.2823,
+      "band_share": 0.0661
+    },
+    {
+      "kind": "random",
+      "seed": 187,
+      "trials": 10,
+      "motor_hz": 17.707,
+      "frac_active": 0.6208,
+      "coherence": -0.2529,
+      "coherence_sd": 0.1802,
+      "band_share": 0.0584
+    },
+    {
+      "kind": "random",
+      "seed": 188,
+      "trials": 10,
+      "motor_hz": 2.85,
+      "frac_active": 0.485,
+      "coherence": -0.1568,
+      "coherence_sd": 0.0838,
+      "band_share": 0.1102
+    },
+    {
+      "kind": "random",
+      "seed": 189,
+      "trials": 10,
+      "motor_hz": 6.054,
+      "frac_active": 0.5685,
+      "coherence": 0.3385,
+      "coherence_sd": 0.2064,
+      "band_share": 0.0881
+    },
+    {
+      "kind": "random",
+      "seed": 190,
+      "trials": 10,
+      "motor_hz": 1.931,
+      "frac_active": 0.3681,
+      "coherence": -0.034,
+      "coherence_sd": 0.1405,
+      "band_share": 0.0971
+    },
+    {
+      "kind": "random",
+      "seed": 191,
+      "trials": 10,
+      "motor_hz": 3.973,
+      "frac_active": 0.5108,
+      "coherence": 0.0906,
+      "coherence_sd": 0.3749,
+      "band_share": 0.0755
+    },
+    {
+      "kind": "random",
+      "seed": 192,
+      "trials": 10,
+      "motor_hz": 18.766,
+      "frac_active": 0.5754,
+      "coherence": -0.197,
+      "coherence_sd": 0.3919,
+      "band_share": 0.0579
+    },
+    {
+      "kind": "random",
+      "seed": 193,
+      "trials": 10,
+      "motor_hz": 3.516,
+      "frac_active": 0.51,
+      "coherence": -0.2096,
+      "coherence_sd": 0.3344,
+      "band_share": 0.0778
+    },
+    {
+      "kind": "random",
+      "seed": 194,
+      "trials": 10,
+      "motor_hz": 6.894,
+      "frac_active": 0.5938,
+      "coherence": -0.0622,
+      "coherence_sd": 0.1412,
+      "band_share": 0.0945
+    },
+    {
+      "kind": "random",
+      "seed": 195,
+      "trials": 10,
+      "motor_hz": 9.732,
+      "frac_active": 0.6273,
+      "coherence": -0.1503,
+      "coherence_sd": 0.1298,
+      "band_share": 0.0905
+    },
+    {
+      "kind": "random",
+      "seed": 196,
+      "trials": 10,
+      "motor_hz": 3.198,
+      "frac_active": 0.4938,
+      "coherence": -0.2201,
+      "coherence_sd": 0.2628,
+      "band_share": 0.088
+    },
+    {
+      "kind": "random",
+      "seed": 197,
+      "trials": 10,
+      "motor_hz": 4.123,
+      "frac_active": 0.5677,
+      "coherence": -0.0499,
+      "coherence_sd": 0.1719,
+      "band_share": 0.0828
+    },
+    {
+      "kind": "random",
+      "seed": 198,
+      "trials": 10,
+      "motor_hz": 2.849,
+      "frac_active": 0.4335,
+      "coherence": -0.19,
+      "coherence_sd": 0.2578,
+      "band_share": 0.0743
+    },
+    {
+      "kind": "random",
+      "seed": 199,
+      "trials": 10,
+      "motor_hz": 16.144,
+      "frac_active": 0.6073,
+      "coherence": -0.1634,
+      "coherence_sd": 0.3234,
+      "band_share": 0.0539
+    },
+    {
+      "kind": "random",
+      "seed": 200,
+      "trials": 10,
+      "motor_hz": 2.311,
+      "frac_active": 0.4231,
+      "coherence": -0.405,
+      "coherence_sd": 0.2883,
+      "band_share": 0.0641
+    },
+    {
+      "kind": "random",
+      "seed": 201,
+      "trials": 10,
+      "motor_hz": 13.344,
+      "frac_active": 0.5796,
+      "coherence": -0.0691,
+      "coherence_sd": 0.2939,
+      "band_share": 0.0655
+    },
+    {
+      "kind": "random",
+      "seed": 202,
+      "trials": 10,
+      "motor_hz": 5.683,
+      "frac_active": 0.5927,
+      "coherence": -0.4423,
+      "coherence_sd": 0.0665,
+      "band_share": 0.1016
+    },
+    {
+      "kind": "random",
+      "seed": 203,
+      "trials": 10,
+      "motor_hz": 6.114,
+      "frac_active": 0.5954,
+      "coherence": 0.1014,
+      "coherence_sd": 0.2778,
+      "band_share": 0.0838
+    },
+    {
+      "kind": "random",
+      "seed": 204,
+      "trials": 10,
+      "motor_hz": 2.864,
+      "frac_active": 0.4927,
+      "coherence": 0.1719,
+      "coherence_sd": 0.1383,
+      "band_share": 0.099
+    },
+    {
+      "kind": "random",
+      "seed": 205,
+      "trials": 10,
+      "motor_hz": 7.429,
+      "frac_active": 0.5785,
+      "coherence": 0.3773,
+      "coherence_sd": 0.4867,
+      "band_share": 0.072
+    },
+    {
+      "kind": "random",
+      "seed": 206,
+      "trials": 10,
+      "motor_hz": 16.452,
+      "frac_active": 0.5981,
+      "coherence": 0.1378,
+      "coherence_sd": 0.4038,
+      "band_share": 0.0538
+    },
+    {
+      "kind": "random",
+      "seed": 207,
+      "trials": 10,
+      "motor_hz": 17.874,
+      "frac_active": 0.6227,
+      "coherence": 0.0895,
+      "coherence_sd": 0.4042,
+      "band_share": 0.0552
+    },
+    {
+      "kind": "random",
+      "seed": 208,
+      "trials": 10,
+      "motor_hz": 17.35,
+      "frac_active": 0.63,
+      "coherence": 0.0101,
+      "coherence_sd": 0.3685,
+      "band_share": 0.0542
+    },
+    {
+      "kind": "random",
+      "seed": 209,
+      "trials": 10,
+      "motor_hz": 4.862,
+      "frac_active": 0.5277,
+      "coherence": 0.5289,
+      "coherence_sd": 0.3768,
+      "band_share": 0.1016
+    },
+    {
+      "kind": "random",
+      "seed": 210,
+      "trials": 10,
+      "motor_hz": 13.718,
+      "frac_active": 0.6238,
+      "coherence": -0.0075,
+      "coherence_sd": 0.2631,
+      "band_share": 0.0611
+    },
+    {
+      "kind": "real",
+      "seed": 1,
+      "trials": 30,
+      "motor_hz": 6.54,
+      "frac_active": 0.3153,
+      "coherence": 0.9984,
+      "coherence_sd": 0.3273,
+      "band_share": 0.1743
+    },
+    {
+      "kind": "rewired",
+      "seed": 11,
+      "trials": 10,
+      "motor_hz": 17.236,
+      "frac_active": 0.3673,
+      "coherence": -0.172,
+      "coherence_sd": 0.4064,
+      "band_share": 0.0582
+    },
+    {
+      "kind": "rewired",
+      "seed": 12,
+      "trials": 10,
+      "motor_hz": 15.652,
+      "frac_active": 0.3612,
+      "coherence": 0.0331,
+      "coherence_sd": 0.2815,
+      "band_share": 0.0603
+    },
+    {
+      "kind": "rewired",
+      "seed": 13,
+      "trials": 10,
+      "motor_hz": 16.073,
+      "frac_active": 0.3888,
+      "coherence": -0.3648,
+      "coherence_sd": 0.2739,
+      "band_share": 0.059
+    },
+    {
+      "kind": "rewired",
+      "seed": 14,
+      "trials": 10,
+      "motor_hz": 15.775,
+      "frac_active": 0.3819,
+      "coherence": -0.0669,
+      "coherence_sd": 0.352,
+      "band_share": 0.0667
+    },
+    {
+      "kind": "rewired",
+      "seed": 15,
+      "trials": 10,
+      "motor_hz": 13.913,
+      "frac_active": 0.3581,
+      "coherence": -0.1649,
+      "coherence_sd": 0.2967,
+      "band_share": 0.0599
+    },
+    {
+      "kind": "rewired",
+      "seed": 16,
+      "trials": 10,
+      "motor_hz": 16.854,
+      "frac_active": 0.3885,
+      "coherence": -0.0028,
+      "coherence_sd": 0.3916,
+      "band_share": 0.0536
+    },
+    {
+      "kind": "rewired",
+      "seed": 17,
+      "trials": 10,
+      "motor_hz": 14.311,
+      "frac_active": 0.3708,
+      "coherence": 0.0811,
+      "coherence_sd": 0.3636,
+      "band_share": 0.0627
+    },
+    {
+      "kind": "rewired",
+      "seed": 18,
+      "trials": 10,
+      "motor_hz": 11.318,
+      "frac_active": 0.3758,
+      "coherence": -0.262,
+      "coherence_sd": 0.2718,
+      "band_share": 0.0686
+    },
+    {
+      "kind": "rewired",
+      "seed": 19,
+      "trials": 10,
+      "motor_hz": 14.642,
+      "frac_active": 0.3877,
+      "coherence": -0.4082,
+      "coherence_sd": 0.3638,
+      "band_share": 0.0552
+    },
+    {
+      "kind": "rewired",
+      "seed": 20,
+      "trials": 10,
+      "motor_hz": 16.27,
+      "frac_active": 0.365,
+      "coherence": 0.2748,
+      "coherence_sd": 0.4232,
+      "band_share": 0.0498
+    },
+    {
+      "kind": "rewired",
+      "seed": 21,
+      "trials": 10,
+      "motor_hz": 14.629,
+      "frac_active": 0.3831,
+      "coherence": -0.1281,
+      "coherence_sd": 0.3546,
+      "band_share": 0.0608
+    },
+    {
+      "kind": "rewired",
+      "seed": 22,
+      "trials": 10,
+      "motor_hz": 14.391,
+      "frac_active": 0.3792,
+      "coherence": 0.079,
+      "coherence_sd": 0.3035,
+      "band_share": 0.0521
+    },
+    {
+      "kind": "rewired",
+      "seed": 23,
+      "trials": 10,
+      "motor_hz": 16.865,
+      "frac_active": 0.3877,
+      "coherence": 0.115,
+      "coherence_sd": 0.2949,
+      "band_share": 0.0545
+    },
+    {
+      "kind": "rewired",
+      "seed": 24,
+      "trials": 10,
+      "motor_hz": 10.837,
+      "frac_active": 0.3262,
+      "coherence": -0.1486,
+      "coherence_sd": 0.3217,
+      "band_share": 0.0679
+    },
+    {
+      "kind": "rewired",
+      "seed": 25,
+      "trials": 10,
+      "motor_hz": 16.118,
+      "frac_active": 0.3712,
+      "coherence": 0.0366,
+      "coherence_sd": 0.2871,
+      "band_share": 0.0585
+    },
+    {
+      "kind": "rewired",
+      "seed": 26,
+      "trials": 10,
+      "motor_hz": 16.779,
+      "frac_active": 0.3527,
+      "coherence": -0.225,
+      "coherence_sd": 0.3046,
+      "band_share": 0.0541
+    },
+    {
+      "kind": "rewired",
+      "seed": 27,
+      "trials": 10,
+      "motor_hz": 14.747,
+      "frac_active": 0.3685,
+      "coherence": 0.1085,
+      "coherence_sd": 0.3805,
+      "band_share": 0.0687
+    },
+    {
+      "kind": "rewired",
+      "seed": 28,
+      "trials": 10,
+      "motor_hz": 13.799,
+      "frac_active": 0.3804,
+      "coherence": -0.0265,
+      "coherence_sd": 0.2537,
+      "band_share": 0.0655
+    },
+    {
+      "kind": "rewired",
+      "seed": 29,
+      "trials": 10,
+      "motor_hz": 16.949,
+      "frac_active": 0.4177,
+      "coherence": 0.1135,
+      "coherence_sd": 0.3653,
+      "band_share": 0.0635
+    },
+    {
+      "kind": "rewired",
+      "seed": 30,
+      "trials": 10,
+      "motor_hz": 15.239,
+      "frac_active": 0.3988,
+      "coherence": 0.2183,
+      "coherence_sd": 0.4347,
+      "band_share": 0.0591
+    },
+    {
+      "kind": "rewired",
+      "seed": 31,
+      "trials": 10,
+      "motor_hz": 13.05,
+      "frac_active": 0.3862,
+      "coherence": 0.2675,
+      "coherence_sd": 0.2659,
+      "band_share": 0.0642
+    },
+    {
+      "kind": "rewired",
+      "seed": 32,
+      "trials": 10,
+      "motor_hz": 12.669,
+      "frac_active": 0.3631,
+      "coherence": -0.1648,
+      "coherence_sd": 0.2723,
+      "band_share": 0.0668
+    },
+    {
+      "kind": "rewired",
+      "seed": 33,
+      "trials": 10,
+      "motor_hz": 16.198,
+      "frac_active": 0.3562,
+      "coherence": -0.1338,
+      "coherence_sd": 0.3196,
+      "band_share": 0.0612
+    },
+    {
+      "kind": "rewired",
+      "seed": 34,
+      "trials": 10,
+      "motor_hz": 13.121,
+      "frac_active": 0.3373,
+      "coherence": -0.1521,
+      "coherence_sd": 0.4867,
+      "band_share": 0.0524
+    },
+    {
+      "kind": "rewired",
+      "seed": 35,
+      "trials": 10,
+      "motor_hz": 16.054,
+      "frac_active": 0.38,
+      "coherence": -0.0074,
+      "coherence_sd": 0.3598,
+      "band_share": 0.0617
+    },
+    {
+      "kind": "rewired",
+      "seed": 36,
+      "trials": 10,
+      "motor_hz": 16.21,
+      "frac_active": 0.42,
+      "coherence": 0.0744,
+      "coherence_sd": 0.2237,
+      "band_share": 0.0621
+    },
+    {
+      "kind": "rewired",
+      "seed": 37,
+      "trials": 10,
+      "motor_hz": 13.493,
+      "frac_active": 0.3812,
+      "coherence": -0.1122,
+      "coherence_sd": 0.3162,
+      "band_share": 0.0661
+    },
+    {
+      "kind": "rewired",
+      "seed": 38,
+      "trials": 10,
+      "motor_hz": 17.752,
+      "frac_active": 0.3981,
+      "coherence": 0.0897,
+      "coherence_sd": 0.3791,
+      "band_share": 0.0609
+    },
+    {
+      "kind": "rewired",
+      "seed": 39,
+      "trials": 10,
+      "motor_hz": 14.837,
+      "frac_active": 0.3838,
+      "coherence": -0.2378,
+      "coherence_sd": 0.3615,
+      "band_share": 0.0558
+    },
+    {
+      "kind": "rewired",
+      "seed": 40,
+      "trials": 10,
+      "motor_hz": 14.219,
+      "frac_active": 0.3758,
+      "coherence": 0.1556,
+      "coherence_sd": 0.4496,
+      "band_share": 0.0603
+    },
+    {
+      "kind": "rewired",
+      "seed": 41,
+      "trials": 10,
+      "motor_hz": 15.266,
+      "frac_active": 0.3638,
+      "coherence": 0.1134,
+      "coherence_sd": 0.3194,
+      "band_share": 0.0487
+    },
+    {
+      "kind": "rewired",
+      "seed": 42,
+      "trials": 10,
+      "motor_hz": 15.584,
+      "frac_active": 0.4123,
+      "coherence": -0.1145,
+      "coherence_sd": 0.2408,
+      "band_share": 0.0653
+    },
+    {
+      "kind": "rewired",
+      "seed": 43,
+      "trials": 10,
+      "motor_hz": 15.686,
+      "frac_active": 0.4008,
+      "coherence": -0.2899,
+      "coherence_sd": 0.3789,
+      "band_share": 0.062
+    },
+    {
+      "kind": "rewired",
+      "seed": 44,
+      "trials": 10,
+      "motor_hz": 15.37,
+      "frac_active": 0.3962,
+      "coherence": 0.058,
+      "coherence_sd": 0.3991,
+      "band_share": 0.0643
+    },
+    {
+      "kind": "rewired",
+      "seed": 45,
+      "trials": 10,
+      "motor_hz": 14.17,
+      "frac_active": 0.3458,
+      "coherence": -0.1859,
+      "coherence_sd": 0.3319,
+      "band_share": 0.0638
+    },
+    {
+      "kind": "rewired",
+      "seed": 46,
+      "trials": 10,
+      "motor_hz": 12.411,
+      "frac_active": 0.3719,
+      "coherence": 0.1714,
+      "coherence_sd": 0.2878,
+      "band_share": 0.0652
+    },
+    {
+      "kind": "rewired",
+      "seed": 47,
+      "trials": 10,
+      "motor_hz": 17.281,
+      "frac_active": 0.395,
+      "coherence": 0.5404,
+      "coherence_sd": 0.187,
+      "band_share": 0.0652
+    },
+    {
+      "kind": "rewired",
+      "seed": 48,
+      "trials": 10,
+      "motor_hz": 15.327,
+      "frac_active": 0.3731,
+      "coherence": 0.0535,
+      "coherence_sd": 0.2649,
+      "band_share": 0.0562
+    },
+    {
+      "kind": "rewired",
+      "seed": 49,
+      "trials": 10,
+      "motor_hz": 14.47,
+      "frac_active": 0.3612,
+      "coherence": 0.1158,
+      "coherence_sd": 0.175,
+      "band_share": 0.0658
+    },
+    {
+      "kind": "rewired",
+      "seed": 50,
+      "trials": 10,
+      "motor_hz": 14.899,
+      "frac_active": 0.4027,
+      "coherence": 0.1311,
+      "coherence_sd": 0.4059,
+      "band_share": 0.0654
+    },
+    {
+      "kind": "rewired",
+      "seed": 51,
+      "trials": 10,
+      "motor_hz": 16.446,
+      "frac_active": 0.4054,
+      "coherence": 0.0262,
+      "coherence_sd": 0.255,
+      "band_share": 0.0583
+    },
+    {
+      "kind": "rewired",
+      "seed": 52,
+      "trials": 10,
+      "motor_hz": 12.724,
+      "frac_active": 0.3465,
+      "coherence": -0.1708,
+      "coherence_sd": 0.2655,
+      "band_share": 0.0697
+    },
+    {
+      "kind": "rewired",
+      "seed": 53,
+      "trials": 10,
+      "motor_hz": 13.175,
+      "frac_active": 0.3627,
+      "coherence": 0.2936,
+      "coherence_sd": 0.4473,
+      "band_share": 0.0552
+    },
+    {
+      "kind": "rewired",
+      "seed": 54,
+      "trials": 10,
+      "motor_hz": 16.03,
+      "frac_active": 0.3712,
+      "coherence": -0.0137,
+      "coherence_sd": 0.4717,
+      "band_share": 0.0527
+    },
+    {
+      "kind": "rewired",
+      "seed": 55,
+      "trials": 10,
+      "motor_hz": 15.964,
+      "frac_active": 0.3915,
+      "coherence": -0.0809,
+      "coherence_sd": 0.3507,
+      "band_share": 0.0586
+    },
+    {
+      "kind": "rewired",
+      "seed": 56,
+      "trials": 10,
+      "motor_hz": 18.105,
+      "frac_active": 0.385,
+      "coherence": -0.1173,
+      "coherence_sd": 0.2326,
+      "band_share": 0.0575
+    },
+    {
+      "kind": "rewired",
+      "seed": 57,
+      "trials": 10,
+      "motor_hz": 13.661,
+      "frac_active": 0.4081,
+      "coherence": -0.2067,
+      "coherence_sd": 0.3452,
+      "band_share": 0.0735
+    },
+    {
+      "kind": "rewired",
+      "seed": 58,
+      "trials": 10,
+      "motor_hz": 17.418,
+      "frac_active": 0.4096,
+      "coherence": 0.0001,
+      "coherence_sd": 0.5461,
+      "band_share": 0.0533
+    },
+    {
+      "kind": "rewired",
+      "seed": 59,
+      "trials": 10,
+      "motor_hz": 14.211,
+      "frac_active": 0.3888,
+      "coherence": -0.0512,
+      "coherence_sd": 0.3066,
+      "band_share": 0.0591
+    },
+    {
+      "kind": "rewired",
+      "seed": 60,
+      "trials": 10,
+      "motor_hz": 15.399,
+      "frac_active": 0.4138,
+      "coherence": 0.1317,
+      "coherence_sd": 0.367,
+      "band_share": 0.0661
+    },
+    {
+      "kind": "rewired",
+      "seed": 61,
+      "trials": 10,
+      "motor_hz": 17.563,
+      "frac_active": 0.4077,
+      "coherence": 0.0051,
+      "coherence_sd": 0.443,
+      "band_share": 0.0638
+    },
+    {
+      "kind": "rewired",
+      "seed": 62,
+      "trials": 10,
+      "motor_hz": 13.155,
+      "frac_active": 0.3792,
+      "coherence": -0.2269,
+      "coherence_sd": 0.3277,
+      "band_share": 0.0673
+    },
+    {
+      "kind": "rewired",
+      "seed": 63,
+      "trials": 10,
+      "motor_hz": 14.291,
+      "frac_active": 0.3885,
+      "coherence": 0.0666,
+      "coherence_sd": 0.2842,
+      "band_share": 0.0595
+    },
+    {
+      "kind": "rewired",
+      "seed": 64,
+      "trials": 10,
+      "motor_hz": 16.343,
+      "frac_active": 0.3577,
+      "coherence": 0.0925,
+      "coherence_sd": 0.3345,
+      "band_share": 0.0582
+    },
+    {
+      "kind": "rewired",
+      "seed": 65,
+      "trials": 10,
+      "motor_hz": 15.362,
+      "frac_active": 0.4015,
+      "coherence": -0.1664,
+      "coherence_sd": 0.2482,
+      "band_share": 0.0611
+    },
+    {
+      "kind": "rewired",
+      "seed": 66,
+      "trials": 10,
+      "motor_hz": 15.883,
+      "frac_active": 0.3838,
+      "coherence": -0.0647,
+      "coherence_sd": 0.3268,
+      "band_share": 0.0561
+    },
+    {
+      "kind": "rewired",
+      "seed": 67,
+      "trials": 10,
+      "motor_hz": 18.102,
+      "frac_active": 0.3946,
+      "coherence": -0.0029,
+      "coherence_sd": 0.4242,
+      "band_share": 0.0533
+    },
+    {
+      "kind": "rewired",
+      "seed": 68,
+      "trials": 10,
+      "motor_hz": 12.494,
+      "frac_active": 0.3608,
+      "coherence": 0.0437,
+      "coherence_sd": 0.2698,
+      "band_share": 0.061
+    },
+    {
+      "kind": "rewired",
+      "seed": 69,
+      "trials": 10,
+      "motor_hz": 15.921,
+      "frac_active": 0.3938,
+      "coherence": 0.264,
+      "coherence_sd": 0.2685,
+      "band_share": 0.0655
+    },
+    {
+      "kind": "rewired",
+      "seed": 70,
+      "trials": 10,
+      "motor_hz": 14.911,
+      "frac_active": 0.37,
+      "coherence": 0.1754,
+      "coherence_sd": 0.3627,
+      "band_share": 0.062
+    },
+    {
+      "kind": "rewired",
+      "seed": 71,
+      "trials": 10,
+      "motor_hz": 13.354,
+      "frac_active": 0.3481,
+      "coherence": -0.1491,
+      "coherence_sd": 0.2637,
+      "band_share": 0.0627
+    },
+    {
+      "kind": "rewired",
+      "seed": 72,
+      "trials": 10,
+      "motor_hz": 15.491,
+      "frac_active": 0.3592,
+      "coherence": -0.1245,
+      "coherence_sd": 0.3195,
+      "band_share": 0.0612
+    },
+    {
+      "kind": "rewired",
+      "seed": 73,
+      "trials": 10,
+      "motor_hz": 12.442,
+      "frac_active": 0.4,
+      "coherence": 0.085,
+      "coherence_sd": 0.2149,
+      "band_share": 0.0617
+    },
+    {
+      "kind": "rewired",
+      "seed": 74,
+      "trials": 10,
+      "motor_hz": 15.735,
+      "frac_active": 0.3773,
+      "coherence": 0.1791,
+      "coherence_sd": 0.4131,
+      "band_share": 0.0575
+    },
+    {
+      "kind": "rewired",
+      "seed": 75,
+      "trials": 10,
+      "motor_hz": 16.458,
+      "frac_active": 0.41,
+      "coherence": -0.0351,
+      "coherence_sd": 0.2755,
+      "band_share": 0.0652
+    },
+    {
+      "kind": "rewired",
+      "seed": 76,
+      "trials": 10,
+      "motor_hz": 14.308,
+      "frac_active": 0.3773,
+      "coherence": -0.1033,
+      "coherence_sd": 0.4401,
+      "band_share": 0.0673
+    },
+    {
+      "kind": "rewired",
+      "seed": 77,
+      "trials": 10,
+      "motor_hz": 15.395,
+      "frac_active": 0.3965,
+      "coherence": -0.1814,
+      "coherence_sd": 0.2884,
+      "band_share": 0.053
+    },
+    {
+      "kind": "rewired",
+      "seed": 78,
+      "trials": 10,
+      "motor_hz": 12.38,
+      "frac_active": 0.3454,
+      "coherence": 0.0626,
+      "coherence_sd": 0.2174,
+      "band_share": 0.0654
+    },
+    {
+      "kind": "rewired",
+      "seed": 79,
+      "trials": 10,
+      "motor_hz": 15.163,
+      "frac_active": 0.3712,
+      "coherence": -0.0292,
+      "coherence_sd": 0.3994,
+      "band_share": 0.0576
+    },
+    {
+      "kind": "rewired",
+      "seed": 80,
+      "trials": 10,
+      "motor_hz": 15.378,
+      "frac_active": 0.3604,
+      "coherence": -0.0476,
+      "coherence_sd": 0.264,
+      "band_share": 0.0537
+    },
+    {
+      "kind": "rewired",
+      "seed": 81,
+      "trials": 10,
+      "motor_hz": 14.704,
+      "frac_active": 0.3723,
+      "coherence": 0.0706,
+      "coherence_sd": 0.3459,
+      "band_share": 0.0545
+    },
+    {
+      "kind": "rewired",
+      "seed": 82,
+      "trials": 10,
+      "motor_hz": 12.987,
+      "frac_active": 0.3812,
+      "coherence": -0.1627,
+      "coherence_sd": 0.3601,
+      "band_share": 0.0693
+    },
+    {
+      "kind": "rewired",
+      "seed": 83,
+      "trials": 10,
+      "motor_hz": 18.195,
+      "frac_active": 0.4169,
+      "coherence": 0.3114,
+      "coherence_sd": 0.4013,
+      "band_share": 0.0642
+    },
+    {
+      "kind": "rewired",
+      "seed": 84,
+      "trials": 10,
+      "motor_hz": 16.778,
+      "frac_active": 0.3854,
+      "coherence": 0.1788,
+      "coherence_sd": 0.4591,
+      "band_share": 0.0629
+    },
+    {
+      "kind": "rewired",
+      "seed": 85,
+      "trials": 10,
+      "motor_hz": 15.776,
+      "frac_active": 0.3973,
+      "coherence": 0.096,
+      "coherence_sd": 0.2366,
+      "band_share": 0.0697
+    },
+    {
+      "kind": "rewired",
+      "seed": 86,
+      "trials": 10,
+      "motor_hz": 14.504,
+      "frac_active": 0.3658,
+      "coherence": -0.2047,
+      "coherence_sd": 0.4545,
+      "band_share": 0.064
+    },
+    {
+      "kind": "rewired",
+      "seed": 87,
+      "trials": 10,
+      "motor_hz": 16.458,
+      "frac_active": 0.4292,
+      "coherence": 0.0399,
+      "coherence_sd": 0.2062,
+      "band_share": 0.0722
+    },
+    {
+      "kind": "rewired",
+      "seed": 88,
+      "trials": 10,
+      "motor_hz": 18.827,
+      "frac_active": 0.3969,
+      "coherence": 0.0514,
+      "coherence_sd": 0.325,
+      "band_share": 0.0537
+    },
+    {
+      "kind": "rewired",
+      "seed": 89,
+      "trials": 10,
+      "motor_hz": 15.561,
+      "frac_active": 0.3712,
+      "coherence": 0.0281,
+      "coherence_sd": 0.2899,
+      "band_share": 0.0554
+    },
+    {
+      "kind": "rewired",
+      "seed": 90,
+      "trials": 10,
+      "motor_hz": 15.195,
+      "frac_active": 0.4015,
+      "coherence": -0.1858,
+      "coherence_sd": 0.3522,
+      "band_share": 0.0626
+    },
+    {
+      "kind": "rewired",
+      "seed": 91,
+      "trials": 10,
+      "motor_hz": 15.351,
+      "frac_active": 0.3923,
+      "coherence": -0.2644,
+      "coherence_sd": 0.3856,
+      "band_share": 0.0647
+    },
+    {
+      "kind": "rewired",
+      "seed": 92,
+      "trials": 10,
+      "motor_hz": 14.409,
+      "frac_active": 0.38,
+      "coherence": -0.1673,
+      "coherence_sd": 0.2949,
+      "band_share": 0.0597
+    },
+    {
+      "kind": "rewired",
+      "seed": 93,
+      "trials": 10,
+      "motor_hz": 15.155,
+      "frac_active": 0.4154,
+      "coherence": -0.2461,
+      "coherence_sd": 0.2583,
+      "band_share": 0.0567
+    },
+    {
+      "kind": "rewired",
+      "seed": 94,
+      "trials": 10,
+      "motor_hz": 16.369,
+      "frac_active": 0.3846,
+      "coherence": -0.2229,
+      "coherence_sd": 0.3016,
+      "band_share": 0.0611
+    },
+    {
+      "kind": "rewired",
+      "seed": 95,
+      "trials": 10,
+      "motor_hz": 17.118,
+      "frac_active": 0.4004,
+      "coherence": 0.3338,
+      "coherence_sd": 0.3399,
+      "band_share": 0.056
+    },
+    {
+      "kind": "rewired",
+      "seed": 96,
+      "trials": 10,
+      "motor_hz": 14.335,
+      "frac_active": 0.3346,
+      "coherence": 0.0629,
+      "coherence_sd": 0.3078,
+      "band_share": 0.0595
+    },
+    {
+      "kind": "rewired",
+      "seed": 97,
+      "trials": 10,
+      "motor_hz": 17.228,
+      "frac_active": 0.3796,
+      "coherence": -0.0428,
+      "coherence_sd": 0.3189,
+      "band_share": 0.0517
+    },
+    {
+      "kind": "rewired",
+      "seed": 98,
+      "trials": 10,
+      "motor_hz": 14.244,
+      "frac_active": 0.3869,
+      "coherence": 0.3452,
+      "coherence_sd": 0.429,
+      "band_share": 0.0566
+    },
+    {
+      "kind": "rewired",
+      "seed": 99,
+      "trials": 10,
+      "motor_hz": 15.379,
+      "frac_active": 0.3854,
+      "coherence": 0.0279,
+      "coherence_sd": 0.2439,
+      "band_share": 0.052
+    },
+    {
+      "kind": "rewired",
+      "seed": 100,
+      "trials": 10,
+      "motor_hz": 13.423,
+      "frac_active": 0.3742,
+      "coherence": 0.0569,
+      "coherence_sd": 0.5082,
+      "band_share": 0.0658
+    },
+    {
+      "kind": "rewired",
+      "seed": 101,
+      "trials": 10,
+      "motor_hz": 14.788,
+      "frac_active": 0.4138,
+      "coherence": 0.0466,
+      "coherence_sd": 0.2776,
+      "band_share": 0.0556
+    },
+    {
+      "kind": "rewired",
+      "seed": 102,
+      "trials": 10,
+      "motor_hz": 13.341,
+      "frac_active": 0.3673,
+      "coherence": 0.2671,
+      "coherence_sd": 0.2428,
+      "band_share": 0.0663
+    },
+    {
+      "kind": "rewired",
+      "seed": 103,
+      "trials": 10,
+      "motor_hz": 15.469,
+      "frac_active": 0.3962,
+      "coherence": 0.0368,
+      "coherence_sd": 0.1615,
+      "band_share": 0.071
+    },
+    {
+      "kind": "rewired",
+      "seed": 104,
+      "trials": 10,
+      "motor_hz": 17.82,
+      "frac_active": 0.4008,
+      "coherence": -0.0483,
+      "coherence_sd": 0.2499,
+      "band_share": 0.0557
+    },
+    {
+      "kind": "rewired",
+      "seed": 105,
+      "trials": 10,
+      "motor_hz": 15.753,
+      "frac_active": 0.4,
+      "coherence": -0.0941,
+      "coherence_sd": 0.3944,
+      "band_share": 0.0615
+    },
+    {
+      "kind": "rewired",
+      "seed": 106,
+      "trials": 10,
+      "motor_hz": 15.132,
+      "frac_active": 0.3781,
+      "coherence": 0.3493,
+      "coherence_sd": 0.2937,
+      "band_share": 0.0637
+    },
+    {
+      "kind": "rewired",
+      "seed": 107,
+      "trials": 10,
+      "motor_hz": 13.606,
+      "frac_active": 0.3758,
+      "coherence": 0.0945,
+      "coherence_sd": 0.368,
+      "band_share": 0.0569
+    },
+    {
+      "kind": "rewired",
+      "seed": 108,
+      "trials": 10,
+      "motor_hz": 14.463,
+      "frac_active": 0.3892,
+      "coherence": -0.3093,
+      "coherence_sd": 0.3985,
+      "band_share": 0.0681
+    },
+    {
+      "kind": "rewired",
+      "seed": 109,
+      "trials": 10,
+      "motor_hz": 14.209,
+      "frac_active": 0.3708,
+      "coherence": -0.1869,
+      "coherence_sd": 0.3031,
+      "band_share": 0.0668
+    },
+    {
+      "kind": "rewired",
+      "seed": 110,
+      "trials": 10,
+      "motor_hz": 16.574,
+      "frac_active": 0.3762,
+      "coherence": 0.0557,
+      "coherence_sd": 0.463,
+      "band_share": 0.0685
+    },
+    {
+      "kind": "rewired",
+      "seed": 111,
+      "trials": 10,
+      "motor_hz": 16.188,
+      "frac_active": 0.3938,
+      "coherence": -0.2252,
+      "coherence_sd": 0.3088,
+      "band_share": 0.0609
+    },
+    {
+      "kind": "rewired",
+      "seed": 112,
+      "trials": 10,
+      "motor_hz": 16.01,
+      "frac_active": 0.4023,
+      "coherence": -0.0662,
+      "coherence_sd": 0.1745,
+      "band_share": 0.0608
+    },
+    {
+      "kind": "rewired",
+      "seed": 113,
+      "trials": 10,
+      "motor_hz": 14.231,
+      "frac_active": 0.4004,
+      "coherence": -0.3292,
+      "coherence_sd": 0.2496,
+      "band_share": 0.0588
+    },
+    {
+      "kind": "rewired",
+      "seed": 114,
+      "trials": 10,
+      "motor_hz": 17.826,
+      "frac_active": 0.4104,
+      "coherence": -0.2383,
+      "coherence_sd": 0.207,
+      "band_share": 0.0583
+    },
+    {
+      "kind": "rewired",
+      "seed": 115,
+      "trials": 10,
+      "motor_hz": 13.299,
+      "frac_active": 0.3477,
+      "coherence": -0.2107,
+      "coherence_sd": 0.3626,
+      "band_share": 0.0671
+    },
+    {
+      "kind": "rewired",
+      "seed": 116,
+      "trials": 10,
+      "motor_hz": 14.907,
+      "frac_active": 0.3854,
+      "coherence": 0.0063,
+      "coherence_sd": 0.1835,
+      "band_share": 0.0572
+    },
+    {
+      "kind": "rewired",
+      "seed": 117,
+      "trials": 10,
+      "motor_hz": 15.855,
+      "frac_active": 0.3896,
+      "coherence": -0.2508,
+      "coherence_sd": 0.1919,
+      "band_share": 0.0745
+    },
+    {
+      "kind": "rewired",
+      "seed": 118,
+      "trials": 10,
+      "motor_hz": 13.225,
+      "frac_active": 0.3781,
+      "coherence": -0.0921,
+      "coherence_sd": 0.2628,
+      "band_share": 0.0669
+    },
+    {
+      "kind": "rewired",
+      "seed": 119,
+      "trials": 10,
+      "motor_hz": 15.031,
+      "frac_active": 0.355,
+      "coherence": 0.0947,
+      "coherence_sd": 0.4024,
+      "band_share": 0.0546
+    },
+    {
+      "kind": "rewired",
+      "seed": 120,
+      "trials": 10,
+      "motor_hz": 14.598,
+      "frac_active": 0.37,
+      "coherence": 0.1744,
+      "coherence_sd": 0.4305,
+      "band_share": 0.0636
+    },
+    {
+      "kind": "rewired",
+      "seed": 121,
+      "trials": 10,
+      "motor_hz": 15.221,
+      "frac_active": 0.3738,
+      "coherence": -0.0082,
+      "coherence_sd": 0.3269,
+      "band_share": 0.0592
+    },
+    {
+      "kind": "rewired",
+      "seed": 122,
+      "trials": 10,
+      "motor_hz": 18.462,
+      "frac_active": 0.3838,
+      "coherence": 0.2403,
+      "coherence_sd": 0.2481,
+      "band_share": 0.0541
+    },
+    {
+      "kind": "rewired",
+      "seed": 123,
+      "trials": 10,
+      "motor_hz": 14.693,
+      "frac_active": 0.3985,
+      "coherence": 0.1435,
+      "coherence_sd": 0.5643,
+      "band_share": 0.0545
+    },
+    {
+      "kind": "rewired",
+      "seed": 124,
+      "trials": 10,
+      "motor_hz": 15.187,
+      "frac_active": 0.3469,
+      "coherence": 0.1434,
+      "coherence_sd": 0.4269,
+      "band_share": 0.057
+    },
+    {
+      "kind": "rewired",
+      "seed": 125,
+      "trials": 10,
+      "motor_hz": 16.774,
+      "frac_active": 0.4027,
+      "coherence": -0.1246,
+      "coherence_sd": 0.2606,
+      "band_share": 0.0573
+    },
+    {
+      "kind": "rewired",
+      "seed": 126,
+      "trials": 10,
+      "motor_hz": 11.527,
+      "frac_active": 0.365,
+      "coherence": -0.0812,
+      "coherence_sd": 0.3824,
+      "band_share": 0.0599
+    },
+    {
+      "kind": "rewired",
+      "seed": 127,
+      "trials": 10,
+      "motor_hz": 17.17,
+      "frac_active": 0.4008,
+      "coherence": -0.1697,
+      "coherence_sd": 0.2347,
+      "band_share": 0.0512
+    },
+    {
+      "kind": "rewired",
+      "seed": 128,
+      "trials": 10,
+      "motor_hz": 14.648,
+      "frac_active": 0.405,
+      "coherence": -0.2513,
+      "coherence_sd": 0.3064,
+      "band_share": 0.0603
+    },
+    {
+      "kind": "rewired",
+      "seed": 129,
+      "trials": 10,
+      "motor_hz": 13.058,
+      "frac_active": 0.3504,
+      "coherence": -0.1022,
+      "coherence_sd": 0.4245,
+      "band_share": 0.067
+    },
+    {
+      "kind": "rewired",
+      "seed": 130,
+      "trials": 10,
+      "motor_hz": 14.11,
+      "frac_active": 0.3723,
+      "coherence": 0.2065,
+      "coherence_sd": 0.3934,
+      "band_share": 0.0661
+    },
+    {
+      "kind": "rewired",
+      "seed": 131,
+      "trials": 10,
+      "motor_hz": 14.733,
+      "frac_active": 0.3819,
+      "coherence": -0.4131,
+      "coherence_sd": 0.3237,
+      "band_share": 0.0692
+    },
+    {
+      "kind": "rewired",
+      "seed": 132,
+      "trials": 10,
+      "motor_hz": 18.199,
+      "frac_active": 0.41,
+      "coherence": -0.1457,
+      "coherence_sd": 0.2965,
+      "band_share": 0.0562
+    },
+    {
+      "kind": "rewired",
+      "seed": 133,
+      "trials": 10,
+      "motor_hz": 15.661,
+      "frac_active": 0.3531,
+      "coherence": -0.0635,
+      "coherence_sd": 0.3679,
+      "band_share": 0.0547
+    },
+    {
+      "kind": "rewired",
+      "seed": 134,
+      "trials": 10,
+      "motor_hz": 14.729,
+      "frac_active": 0.41,
+      "coherence": -0.0293,
+      "coherence_sd": 0.4086,
+      "band_share": 0.0603
+    },
+    {
+      "kind": "rewired",
+      "seed": 135,
+      "trials": 10,
+      "motor_hz": 13.302,
+      "frac_active": 0.3965,
+      "coherence": -0.1437,
+      "coherence_sd": 0.3422,
+      "band_share": 0.0615
+    },
+    {
+      "kind": "rewired",
+      "seed": 136,
+      "trials": 10,
+      "motor_hz": 12.82,
+      "frac_active": 0.3854,
+      "coherence": 0.0503,
+      "coherence_sd": 0.3188,
+      "band_share": 0.065
+    },
+    {
+      "kind": "rewired",
+      "seed": 137,
+      "trials": 10,
+      "motor_hz": 14.408,
+      "frac_active": 0.3881,
+      "coherence": 0.0404,
+      "coherence_sd": 0.2867,
+      "band_share": 0.0617
+    },
+    {
+      "kind": "rewired",
+      "seed": 138,
+      "trials": 10,
+      "motor_hz": 14.437,
+      "frac_active": 0.3865,
+      "coherence": -0.2914,
+      "coherence_sd": 0.2092,
+      "band_share": 0.0693
+    },
+    {
+      "kind": "rewired",
+      "seed": 139,
+      "trials": 10,
+      "motor_hz": 15.484,
+      "frac_active": 0.4,
+      "coherence": -0.1738,
+      "coherence_sd": 0.3513,
+      "band_share": 0.0645
+    },
+    {
+      "kind": "rewired",
+      "seed": 140,
+      "trials": 10,
+      "motor_hz": 16.439,
+      "frac_active": 0.3719,
+      "coherence": -0.0101,
+      "coherence_sd": 0.3032,
+      "band_share": 0.0634
+    },
+    {
+      "kind": "rewired",
+      "seed": 141,
+      "trials": 10,
+      "motor_hz": 13.407,
+      "frac_active": 0.3954,
+      "coherence": 0.1155,
+      "coherence_sd": 0.2398,
+      "band_share": 0.0565
+    },
+    {
+      "kind": "rewired",
+      "seed": 142,
+      "trials": 10,
+      "motor_hz": 14.335,
+      "frac_active": 0.3773,
+      "coherence": 0.2724,
+      "coherence_sd": 0.3542,
+      "band_share": 0.0541
+    },
+    {
+      "kind": "rewired",
+      "seed": 143,
+      "trials": 10,
+      "motor_hz": 15.47,
+      "frac_active": 0.4015,
+      "coherence": -0.3996,
+      "coherence_sd": 0.3386,
+      "band_share": 0.0707
+    },
+    {
+      "kind": "rewired",
+      "seed": 144,
+      "trials": 10,
+      "motor_hz": 17.643,
+      "frac_active": 0.3715,
+      "coherence": -0.0715,
+      "coherence_sd": 0.3729,
+      "band_share": 0.0527
+    },
+    {
+      "kind": "rewired",
+      "seed": 145,
+      "trials": 10,
+      "motor_hz": 13.983,
+      "frac_active": 0.3662,
+      "coherence": -0.1334,
+      "coherence_sd": 0.3295,
+      "band_share": 0.0612
+    },
+    {
+      "kind": "rewired",
+      "seed": 146,
+      "trials": 10,
+      "motor_hz": 16.244,
+      "frac_active": 0.3481,
+      "coherence": 0.1452,
+      "coherence_sd": 0.4443,
+      "band_share": 0.0517
+    },
+    {
+      "kind": "rewired",
+      "seed": 147,
+      "trials": 10,
+      "motor_hz": 16.733,
+      "frac_active": 0.3804,
+      "coherence": -0.066,
+      "coherence_sd": 0.324,
+      "band_share": 0.0583
+    },
+    {
+      "kind": "rewired",
+      "seed": 148,
+      "trials": 10,
+      "motor_hz": 13.229,
+      "frac_active": 0.38,
+      "coherence": -0.3284,
+      "coherence_sd": 0.2542,
+      "band_share": 0.0643
+    },
+    {
+      "kind": "rewired",
+      "seed": 149,
+      "trials": 10,
+      "motor_hz": 19.858,
+      "frac_active": 0.43,
+      "coherence": 0.1659,
+      "coherence_sd": 0.2711,
+      "band_share": 0.0606
+    },
+    {
+      "kind": "rewired",
+      "seed": 150,
+      "trials": 10,
+      "motor_hz": 14.063,
+      "frac_active": 0.3869,
+      "coherence": 0.0172,
+      "coherence_sd": 0.3502,
+      "band_share": 0.0634
+    },
+    {
+      "kind": "rewired",
+      "seed": 151,
+      "trials": 10,
+      "motor_hz": 16.039,
+      "frac_active": 0.4065,
+      "coherence": 0.0285,
+      "coherence_sd": 0.4165,
+      "band_share": 0.063
+    },
+    {
+      "kind": "rewired",
+      "seed": 152,
+      "trials": 10,
+      "motor_hz": 16.665,
+      "frac_active": 0.3885,
+      "coherence": 0.1517,
+      "coherence_sd": 0.4158,
+      "band_share": 0.0593
+    },
+    {
+      "kind": "rewired",
+      "seed": 153,
+      "trials": 10,
+      "motor_hz": 13.015,
+      "frac_active": 0.3781,
+      "coherence": -0.2759,
+      "coherence_sd": 0.2364,
+      "band_share": 0.076
+    },
+    {
+      "kind": "rewired",
+      "seed": 154,
+      "trials": 10,
+      "motor_hz": 16.92,
+      "frac_active": 0.4054,
+      "coherence": -0.1534,
+      "coherence_sd": 0.4726,
+      "band_share": 0.061
+    },
+    {
+      "kind": "rewired",
+      "seed": 155,
+      "trials": 10,
+      "motor_hz": 14.808,
+      "frac_active": 0.41,
+      "coherence": 0.2424,
+      "coherence_sd": 0.4042,
+      "band_share": 0.0691
+    },
+    {
+      "kind": "rewired",
+      "seed": 156,
+      "trials": 10,
+      "motor_hz": 15.374,
+      "frac_active": 0.3658,
+      "coherence": 0.4544,
+      "coherence_sd": 0.3233,
+      "band_share": 0.0711
+    },
+    {
+      "kind": "rewired",
+      "seed": 157,
+      "trials": 10,
+      "motor_hz": 17.409,
+      "frac_active": 0.3996,
+      "coherence": -0.0087,
+      "coherence_sd": 0.3078,
+      "band_share": 0.053
+    },
+    {
+      "kind": "rewired",
+      "seed": 158,
+      "trials": 10,
+      "motor_hz": 16.334,
+      "frac_active": 0.3808,
+      "coherence": -0.217,
+      "coherence_sd": 0.4423,
+      "band_share": 0.0541
+    },
+    {
+      "kind": "rewired",
+      "seed": 159,
+      "trials": 10,
+      "motor_hz": 15.586,
+      "frac_active": 0.3877,
+      "coherence": -0.0742,
+      "coherence_sd": 0.3964,
+      "band_share": 0.0608
+    },
+    {
+      "kind": "rewired",
+      "seed": 160,
+      "trials": 10,
+      "motor_hz": 14.255,
+      "frac_active": 0.3812,
+      "coherence": 0.0188,
+      "coherence_sd": 0.289,
+      "band_share": 0.0635
+    },
+    {
+      "kind": "rewired",
+      "seed": 161,
+      "trials": 10,
+      "motor_hz": 15.47,
+      "frac_active": 0.3377,
+      "coherence": -0.0184,
+      "coherence_sd": 0.4541,
+      "band_share": 0.0616
+    },
+    {
+      "kind": "rewired",
+      "seed": 162,
+      "trials": 10,
+      "motor_hz": 16.084,
+      "frac_active": 0.3865,
+      "coherence": -0.0671,
+      "coherence_sd": 0.2712,
+      "band_share": 0.0705
+    },
+    {
+      "kind": "rewired",
+      "seed": 163,
+      "trials": 10,
+      "motor_hz": 15.999,
+      "frac_active": 0.4023,
+      "coherence": -0.3187,
+      "coherence_sd": 0.3376,
+      "band_share": 0.0635
+    },
+    {
+      "kind": "rewired",
+      "seed": 164,
+      "trials": 10,
+      "motor_hz": 16.545,
+      "frac_active": 0.3646,
+      "coherence": -0.0733,
+      "coherence_sd": 0.2299,
+      "band_share": 0.06
+    },
+    {
+      "kind": "rewired",
+      "seed": 165,
+      "trials": 10,
+      "motor_hz": 15.855,
+      "frac_active": 0.3808,
+      "coherence": 0.0194,
+      "coherence_sd": 0.4319,
+      "band_share": 0.06
+    },
+    {
+      "kind": "rewired",
+      "seed": 166,
+      "trials": 10,
+      "motor_hz": 13.233,
+      "frac_active": 0.3892,
+      "coherence": -0.4708,
+      "coherence_sd": 0.2662,
+      "band_share": 0.066
+    },
+    {
+      "kind": "rewired",
+      "seed": 167,
+      "trials": 10,
+      "motor_hz": 15.285,
+      "frac_active": 0.3923,
+      "coherence": -0.1053,
+      "coherence_sd": 0.2866,
+      "band_share": 0.0538
+    },
+    {
+      "kind": "rewired",
+      "seed": 168,
+      "trials": 10,
+      "motor_hz": 15.249,
+      "frac_active": 0.3235,
+      "coherence": -0.1809,
+      "coherence_sd": 0.4122,
+      "band_share": 0.0539
+    },
+    {
+      "kind": "rewired",
+      "seed": 169,
+      "trials": 10,
+      "motor_hz": 15.615,
+      "frac_active": 0.3973,
+      "coherence": 0.0105,
+      "coherence_sd": 0.3429,
+      "band_share": 0.0574
+    },
+    {
+      "kind": "rewired",
+      "seed": 170,
+      "trials": 10,
+      "motor_hz": 13.752,
+      "frac_active": 0.3804,
+      "coherence": 0.0882,
+      "coherence_sd": 0.3046,
+      "band_share": 0.0532
+    },
+    {
+      "kind": "rewired",
+      "seed": 171,
+      "trials": 10,
+      "motor_hz": 15.373,
+      "frac_active": 0.4004,
+      "coherence": -0.2258,
+      "coherence_sd": 0.1933,
+      "band_share": 0.0602
+    },
+    {
+      "kind": "rewired",
+      "seed": 172,
+      "trials": 10,
+      "motor_hz": 15.198,
+      "frac_active": 0.3935,
+      "coherence": 0.0505,
+      "coherence_sd": 0.3038,
+      "band_share": 0.0638
+    },
+    {
+      "kind": "rewired",
+      "seed": 173,
+      "trials": 10,
+      "motor_hz": 10.161,
+      "frac_active": 0.3765,
+      "coherence": -0.0299,
+      "coherence_sd": 0.4399,
+      "band_share": 0.0547
+    },
+    {
+      "kind": "rewired",
+      "seed": 174,
+      "trials": 10,
+      "motor_hz": 12.599,
+      "frac_active": 0.4165,
+      "coherence": -0.1895,
+      "coherence_sd": 0.1464,
+      "band_share": 0.0662
+    },
+    {
+      "kind": "rewired",
+      "seed": 175,
+      "trials": 10,
+      "motor_hz": 14.76,
+      "frac_active": 0.3658,
+      "coherence": 0.0877,
+      "coherence_sd": 0.3759,
+      "band_share": 0.0617
+    },
+    {
+      "kind": "rewired",
+      "seed": 176,
+      "trials": 10,
+      "motor_hz": 12.266,
+      "frac_active": 0.3573,
+      "coherence": -0.2164,
+      "coherence_sd": 0.4404,
+      "band_share": 0.0588
+    },
+    {
+      "kind": "rewired",
+      "seed": 177,
+      "trials": 10,
+      "motor_hz": 17.378,
+      "frac_active": 0.3781,
+      "coherence": -0.1625,
+      "coherence_sd": 0.404,
+      "band_share": 0.0565
+    },
+    {
+      "kind": "rewired",
+      "seed": 178,
+      "trials": 10,
+      "motor_hz": 13.873,
+      "frac_active": 0.3542,
+      "coherence": 0.0614,
+      "coherence_sd": 0.3717,
+      "band_share": 0.0635
+    },
+    {
+      "kind": "rewired",
+      "seed": 179,
+      "trials": 10,
+      "motor_hz": 16.278,
+      "frac_active": 0.3758,
+      "coherence": -0.1376,
+      "coherence_sd": 0.3033,
+      "band_share": 0.0511
+    },
+    {
+      "kind": "rewired",
+      "seed": 180,
+      "trials": 10,
+      "motor_hz": 14.932,
+      "frac_active": 0.3446,
+      "coherence": 0.1691,
+      "coherence_sd": 0.5251,
+      "band_share": 0.0599
+    },
+    {
+      "kind": "rewired",
+      "seed": 181,
+      "trials": 10,
+      "motor_hz": 13.896,
+      "frac_active": 0.3662,
+      "coherence": -0.1351,
+      "coherence_sd": 0.3873,
+      "band_share": 0.0581
+    },
+    {
+      "kind": "rewired",
+      "seed": 182,
+      "trials": 10,
+      "motor_hz": 13.454,
+      "frac_active": 0.3585,
+      "coherence": 0.1145,
+      "coherence_sd": 0.4709,
+      "band_share": 0.0677
+    },
+    {
+      "kind": "rewired",
+      "seed": 183,
+      "trials": 10,
+      "motor_hz": 17.705,
+      "frac_active": 0.3738,
+      "coherence": -0.0582,
+      "coherence_sd": 0.4619,
+      "band_share": 0.0607
+    },
+    {
+      "kind": "rewired",
+      "seed": 184,
+      "trials": 10,
+      "motor_hz": 18.611,
+      "frac_active": 0.3738,
+      "coherence": -0.0853,
+      "coherence_sd": 0.3697,
+      "band_share": 0.0528
+    },
+    {
+      "kind": "rewired",
+      "seed": 185,
+      "trials": 10,
+      "motor_hz": 16.223,
+      "frac_active": 0.3815,
+      "coherence": -0.149,
+      "coherence_sd": 0.4938,
+      "band_share": 0.0589
+    },
+    {
+      "kind": "rewired",
+      "seed": 186,
+      "trials": 10,
+      "motor_hz": 17.875,
+      "frac_active": 0.3965,
+      "coherence": -0.0614,
+      "coherence_sd": 0.4733,
+      "band_share": 0.0586
+    },
+    {
+      "kind": "rewired",
+      "seed": 187,
+      "trials": 10,
+      "motor_hz": 12.308,
+      "frac_active": 0.3765,
+      "coherence": -0.177,
+      "coherence_sd": 0.2853,
+      "band_share": 0.0669
+    },
+    {
+      "kind": "rewired",
+      "seed": 188,
+      "trials": 10,
+      "motor_hz": 17.634,
+      "frac_active": 0.3885,
+      "coherence": -0.0376,
+      "coherence_sd": 0.3752,
+      "band_share": 0.0616
+    },
+    {
+      "kind": "rewired",
+      "seed": 189,
+      "trials": 10,
+      "motor_hz": 18.345,
+      "frac_active": 0.3927,
+      "coherence": 0.2252,
+      "coherence_sd": 0.361,
+      "band_share": 0.0507
+    },
+    {
+      "kind": "rewired",
+      "seed": 190,
+      "trials": 10,
+      "motor_hz": 18.665,
+      "frac_active": 0.4062,
+      "coherence": 0.0472,
+      "coherence_sd": 0.2921,
+      "band_share": 0.0659
+    },
+    {
+      "kind": "rewired",
+      "seed": 191,
+      "trials": 10,
+      "motor_hz": 16.565,
+      "frac_active": 0.3885,
+      "coherence": -0.3718,
+      "coherence_sd": 0.4142,
+      "band_share": 0.0585
+    },
+    {
+      "kind": "rewired",
+      "seed": 192,
+      "trials": 10,
+      "motor_hz": 18.513,
+      "frac_active": 0.3942,
+      "coherence": -0.0305,
+      "coherence_sd": 0.2497,
+      "band_share": 0.0494
+    },
+    {
+      "kind": "rewired",
+      "seed": 193,
+      "trials": 10,
+      "motor_hz": 14.364,
+      "frac_active": 0.3927,
+      "coherence": -0.1923,
+      "coherence_sd": 0.3941,
+      "band_share": 0.0587
+    },
+    {
+      "kind": "rewired",
+      "seed": 194,
+      "trials": 10,
+      "motor_hz": 16.34,
+      "frac_active": 0.3862,
+      "coherence": -0.03,
+      "coherence_sd": 0.3682,
+      "band_share": 0.0583
+    },
+    {
+      "kind": "rewired",
+      "seed": 195,
+      "trials": 10,
+      "motor_hz": 13.643,
+      "frac_active": 0.3723,
+      "coherence": -0.3175,
+      "coherence_sd": 0.2616,
+      "band_share": 0.0648
+    },
+    {
+      "kind": "rewired",
+      "seed": 196,
+      "trials": 10,
+      "motor_hz": 18.718,
+      "frac_active": 0.4215,
+      "coherence": -0.0383,
+      "coherence_sd": 0.3379,
+      "band_share": 0.06
+    },
+    {
+      "kind": "rewired",
+      "seed": 197,
+      "trials": 10,
+      "motor_hz": 17.224,
+      "frac_active": 0.3988,
+      "coherence": -0.0001,
+      "coherence_sd": 0.5159,
+      "band_share": 0.0677
+    },
+    {
+      "kind": "rewired",
+      "seed": 198,
+      "trials": 10,
+      "motor_hz": 12.193,
+      "frac_active": 0.3773,
+      "coherence": -0.2211,
+      "coherence_sd": 0.2798,
+      "band_share": 0.0592
+    },
+    {
+      "kind": "rewired",
+      "seed": 199,
+      "trials": 10,
+      "motor_hz": 13.688,
+      "frac_active": 0.3658,
+      "coherence": 0.026,
+      "coherence_sd": 0.3555,
+      "band_share": 0.0562
+    },
+    {
+      "kind": "rewired",
+      "seed": 200,
+      "trials": 10,
+      "motor_hz": 12.287,
+      "frac_active": 0.3727,
+      "coherence": -0.1486,
+      "coherence_sd": 0.3695,
+      "band_share": 0.0664
+    },
+    {
+      "kind": "rewired",
+      "seed": 201,
+      "trials": 10,
+      "motor_hz": 16.322,
+      "frac_active": 0.4212,
+      "coherence": -0.0171,
+      "coherence_sd": 0.2887,
+      "band_share": 0.0655
+    },
+    {
+      "kind": "rewired",
+      "seed": 202,
+      "trials": 10,
+      "motor_hz": 13.242,
+      "frac_active": 0.3781,
+      "coherence": 0.1663,
+      "coherence_sd": 0.3889,
+      "band_share": 0.0636
+    },
+    {
+      "kind": "rewired",
+      "seed": 203,
+      "trials": 10,
+      "motor_hz": 11.128,
+      "frac_active": 0.365,
+      "coherence": 0.0749,
+      "coherence_sd": 0.2256,
+      "band_share": 0.0609
+    },
+    {
+      "kind": "rewired",
+      "seed": 204,
+      "trials": 10,
+      "motor_hz": 13.547,
+      "frac_active": 0.3838,
+      "coherence": 0.1784,
+      "coherence_sd": 0.4609,
+      "band_share": 0.0618
+    },
+    {
+      "kind": "rewired",
+      "seed": 205,
+      "trials": 10,
+      "motor_hz": 18.151,
+      "frac_active": 0.3862,
+      "coherence": -0.1785,
+      "coherence_sd": 0.3295,
+      "band_share": 0.0605
+    },
+    {
+      "kind": "rewired",
+      "seed": 206,
+      "trials": 10,
+      "motor_hz": 13.248,
+      "frac_active": 0.3515,
+      "coherence": -0.0961,
+      "coherence_sd": 0.2545,
+      "band_share": 0.0693
+    },
+    {
+      "kind": "rewired",
+      "seed": 207,
+      "trials": 10,
+      "motor_hz": 12.482,
+      "frac_active": 0.3754,
+      "coherence": -0.1171,
+      "coherence_sd": 0.2949,
+      "band_share": 0.0692
+    },
+    {
+      "kind": "rewired",
+      "seed": 208,
+      "trials": 10,
+      "motor_hz": 11.79,
+      "frac_active": 0.3535,
+      "coherence": -0.1829,
+      "coherence_sd": 0.2866,
+      "band_share": 0.0733
+    },
+    {
+      "kind": "rewired",
+      "seed": 209,
+      "trials": 10,
+      "motor_hz": 13.209,
+      "frac_active": 0.3796,
+      "coherence": -0.0932,
+      "coherence_sd": 0.4917,
+      "band_share": 0.0726
+    },
+    {
+      "kind": "rewired",
+      "seed": 210,
+      "trials": 10,
+      "motor_hz": 14.686,
+      "frac_active": 0.3846,
+      "coherence": -0.0161,
+      "coherence_sd": 0.2688,
+      "band_share": 0.0544
+    }
+  ]
+}

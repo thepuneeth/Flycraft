@@ -34,7 +34,7 @@ def bootstrap_ci(values: np.ndarray, rng: np.random.Generator, reps: int) -> tup
 
 
 def exact_sign_flip(diff: np.ndarray) -> float:
-    """Two-sided exact paired randomization p-value for n=20 episode differences."""
+    """Exact two-sided paired sign-flip p-value under conditional independent, uniform sign symmetry."""
     n = len(diff)
     if n > 22:
         raise ValueError("exact sign-flip test is capped at n=22")
@@ -93,8 +93,8 @@ def paired_frames(frame: pd.DataFrame) -> dict[str, pd.DataFrame]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--input", type=Path, default=RESULTS / "vnc_control_study_3s.csv")
-    ap.add_argument("--out", type=Path, default=RESULTS / "vnc_control_study_3s_stats")
+    ap.add_argument("--input", type=Path, default=RESULTS / "bodyfix_vnc_control_study_3s.csv")
+    ap.add_argument("--out", type=Path, default=RESULTS / "bodyfix_vnc_control_study_3s_stats")
     ap.add_argument("--bootstrap_reps", type=int, default=100_000)
     ap.add_argument("--bootstrap_seed", type=int, default=20260829)
     a = ap.parse_args()
@@ -193,7 +193,7 @@ def main() -> None:
             "ci": "95% percentile bootstrap",
         },
         "paired_test": {
-            "method": "exact two-sided sign-flip randomization",
+            "method": "exact two-sided paired sign-flip under conditional independent, uniform sign-symmetry assumption",
             "pairing": "same episode starts across conditions",
             "primary_endpoint": "path_m",
             "multiplicity": "Holm adjustment across three predeclared path comparisons",

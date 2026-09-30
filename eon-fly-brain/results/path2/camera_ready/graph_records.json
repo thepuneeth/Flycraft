@@ -1,0 +1,330 @@
+{
+ "lesion_T1": {
+  "base_edge_count": 485074,
+  "removed_edge_count": 102353,
+  "remaining_edge_count": 382721,
+  "removed_absolute_weight_mass": 1937889.0,
+  "remaining_absolute_weight_mass": 7732784.0
+ },
+ "lesion_T2": {
+  "base_edge_count": 485074,
+  "removed_edge_count": 134858,
+  "remaining_edge_count": 350216,
+  "removed_absolute_weight_mass": 2791674.0,
+  "remaining_absolute_weight_mass": 6878999.0
+ },
+ "lesion_T3": {
+  "base_edge_count": 485074,
+  "removed_edge_count": 111131,
+  "remaining_edge_count": 373943,
+  "removed_absolute_weight_mass": 2371929.0,
+  "remaining_absolute_weight_mass": 7298744.0
+ },
+ "lesion_vnc_sensory": {
+  "base_edge_count": 485074,
+  "removed_edge_count": 26187,
+  "remaining_edge_count": 458887,
+  "removed_absolute_weight_mass": 343634.0,
+  "remaining_absolute_weight_mass": 9327039.0
+ },
+ "rewire_0.1_20260830": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46086
+ },
+ "rewire_0.1_20260831": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46105
+ },
+ "rewire_0.1_20260832": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46169
+ },
+ "rewire_0.1_20260833": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46210
+ },
+ "rewire_0.1_20260834": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46176
+ },
+ "rewire_0.1_20260835": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46164
+ },
+ "rewire_0.1_20260836": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46111
+ },
+ "rewire_0.1_20260837": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46111
+ },
+ "rewire_0.1_20260839": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46127
+ },
+ "rewire_0.1_20260838": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46149
+ },
+ "rewire_0.1_20260840": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46118
+ },
+ "rewire_0.1_20260841": {
+  "fraction": 0.1,
+  "accepted_swaps": 24254,
+  "changed_edges": 46070
+ },
+ "rewire_0.25_20260830": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107006
+ },
+ "rewire_0.25_20260831": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 106979
+ },
+ "rewire_0.25_20260832": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 106958
+ },
+ "rewire_0.25_20260833": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107231
+ },
+ "rewire_0.25_20260834": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107096
+ },
+ "rewire_0.25_20260835": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107131
+ },
+ "rewire_0.25_20260836": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 106880
+ },
+ "rewire_0.25_20260837": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107060
+ },
+ "rewire_0.25_20260838": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107070
+ },
+ "rewire_0.25_20260839": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107031
+ },
+ "rewire_0.25_20260840": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 106889
+ },
+ "rewire_0.25_20260841": {
+  "fraction": 0.25,
+  "accepted_swaps": 60634,
+  "changed_edges": 107002
+ },
+ "rewire_0.5_20260830": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 189799
+ },
+ "rewire_0.5_20260831": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 189771
+ },
+ "rewire_0.5_20260833": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 190440
+ },
+ "rewire_0.5_20260832": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 190022
+ },
+ "rewire_0.5_20260834": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 189922
+ },
+ "rewire_0.5_20260835": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 189911
+ },
+ "rewire_0.5_20260836": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 189826
+ },
+ "rewire_0.5_20260837": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 190148
+ },
+ "rewire_0.5_20260838": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 189876
+ },
+ "rewire_0.5_20260839": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 190151
+ },
+ "rewire_0.5_20260840": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 189675
+ },
+ "rewire_0.5_20260841": {
+  "fraction": 0.5,
+  "accepted_swaps": 121268,
+  "changed_edges": 190042
+ },
+ "rewire_0.75_20260830": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254104
+ },
+ "rewire_0.75_20260831": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254057
+ },
+ "rewire_0.75_20260832": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254158
+ },
+ "rewire_0.75_20260833": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254734
+ },
+ "rewire_0.75_20260835": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254114
+ },
+ "rewire_0.75_20260834": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254229
+ },
+ "rewire_0.75_20260836": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254452
+ },
+ "rewire_0.75_20260837": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254335
+ },
+ "rewire_0.75_20260838": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254337
+ },
+ "rewire_0.75_20260839": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254252
+ },
+ "rewire_0.75_20260840": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 253893
+ },
+ "rewire_0.75_20260841": {
+  "fraction": 0.75,
+  "accepted_swaps": 181903,
+  "changed_edges": 254069
+ },
+ "rewire_1_20260831": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 303818
+ },
+ "rewire_1_20260830": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 304060
+ },
+ "rewire_1_20260832": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 304020
+ },
+ "rewire_1_20260833": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 304414
+ },
+ "rewire_1_20260834": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 303987
+ },
+ "rewire_1_20260835": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 303840
+ },
+ "rewire_1_20260836": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 304026
+ },
+ "rewire_1_20260837": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 304048
+ },
+ "rewire_1_20260839": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 303933
+ },
+ "rewire_1_20260838": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 304078
+ },
+ "rewire_1_20260840": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 303687
+ },
+ "rewire_1_20260841": {
+  "fraction": 1.0,
+  "accepted_swaps": 242537,
+  "changed_edges": 304041
+ }
+}

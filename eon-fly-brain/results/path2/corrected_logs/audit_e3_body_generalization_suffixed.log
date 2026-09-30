@@ -1,0 +1,17 @@
+/usr/local/lib/python3.12/dist-packages/torch/_utils.py:341: UserWarning: Sparse CSR tensor support is in beta state. If you miss a functionality in the sparse tensor support, please submit a feature request to https://github.com/pytorch/pytorch/issues. (Triggered internally at /pytorch/aten/src/ATen/SparseCsrTensorImpl.cpp:53.)
+  result = torch.sparse_compressed_tensor(
+completed leg_length_x0.85
+completed leg_length_x1
+completed leg_length_x1.15
+completed body_mass_x0.85
+completed body_mass_x1
+completed body_mass_x1.15
+completed ground_friction_x0.7
+completed ground_friction_x1
+completed ground_friction_x1.3
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+{"experiment": "E3", "mean": {"across_seed_ci_high": 0.007084318663805652, "across_seed_ci_low": 0.004573757770771157, "higher_is_better": true, "metric": "mean_forward_distance_m", "n_random_match_or_beat_real": 0, "nonoverlap_bootstrap_ci": true, "p_raw": 0.000244140625, "paired_test": "exact one-sided sign-flip over 12 independent random-network seeds", "random_distribution_ci_high": -0.0001628359464564511, "random_distribution_ci_low": -0.007111603892485178, "random_distribution_max": -0.00010652699729809357, "random_distribution_min": -0.007410378259254332, "random_mean": -0.0036445387408965504, "random_seed_values": [-0.00010652699729809357, -0.0003112868124193934, -0.005657328303391811, -0.0028762725499547432, -0.0029157568669850816, -0.0037200306853190975, -0.007410378259254332, -0.00485251763822561, -0.0015656380522278907, -0.005286063500952218, -0.0027087392082729258, -0.006323926016457409], "real_ci_high": 0.002183653580315591, "real_ci_low": 0.002183653580315591, "real_minus_random_mean": 0.005828192321212141, "real_outside_random_distribution": true, "real_value": 0.002183653580315591}, "numeric_decision": "BODY-GENERALIZATION-EARNED", "resource": {"max_rollouts": 12000, "rollouts_completed": 2342}, "worst_case": {"across_seed_ci_high": 0.007213324106919001, "across_seed_ci_low": 0.004456853520198843, "higher_is_better": true, "metric": "worst_case_forward_distance_m", "n_random_match_or_beat_real": 0, "nonoverlap_bootstrap_ci": true, "p_raw": 0.000244140625, "paired_test": "exact one-sided sign-flip over 12 independent random-network seeds", "random_distribution_ci_high": -0.001758875288588798, "random_distribution_ci_low": -0.009299473149035934, "random_distribution_max": -0.0016871209601744726, "random_distribution_min": -0.009807002753770801, "random_mean": -0.005113732656629843, "random_seed_values": [-0.0016871209601744726, -0.0021709625367008927, -0.007106110241094195, -0.00421715234948847, -0.0044627454424617016, -0.004525636053312799, -0.009807002753770801, -0.0062166289241791075, -0.0019480457907720197, -0.007080687556210309, -0.004181258716658412, -0.007961440554734921], "real_ci_high": 0.0007012264926954299, "real_ci_low": 0.0007012264926954299, "real_minus_random_mean": 0.005814959149325272, "real_outside_random_distribution": true, "real_value": 0.0007012264926954299}}
+=== audit_e3_body_generalization rc=0 2026-09-07T03:36:28Z ===

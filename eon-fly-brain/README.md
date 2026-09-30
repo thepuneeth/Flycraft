@@ -9,14 +9,15 @@ the published leg-coordination candidate rule are included, including the two
 descending drive, and fixed anatomical proprioceptive feedback still lack
 coherent alternating tripod phase.
 
-The real VNC is not equivalent to a shuffled VNC: in the paired 3 s study,
-real open-loop path is `0.207 m [0.205, 0.209]` versus shuffled
-`0.065 m [0.063, 0.066]`, exact paired sign-flip `p=1.91e-6`,
-Holm-adjusted `p=5.72e-6`. Brain-coupled path is `0.185 m [0.140, 0.228]`
-versus random descending `0.223 m [0.193, 0.256]`; adjusted `p=0.158`.
+The real VNC is not equivalent to a shuffled VNC: in the corrected paired 3 s
+study, real open-loop path is `0.351 m [0.348, 0.353]` versus shuffled
+`0.084 m [0.080, 0.090]`, exact paired sign-flip `p=1.91e-6`,
+Holm-adjusted `p=5.72e-6`. Brain-coupled path is `0.286 m [0.224, 0.340]`
+versus random descending `0.348 m [0.317, 0.378]`; adjusted `p=0.042`.
 All 100 control episodes were catch-free and fall-free. E0 after E2 passes
 3/6 within-tripod and 3/9 cross-tripod pairs; E3 and E4 remain absent at VNC
-and joint-target layers. Final claim wording is pending review.
+and joint-target layers. The `bodyfix_*` records are canonical; older `vnc_*`
+body-study files are audit-only superseded runs.
 
 E2 inventory found 212/212 published candidates selected. E4 adds 622 traced
 leg proprioceptors under a declared anatomical rule and yields 0.401 m path,
@@ -61,18 +62,18 @@ From repository root:
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/study_vnc.py \
   --n 20 --secs 3 --seed 20260829 \
-  --out eon-fly-brain/results/path2/vnc_control_study_3s
+  --out eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/analyze_control_study.py \
-  --input eon-fly-brain/results/path2/vnc_control_study_3s.csv \
-  --out eon-fly-brain/results/path2/vnc_control_study_3s_stats
+  --input eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s.csv \
+  --out eon-fly-brain/results/path2/bodyfix_vnc_control_study_3s_stats
 
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/audit_intersegmental.py \
   --data eon-fly-brain/results/path2 --index_name all_legs_io_index.npz \
   --out eon-fly-brain/results/path2/e2_intersegmental
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_vnc_phase.py \
   --data eon-fly-brain/results/path2 \
-  --out eon-fly-brain/results/path2/vnc_phase_probe_e0_after_e2
+  --out eon-fly-brain/results/path2/bodyfix_vnc_phase_probe_e0
 ./eon-fly-brain/.venv/bin/python eon-fly-brain/code/probe_structured_descending.py \
   --data eon-fly-brain/results/path2 --brain_data eon-fly-brain/data \
   --out eon-fly-brain/results/path2/e3_structured_descending
@@ -112,10 +113,10 @@ For one synchronized episode with four views:
 - `code/run_sensory_feedback.py` — E4 proprioceptive feedback replay.
 - `results/path2/all_legs_coordination.json` — current graph/phase audit.
 - `results/path2/transfer_layers.png` — mechanistic layer figure.
-- `results/path2/vnc_control_study_3s_stats.json` — full control statistics.
+- `results/path2/bodyfix_vnc_control_study_3s_stats.json` — corrected full control statistics.
 - `results/path2/vnc_brain_closed_loop_8s_multiview.mp4` — four synchronized
   views of one brain-coupled episode.
-- `results/path2/vnc_phase_probe_e0_after_e2.json` — post-completeness E0.
+- `results/path2/bodyfix_vnc_phase_probe_e0.json` — post-completeness E0.
 - `results/path2/e2_intersegmental.json` — E2 inventory and decision.
 - `results/path2/e3_structured_descending.json` — E3 phase matrices.
 - `results/path2/e4_sensory_feedback.json` — E4 phase and body metrics.

@@ -1,58 +1,89 @@
 # Path 2 — methods and current evidence
 
+> **Scope note (2026-09-05).** This file documents the Path-2 zero-training and
+> specificity methods. The goal-directed embodiment line (frozen VNC driving a
+> hexapod to a target under a trained interface) is documented separately in
+> `EMBODY_V4_SPEC.md` and `EMBODY_V5_PLAN.md`; nothing from those runs is
+> reported here, and neither has produced a claim.
+
+
 Status: corrected body-setup rerun complete through E0–E4, Path 3, the
 last-three B/C/D jobs, the four untried zero-training phases, delayed
-coupling DC-1–DC-3, Rung 1 trained-readout T-1–T-3, and the registered
-seven-axis specificity audit; current `H_MIN=.08 m` gate and all integrity
-controls pass. Pre-fix body-level results are confounded/superseded; the
-final claim remains pending approval.
+coupling DC-1–DC-3, Rung 1 trained-readout T-1–T-3, the registered
+seven-axis specificity audit, and `NEXT_EXPERIMENTS.md` H1–H5/E1–E3/T1–T2;
+current `H_MIN=.08 m` gate and all integrity controls pass. Pre-fix body-level
+results are confounded/superseded; the final claim remains pending approval.
 
 ## Current result (claim review pending)
 
-Working headline: no registered test establishes transfer of a canonical
-alternating tripod. All 212 published T1/T2/T3 coordination candidates are in
-the frozen graph, the six zero-training coordination routes remain negative,
-and the first minimal-training moat test is `RUNG1-MOAT-NULL`. The completed
-specificity audit does find a real-versus-random-network advantage on its
-predeclared path/robustness tests (`SPECIFICITY-EARNED@{B1,B2,B3,B6}`), but
-those axes measure displacement or robustness, not tripod phase. B5 rhythm and
-B7 visual steering remain NULL; B4 does not pass its distribution/CI survivor
-gate. The connectome-fed memoryless readout fell in 20/20 Rung 1 episodes and
-was below random and rewired on both primary body metrics. Method 1's real
-4/2 grouping falls in 16/20 episodes; Method 2 remains phase-absent in all 20;
-B dynamic edge coupling falls in 20/20; C direct MN waveform remains
-`C1-ABSENT`; D earns only a tonic pose, also reproduced by shuffled and random
-controls.
-COORD-212, COORD-INHIB, WAVE-ANTAG, VISION-EVAL, DC-1–DC-3, and Rung 1 pass
-integrity gates but return NULL outcomes.
+Working headline — owner review pending: all 212 published T1/T2/T3
+coordination candidates are included; no tested zero-learning route produces a
+canonical alternating tripod. This is a transfer negative, not a selection
+artifact. The frozen VNC still owns narrow wiring-specific motor-output,
+forward-drive, turning, and robustness effects, but those effects are not
+coordination. The trained scalar control T1 earns a narrow target-speed error
+advantage; the capacity-capped forward readout T2 is NULL and does not restore
+an advantage. No final claim is written here.
 
-The body correction makes the declared clean-clock engine stand and travel
-(`1.660 m` forward, `2.038 m` path in 8 s, minimum height `.121 m`, no fall),
-but it does not make the frozen VNC produce an alternating tripod. The fixed
-published-candidate inventory is complete at 212/212, including both former
-T1 `IN12B013` cells. The new B/C/D jobs, four untried phases, and final
-delay-coupling run add stronger tests without changing the negative
-coordination result.
+The older coordination routes remain negative: Method 1's real 4/2 grouping
+falls in 16/20 episodes; Method 2 is phase-absent in all 20; B dynamic edge
+coupling falls in 20/20; C direct MN waveform is `C1-ABSENT`; D earns tonic
+pose only; COORD-212, COORD-INHIB, WAVE-ANTAG, VISION-EVAL, DC-1–DC-3, and
+Rung 1 return NULL outcomes for the declared tripod endpoint. The corrected
+clean-clock body still stands and travels (`1.660 m` forward, `2.038 m` path
+in 8 s, minimum height `.121 m`, no fall), confirming that body physics alone
+is not the missing coordination source.
 
-The real VNC still beats column-shuffled VNC in the separate five-condition
-open-loop control (`+0.2663 m` path, 95% CI `[+.2611, +.2714]`, exact
-`p=1.91×10⁻⁶`, Holm `p=5.72×10⁻⁶`), while brain-coupled VNC is below matched
-random descending drive (`−.0621 m`, 95% CI `[−.1192, −.0092]`, Holm
-`p=.0422`). In the new full 8 s direct-MN specificity test, real minus the
-12-seed random-network mean is `+.9166 m` `[+.8150, +.9980]` on path and
-`+.2318 m` `[+.2192, +.2450]` forward; both metrics have exact one-sided
-`p=.000244` and `0/12` random seeds matching or beating real. These are real
-VNC/motor-output positives, not evidence that connectome coordination
-transfers to a tripod.
+The fixed published-candidate inventory is complete at 212/212, including both
+former T1 `IN12B013` cells. The real VNC beats column-shuffled VNC in the
+corrected five-condition open-loop control (`+.2663 m` path, 95% CI
+`[+.2611,+.2714]`, exact `p=1.91×10⁻⁶`, Holm `p=5.72×10⁻⁶`; forward
+`+.0259 m`, CI `[+.0212,+.0308]`). In the direct-MN 8 s control, real minus
+shuffled is `+1.0161 m` path, 95% CI `[+1.0113,+1.0208]`, and `+.2076 m`
+forward, CI `[+.1992,+.2159]`; both exact `p=3.81×10⁻⁶`, Holm
+`p=3.81×10⁻⁶`. These are VNC/motor-output and displacement positives, not
+evidence that connectome coordination transfers to a tripod; the direct-MN
+real condition also has lower feet-planted fraction than its shuffle.
 
-This is a corrected evidence summary, not final claim wording. B/C/D and the
-four untried phases are zero-learning transfer controls; learned Outcome C/D
-remain separate methods and are not part of this headline.
+This is corrected evidence assembly, not final claim wording. Zero-learning
+transfer controls and learned T1/T2 analyses stay separately labeled; owner
+approval is required before converting this working headline into a final
+claim.
+
+## NEXT_EXPERIMENTS completion (evidence assembly; claim pending)
+
+All H1–H5, E1–E3, T1, and T2 jobs are complete under frozen constants. Exact
+sign-flip tests use the registered 12 random-network seeds unless noted;
+intervals below are the stored 95% bootstrap CIs. H1, E1, E2, H3, H4, H5,
+and E3 are zero-learning; T1 and T2 train only the declared scalar/readout
+objects and never update VNC weights.
+
+| test | decision | primary result | interpretation |
+|---|---|---|---|
+| H1 strict amplitude match | `STRUCTURE-DRIVE-EARNED` | real − matched-random forward `+.2358 m`, CI `[+.1868,+.2805]`, exact one-sided `p=.000244`, Holm `p=.000244`, `0/12` match/beat | forward positive survives per-channel temporal-SD matching; all 18 channels matched, max SD error `3.61×10⁻⁶` |
+| H2 graph mechanism screen | candidate generation only | pooled random+rewired scalar screen is unsupported; e.g. signed spectral radius `r=-.442`, CI `[-.727,-.104]`, positive reciprocal mass `r=+.448`, `[+.143,+.692]` | no mechanism sentence; candidates require independent validation |
+| E1 turning | `TURNING-EARNED` | real odd yaw `7.441°`; real − matched-random `+6.916°`, CI `[+4.892,+8.899]`, exact one-sided `p=.000244`, Holm `p=.000244`, `0/12` | direct bilateral descending asymmetry transfers to turning under this fixed map |
+| E2 speed modulation | `SPEED-MODULATION-NULL` | real drive–speed Spearman `ρ=.400` vs matched-random mean `ρ=.017`; exact `p=.0166`, CI `[+.117,+.650]`, `5/12` controls match/beat, CI/distribution gates fail | no wiring-specific monotonic speed-control claim |
+| H3 gain envelope | `GAIN-ENVELOPE-REPORTED` | `16/25` gain cells pass; baseline real − matched-random `+.2358 m`, CI `[+.1868,+.2804]`, Holm `p=.00610` | positive is gain-dependent, not universal across map gains |
+| H4 rewiring dose | `DOSE-RESPONSE-EARNED` | forward means at α=`0,.1,.25,.5,.75,1`: `.2241,.0435,.0282,.0566,.0159,-.0087 m`; Spearman `ρ=-.829`; α=1 loss vs real `+.2327 m`, CI `[+.2101,+.2538]`, Holm `p=.00122` | strong negative dose association; not perfectly pointwise monotone |
+| H5 lesion localization | `LESION-LOCALIZATION-EARNED` | T1 loss `+.2664 m`, CI `[+.2555,+.2773]`; VNC-sensory loss `+.1949 m`, `[+.1899,+.1999]`; T3 `+.1747 m`, `[+.1622,+.1870]`; all `p_Holm=5.72×10⁻⁶` | lesion sensitivity ranks source classes; not unique causal-circuit proof |
+| E3 body generalization | `BODY-GENERALIZATION-EARNED` | mean real − matched-random `+.2346 m`, CI `[+.1870,+.2765]`; worst-case `+.2416 m`, `[+.1915,+.2862]`; exact `p=.000244`, `0/12`; all 9 perturbations significant | forward advantage survives declared leg-length, mass, and friction perturbations |
+| T2 forward readout | `T2-FORWARD-READOUT-NULL` | connectome − random forward `−.0094 m`, CI `[-.0296,+.0098]`, `p=.814`; connectome − rewired `−.0653 m`, `[-.1002,-.0327]`, `p≈.9996`; static leak pass | identical memoryless readouts do not preserve a connectome advantage under training |
+| T1 scalar drive | `T1-SCALAR-CONTROL-EARNED` | held-out speed error real `.0080 m/s` vs matched-random `.0135`, advantage `.00548 m/s`, CI `[.00375,.00698]`, Holm `p=.000976`; vs rewired `.0123`, advantage `.00431`, `[.00198,.00622]`, Holm `p=.00269` | narrow one-scalar calibration result; not walking or coordination |
+
+H5 excluded the descending-neuron lesion from amplitude-matched inference
+because it silenced 8/18 nonzero target channels; it is retained as an
+explicit exclusion, not silently treated as a null. H4’s invalid first run
+with a cross-fraction history-cache collision is quarantined under
+`results/path2/invalid_h4_cache_collision/`; the clean rerun used the same
+registered constants. The initial H1 diagnostic with unmatchable zero-source
+channels is not the formal result; only `h1_amplitude_control_strict.*` is
+used above.
 
 ## Specificity campaign (registered evidence; claim review pending)
 
 The campaign ran Gate A followed by B1, B4, B5, B7, B2, B3, and B6 from the
-fixed registry in `RUN_SPECIFICITY_AUDIT.md`. It reused one real substrate,
+fixed registry in `docs/archive/RUN_SPECIFICITY_AUDIT.md`. It reused one real substrate,
 12 predeclared random-network seeds (`20260830`–`20260841`), and 12 matching
 degree-preserving rewires. Constants stayed fixed:
 `MAP_GAINS=(-.55,.65,.65)`, `kp=3`, `kd=.05`, `H_MIN=.08`, `.7 s` settle,
@@ -1429,12 +1460,22 @@ The current artifact set includes:
   per-axis JSON/CSV checkpoints, executable single-difference input-signature
   asserts, Holm family correction, and real/median-random four-view videos for
   B1/B2/B3/B6.
+- `NEXT_EXPERIMENTS` H1 strict amplitude matching, H2 graph screen, E1 turning,
+  E2 speed modulation, H3 gain envelope, H4 rewiring dose, H5 lesion
+  localization, and E3 body generalization reports, tables, figures, and
+  reviewed four-view videos where preregistered.
+- `NEXT_EXPERIMENTS` T1 scalar-control and T2 forward-readout reports, frozen
+  training/readout artifacts, static-input leak audit, and reviewed body videos.
 
 The corrected E3/E4/layer artifacts carry `zero_learning=true`; the E0,
 Path 3, Method-1, and Method-2 probes are fixed replay/measurement code with
-no optimizer, backprop, reward, target fit, or performance-based choice. All
-54 JSON and 54 CSV files parse; all 212 published candidates are selected with
-0 omitted; the frozen all-leg VNC file hash is
+no optimizer, backprop, reward, target fit, or performance-based choice. The
+H1/E1/E2/H3/H4/H5/E3 reports also carry `learning=false`, equal pre/post graph
+hashes, and complete amplitude-match audits. H2 uses graph analysis only.
+T1/T2 set `zero_learning=false` because only the declared scalar/readout
+objects were trained; both reports record zero VNC-weight updates, and T2's
+static-input leak check passes exactly. All 212 published candidates are
+selected with 0 omitted; the frozen all-leg VNC file hash is
 `018a4890e01f3dd608693e8a040103829e8523d134290ae918e6e5dd4d815506`, and the
 frozen FlyWire brain file hash is
 `f84f8dcd8397a43b8825ba45573cf14105f23d1846c82b58e4f07422f7586a88`.
@@ -1446,12 +1487,15 @@ checks, and readable H.264 video checks all pass. Method-1, Method-2,
 last-three B/C, COORD-212, COORD-INHIB, WAVE-ANTAG, DC-3, Rung 1, and
 specificity B1/B2/B3/B6 real videos are 8.000 s; D is a 1.5 s tonic hold;
 preflight and DC-1 preflight are 4.000 s; VISION-EVAL left/right video is
-4.000 s. The four untried gates, DC-1–DC-3, and Rung 1 T-1–T-3 gates pass;
-all five new zero-training verdicts and Rung 1 are NULL. Specificity
+4.000 s. The four untried gates, DC-1–DC-3, and Rung 1 T-1–T-3 gates pass.
+H1, E1, H3, H4, H5, and E3 earn their declared narrow positive results; H2
+remains a candidate-only mechanism screen and E2 is `SPEED-MODULATION-NULL`.
+T1 earns its one-scalar control result and T2 is `T2-FORWARD-READOUT-NULL`.
+None of these results establishes the canonical tripod. Specificity
 meta-decision is `SPECIFICITY-EARNED@{B1,B2,B3,B6}` for displacement/robustness;
-B4 fails its distribution/CI gate and B5/B7 are NULL. Learned Outcome C/D remain separately labeled methods and
-are not part of the zero-learning headline; last-three C/D are fixed-map
-transfer controls, not learned outcomes.
+B4 fails its distribution/CI gate and B5/B7 are NULL. Learned Outcome C/D
+remain separately labeled methods and are not part of the zero-learning
+headline; last-three C/D are fixed-map transfer controls, not learned outcomes.
 The broad lexical zero-learning scan is scoped to frozen no-learning paths.
 Its raw matches are deterministic `np.polyfit` phase-frequency estimation,
 the substring `train` inside plotting layout `constrained`, the preflight
