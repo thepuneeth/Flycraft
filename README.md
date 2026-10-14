@@ -1,5 +1,63 @@
 # Flycraft
 
+Code, results and paper for **"Fruit-Fly Nerve-Cord Wiring and Motor Drive in a
+Simulated Hexapod"** (IEEE BIBM 2026 Undergraduate and High School Symposium,
+paper S59306). A frozen, untrained MaleCNS v1.0 nerve-cord model (11,000 nodes,
+485,074 signed connections) drives an 18-joint MuJoCo hexapod through a fixed
+hand-written motor map, compared against rewired, shuffled-weight and
+zero-drive controls. No weights and no map are trained.
+
+| What | Where |
+|---|---|
+| Paper source and PDF | `paper/flycraft_bibm_draft.tex`, `paper/flycraft_bibm_draft.pdf` |
+| Reviewer-requested reruns (camera-ready) | `CAMERA_READY_PLAN.md`, `eon-fly-brain/code/camera_ready_reruns.py`, `eon-fly-brain/results/path2/camera_ready/` |
+| Experiments A–E (submitted version) | `eon-fly-brain/code/audit_h5_*`, `audit_h4_*`, `audit_e3_*`, `labeled_line_campaign.py`, `cpg_specificity.py`; results in `eon-fly-brain/results/path2/*_lif*.json` |
+| Methods log | `PATH2_METHODS.md`, `HANDOFF.md` |
+
+### Setup
+
+```bash
+python3.12 -m venv eon-fly-brain/.venv
+./eon-fly-brain/.venv/bin/pip install -r requirements.txt
+```
+
+### Data (not in this repo)
+
+The connectome files are large public releases and are not redistributed here.
+Download the MaleCNS v1.0 release from https://male-cns.janelia.org/ (CC BY 4.0,
+Janelia FlyEM and collaborators) and place these files in
+`eon-fly-brain/data/manc/`:
+
+- `body-annotations-male-cns-v1.0-minconf-0.5.feather`
+- `body-neurotransmitters-male-cns-v1.0.feather`
+- `connectome-weights-male-cns-v1.0-minconf-0.5.feather`
+
+Then rebuild the frozen weight matrix, which is gitignored because it is
+regenerable (the `fetch_manc.py` command under **Reproduce** below writes
+`eon-fly-brain/results/path2/all_legs_weight_csr.pkl`). The index
+`all_legs_io_index.npz` and the control-graph cache
+`specificity_vnc_substrates.npz` are tracked. Every audit checks the rebuilt
+graph against the recorded SHA-256 before running.
+
+### Reproduce the camera-ready reruns
+
+```bash
+./eon-fly-brain/.venv/bin/python eon-fly-brain/code/camera_ready_reruns.py --workers 8
+```
+
+LIF core on CPU, about 35 minutes on a 10-core Mac. CPU and CUDA draw different
+Poisson streams, so results are reported as means over 30 realizations rather
+than single draws.
+
+### License
+
+Code is GPL-2.0 (`eon-fly-brain/LICENSE`). Connectome data and the anatomy
+renders in `paper/figures/` derive from MaleCNS (CC BY 4.0).
+
+---
+
+## Research log
+
 ## Current work (2026-09-05)
 
 Goal-directed embodiment: a frozen, untrained MANC VNC connectome driving an

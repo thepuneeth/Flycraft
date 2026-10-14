@@ -1,0 +1,11 @@
+# Python 3.12. Versions are the ones every recorded result was produced with.
+torch==2.13.0
+numpy==2.5.2
+pandas==3.0.5
+pyarrow==25.0.1
+mujoco==3.12.0
+matplotlib==3.11.1
+imageio==2.37.4
+imageio-ffmpeg==0.6.0
+cma==4.4.4
+pillow==12.3.0

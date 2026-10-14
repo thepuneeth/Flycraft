@@ -53,3 +53,6 @@ paper/**/*.blg
 
 # regenerable LIF history cache (camera_ready_reruns.py; sha256 recorded in its report)
 eon-fly-brain/results/path2/camera_ready/histories.npz
+
+# macOS AppleDouble resource forks
+._*
